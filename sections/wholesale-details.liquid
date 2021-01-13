@@ -1,0 +1,171 @@
+<div class="team_wrapper career_warp">
+<div class="page-width teampage carreerc"> 
+  <div class="job_board_sec">
+    {% if section.settings.text-boxTwo != blank %}
+    <h3 class="jobboard_title" >{{ section.settings.text-boxTwo }}</h3>
+    {% endif %}
+     {% if section.settings.job_location != blank %}
+    <h4 class="jobboard_stitle" >Location: <span>{{ section.settings.job_location }}</span> </h4>
+    {% endif %}
+     {% if section.settings.yearly_salary != blank %}
+  <h4 class="jobboard_stitle" >Yearly Salary: <span>{{ section.settings.yearly_salary }}</span> </h4>
+    {% endif %}
+     {% if section.settings.job_schedule != blank %}
+  <h4 class="jobboard_stitle" >Employment Type: <span>{{ section.settings.job_schedule }} </span></h4>
+    {% endif %}
+     {% if section.settings.short_description != blank %}
+  <h4 class="jobboard_descrip" ><span>{{ section.settings.short_description }} </span></h4>
+    {% endif %}
+   
+  </div>
+{% if section.settings.show_team_block %}
+<div data-section-id="{{ section.id }}"  id="slick-{{ section.id }}" class="team-row{% if section.settings.slideshow_width == 'contained' %} container mb30 {% else %} mt-30 {% endif %}" data-section-type="brands-slideshow-section">  
+  {% for block in section.blocks %}
+      
+    <div class="career_port center {% if block.settings.full_width != blank %} full_careers {% endif %} half_page team  team_member">     
+      <div class="team_info_box job_des_area">        
+        {% if block.settings.title != blank %}
+        <div class="title"> {{ block.settings.title }} </div>
+        {% endif %}
+        {% if block.settings.fun_title != blank %}
+        <div class="fun_title job_details_list"> {{ block.settings.fun_title }} </div>
+        {% endif %}
+        </div>
+    </div>
+     
+  {% endfor %} 
+
+</div>
+{% endif %}
+</div>
+</div>
+
+
+
+{% schema %}
+ {
+    "name": "Job Details",
+    "max_blocks": 20,
+    "settings": [
+      {
+      "id": "text-boxTwo",
+      "type": "text",
+      "label": "Heading",
+      "default": "Title"
+      },
+      {
+        "type": "text",
+        "id": "job_location",
+        "label": "Job Location"
+      },
+      {
+        "type": "text",
+        "id": "yearly_salary",
+        "label": "Yearly Salary"
+      },
+{
+        "type": "text",
+        "id": "job_schedule",
+        "label": "Schedule"
+      },
+{
+        "type": "text",
+        "id": "short_description",
+        "label": "Short Description"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_team_block",
+        "label": "Enable Team Page",
+		"default": true
+      },
+
+      {
+        "type": "header",
+        "content": "Info"
+      },
+      {
+        "type": "paragraph",
+        "content": "You may upload up to 25 members"
+      },
+	  {
+        "type": "paragraph",
+        "content": "Please try to use the same pixel size for all images - Please crop all images to be square (1x1) size. Maximum width is 800px."
+      }
+
+	],
+     "blocks" : [
+      {
+        "type": "brand",
+        "name": "Requirment",
+        "settings": [
+      {
+        "type": "header",
+        "content": "Job Requirment"
+      },      
+      
+      {
+        "type": "text",
+        "id": "title",
+        "default": "Title",
+        "label": "Title"
+      },
+      {
+        "type": "textarea",
+        "id": "fun_title",
+        "label": "Description"
+      },
+{
+        "type": "checkbox",
+        "id": "full_width",
+        "label": "Full Width"
+      }
+	  ]
+ 	 }
+
+	],
+  "presets": [{
+    "name": "Job Description",
+    "category": "Requirment",
+    "settings": {
+    },
+    "blocks": [
+      {
+        "type": "brand"
+      },
+      {
+        "type": "brand"
+      },
+      {
+        "type": "brand"
+      },
+      {
+        "type": "brand"
+      }
+    ]
+  }]
+ }
+{% endschema %}
+
+
+
+
+
+
+{% stylesheet %}
+@media only screen and (max-width: 568px) {
+.team_info_box.job_des_area {border:none ;}
+  
+}
+@media only screen and (max-width: 770px) {
+.team_wrapper.career_warp {
+    margin-top: 40px;
+}
+  
+}
+{% endstylesheet %}
+
+{% javascript %}
+
+
+{% endjavascript %}

@@ -1,0 +1,89 @@
+
+
+<div class="tabs-outer">
+<ul class="tabs">
+    <li><img class="tab_product_image" src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/banana_540x_108e8863-cc74-46e5-8143-a11f14cb6c95.png?v=1584558325" alt="">
+     <p class="tab12">More Info</p></li>
+    <li><img class="tab_product_image" src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/Level_Wrapper_Mockups_2019_09_08_Salted_540x_4e6b3aed-03ab-4a28-b47f-4bd44692b754.png?v=1584558473" alt="">
+      <p class="tab13">More Info</p</li>
+    <li><img class="tab_product_image" src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/oat-cookie-gluten-free-solo_540x_db7f96a1-6db0-4a42-afda-ffe57bcc9b49.png?v=1584558473" alt="">
+      <p class="tab14">More Info</p></li>
+  	</ul>
+
+   <div id="tab1" class="tab_contentBox">
+     <div class="tab_product_textbox">                                     
+    <p>Decadence in disguise, our Banana Bread flavor unites soft cinnamon oats and a subtle sweet banana.</p>                 
+           </div>
+    <div class="tabproductBox">
+                     <div class="tab_nutri_textbox">                                     
+                       <h4 style="color:#fff; background:#ecd113; "> banana bread  </h4>               
+                    </div>
+                    
+                    <img class="tab_nutri_image" src="//cdn.shopify.com/s/files/1/0248/8084/0813/files/banana_04a24318-8791-451a-b8b3-fd0582d7efa3_350x.jpg?v=1580147632" alt="">
+                                        
+                  </div>
+  </div>
+  
+   <div id="tab2" class="tab_contentBox">
+     <div class="tab_product_textbox">                                     
+     <p>The perfect balance of milk and dark chocolate, our Salted Brownie flavor brings you the decadence of almond-sprinkled brownie batter.</p>
+           </div>
+   
+     <div class="tabproductBox">
+                     <div class="tab_nutri_textbox">                                     
+                       <h4 style="color:#fff; background:#47413c; "> salted brownie  </h4>               
+                    </div>
+                    
+                    <img class="tab_nutri_image" src="//cdn.shopify.com/s/files/1/0248/8084/0813/files/salted_13eb7fcf-9643-4798-a99a-0ef8cf4c7e09_350x.jpg?v=1580147653" alt="">
+                                        
+                  </div>
+     
+  </div>
+  
+   <div id="tab3" class="tab_contentBox">
+     <div class="tab_product_textbox">                                     
+     <p>Like the first step into your hometown bakery, our Oat Cookie bar melds deep notes of buttered brown sugar and warm maple syrup.</p>               
+           </div>
+   <div class="tabproductBox">
+                     <div class="tab_nutri_textbox">                                     
+                       <h4 style="color:#fff; background:#e2c687; "> oat cookie  </h4>               
+                    </div>
+                    
+                    <img class="tab_nutri_image" src="//cdn.shopify.com/s/files/1/0248/8084/0813/files/oat_219dcecc-1328-42f5-a6ff-dd780ff627c0_350x.jpg?v=1580149326" alt="">
+                                        
+                  </div>
+  </div>
+  
+</div>
+
+<script>
+  $(document).ready(function(){
+  $('a[href="#tab-1"]').removeClass("active");
+    $(".tab12").click(function(){
+         $("#tab3").hide();
+         $(".tab14").removeClass("active");
+         $("#tab2").hide();
+         $(".tab13").removeClass("active");
+    $("#tab1").slideToggle();
+     $(".tab12").toggleClass("active");
+    });
+       $(".tab13").click(function(){
+          $("#tab1").hide();
+         $(".tab12").removeClass("active");
+          $("#tab3").hide();
+         $(".tab14").removeClass("active");
+    $("#tab2").slideToggle();
+      $(".tab13").toggleClass("active");
+    });
+    
+         $(".tab14").click(function(){
+            $("#tab2").hide();
+         $(".tab13").removeClass("active");
+               $("#tab1").hide();
+         $(".tab12").removeClass("active");
+    $("#tab3").slideToggle();
+            $(".tab14").toggleClass("active");
+     
+    });
+  });
+</script>

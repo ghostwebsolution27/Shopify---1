@@ -1,0 +1,31 @@
+{% assign pay_later = false %}
+{% assign collection_id = 139696373869 %}
+
+{% if collection_id != blank %}
+{% for line_item in cart.items %}
+
+{% assign product_collections = line_item.product.collections %}
+
+  {% for collection in product_collections %}
+
+      {% if collection.id == collection_id %}
+          {% assign pay_later = true %}
+          {% break %}
+      {% endif %}
+
+  {% endfor %}
+
+{% endfor %}
+{% else %}
+{% assign pay_later = true %}
+{% endif %}<script>
+                var storeArguments = {
+                    customer: "{{customer.id}}",
+                    customer_email: "{{customer.email}}",
+                    shopAddress: "{{shop.permanent_domain}}",
+                };
+            </script>
+            {% if pay_later %}
+            {{"CML_script.js" | asset_url | script_tag }}
+            {% endif %}
+            

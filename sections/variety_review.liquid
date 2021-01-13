@@ -1,0 +1,64 @@
+{% if section.settings.divider %}<div class="section--divider">{% endif %}
+<div class="page-width reviews_veriety_pack">
+  <div id="tab-2" class="reviews_tab">
+      <h3 class=" ingredients_sec_title"> {{ section.settings.tab_two }}</h3>
+       {{ section.settings.title }}
+    <div id="stamped-main-widget"   
+data-widget-style="standard" 
+data-product-id="{{ product.id }}"   
+data-name="{{ product.title | escape }}"   
+data-url="{{ shop.url }}{{ product.url }}"   
+data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}" 
+data-description="{{ product.description | escape }}"   
+data-product-sku="{{product.handle}}">   
+{{ product.metafields.stamped.reviews }}   
+</div>
+  </div>
+</div>
+
+{% if section.settings.divider %}</div>{% endif %}
+
+{% schema %}
+  {
+    "name": "Mix Bars Reviews",
+    "class": "index-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "tab_two",
+        "label": "Review Title"
+      },
+      {
+        "type": "checkbox",
+        "id": "white_header",
+        "label": "Reverse Color Header"
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color "
+      },
+      {
+        "type": "image_picker",
+        "id": "background_image",
+        "label": "Background Image"
+      },
+      {
+        "type": "checkbox",
+        "id": "divider",
+        "label": "Show section divider",
+        "default": false
+      }
+    ],
+    "presets": [{
+      "name": "Mix Bars Reviews",
+      "category": "Library"
+    }]
+      
+  }
+{% endschema %}
+
+
+{% javascript %}
+
+{% endjavascript %}

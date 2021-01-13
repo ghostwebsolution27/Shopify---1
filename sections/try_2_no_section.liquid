@@ -1,0 +1,186 @@
+
+
+{% if section.settings.try_nosection != false %}
+  <div class="page-width page-content try_nosection">
+    <div class="try_landing_sec">
+      
+    
+      
+       
+   <div class="try_no_section_list">
+     <ul class="try_list_no">
+          {%- for block in section.blocks -%}             
+              {% case block.type %}
+                {% when 'text'%}  
+      <li style="text-align:{{ block.settings.align_text }}; color:{{ block.settings.text_color }};"> {{ block.settings.text }} </li>
+              {% endcase %}            
+          {%- endfor -%}
+     </ul>
+      
+</div>
+     
+  
+   
+</div>
+    
+   
+   
+  </div>
+{% endif %}
+
+{% schema %}
+ {
+    "name": "Try No Section",
+    "class": "try-no",
+    "max_blocks": 10,
+    "settings": [
+      
+     {
+            "type": "checkbox",
+            "id": "try_nosection",
+            "label": "Display Section",
+            "default":true
+          }, 
+{
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+"default": "Try No Section"
+
+        
+      },
+{
+            "type": "color",
+            "id": "section_background",
+            "label": "Section Background",
+             "default": "#fff"
+          }
+      
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "No Text",
+        "settings": [
+         {
+            "type": "textarea",
+            "id": "text",
+            "label": "Text",
+            "default": "Rich text"
+          },
+        
+{
+            "type": "color",
+            "id": "text_color",
+            "label": "Text Color",
+"default": "#000"
+          },
+          {
+            "type": "select",
+            "id": "align_text",
+            "label": "Text alignment",
+            "default": "left",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Centered"
+              }
+            ]
+          }
+          
+         
+        ]
+      }
+    ]
+   
+  }
+
+
+
+
+
+{% endschema %}
+
+<style type="text/css">
+  .page-width.page-content.try_nosection{text-align:center;}
+  
+  .try_no_section_list {
+  margin:0px;
+    padding:0px;
+    display:block;
+     width:100%;
+  }
+  .try_list_no {
+  margin:0px;
+    padding:0px;
+  }
+  .try_list_no li {
+  display:inline-table;
+   font-size: 30px;
+font-weight: 900;
+text-transform: uppercase;
+margin: 0px;
+padding: 8px 35px; 
+    position:relative;
+  }
+  .try_list_no li:after {
+  content:'+';
+  color:#e00808;
+    position: absolute;
+right: -10px;
+  }
+  .try_list_no li:nth-child(4):after{
+  display:none;
+  }
+  #shopify-section-try_2_no_section{background:{{ section.settings.section_background }}; padding-bottom:0px; margin-top:0px;}
+  @media only screen and (max-width:1160px){
+  .try_list_no li {
+  
+   font-size: 22px;
+font-weight: 900;
+padding: 8px 25px; 
+   
+  }
+  }
+   @media only screen and (max-width:880px){
+  .try_list_no li {
+  
+   font-size: 18px;
+
+padding: 8px 15px; 
+   
+  }
+     #shopify-section-try_no_section{margin-top:0px;}
+  }
+   
+  @media only screen and (max-width:605px){
+     .try_list_no li {font-size:14px ; padding: 8px 5px ;}
+    .try_list_no li:after {
+    position:relative;
+    right: -3px ;
+}
+    .try_list_no li:nth-child(4):after {
+
+    display: none ;
+
+}
+   }
+ 
+  @media only screen and (max-width:451px){
+     .try_list_no li {font-size:11.5px ; padding: 8px 2px ;}
+    .try_list_no li:after {
+     position:relative;
+    right: 0px ;
+}
+    .try_list_no li:nth-child(4):after {
+
+    display: none ;
+
+}
+   }
+  
+</style>

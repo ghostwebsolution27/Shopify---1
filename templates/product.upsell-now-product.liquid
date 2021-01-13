@@ -1,0 +1,36 @@
+{% layout none %}
+{% if product %}
+{% assign first_variant = product.selected_or_first_available_variant %}
+{
+"id":"{{ product.id }}",
+"title":"{{ product.title | escape }}",
+"handle":"{{ product.handle }}",
+"img":"{{ product | img_url: '100x100' }}",
+"original_price":"{{ first_variant.compare_at_price }}",
+"price":"{{ first_variant.price }}",
+"variant_title":"{{ first_variant.title | escape }}",
+"variant_id":"{{ first_variant.id }}",
+"inventory_quantity":"{{ first_variant.inventory_quantity }}",
+"inventory_policy":"{{ first_variant.inventory_policy }}",
+"inventory_management":"{{ first_variant.inventory_management }}",
+"available":{{ first_variant.available }},
+"variants":
+[
+{% for variant in product.variants %}
+{
+"original_price":"{{ variant.compare_at_price }}",
+"price":"{{ variant.price }}",
+"variant_title":"{{ variant.title | escape }}",
+"variant_id":"{{ variant.id }}",
+"inventory_quantity":"{{ variant.inventory_quantity }}",
+"inventory_policy":"{{ variant.inventory_policy }}",
+"inventory_management":"{{ variant.inventory_management }}",
+"available":{{ variant.available }}
+}
+{% if forloop.last != true %}
+,
+{% endif %}
+{% endfor %}
+]
+}
+{% endif %}

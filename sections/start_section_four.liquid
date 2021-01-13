@@ -1,0 +1,245 @@
+
+
+{%- if section.blocks.size > 0 -%}
+  <div class="page-width page-content">
+    <div class="try_landing_sec scfour">
+       <div class="try_half try_sec_right_four" style="text-align:center;">
+       {% if section.settings.image != blank %}
+      <img class="image-try  try--{{ block.id }}"
+                        src="{{ section.settings.image | img_url: '750x' }}"
+                        alt="{{ section.settings.image.alt | escape }}">
+      {% else %}
+                    <svg class="placeholder-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1052 400" style="background-color: #000;"></svg>
+       {% endif %}
+    </div>
+    <div class="try_half try_sec_left">
+       
+          {%- for block in section.blocks -%}
+           
+              {% case block.type %}
+                {% when 'rich-text'%}
+      <h2 class="try_sec_four_title" style="{% if block.settings.title_color != blank %}
+       color:{{ block.settings.title_color }}; text-align:{{ block.settings.align_text }};{% endif %}"> {{ block.settings.title }} </h2>
+
+                {% when 'sub_text'%}
+      <p class="sec_block_subt" style="{% if block.settings.title_color != blank %}
+       color:{{ block.settings.title_color }}; text-align:{{ block.settings.align_text }};{% endif %}">{{ block.settings.title }} </p>
+      {% when 'button'%}
+     <div class="try-butn-ara"> <a class="hero_button_add btn  try-btn-ds trybutn_fullw" style="{% if block.settings.btn_bg_color != blank %} background-color:{{ block.settings.btn_bg_color }}; {% endif %}{% if block.settings.btn_color != blank %}
+       color:{{ block.settings.btn_color }};{% endif %}" href="{{ block.settings.link }}">{{ block.settings.title }}</a></div>
+
+              {% endcase %}
+           
+          {%- endfor -%}
+      
+
+     
+    </div>
+   
+</div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Try Section Four",
+    "settings": [
+       {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Left Image"
+          },
+{
+            "type": "color",
+            "id": "section_background",
+            "label": "Section Background",
+             "default": "#fff"
+          }
+    ],
+    "default": {
+      "blocks": [
+    
+    
+{
+          "type": "rich-text",
+          "settings": {
+            "title": "Lorem ipsum dolor sit amet, consectetur"
+          }
+        },
+        {
+          "type": "sub_text",
+          "settings": {
+            "title": "Lorem ipsum dolor sit amet, consectetur"
+          }
+        },
+{
+          "type": "sub_text",
+          "settings": {
+            "title": "Lorem ipsum dolor sit amet, consectetur"
+          }
+        },
+        {
+          "type": "sub_text",
+          "settings": {
+            "title": "Lorem ipsum dolor sit amet, consectetur"
+          }
+        }
+      ]
+    },
+    "blocks": [
+      {
+        "type": "rich-text",
+        "name": "Rich text",
+        "settings": [
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Title",
+            "default": "Rich text"
+          },
+        
+{
+            "type": "color",
+            "id": "title_color",
+            "label": "Text Color",
+"default": "#000"
+          },
+          {
+            "type": "select",
+            "id": "align_text",
+            "label": "Text alignment",
+            "default": "left",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Centered"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "sub_text",
+        "name": "Sub Text",
+        "settings": [
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Sub Text",
+            "default": "Lorem ipsum dolor sit amet, consectetur"
+          },
+{
+            "type": "color",
+            "id": "title_color",
+            "label": "Text Color",
+"default": "#000"
+          },
+{
+            "type": "select",
+            "id": "align_text",
+            "label": "Text alignment",
+            "default": "left",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Centered"
+              }
+            ]
+          }
+        ]
+      },
+{
+        "type": "button",
+        "name": "Button",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Button Text",
+            "default": "Submit Now"
+          },
+{
+            "type": "text",
+            "id": "link",
+            "label": "Button Link",
+            "default": "#"
+          },
+          {
+            "type": "color",
+            "id": "btn_color",
+            "label": "Button Color",
+"default": "#fff"
+          },
+{
+            "type": "color",
+            "id": "btn_bg_color",
+            "label": "Button Background Color",
+"default": "#e00808"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+<style type="text/css">
+  .try_sec_four_title {
+    text-transform:uppercase;
+   
+  }
+  .sec_block_subt{
+   font-size:20px;
+font-weight: 300;
+padding: 5px 10px;
+  }
+  .sec_block_subt strong{
+  text-transform: uppercase;
+    font-weight: 900;
+  }
+   .sec_block_subt em{
+  text-transform: none;
+    font-weight: 900;
+     font-style:none;
+  }
+  .sec_block_subt .line_abvoes{
+  display: block;
+padding-top: 30px;
+    position:relative;
+  }
+  .sec_block_subt .line_abvoes:before {
+  content:'';
+  width:40%;
+  margin-left:auto;
+  margin-right:auto;
+    left:0;
+    right:0;
+    position:absolute;
+    height:1px;
+    background:#000;
+    top: 20px;
+  }
+  @media only screen and (max-width:999px){
+    .try_half.try_sec_right_four{margin-bottom:30px;}
+    
+  }
+  #shopify-section-start_section_four{background:{{ section.settings.section_background }}; padding:50px 0px;}
+  .try_landing_sec.scfour {
+  align-items: center;
+justify-content: center;
+  }
+  .trybutn_fullw {
+  width:100%;
+  display:block;
+    padding: 15px 20px;
+  }
+  .index-section.try-qes-ans-sec p {margin-bottom:0px ;}
+  .index-section.try-qes-ans-sec p.h2 {margin-bottom:15px ;}
+</style>

@@ -1,0 +1,219 @@
+/* 
+* Modify  This file as needed to ensure the Bold RO widget looks nice.
+*
+* Place the below include statment before the end </head> tag in the theme.liquid file.
+* {{ 'bold-ro.css' | asset_url | stylesheet_tag }}
+*/
+
+[name=checkout] * {
+  pointer-events: none ;
+}
+
+[href="/checkout"] > * {
+  pointer-events:none ;
+}
+img.tab_ingredient_image {
+    height: 25%;
+}
+h2.try_secTitle.tab_headers {
+    margin-bottom: 0;
+}
+.button {
+  width: 50% ;
+  margin: 5px;
+  background: #fff ;
+  color:#000 ;
+  line-height: 1.42;
+  text-decoration: none;
+  text-align: center;
+  white-space: normal;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  display: inline-block;
+  border: 1px solid #000;
+}
+.page-width.page-content.try_nosection {
+  text-align: center;
+  background: #fbfbfb;
+}
+
+.try_secTitle.tab_headers span {
+    font-size: 34px;
+    font-weight: 300;
+    display: block;
+    text-transform: none;
+    line-height: 1;
+}
+
+ul.tabs.product_tabs li {
+    width: -webkit-fill-available;
+}
+ul.tabs.product_tabs {
+    
+    display: flex;
+}
+.image_caption {
+	right: 0px ;
+}
+.image_caption p {
+    padding-right: 0;
+}
+.page-width.page-content.try_nosection {
+    padding: 20px 0px;
+}
+span.visible-desk {
+    padding-left: 10px;
+}
+#shopify-section-try_2_steps {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.sec_hw_imgarea {
+	margin-top: 0	;
+	padding: 0	;
+}
+.sec_title_lf {
+	padding-bottom: 0	;
+	margin-bottom: 0	;
+}
+.visible-desk1{display:none}
+
+.try_secthree_title span {
+	padding-top: 0;
+}
+.try_half.try_sec_right {
+    position: relative;
+    padding: 0;
+    margin: 0px 2%;
+    width: 46%;
+    padding-bottom: 21px;
+    margin-right: 22px;
+}
+.page-width.page-content.spec_try {
+	padding-top: 35px;
+	padding-bottom: 62px;
+}
+.page-width.page-content.try_sec_three {
+    padding-top: 22px;
+}
+.try_secthree_title span {
+    font-size: 27px;
+}
+
+@media only screen and (max-width: 667px) {
+.visible-desk {
+	display: none;
+}
+  .visible-desk1{display:block}
+  .try_half.try_sec_right {
+	position: relative;
+	padding: 0;
+	/* margin: 0px 2%; */
+	width: 100%;
+	/* padding-bottom: 21px; */
+	margin-right: 0;
+}
+}
+
+@media only screen and (max-width: 480px) {
+  .image_caption {
+    right: 0px;
+}
+  
+  
+  .try_secthree_title span {
+    font-size: 22px;
+    line-height: 1;
+    padding-top: 15px;
+}
+  #shopify-section-try_2_steps {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+  .sec_hw_imgarea img {
+	max-width: 51%;
+}
+  h2.try_secTitle.tab_headers {
+    line-height: 1;
+    font-size: 25px;
+}
+  .hero_button_add.btn.try-btn-calls {
+	margin-top: 0;
+}
+  .stamped-pagination .next{top:0}
+  .stamped-pagination a {
+	padding: 9px;
+	font-size: 13px ;
+}
+   .stamped-pagination .previous{top:0}
+  .try_list_no li {
+	padding: 5px 0;
+}
+  .try_list_no li::after {
+	
+	display: initial;
+	
+}
+  .sec_title_lf {
+	padding-top: 30px;
+	margin-bottom: 0;
+}
+  h2.sec_title_lf {
+    margin-bottom: 0;
+    padding-top: 27px;
+}
+  .try_list_no {
+    display: table;
+    width: auto;
+    margin: auto;
+}
+  .try_list_no li {
+
+    text-align: center ;
+    display: block;
+    padding: 0px 12px ;
+    font-size: 13px ;
+    float: left;
+
+}
+  .try_list_no li::after {
+
+    right: -3px;
+
+}
+}
+
+@media only screen and (max-width: 411px) {
+.try_list_no {
+    display: table;
+    width: auto;
+    margin: auto;
+}
+  .try_list_no li {
+
+    text-align: center ;
+    display: block;
+    padding: 0px 7px;
+    font-size: 10px;
+    float: left;
+
+}
+}
+@media only screen and (max-width: 320px) {
+.try_list_no {
+    display: table;
+    width: auto;
+    margin: auto;
+}
+  .try_list_no li {
+
+    text-align: center ;
+    display: block;
+    padding: 0px 7px;
+    font-size: 8px;
+    float: left;
+
+}
+}

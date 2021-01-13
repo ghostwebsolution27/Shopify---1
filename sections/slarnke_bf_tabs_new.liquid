@@ -1,0 +1,107 @@
+<div class="tabs-outer">
+  
+  <h2 class="sec_title_lf" id="meet_header_text">MEET YOUR FLAVORS</h2>
+  
+  <ul class="tabs" style="margin-top:20;">
+    <li>
+      <img class="tab_product_image bannanbar ot1" style=" " src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/banana-bread_720.png?v=1585331209" alt="">
+      <img class=" bannanbar ot4" style= " display:none;    " src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/bb_720.png?v=1585337390" alt="">
+      <p class="btn tab12">NUTRITION FACTS</p>
+    </li>
+    <li>
+      <img class="tab_product_image chocolatebar ot2" style=" "  src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/salted-brownie.png?v=1585331209" alt="">
+      <img class=" chocolatebar ot8" style="display:none;;  "  src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/sb.png?v=1585337390" alt="">
+      <p class=" btn tab13">NUTRITION FACTS</p></li>
+    <li>
+      <img class="tab_product_image oatsbar ot3" style=" "  src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/oat-cookie_720.png?v=1585331209" alt="">
+      <img class=" oatsbar ot6" style="display:none;    "  src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/oc.png?v=1585337390" alt="">
+      <p class="tab14 btn" style="background-color:red">NUTRITION FACTS</p>
+    </li>
+  </ul>
+
+  <div id="tab1" class="tab_contentBox">
+    <div class="tab_product_textbox">                                     
+      <p>Decadence in disguise, our Banana Bread flavor unites soft cinnamon oats and a subtle sweet banana.</p>                 
+    </div>
+    <div class="tabproductBox">
+      <div class="tab_nutri_textbox">                                     
+        <h4 style="color:#fff; background:#ecd113; "> banana bread  </h4>               
+      </div>
+      <img class="tab_nutri_image" src="//cdn.shopify.com/s/files/1/0248/8084/0813/files/banana_04a24318-8791-451a-b8b3-fd0582d7efa3_350x.jpg?v=1580147632" alt="">                                    
+    </div>
+  </div>
+  
+  <div id="tab2" class="tab_contentBox">
+    <div class="tab_product_textbox">                                     
+    <p>The perfect balance of milk and dark chocolate, our Salted Brownie flavor brings you the decadence of almond-sprinkled brownie batter.</p>
+    </div>
+    <div class="tabproductBox">
+      <div class="tab_nutri_textbox">                                     
+        <h4 style="color:#fff; background:#47413c; "> salted brownie  </h4>               
+      </div>
+      <img class="tab_nutri_image" src="//cdn.shopify.com/s/files/1/0248/8084/0813/files/salted_13eb7fcf-9643-4798-a99a-0ef8cf4c7e09_350x.jpg?v=1580147653" alt="">
+    </div>
+  </div>
+  
+  <div id="tab3" class="tab_contentBox">
+    <div class="tab_product_textbox">                                     
+      <p>Like the first step into your hometown bakery, our Oat Cookie bar melds deep notes of buttered brown sugar and warm maple syrup.</p>               
+    </div>
+    <div class="tabproductBox">
+      <div class="tab_nutri_textbox">                                     
+        <h4 style="color:#fff; background:#e2c687; "> oat cookie  </h4>               
+      </div>
+      <img class="tab_nutri_image" src="//cdn.shopify.com/s/files/1/0248/8084/0813/files/oat_219dcecc-1328-42f5-a6ff-dd780ff627c0_350x.jpg?v=1580149326" alt="">
+    </div>
+  </div>
+</div>
+
+<script>
+  jQuery(document).ready(function(){
+  jQuery('a[href="#tab-1"]').removeClass("active");
+    jQuery(".tab12").click(function(){
+  
+      jQuery(".bannanbar").toggle();
+      
+      jQuery(".ot2").show();
+         jQuery(".ot8").hide();
+         jQuery(".ot3").show();
+         jQuery(".ot6").hide();
+         jQuery("#tab3").hide();
+         jQuery(".tab14").removeClass("active");
+         jQuery("#tab2").hide();
+         jQuery(".tab13").removeClass("active");
+    jQuery("#tab1").slideToggle();
+     jQuery(".tab12").toggleClass("active");
+    });
+       jQuery(".tab13").click(function(){
+         jQuery(".chocolatebar").toggle();
+        jQuery(".ot1").show();
+         jQuery(".ot4").hide();
+         jQuery(".ot3").show();
+         jQuery(".ot6").hide();
+          jQuery("#tab1").hide();
+         jQuery(".tab12").removeClass("active");
+          jQuery("#tab3").hide();
+         jQuery(".tab14").removeClass("active");
+    jQuery("#tab2").slideToggle();
+      jQuery(".tab13").toggleClass("active");
+    });
+    
+         jQuery(".tab14").click(function(){
+             jQuery(".oatsbar").toggle();
+            jQuery(".ot1").show();
+         jQuery(".ot4").hide();
+         jQuery(".ot2").show();
+         jQuery(".ot8").hide();
+         
+            jQuery("#tab2").hide();
+         jQuery(".tab13").removeClass("active");
+               jQuery("#tab1").hide();
+         jQuery(".tab12").removeClass("active");
+    jQuery("#tab3").slideToggle();
+            jQuery(".tab14").toggleClass("active");
+     
+    });
+  });
+</script>

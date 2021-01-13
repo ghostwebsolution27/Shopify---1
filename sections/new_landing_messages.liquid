@@ -1,0 +1,107 @@
+<!-- ANIMATE.CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+
+<div class="new-home-chat">
+  <div class="quoteBoxsection">
+    <div class="page-width" >
+      <div class="innerPage fullw">
+        <div class="quoteBoxarea">
+          <div class="sectionInners animate-left">
+            <div class="quoteBox left_same">
+              <div class="double-quote"></div>
+              <p>The freshness of the bars is what makes them so good!!!!</p>
+              <p>- Kelley B.</p>
+            </div>
+          </div>
+          <div class="sectionInners animate-right">
+            <div class="quoteBox right_small">
+              <div class="double-quote white">
+                <p>Omg It tastes just like a salted brownie but without all the guilt!</p>
+                <p>- Debbie B.</p>
+              </div>
+            </div>
+          </div>
+          <div class="sectionInners animate-left">
+            <div class="quoteBox left_same">
+              <div class="double-quote dark">
+                <p>One word: YUMMMM &#127850;</p>
+                <p>&#127820; &#127838; &#x1f60b;</p>
+              </div>
+            </div>
+          </div>
+          <div class="sectionInners animate-right">
+            <div class="quoteBox right_small">
+              <div class="double-quote">
+                <p>I keep a Mini in my bag at all times for when I need a snack on the go.</p>
+              </div>
+            </div>
+          </div>
+          <div class="messages-button"><a class="btn" href="{{ section.settings.button_url }}">{{ section.settings.button_text }}</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  
+function isOnScreen(elem) {
+	// if the element doesn't exist, abort
+	if( elem.length == 0 ) {
+		return;
+	}
+	var $window = jQuery(window)
+	var viewport_top = $window.scrollTop()
+	var viewport_height = $window.height()
+	var viewport_bottom = viewport_top + viewport_height
+	var $elem = jQuery(elem)
+	var top = $elem.offset().top
+	var height = $elem.height()
+	var bottom = top + height
+
+	return (top >= viewport_top && top < viewport_bottom) ||
+	(bottom > viewport_top && bottom <= viewport_bottom) ||
+	(height > viewport_height && top <= viewport_top && bottom >= viewport_bottom)
+}
+
+jQuery( document ).ready( function() {
+	window.addEventListener('scroll', function(e) {
+      	$('.sectionInners.animate-left').each(function () {
+          if( isOnScreen( jQuery( this ) ) ) { /* Pass element id/class you want to check */
+              $(this).addClass('animate__bounceInLeft animate__animated unhide-animate');
+          }	
+        });
+      	$('.sectionInners.animate-right').each(function () {
+          if( isOnScreen( jQuery( this ) ) ) { /* Pass element id/class you want to check */
+              $(this).addClass('animate__bounceInRight animate__animated unhide-animate');
+          }	
+        });
+	});
+});
+
+</script>
+
+{% schema %}
+  {
+    "name": "New Home - Messages",
+    "settings": [
+	  {
+        "type": "color",
+        "id": "section_bg",
+        "label": "Section Background color",
+        "default": "#000000"
+      },
+	  {
+        "type": "text",
+        "id": "button_text",
+        "label": "Button Text",
+		"default": "Shop Now"
+      },
+	  {
+        "type": "url",
+        "id": "button_url",
+        "label": "Button URL"
+      }
+    ]
+  }
+{% endschema %}

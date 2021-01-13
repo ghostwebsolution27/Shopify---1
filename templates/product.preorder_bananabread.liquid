@@ -1,0 +1,27 @@
+{% comment %}ECPWS{% endcomment %}{% capture ec-pw-ify %}{% section 'product-template' %}
+{% section 'banana_bread_ingredients' %}
+{% section 'product-recommendations' %}
+
+{% if collection %}
+  <div class="text-center page-content page-content--bottom">
+    <a href="{% if collection.handle == 'frontpage' %}/{% else %}{{ collection.url }}{% endif %}" class="btn btn--small return-link">
+      <p>
+      {% include 'icon-arrow-left' %} {{ 'products.general.collection_return' | t: collection: collection.title }}
+      </p>
+    </a>
+  </div>
+{% endif %}
+
+<script>
+  // Override default values of shop.strings for each template.
+  // Alternate product templates can change values of
+  // add to cart button, sold out, and unavailable states here.
+  theme.productStrings = {
+    addToCart: {{ 'products.product.preorder' | t | json }},
+    soldOut: {{ 'products.product.sold_out' | t | json }},
+    unavailable: {{ 'products.product.unavailable' | t | json }}
+  };
+</script>
+
+{% comment %}ECPWS{% endcomment %}{% endcapture %}{% include 'ec-passwordify' %}
+

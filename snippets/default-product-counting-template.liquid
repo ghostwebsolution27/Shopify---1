@@ -1,0 +1,304 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script>
+  $( document ).ready(function() {
+   
+    $('div#coming-button').on('click', function(e){
+      $(this).children('button').prop('disabled', false);
+      e.preventDefault();
+      e.stopPropagation();
+      
+      jQuery(".overlay-popup-oat").fadeIn();
+
+})
+    
+    $(document).on("click", ".sign_up_cart_button", function(e) {
+      console.log('sign_up_cart_button')
+//       $(this).children('button').prop('disabled', false);
+      e.preventDefault();
+      e.stopPropagation();
+      
+      jQuery(".overlay-popup-oat").fadeIn();
+    });
+
+});
+ 
+</script>
+<script>
+
+  $(window).load(function(){
+  $('.variant-input-wrap .variant-input:nth-child(1) input:radio').change(function(){
+     if($(this).is(":checked")) {
+        $('.small').addClass("fade_outt");
+        $('.larg').removeClass("fade_outt");
+    }
+});
+  });
+  $(window).load(function(){
+    $('.variant-input-wrap .variant-input:nth-child(2) input:radio').change(function(){
+     if($(this).is(":checked")) {
+        $('.larg').addClass("fade_outt");
+        $('.small').removeClass("fade_outt");
+    }
+});
+    });
+</script>
+<style>
+  .fade_outt{
+    opacity: .3;
+    color: #000;
+  }
+  .variant-input-wrap input[type='radio']:checked+label:after {
+    opacity: 1;
+    color: #e00708;
+}
+</style>
+{% unless thumbnail_position %}
+  {%- assign thumbnail_position = 'beside' -%}
+{% endunless %}
+
+{% unless description_style %}
+  {%- assign description_style = 'full' -%}
+{% endunless %}
+
+{%- assign product_img_structure = product.featured_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+<div id="ProductSection-{{ section_id }}"
+  class="product-section"
+  data-section-id="{{ section_id }}"
+  data-section-type="product-template"
+  data-product-handle="{{ product.handle }}"
+  data-product-url="{{ product.url | within: collection }}"
+  data-aspect-ratio="{{ 100 | divided_by: product.featured_image.aspect_ratio }}"
+  data-img-url="{{ product_img_structure }}"
+  {% if settings.product_zoom_enable %}
+    data-image-zoom="true"
+  {% endif %}
+  {% if settings.inventory_enable %}
+    data-inventory="true"
+  {% endif %}
+  {% unless isModal %}
+    data-enable-history-state="true"
+  {% endunless %}
+  {% if isModal %}
+    data-lazyload-content="true"
+  {% endif %}>
+
+  {% include 'product-template-variables' %}
+
+  <div class="page-content page-content--product counting-template" style="{% if section.settings.background_meta_image != blank %}background: url({{ section.settings.background_meta_image | img_url: '1500x' }}); {% endif %}">
+    <div class="page-width">
+
+      <div class="grid{% unless image_position == 'left' %} grid--product-images-right{% endunless %}">
+        {% if image_position == 'left' %}
+          <div class="grid__item product_img_benefits_wrapper {{ product_image_width }} {{product.tags}}">
+            
+            {% if section.settings.icon_one != blank %}
+              <div class="product-single__benifits rte">
+                <h4>Benefits</h4>
+                <div class="library_title_icons_wrapper item_page">
+                {% if section.settings.icon_one != blank %}
+                <div class="library_icon">
+                  <img class="ff" src="{{ section.settings.icon_one | img_url: '600x' }}" alt="{{ section.settings.icon_one.alt }}">
+                </div>
+                {% endif %}
+                {% if section.settings.icon_two != blank %}
+                <div class="library_icon">
+                  <img src="{{ section.settings.icon_two | img_url: '600x' }}" alt="{{ section.settings.icon_two.alt }}">
+                </div>
+                {% endif %}
+                {% if section.settings.icon_three != blank %}
+                <div class="library_icon">
+                  <img src="{{ section.settings.icon_three | img_url: '600x' }}" alt="{{ section.settings.icon_three.alt }}">
+                </div>
+                {% endif %}
+                {% if section.settings.icon_four != blank %}
+                <div class="library_icon">
+                  <img src="{{ section.settings.icon_four | img_url: '600x' }}" alt="{{ section.settings.icon_four.alt }}">
+                </div>
+                {% endif %}
+              </div>
+              </div>
+            {% endif %}
+            
+            {% include 'product-images', section_id: section_id, isModal: isModal, thumbnail_position: thumbnail_position %}
+          </div>
+        {% endif %}
+
+        <div class="grid__item {{ product_description_width }}">
+
+          <div class="product-single__meta" style="{% unless text_align != 'left' %}text-align:left;{% endunless %} {% unless text_align != 'center' %}text-align: center;{% endunless %} {% unless text_align != 'right' %}text-align: right;{% endunless %}">
+            {% if settings.show_breadcrumbs and isModal != true %}
+              {% include 'breadcrumbs' %}
+            {% endif %}
+
+            {% if settings.vendor_enable %}
+              <div class="product-single__vendor">
+                {{ product.vendor }}
+              </div>
+            {% endif %}
+
+            {% if isModal %}
+              <p class="h2 product-single__title">
+                {{ product.title }}
+              </p>
+            {% else %}
+              <h1 class="h2 product-single__title">
+                {{ product.title }}
+              </h1>
+            {% endif %}
+
+            {% if settings.enable_product_reviews and settings.reviews_layout == 'full' %}
+              {% if isModal %}
+                {%- assign review_link = product.url | within: collection | append: '#Reviews-' | append: product.id -%}
+              {% else %}
+                {%- assign review_link = '#Reviews-' | append: product.id -%}
+              {% endif %}
+              <a href="{{ review_link }}" class="product-single__review-link">
+                <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+              </a>
+            {% endif %}
+
+            {% if settings.sku_enable %}
+              <p id="Sku-{{ section_id }}" class="product-single__sku">
+                {% if current_variant.sku %}
+                  {{ current_variant.sku }}
+                {% endif %}
+              </p>
+            {% endif %}
+
+            {%- assign hide_sale_price = true -%}
+            {% if product.compare_at_price_max > product.price %}
+              {% if current_variant.compare_at_price > current_variant.price %}
+                {%- assign hide_sale_price = false -%}
+              {% endif %}
+              <span
+                id="PriceA11y-{{ section_id }}"
+                class="visually-hidden"
+                aria-hidden="{{ hide_sale_price }}">
+                  {{ 'products.general.regular_price' | t }}
+              </span>
+              <span class="product__price-wrap-{{ section_id }}{% if hide_sale_price %} hide{% endif %}">
+                <span id="ComparePrice-{{ section_id }}" class="product__price product__price--compare">
+                  {% if current_variant.compare_at_price > current_variant.price %}
+                    {{ current_variant.compare_at_price | money }}
+                  {% endif %}
+                </span>
+              </span>
+              <span id="ComparePriceA11y-{{ section_id }}" class="visually-hidden">{{ 'products.general.sale_price' | t }}</span>
+            {% else %}
+              <span id="PriceA11y-{{ section_id }}" class="visually-hidden">{{ 'products.general.regular_price' | t }}</span>
+            {% endif %}
+            
+            
+<!--Prices are commented out for the purpose of having two different ones
+    You can find price code in 'variant-button.liquid' -->
+
+              <!--<span id="ProductPrice-{{ section_id }}"
+              class="product__price{% if current_variant.compare_at_price > current_variant.price %} on-sale{% endif %}">
+                   {{ current_variant.price | money }}
+            </span> -->
+              <!--<span
+              class="product__price{% if current_variant.compare_at_price > current_variant.price %} on-sale{% endif %}">
+              <span class="larg">{{ product.price_max | money }}</span>
+              <span class="small fade_outt">{{ product.price_min | money }}</span>
+            </span> -->
+
+            {% if settings.product_save_amount %}
+              {% if settings.product_save_type == 'dollar' %}
+                {% capture saved_amount %}{{ current_variant.compare_at_price | minus: current_variant.price | money }}{% endcapture %}
+              {% else %}
+                {% capture saved_amount %}{{ current_variant.compare_at_price | minus: current_variant.price | times: 100.0 | divided_by: current_variant.compare_at_price | round }}%{% endcapture %}
+              {% endif %}
+              <span id="SavePrice-{{ section_id }}" class="product__price-savings{% if hide_sale_price %} hide{% endif %}">
+                {{ 'products.general.save_html' | t: saved_amount: saved_amount }}
+              </span>
+            {% endif %}
+
+            {% if settings.inventory_enable %}
+              <script>
+                // Store inventory quantities in JS because they're no longer
+                // available directly in JS when a variant changes.
+                // Have an object that holds all potential products so it works
+                // with quick view or with multiple featured products.
+                window.inventories = window.inventories || {};
+                window.inventories['{{section_id}}'] = {};
+                var inv_qty = {};
+                 {% for variant in product.variants %}
+                  window.inventories['{{section_id}}'][{{variant.id}}] = {{ variant.inventory_quantity | default: 0 }};
+                 {% endfor %}
+              </script>
+
+              {%- assign inventory_visible = false -%}
+              {% if current_variant.inventory_management == 'shopify' %}
+                {% if current_variant.inventory_quantity < 10 and current_variant.inventory_quantity >= 0 %}
+                  {%- assign inventory_visible = true -%}
+                {% endif %}
+              {% endif %}
+              {% if current_variant.inventory_quantity == 0 %}
+                {%- assign inventory_visible = false -%}
+              {% endif %}
+            {% endif %}
+
+            <hr class="hr--medium">
+
+            {% unless isModal %}
+              {% comment %}
+                Shopify's product form attaches a number of tracking
+                scripts that cause slower load times and false statistics.
+                Quick view modals request these on-demand.
+              {% endcomment %}
+              {% include 'counting-product-form', section_id: section_id %}
+            {% else %}
+              <div id="ProductFormHolder-{{ section_id }}" class="product-form-holder" data-url="{{ product.url }}"></div>
+            {% endunless %}
+
+            {% unless description_style == 'full' %}
+              <div class="product-single__description rte">
+                {{ product.description }}
+            </div>
+            {% endunless %}
+
+            {% if social %}
+              {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+            {% endif %}
+          </div>
+        </div>
+
+        {% unless image_position == 'left' %}
+          <div class="grid__item {{ product_image_width }}">
+            {% include 'product-images', section_id: section_id, isModal: isModal, thumbnail_position: thumbnail_position %}
+          </div>
+        {% endunless %}
+      </div>
+
+      {% if description_style == 'full' %}
+        <div class="product-single__description-full rte">
+          {{ product.description }}
+        </div>
+
+        {% include 'product-additional-content', section_id: section_id %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<div class="overlay-popup overlay-popup-oat" style="display:none">
+  <div class="popup-row">
+    <div class="close-btn">X</div>
+    <div class="popup-colm">
+      <div class="klaviyo-form-PrNajL"></div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  // Override default values of shop.strings for each template.
+  // Alternate product templates can change values of
+  // add to cart button, sold out, and unavailable states here.
+  theme.productStrings = {
+    addToCart: {{ 'products.product.add_to_cart' | t | json }},
+    soldOut: {{ 'products.product.sold_out' | t | json }},
+    unavailable: {{ 'products.product.unavailable' | t | json }}
+  };
+</script>

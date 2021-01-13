@@ -1,0 +1,16 @@
+{% comment %}ECPWS{% endcomment %}{% capture ec-pw-ify %}<div class="page-content page-full">
+
+  {% include 'breadcrumbs' %}
+
+  <div class="page-width">
+    <header class="section-header">
+      <h1 class="section-header__title">{{ page.title }}</h1>
+    </header>
+  </div>
+
+  <div class="rte rte--nomargin">
+    {{ page.content }}
+  </div>
+
+</div>
+{% comment %}ECPWS{% endcomment %}{% endcapture %}{% include 'ec-passwordify' %}

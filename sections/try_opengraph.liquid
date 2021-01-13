@@ -1,0 +1,26 @@
+{%comment%}
+
+ {%- capture og_image_tags -%}
+   
+      <meta property="og:image" content="http:{{ section.settings.image | img_url: '1200x' }}">
+    
+  {%- endcapture -%}
+{%endcomment%}
+{%- assign og_title = 'dddddd' -%}
+{%- assign og_image = 'website' -%}
+
+{% schema %}
+  {
+    "name": "Open Graph Image",
+    "settings": [
+       {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Opengraph Image"
+          }
+    ]
+    
+    
+  }
+{% endschema %}
+

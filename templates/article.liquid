@@ -1,0 +1,70 @@
+{% comment %}ECPWS{% endcomment %}{% capture ec-pw-ify %}{% section 'article-template' %}
+{% comment %}ECPWS{% endcomment %}{% endcapture %}{% include 'ec-passwordify' %}
+
+<style>
+  body.template-article .rte img {
+    width: 100%;
+    margin: 25px 0;
+  }
+  body.template-article .rte ol {
+    margin-left: 20px;
+  }
+  body.template-article .rte .table-wrapper {
+	margin-bottom: 0;
+  }
+  body.template-article .rte .table-wrapper table{
+    margin-top: 30px;
+    margin-bottom: 30px ;
+  }
+  body.template-article .rte .table-wrapper table p {
+    margin-bottom: 0 ;
+  }
+  .table-wrapper table tbody tr td:nth-child(2) {
+    background: #f0e5d3;
+  }
+  body.template-article .rte a {
+    font-size: 18px;
+    text-transform: none;
+    letter-spacing: normal;
+    padding: 0;
+    color: #000;
+    background: transparent;
+    border: none;
+  }
+  body.template-article .rte ol li::marker {
+    font-weight: 700;
+  }
+  body.template-article .rte ol li h3 {
+      font-size: 20px;
+      font-weight: 900;
+  }
+  body.template-article .rte  table.mobile_table {
+    display: none;
+  }
+  body.template-article .rte table.mobile_table {
+    margin-top: 20px;
+    margin-bottom: 20px ;
+  }
+  body.template-article .rte table.mobile_table.yellow-bg td {
+    background: #f0e5d3;
+  }
+   @media only screen and (max-width: 767px) {
+      body.template-article .rte  table.mobile_table {
+        display: block;
+      }
+     
+       body.template-article .rte  table.desktop_table {
+        display: none;
+      }
+      .rte a:not(.btn):after, .rte a:not(.btn):after, .rte-setting a:not(.btn):after, .rte-setting a:not(.btn):after {
+        width: 100% ;
+    }
+     body.template-article .rte .table-wrapper table{
+      max-width: 100% ;
+      width: 100% 
+    }
+     body.template-article .rte .table-wrapper table tr td {
+    width: 100% ;
+}
+   }
+</style>

@@ -1,0 +1,158 @@
+{% capture form_id %}AddToCartForm-{{ section_id }}{% endcapture %}
+{% form 'product', product, data-productid: product.id, id: form_id, class: 'product-single__form' %}
+
+
+
+
+  <select name="id" data-productid="{{ product.id }}" id="ProductSelect-{{ section_id }}" class="product-single__variants no-js">
+    {% for variant in product.variants %}
+      {% if variant.available %}
+        <option {% if variant == product.selected_or_first_available_variant %}
+          selected="selected" {% endif %}
+          value="{{ variant.id }}">
+          {{ variant.title }} - {{ variant.price | money_with_currency }}
+        </option>
+      {% else %}
+        <option disabled="disabled">
+          {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+        </option>
+      {% endif %}
+    {% endfor %}
+  </select>
+
+
+
+  {% if settings.quantity_enable %}
+    <div class="product__quantity product__quantity--{{ settings.variant_type }}">
+<!--       <label for="Quantity-{{ section_id }}">{{ 'products.product.quantity' | t }}</label> -->
+      {% include 'quantity-input', id: section_id, qty: 1, min: 1 %}
+    </div>
+  {% endif %}
+
+  <div
+    id="ProductInventory-{{ section_id }}"
+    class="product__inventory {% unless inventory_visible %}hide{% endunless %}"
+    >
+    {% if current_variant.available %}
+      {{ 'products.product.stock_label' | t: count: current_variant.inventory_quantity }}
+    {% endif %}
+  </div>
+
+<div class="ro_widget"></div>
+
+  {%- assign is_default_variant = false -%}
+  {% if product.variants[0].title == 'Default Title' or product.variants[0].title == 'Default' %}
+    {%- assign is_default_variant = true -%}
+  {% endif %}
+  {% unless product.options.size == 1 and is_default_variant %}
+    {% for option in product.options_with_values %}
+      {% if settings.variant_type == 'button' %}
+        {% include 'new-single-variant-button', section_id: section_id, option_drop: option %}
+      {% else %}
+        {% include 'variant-dropdown', section_id: section_id %}
+      {% endif %}
+    {% endfor %}
+  {% endunless %}
+
+
+  {%- assign enable_dynamic_buttons = false -%}
+  {% if settings.enable_payment_button and template != 'product.preorder' %}
+    {%- assign enable_dynamic_buttons = true -%}
+  {% endif %}
+
+
+<div id="reChargelevel">
+<!-- Begin ReCharge code -->
+{% if product.available %}{% include 'subscription-product' %}{% endif %}
+<!-- End ReCharge code -->
+</div>
+
+
+  {% if enable_dynamic_buttons %}
+    <div class="payment-buttons" {% unless current_variant.inventory_quantity > 0 %} id= "coming-button" {% endunless%}>
+  {% endif %}
+      <button
+      {% if product.empty? %}type="button"{% else %}type="submit"{% endif %}
+      name="add"
+      id="AddToCart-{{ section_id }}"
+      class="btn btn--full add-to-cart{% if enable_dynamic_buttons %} btn--secondary{% endif %} {% unless current_variant.available %}coming{% endunless %}"
+     >
+      <span id="AddToCartText-{{ section_id }}" >
+        {% if current_variant.available %}
+          {% if template == 'product.preorder' %}
+            {{ 'products.product.preorder' | t }}
+          {% else %}
+            {{ 'products.product.add_to_cart' | t }}
+          {% endif %}
+        {% else %}
+        <span> SIGN UP TO BE NOTIFIED</span>
+        {% endif %}
+      </span>
+    </button>
+ {% if current_variant.inventory_quantity > 0 %}
+   {{ form | payment_button }}
+      {% if enable_dynamic_buttons %}
+
+      {% endif %}
+
+    {% if enable_dynamic_buttons %}
+      </div>
+    {% endif %}
+ {% endif %}
+
+<div class="mb_shipping_v2">
+  <div class="mb_container">
+    <div class="grid">
+      <div class="grid__item small--one-half large-up--one-third">
+        <img src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/Group_24_2x_2.png?v=1604316077">
+        <h6>Easy, <br>Free Shipping</h6>
+        <p>On all orders over $55.</p>
+      </div>
+      <div class="grid__item small--one-half large-up--one-third">
+        <img src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/guarantee_2x_6b7f1c1f-96de-41de-bff3-64f5a98d2e5c.png?v=1604315322">
+        <h6>30-Day Happiness <br> Guarantee</h6>
+        <p>If you're not satisfied, we're not satisfied.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% assign open-faq = 'https://cdn.shopify.com/s/files/1/0248/8084/0813/files/plus.svg?v=1598448547' %}
+{% assign close-faq = 'https://cdn.shopify.com/s/files/1/0248/8084/0813/files/close_1.svg?v=1598448547' %}
+
+<div {{ block.shopify_attributes }} class="question-faq">
+  <button type="button" class="collapsible-trigger collapsible-trigger--inline collapsible--auto-height" aria-controls="FAQ-content-1">
+    <img class="open-faq" src="{{ open-faq }}">
+    <img class="close-faq" src="{{ close-faq }}">
+    Nutrition Facts
+  </button>
+</div>
+
+
+  <div id="VariantsJson-{{ section_id }}" class="hide" aria-hidden="true">
+    {{ product.variants | json }}
+  </div>
+  {% if product.options.size > 1 %}
+    <div id="CurrentVariantJson-{{ section_id }}" class="hide" aria-hidden="true">
+      {{ current_variant | json }}
+    </div>
+  {% endif %}
+{% endform %}
+<style>
+  .pre-button{display:block}
+</style>
+<script>
+  $( document ).ready(function() {
+   
+    $('div#coming-button').on('click', function(e){
+      $(this).children('button').prop('disabled', false);
+      e.preventDefault();
+      e.stopPropagation();
+      
+      jQuery(".overlay-popup-oat").fadeIn();
+
+})
+    $('#rc_container').appendTo('#reChargelevel');
+});
+ 
+</script>

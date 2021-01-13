@@ -1,0 +1,217 @@
+{{ 'fitness.js' | asset_url | script_tag }}
+{{ 'fitness.css' | asset_url | stylesheet_tag }}
+
+{% assign bundle_min = 0 %}
+{% assign bundle_max = 15 %}
+{% assign placeholder_image = 'https://cdn.shopify.com/s/files/1/0248/8084/0813/files/level-icon-placeholder.png?v=1598028464' %}
+{% assign placeholder_image_last = 'https://cdn.shopify.com/s/files/1/0248/8084/0813/files/level-icon-placeholder_1.png?v=1598263869' %}
+{% assign subscription_product = product.metafields.subscriptions %}
+
+<style>
+  
+  .fitness_title_section h2, .fitness_title_section p {
+  	color: {{ section.settings.text_color }};
+  }
+  
+</style>
+
+<div class="fitness_product_info"  style="background-color: {{ section.settings.section_bg }} ">
+  <div class="page-width">
+    <div class="grid">
+      <div class="grid__item small--one-whole medium--one-whole large-up--four-sixths">
+        <div class="fitness_title_section">
+          <div class="grid">
+            <div class="grid__item small--one-whole medium--one-whole large-up--one-whole">
+              <h2>{{ section.settings.title }}</h2>
+              <p><strong>{{ section.settings.subtitle }}</strong></p>
+              {% if section.settings.button_title != blank %}
+              <a class="subscription-button btn" href="{{ section.settings.button_link }}">{{ section.settings.button_title }}</a>
+              {% endif %}
+              <p>{{ section.settings.description }}</p>
+            </div>
+            <div class="grid__item small--one-whole medium--one-whole large-up--one-whole bg-adjust">
+              <div id="anchor-tag"></div>
+              <img class="lazyloaded" src="{{ product.featured_image.src | img_url: 'master' }}">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="grid__item small--one-whole medium--one-whole large-up--two-sixths">
+        <div class="fitness_content" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}"
+           data-section-type="product" data-enable-history-state="true" data-ajax-enabled="{{ settings.enable_ajax
+           }}" style="background-color: {{ section.settings.section_form_bg }} ">
+           <div class="grid bundle">
+              <div class="grid__item bundle-details medium-up--one-whole">
+                 <div class="bundle-details">
+                    <div class="bundle-banner">
+                      <div class="h1 bundle-price hidden-style">$0.00</div>
+                      {% comment %}
+                        <div class="bundle-qty">
+                           Items:
+                           <span class="current-qty">0</span>
+                           of {{ bundle_max }}
+                        </div>
+                      {% endcomment %}
+                      {% form 'product', product, data-productid: product.id, class:form_classes, novalidate:
+                      'novalidate', data-product-form: '' %}
+                      <!-- Begin ReCharge code -->
+                      {% if product.available %}{% include 'subscription-bundle' %}{% endif %}
+                      <!-- End ReCharge code -->
+                      <select name="id" data-productid="{{ product.id }}" id="ProductSelect-{{ section.id }}"
+                         class="product-form__variants no-js">
+                      {% for variant in product.variants %}
+                      <option value="{{ variant.idz }}"
+                      {%- if variant == current_variant %} selected="selected" {%- endif -%}
+                      >
+                      {{ variant.title }} {%- if variant.available == false %} - {{ 'products.product.sold_out'
+                      | t }}{% endif %}
+                      </option>
+                      {% endfor %}
+                      </select>
+                    </div>
+                    <div class="grid bundle-grid" data-bundle-min="{{ bundle_min }}" data-bundle-max="{{ bundle_max
+                      }}">
+                      {% for variant in product.variants %}
+                         <div class="grid__item bundle_product bundle_bar small--one-whole medium--one-whole large-up--one-whole" data-product-handle="{{ variant.title | replace: ' ', '_' | downcase }}">
+                           <div class="grid bundle-item" data-variant-id="{{ variant.id }}" data-qty="0">
+                             <div class="grid__item bundle_bar fitness_titles small--two-thirds medium--two-thirds large-up--two-thirds">
+                               <div class="h3 bundle-title">{{ variant.title }} <span>pack (6 bars)</span></div>
+                                {% if variant.metafields.product.fitness_subtitle  != blank %}
+                                    <p>{{ variant.metafields.product.fitness_subtitle }}</p>
+                                {% endif %}
+                             </div>
+                             <div class="bundle-handle hidden">{{ variant.title | replace: ' ', '_' | downcase }}</div>
+                             <div class="bundle-item-selector grid__item bundle_bar small--one-third medium--one-third large-up--one-third">
+                               <div class="grid">
+                                 <div class="grid__item small--one-third medium-up--one-third">
+                                   <span class="minus">
+                                     <a class="btn">-</a>
+                                   </span>
+                                 </div>
+                                 <div class="grid__item small--one-third medium-up--one-third">
+                                   <span class="quantity">0</span>
+                                 </div>
+                                 <div class="grid__item small--one-third medium-up--one-third">
+                                   <span class="plus">
+                                     <a class="btn">+</a>
+                                   </span>
+                                 </div>
+                               </div>
+                             </div>
+                           </div>
+                         </div>
+                      {% endfor %}
+                   </div>
+                   <p class="variant-bottom-text">{{ section.settings.variant_bottom_text }}</p>
+                    <div class="bundle-images grid">
+                        <div class="bundle_placeholder grid__item small--one-quarter medium-up--one-quarter">
+                            <img src="{{ placeholder_image }}">
+                            <h6>Select Box</h6>
+                        </div>
+                        <div class="bundle_placeholder grid__item small--one-quarter medium-up--one-quarter">
+                            <img src="{{ placeholder_image }}">
+                            <h6>Select Box</h6>
+                        </div>
+                        <div class="bundle_placeholder grid__item small--one-quarter medium-up--one-quarter">
+                            <img src="{{ placeholder_image }}">
+                            <h6>Select Box</h6>
+                        </div>
+                        <div class="bundle_placeholder grid__item small--one-quarter medium-up--one-quarter">
+                            <img src="{{ placeholder_image }}">
+                            <h6>Select Box</h6>
+                        </div>
+                    </div>
+                    <div class="bundle-form product-form__controls-group product-form__controls-group--submit">
+                       <div class="product-form__item product-form__item--submit">
+                          <button
+                             id="bundle-add-to-cart"
+                             type="submit"
+                             name="add"
+                             aria-label="{{ 'products.product.add_to_cart' | t }}"
+                             class="btn product-form__cart-submit btn--primary-accent"
+                             data-add-to-cart
+                             disabled
+                             >
+                            <span class="bundle-orig-price" data-add-to-cart-text></span> 
+                            <span class="bundle-price" data-add-to-cart-text></span> 
+                            <span class="cart-text" data-add-to-cart-text>Minimum 4 Packs</span> 
+                          </button>
+                          <a id="nutritional_button" class="btn transparent-btn">Nutritional Information</a>
+                       </div>
+                    </div>
+                    {% endform %}
+                 </div>
+              </div>
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Banner & Product Info",
+    "settings": [
+	  {
+        "type": "color",
+        "id": "section_bg",
+        "label": "Section Background color",
+        "default": "#f0e5d3"
+      },
+	  {
+        "type": "color",
+        "id": "section_form_bg",
+        "label": "Section Form Background color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#000000"
+      },
+      {
+        "type": "html",
+        "id": "title",
+        "label": "Heading",
+		"default": "Fitness Product"
+      },
+	  {
+        "type": "text",
+        "id": "subtitle",
+        "label": "Subtitle",
+		"default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec dui bibendum mi suscipit pulvinar. Mauris neque mi, pellentesque ac mauris quis, vehicula convallis sapien."
+      },
+	  {
+        "type": "text",
+        "id": "description",
+        "label": "description",
+		"default": "Level bars use ingredients you can trust to support recovery, stress management, and energy for peak performance. 14g of Egg White + Collagen protein. No dairy, no gluten, no soy, no GMO."
+      },
+	  {
+        "type": "text",
+        "id": "button_title",
+        "label": "Button Title",
+		"default": "Order Bribe"
+      },
+	  {
+        "id": "button_link",
+        "type": "url",
+        "label": "Button Link"
+      },
+	  {
+        "type": "textarea",
+        "id": "variant_bottom_text",
+        "label": "Text under variant boxes",
+		"default": "*6 bars per box. Default selection covers 1 month supply."
+      },
+	  {
+        "type": "textarea",
+        "id": "cart_bottom_text",
+        "label": "Text under add to cart button",
+		"default": "Cancel or modify anytime, no hassle, no fees. <br>Free shipping included."
+      }
+    ]
+  }
+{% endschema %}

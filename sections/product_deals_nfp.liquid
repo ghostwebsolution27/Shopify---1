@@ -1,0 +1,139 @@
+<div class="mbs_section">
+  <div class="page-width">
+    <div class="mini_bundle_slider">
+      {% for block in section.blocks %}
+      <div class="mbs_body">
+        <div class="mbs_product_image">
+          <img src="{{block.settings.mini_image | img_url: 'master' }}">  
+        </div>
+        <div class="mbs_ingredients">
+          <h3>{{block.settings.mini_title }}</h3>
+          <p>{{block.settings.mini_ingredients }}</p>
+        </div>
+        <div class="mbs_nfp">
+          <img src="{{block.settings.mini_nfp | img_url: 'master' }}">
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script>
+  
+$( document ).ready(function() {
+	$('select.rc_select__frequency  option[value="4"]').attr("selected",true);
+  
+  	$('.mini_bundle_slider').slick({
+      infinite: true,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      responsive: [{
+
+        breakpoint: 1025,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1
+        }
+
+      }, {
+
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 1,
+      	  slidesToScroll: 1
+        }
+
+      }]
+    });
+});
+  
+</script>
+
+<style>
+  /** MINI BUNDLE SLIDER **/
+  
+  .mbs_section .slick-prev, .mbs_section .slick-next {
+    top: 15%;
+  }
+  
+  .mbs_section .slick-prev {
+    left: 0;
+  }
+  
+  .mbs_section .slick-next {
+    right: 0;
+  }
+  
+  .mbs_section .slick-prev:before, .mbs_section .slick-next:before {
+    font-family: monospace;
+    text-shadow: none;
+    color: #000 ;
+  }
+  
+  .mbs_body {
+   	padding: 0 20px; 
+  }
+  
+  .mbs_ingredients {
+    padding: 0 20px;
+    min-height: 300px;
+  }
+  
+  .mbs_ingredients h3 {
+    text-align: center;
+  }
+  
+  .mbs_product_image img {
+    max-width: 225px;
+    margin: auto;
+  }
+  
+  .mbs_nfp img {
+    width: 100%;
+  }
+  
+  .mbs_section .page-width {
+    padding: 0;
+   }
+  
+  .mbs_ingredients p {
+    font-size: 16px;
+  }
+  
+</style>
+
+{% schema %}
+  {
+    "name": "Product Deals NFP",
+    "settings": [],
+	"blocks": [
+	  {
+		"type": "Image",
+        "name": "NFP Slider",
+        "settings": [
+		  {
+            "type": "image_picker",
+            "id": "mini_image",
+            "label": "Mini Image"
+          },
+		  {
+            "type": "text",
+            "id": "mini_title",
+            "label": "Mini Title"
+          },
+		  {
+            "type": "richtext",
+            "id": "mini_ingredients",
+            "label": "Ingredient Content"
+          },
+		  {
+            "type": "image_picker",
+            "id": "mini_nfp",
+            "label": "Mini NFP"
+          }
+		] 
+      }
+	]
+  }
+{% endschema %}

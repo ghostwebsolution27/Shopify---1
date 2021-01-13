@@ -1,0 +1,207 @@
+<div class="new-home-flavors-slider mobile-flavors">
+  <div class="page-width">
+    <h2 class="flavor-section-title"> {{ section.settings.section_title }} </h2>
+    <div class="main-carousel">
+      {% for block in section.blocks %}
+      <div class="carousel-cell">
+        <span class="flavor-color hidden">{{ block.settings.flavor_bg }}</span>
+        <div class="grid">
+          <div class="grid__item small--one-whole medium-up--one-whole slider-flavor-body">
+            <div class="grid">
+              <div class="slider-images">
+                <img class="slider-regular" src="{{ block.settings.flavor_regular_image | img_url: 'master' }}">
+                <img class="slider-mini" src="{{ block.settings.flavor_mini_image | img_url: 'master' }}">
+              </div>
+            </div>
+            <div class="slider-title">
+              <h3>
+                {{ block.settings.flavor_title }}
+                <span>{{ block.settings.flavor_subtitle }}</span>
+              </h3>
+            </div>
+            <div class="grid slider-buttons">
+              <div class="grid__item small--one-half medium-up--one-half">
+                <a class="btn" href="{{ block.settings.flavor_regular_button_link }}">{{ block.settings.flavor_regular_button_text }}</a>
+              </div>
+              <div class="grid__item small--one-half medium-up--one-half">
+                <a class="btn" href="{{ block.settings.flavor_mini_button_link }}">{{ block.settings.flavor_mini_button_text }}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<div class="new-home-flavors desktop-flavors">
+  <div class="grid">
+    {% for block in section.blocks %}
+    {% if forloop.length == 4 %}
+    	{% assign desktop_col = 'medium-up--one-quarter' %}
+    {% elsif forloop.length == 3 %}
+    	{% assign desktop_col = 'medium-up--one-third' %}
+    {% elsif forloop.length == 2 %}
+    	{% assign desktop_col = 'medium-up--one-half' %}
+   	{% else %}
+    	{% assign desktop_col = 'medium-up--one-whole' %}
+    {% endif %}
+    <div class="grid__item small--one-third {{ desktop_col }}">
+      <div class="flavor-body" style="background-color:{{ block.settings.flavor_bg }}">
+        <div class="page-width">
+          {% if block.settings.flavor_title != blank %}
+          <h3>
+            {{ block.settings.flavor_title }}
+            <span>{{ block.settings.flavor_subtitle }}</span>
+          </h3>
+          {% endif %}
+          <div class="grid">
+            <div class="grid__item regular-flavor-desktop small--one-half medium-up--one-half">
+              <img src="{{ block.settings.flavor_regular_image | img_url: 'master' }}">
+              <a class="btn" href="{{ block.settings.flavor_regular_button_link }}">{{ block.settings.flavor_regular_button_text }}</a>
+            </div>
+            <div class="grid__item mini-flavor-desktop small--one-half medium-up--one-half">
+              <img src="{{ block.settings.flavor_mini_image | img_url: 'master' }}">                  		
+              <a class="btn" href="{{ block.settings.flavor_mini_button_link }}">{{ block.settings.flavor_mini_button_text }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- FLICKTY CSS -->
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
+<!-- no-conflict mode. -->
+<!-- FLICKTY JavaScript -->
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js" async="true"></script>
+
+<script>
+ 
+jQuery.noConflict();
+ 
+jQuery( document ).ready(function( $ ) {
+  
+  	var tapArea, startX ;
+    tapArea = document.querySelectorAll('.main-carousel');
+    startX = 0;
+    for (var item of tapArea) {
+      item.ontouchstart = function(e) {
+        startX = e.touches[0].clientX;
+      };
+      item.ontouchmove = function(e) {
+        if (Math.abs(e.touches[0].clientX - startX) > 5 && e.cancelable ) {
+          e.preventDefault();
+        }
+      };
+    }
+  
+    var $carousel = $('.main-carousel').flickity({
+      wrapAround: true,
+      contain: true,
+      prevNextButtons: true,
+      pageDots: false
+    });
+  
+    var $faqcarousel = $('.faq-carousel').flickity({
+      wrapAround: true,
+      contain: true,
+      prevNextButtons: false,
+      pageDots: true
+    });
+
+    var color = $('.carousel-cell.is-selected .flavor-color').text();
+  	$(".new-home-flavors-slider").css('background-color', color);
+  	console.log(color);
+  
+    // jQuery
+    $carousel.on( 'select.flickity', function( event, index ) {
+      
+      var color = $('.carousel-cell.is-selected .flavor-color').text();
+      $(".new-home-flavors-slider").css('background-color', color);
+      console.log( 'Flickity select ' + index );
+      console.log(color);
+      
+    });
+  
+});
+ 
+</script>
+
+{% schema %}
+  {
+    "name": "New Home - Flavors Slider",
+	"max_blocks": 4,
+    "settings": [
+        {
+          "type": "text",
+          "id": "section_title",
+          "label": "Section Title",
+          "default": "Static Title"
+        }
+    ],
+	"blocks": [
+	  {
+		"type": "image",
+        "name": "Flavors",
+        "settings": [
+          {
+            "type": "color",
+            "id": "flavor_bg",
+            "label": "Flavor Background color",
+            "default": "#f4e08a"
+          },
+          {
+            "type": "text",
+            "id": "flavor_title",
+            "label": "Flavor Title",
+			"default": "Flavor Title"
+          },
+          {
+            "type": "text",
+            "id": "flavor_subtitle",
+            "label": "Flavor Subtitle",
+			"default": "+ Subtitle"
+          },
+		  {
+            "type": "image_picker",
+            "id": "flavor_regular_image",
+            "label": "Flavor Regular Image"
+          },
+		  {
+            "type": "text",
+            "id": "flavor_regular_button_text",
+            "label": "Flavor Regular Button Text",
+			"default": "Shop Regular"
+          },
+		  {
+            "id": "flavor_regular_button_link",
+            "type": "url",
+            "label": "Flavor Regular Button Link"
+          },
+		  {
+            "type": "image_picker",
+            "id": "flavor_mini_image",
+            "label": "Flavor Mini Image"
+          },
+		  {
+            "type": "text",
+            "id": "flavor_mini_button_text",
+            "label": "Flavor Mini Button Text",
+			"default": "Shop Mini"
+          },
+		  {
+            "id": "flavor_mini_button_link",
+            "type": "url",
+            "label": "Flavor Mini Button Link"
+          }
+		] 
+      }
+	]
+  }
+{% endschema %}

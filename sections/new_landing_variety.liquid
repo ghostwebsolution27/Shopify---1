@@ -1,0 +1,86 @@
+<div class="new-home-variety" style="background-color: {{ section.settings.section_bg }} ">
+  <div class="page-width">
+    <div class="grid">
+      <div class="grid__item small--one-whole medium-up--one-whole">
+        {% if section.settings.title != blank %}
+          <h2 style="color: {{ section.settings.text_color }}">{{ section.settings.title }}</h2>
+          <p style="color: {{ section.settings.text_color }}">{{ section.settings.subtitle }}</p>
+        {% endif %}
+      </div>
+      <div class="grid__item small--one-whole medium-up--one-whole">
+        {% if section.settings.image != blank %}
+          <img class="lazyloaded" src="{{ section.settings.image | img_url: 'master' }}">
+        {% endif %}
+      </div>
+      <div class="grid__item mobile-section small--one-whole medium-up--one-whole">
+        <div class="grid">
+          <div class="grid__item new-right-align small--one-half medium-up--one-half">
+          	<a class="btn" href="{{section.settings.button_link_1}}">{{ section.settings.button_title_1 }}</a>
+          </div>
+          <div class="grid__item new-left-align mobile-section small--one-half medium-up--one-half">  
+          	<a class="btn" href="{{section.settings.button_link_2}}">{{ section.settings.button_title_2 }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "New Home - Variety",
+    "settings": [
+	  {
+        "type": "color",
+        "id": "section_bg",
+        "label": "Section Background color",
+        "default": "#000000"
+      },
+	  {
+		"type": "image_picker",
+      	"id": "image",
+      	"label": "Section Image"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+		"default": "Introducing Mini Variety Pack"
+      },
+	  {
+        "type": "text",
+        "id": "subtitle",
+        "label": "Subtitle",
+		"default": "Our mini variety pack includes 12 minis and all 4 flavors."
+      },
+	  {
+        "type": "text",
+        "id": "button_title_1",
+        "label": "Button Title 1",
+		"default": "Subscribe"
+      },
+	  {
+        "id": "button_link_1",
+        "type": "url",
+        "label": "Button Link 1"
+      },
+	  {
+        "type": "text",
+        "id": "button_title_2",
+        "label": "Button Title 2",
+		"default": "Subscribe"
+      },
+	  {
+        "id": "button_link_2",
+        "type": "url",
+        "label": "Button Link 2"
+      }
+    ]
+  }
+{% endschema %}

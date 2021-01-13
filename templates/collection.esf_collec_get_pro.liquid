@@ -1,0 +1,109 @@
+{% layout none %}
+{% assign current_count = 0 %}
+{% assign prdlimit = 40 %}
+{% capture spof_check %}{% include 'spof_limit' %}{% endcapture %}
+
+{% if spof_check !='Liquid error: Could not find asset snippets/spof_limit.liquid' %}
+   {% include 'spof_limit' %}
+{% endif %}
+
+{% paginate collection.products by prdlimit  %}
+{% assign CountTotal = collection.products_count %}
+{% assign custom_tags = true %}
+
+{% capture output %}
+{
+	"TotalProductCount" : "{{CountTotal}}",
+	"Page_Num": "{{paginate.current_page}}",
+    "Product_Items":
+        [
+            {% for item in collection.products %}
+			{% assign current_count = current_count | plus: 1 %}
+              {% assign custom_tags = true %}
+                                       
+                              {% if customer %}
+
+					{% assign words = item.metafields.Webuick.hide_customer_es_tags | split: ',' %}
+			 {% if words.size == 0 %}             
+             {% assign words = item.metafields.quick.hide_customer_es_tags | split: ',' %}
+             {%endif%}
+
+                            {% for word in words %}
+								
+								{% assign dword = word | downcase | strip %}
+			
+								{% for cust in customer.tags %}
+ 	
+									{% assign custTag = cust | downcase | strip %}
+					
+									{% if custTag == dword %} 
+											
+											{% assign custom_tags = false %}
+
+											{% continue %}
+						
+									{% endif  %}
+
+								{% endfor %}
+
+						{% endfor %}
+
+				{% endif  %}
+       
+{% if item.metafields.quick.products !='hide_es_products_app' and custom_tags %}            
+
+
+                {% assign resultURL = item.url %}
+                {% assign thumbURL = item.images[0] | product_img_url: 'thumb' %}	
+                 {% assign MediumImage = item.images[0] | product_img_url: 'medium' %}
+
+                {
+					"SpofQty": "{{ item.metafields.spofSteps.spofqty }}"
+				         ,"meta": "{{ item.metafields.quick.products }}"
+				        ,"ProductId"  : "{{item.id}}"
+                                        ,"Color":"{% include 'esf-rem-slash' with item.options %}"
+					,"option1":"{% include 'esf-rem-slash' with item.options[0] %}"
+					,"option2": "{% include 'esf-rem-slash' with item.options[1] %}"
+					,"option3":"{% include 'esf-rem-slash' with item.options[2] %}"
+					,"ProductTitle":"{% include 'esf-rem-slash' with item.title %}"
+                    ,"ProductMinPrice":"{{item.price_min | money}}" 
+                    ,"ProductMaxPrice":"{{ item.price_max | money }}"
+                    ,"ProductDescription":{{ item.description | json }}
+					,"ProductImages" : [{"img_src" : "{% include 'esf-rem-slash' with thumbURL %}"}]
+                     ,"ProductMediumImages" : [{"med_img_src" : "{% include 'esf-rem-slash' with MediumImage %}"}]
+					,"Productvariants":
+					[
+						{% for varnts in item.variants %}
+							{ 
+                                {% assign Vrnt_thumbURL = varnts.image.src | product_img_url: 'thumb' %}
+
+								 "vrnt_id":"{{varnts.id}}"
+                                 ,"vrnt_option1":"{% include 'esf-rem-slash' with varnts.option1 %}"
+                                 ,"vrnt_option2":"{% include 'esf-rem-slash' with varnts.option2 %}"
+                                 ,"vrnt_option3":"{% include 'esf-rem-slash' with varnts.option3 %}"
+								 ,"vrnt_sku":"{% include 'esf-rem-slash' with varnts.sku %}"
+ 								,"vrnt_title":"{%  include 'esf-rem-slash' with varnts.title %}"
+								,"vrnt_price":"{{varnts.price | money}}"
+,"vrnt_price_raw":"{{varnts.price}}"								,"vrnt_compare_at_price":"{{varnts.compare_at_price | money}}"
+,"vrnt_compare_at_price_raw":"{{varnts.compare_at_price}}"								,"vrnt_inventory_management":"{{varnts.inventory_management}}"
+								,"vrnt_inventory_policy":"{{varnts.inventory_policy}}"
+								,"vrnt_inventory_quantity":"{{varnts.inventory_quantity}}"
+                                ,"vrnt_img": [{ "vrnt_img_src": "{% include 'esf-rem-slash' with Vrnt_thumbURL %}"}]
+							}
+						{% unless forloop.last %},{% endunless %}
+						{% endfor %}
+
+					]
+                },
+          
+               {% endif %}
+            {% endfor %}
+{}
+        ],
+"current_count": "{{current_count}}"
+}
+{% endcapture %}
+{% endpaginate %}
+{{ output | strip_newlines }}
+
+

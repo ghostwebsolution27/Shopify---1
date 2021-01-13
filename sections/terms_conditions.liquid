@@ -1,0 +1,196 @@
+{% if section.settings.divider %}<div class="section--divider">{% endif %}
+
+<div
+  data-section-id="{{ section.id }}"
+  data-section-type="featured-content-section"
+  class="text-{{ section.settings.align_text }}">
+
+  <div class="page-width">
+    <div class="grid">
+      <div class="grid__item{% if section.settings.narrow_column %} medium-up--three-quarters medium-up--push-one-eighth{% endif %}">
+        {% if section.settings.title != blank %}
+          <h2 style="{% if section.settings.center_header %}text-align: center;{% endif %}">{{ section.settings.title }}</h2>
+        {% endif %}
+        {% if section.settings.title != blank %}
+          <h5 style="{% if section.settings.center_header %}text-align: center;{% endif %} margin-bottom: 40px;">{{ section.settings.sub_title }}</h5>
+        {% endif %}
+
+        {% if section.settings.text != blank %}
+          <div class="rte">
+            <div {% if section.settings.enlarge_text %}class="enlarge-text" {% endif %}style="{% if section.settings.center_text %}text-align: center;{% endif %}">
+            {{ section.settings.text }}
+            {% if section.settings.enlarge_text %}</div>{% endif %}
+            {% if section.settings.enlarge_text_two %}<div class="enlarge-text">{% endif %}
+            {{ section.settings.text_two }}
+            {% if section.settings.enlarge_text_two %}</div>{% endif %}
+            {% if section.settings.button_label != blank %}
+            <a href="{{ section.settings.button_link }}" class="btn btn_margin_top">
+            {{ section.settings.button_label }}
+            </a>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% for block in section.blocks %}
+          <div class="rte narrow_ricktext" {{ block.shopify_attributes }}>
+            {% case block.type %}
+              {% when 'page' %}
+                {% if block.settings.home_page_content != blank %}
+                  {{ pages[block.settings.home_page_content].content }}
+                {% else %}
+                  {{ 'home_page.onboarding.no_content' | t }}
+                {% endif %}
+              {% when 'text' %}
+              <div class="left_col_richtext">
+                {% if block.settings.title_block != blank %}
+                  <h4>{{ block.settings.title_block }}</h4>
+                {% endif %}
+              </div>
+              <div class="right_col_richtext">
+                {% if block.settings.home_page_richtext != blank %}
+                  {% if block.settings.enlarge_text %}<div class="enlarge-text">{% endif %}
+                  {{ block.settings.home_page_richtext }}
+                  {% if block.settings.enlarge_text %}</div>{% endif %}
+                {% else %}
+                  {{ 'home_page.onboarding.no_content' | t }}
+                {% endif %}
+              </div>
+            {% endcase %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if section.settings.divider %}</div>{% endif %}
+
+{% schema %}
+  {
+    "name": "Rich text",
+    "class": "index-section",
+    "max_blocks": 25,
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "sub_title",
+        "label": "Subheader"
+      },
+      {
+        "type": "checkbox",
+        "id": "center_header",
+        "label": "Header + Subheader align center"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>A sentence or two introducing your brand, what you sell, and what makes your brand compelling to customers.</p>"
+      },
+      {
+        "type": "checkbox",
+        "id": "center_text",
+        "label": "Text align center"
+      },
+      {
+        "type": "checkbox",
+        "id": "enlarge_text",
+        "label": "Enlarge text",
+        "default": true
+      },
+      {
+        "type": "richtext",
+        "id": "text_two",
+        "label": "Text"
+      },
+      {
+        "type": "checkbox",
+        "id": "enlarge_text_two",
+        "label": "Enlarge text"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label",
+        "default": "Optional button"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Link"
+      },
+      {
+        "type": "select",
+        "id": "align_text",
+        "label": "Text alignment",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Centered"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "narrow_column",
+        "label": "Narrow column"
+      },
+      {
+        "type": "checkbox",
+        "id": "divider",
+        "label": "Show section divider",
+        "default": false
+      }
+    ],
+    "presets": [{
+      "name": "Rich text",
+      "category": "Text"
+    }],
+    "blocks" : [
+      {
+        "type": "text",
+        "name": "Text",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "enlarge_text",
+            "label": "Enlarge text",
+            "default": false
+          },
+          {
+            "type": "text",
+            "id": "title_block",
+            "label": "Heading"
+          },
+          {
+            "id": "home_page_richtext",
+            "type": "richtext",
+            "label": "Text",
+            "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+          }
+        ]
+      },
+      {
+        "type": "page",
+        "name": "Page",
+        "settings": [
+          {
+            "id": "home_page_content",
+            "type": "page",
+            "label": "Page"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,240 @@
+{% paginate customer.orders by 20 %}
+
+<div class="page-width page-content">
+  {% comment %}
+  <header class="section-header{% unless settings.type_headers_align_text %} section-header--with-link{% endunless %}">
+    <h1 class="section-header__title">{{ 'customer.account.title' | t }}</h1>
+    <a href="/account/logout" class="btn btn--secondary btn--small section-header__link"><p>{{ 'layout.customer.log_out'| t }}</p></a>
+  </header>
+{% endcomment %}
+  <div class="grid my_account_s">
+    
+    <div class="grid__item medium-up--one-third">
+      <h3 class="cuStomerDet">{{ 'customer.account.details' | t }}</h3>
+
+     <p class="h5 customer_name">Hey {{ customer.name }}!</p>
+<!-- Begin ReCharge code -->
+<p id="rc_link_container" class="customer_acbuton manage_sbs">
+    <a href="/tools/recurring/login">MY SUBSCRIPTION</a>
+</p>
+      <p id="rc_link_containers" class="customer_acbuton manage_sbs">
+      <a class="friendbuy-exj-ssd" href="#">GIVE $5, GET $5</a>
+      </p>
+      
+      <p id="logout_link" class="customer_acbuton manage_sbs">
+      <a href="/account/login?return_url=%2Faccount">LOG OUT</a>
+      </p>
+<!-- End ReCharge code -->
+      {% comment %}
+<p  class="customer_acbuton manage_sbs">
+    <a href="/tools/recurring/login">MY ONE-TIME ORDERS</a>
+</p>
+      {% endcomment %}
+{% comment %}<p><a href="/tools/checkout/api/manage/subscription/app" class="text-link">Manage Subscriptions</a></p>{% endcomment %}
+{% comment %}<p class="customer_acbuton"><a href="/account/addresses" class="text-link">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a></p>{% endcomment %}
+
+      {% comment %}<div class="customer_addcre">{{ customer.default_address | format_address }}</div>{% endcomment %}
+
+      
+    </div>
+
+    <div class="grid__item medium-up--two-thirds nLayout">
+      <h2 class="tableTitle">ALL ORDER HISTORY  {% comment %}{{ 'customer.orders.title' | t }}{% endcomment %}</h2>
+<p class="h5 custoMnote">This table shows your order history for BOTH one-time and subscription orders. </p>
+      {% if customer.orders.size != 0 %}
+
+        <table class="table--responsive table--small-text">
+          <thead>
+            <tr>
+              <th>{{ 'customer.orders.order_number' | t }}</th>
+              <th>{{ 'customer.orders.date' | t }}</th>
+              <th>{{ 'customer.orders.payment_status' | t }}</th>
+              <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+              <th>{{ 'customer.orders.total' | t }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in customer.orders %}
+              <tr class="table__section">
+                <td data-label="{{ 'customer.orders.order_number' | t }}">{{ order.name | link_to: order.customer_url }}</td>
+                <td data-label="{{ 'customer.orders.date' | t }}">{{ order.created_at | date: format: 'month_day_year' }}</td>
+                <td data-label="{{ 'customer.orders.payment_status' | t }}">{{ order.financial_status_label }}</td>
+                <td data-label="{{ 'customer.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }}</td>
+                <td data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+        <hr class="hr--clear">
+
+      {% else %}
+
+        <p>{{ 'customer.orders.none' | t }}</p>
+
+      {% endif %}
+    </div>
+
+    
+
+  </div>
+
+  {% if paginate.pages > 1 %}
+    {% include 'pagination' %}
+  {% endif %}
+</div>
+{% endpaginate %}
+
+<style type="text/css">
+  
+  #logout_link.customer_acbuton.manage_sbs a:hover {
+    color: #000 ;
+}
+#logout_link.customer_acbuton.manage_sbs a {
+    background: #fff;
+    border-color: #fff;
+    color: #000;
+    padding-top: 0px;
+    margin-top: -5px;
+}
+  
+  .grid.my_account_s{padding:15px 0px;}
+  
+ .grid.my_account_s .medium-up--one-third {
+    width: 30.33333%;
+    
+    background:transparent;
+    padding: 15px 20px;
+    margin: 0px 3% 0px 0;
+}
+  .h5.customer_name{
+   box-sizing: border-box;
+padding: 10px 10px;
+text-align: left;
+background:#fff;
+border: 0px solid #ececec;
+color:#000;
+    font-size:30px;
+  }
+  .customer_addcre{
+
+    box-sizing: border-box;
+    padding: 10px 10px;
+    text-align: left;
+    background: #fff;
+border: 1px solid #ececec;
+color:#000;
+}
+  .customer_acbuton {
+   box-sizing: border-box;
+margin: 8px 0px;  
+  }
+  .customer_acbuton a{
+ 
+background:#fff;
+color:#000;
+  padding: 10px 10px;
+text-align: left;
+    border: 1px solid #000;
+    display:block;
+    text-align:center;
+    font-weight:bold;
+    text-transform:uppercase;
+    font-size: 14px;
+line-height: 1.8;
+letter-spacing: 0.2em;
+padding: 11px 20px;
+min-height: 50px;
+  }
+  .customer_acbuton a:hover{
+ 
+background:#000;
+color:#fff ;
+  padding: 10px 10px;
+text-align: left;
+    border: 1px solid #000;
+    display:block;
+    text-align:center;
+    font-weight:bold;
+    text-transform:uppercase;
+    font-size: 14px;
+line-height: 1.8;
+letter-spacing: 0.2em;
+padding: 11px 20px;
+min-height: 50px;
+  }
+  @media only screen and (max-width:769px){
+  .grid.my_account_s .medium-up--one-third {
+    width: 100%;       
+    margin: 0px 0px 20px 0px;
+}
+  }
+  .customer_acbuton.manage_sbs a{
+  background:#000;
+    color:#fff;
+     border: 1px solid #000;
+    text-align:center;
+    font-weight:bold;
+    text-transform:uppercase;
+    font-size: 14px;
+line-height: 1.8;
+letter-spacing: 0.2em;
+padding: 11px 20px;
+min-height: 50px;
+    margin-bottom: 15px;
+  }
+  .table--responsive tr th{
+  background:#000;
+    color:#fff;
+  }
+  .table--responsive{background: #eee;}
+  .table--responsive td a{
+  color:#000;
+
+font-weight: bold;
+text-decoration: none;
+border-bottom: 2px solid rgba(0,0,0,0.2);
+position: relative;
+display: inline-block;
+  }
+  .table--responsive td a:after{
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0%;
+    border-bottom: 2px solid currentColor;
+    transition: width 0.5s ease;
+}
+  .table--responsive td a:hover:after{
+  width:100%;
+  }
+  .cuStomerDet {
+    text-transform: uppercase;
+    font-size: 60px;
+    line-height: 100%;
+}
+  .custoMnote {color:#7b7777; font-style:italic; margin-bottom:15px;}
+  .tableTitle {line-height:110%; margin-bottom:0px; font-size:30px;}
+  .medium-up--two-thirds.nLayout {
+   
+    padding-top: 145px;
+}
+body, h1, .h1, h2, .h2, h3, .h3 {
+   font-family: proxima-nova-condensed, sans-serif;
+    
+}
+.template-customers-account .page-width.page-content {
+    padding-top: 0px;
+    padding-bottom: 25px;
+}
+  @media only screen and (max-width:768px){
+  .medium-up--two-thirds.nLayout {
+    padding-top: 0px;
+}
+  }
+  .table--responsive {
+    
+    text-transform: uppercase;
+}
+</style>

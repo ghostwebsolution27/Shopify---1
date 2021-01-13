@@ -1,0 +1,61 @@
+<div class="subscription-how-it-works" style="background-color: {{ section.settings.section_bg }} ">
+  <div class="page-width">
+    <div class="grid">
+      <h2 style="color: {{ section.settings.text_color }}">{{ section.settings.title }}</h2>
+    </div>
+    <div class="grid hiw-blocks">
+      {% for block in section.blocks %}
+      	<div class="grid__item small--one-third medium-up--one-third">
+          <div class="hiw-body">
+            <img src="{{block.settings.hiw_image | img_url: 'master' }}">
+            <p>{{block.settings.hiw_text}}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Subscription How it Works",
+    "settings": [
+	  {
+        "type": "color",
+        "id": "section_bg",
+        "label": "Section Background color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+		"default": "Introducing Mini Variety Pack"
+      }
+    ],
+	"blocks": [
+	  {
+		"type": "text",
+        "name": "Rewards",
+        "settings": [
+		  {
+            "type": "textarea",
+            "id": "hiw_text",
+            "label": "How it works box text"
+          },
+		  {
+            "type": "image_picker",
+            "id": "hiw_image",
+            "label": "How it works box image"
+          }
+		] 
+      }
+	]
+  }
+{% endschema %}

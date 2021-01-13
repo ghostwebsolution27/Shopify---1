@@ -1,0 +1,68 @@
+<div class="new-home-video" style="background-color: {{ section.settings.section_bg }} ">
+  <div class="page-width">
+    <div class="grid">
+      <div class="grid__item small--one-whole medium-up--one-whole">
+        {% if section.settings.title != blank %}
+          <h2 style="color: {{ section.settings.text_color }}">{{ section.settings.title }}</h2>
+        {% endif %}
+        {% if section.settings.text != blank %}
+          <p style="color: {{ section.settings.text_color }}">{{ section.settings.text }}</p>
+        {% endif %}
+      </div>
+      <div class="grid__item desktop-video small--one-whole medium-up--one-whole">
+          {{ section.settings.youtube_embed_desktop }}
+      </div>
+      <div class="grid__item mobile-video small--one-whole medium-up--one-whole">
+          {{ section.settings.youtube_embed_mobile }}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "New Home - Video",
+    "settings": [
+	  {
+        "type": "color",
+        "id": "section_bg",
+        "label": "Section Background color",
+        "default": "#000000"
+      },
+	  {
+		"type": "html",
+      	"id": "youtube_embed_desktop",
+      	"label": "Youtube Embed iframe",
+		"default": "<iframe width='100%' height='400px' frameborder='0' src='https://www.youtube.com/embed/f45kwVIhhMg' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen=''></iframe>"
+      },
+      {
+		"type": "html",
+      	"id": "youtube_embed_mobile",
+      	"label": "Youtube Embed iframe",
+		"default": "<iframe width='100%' height='400px' frameborder='0' src='https://www.youtube.com/embed/f45kwVIhhMg' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen=''></iframe>"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+		"default": "Allow us to introduce ourselves"
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Description",
+        "default": "Egg white and collagen protein bard with natural stress relieving benefits. Gluten free. Dairy Free. Non-GMO. Start eating for how you want to feel."
+      }
+    ],
+    "presets": [{
+      "name": "New Home - Video",
+      "category": "New Homepage Sections"
+    }]
+  }
+{% endschema %}

@@ -1,0 +1,236 @@
+
+
+{% if section.settings.try_nosection != false %}
+
+  <div class="general_twopart_gntfull">
+      <h2 class="twopart_bottom_title">BUT IF YOU CAN'T <span> DECIDE, WE GOT YOU.</span>  </h2>
+    </div>
+  <div class="page-width page-content genareal_threeparts">
+  
+    <div class="general_threpart_sc">
+       <h2 class="gen_three_prt_tittle">COMBO PACKS </h2>
+       <img class="gen_threeImg" src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/New_Project_21.png?v=1585070005"> 
+   </div>
+    <div class="general_threpart_sc">
+       <h2 class="gen_three_prt_tittle">VARIETY BOX</h2>
+       <img class="gen_threeImg" src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/variety-pack-gluten-free-home_1400x.png?v=1575315123"> 
+   </div>
+     <div class="general_threpart_sc">
+       <h2 class="gen_three_prt_tittle">SOLO FLAVORS  </h2>
+       <img class="gen_threeImg" src="https://cdn.shopify.com/s/files/1/0248/8084/0813/products/Level_Wrapper_Mockups_2019_09_08_Salted_540x.png?v=1580755918"> 
+   </div>
+      
+  {%comment%}     
+   <div class="try_no_section_list">
+     <ul class="try_list_no">
+          {%- for block in section.blocks -%}             
+              {% case block.type %}
+                {% when 'text'%}  
+      <li style="text-align:{{ block.settings.align_text }}; color:{{ block.settings.text_color }};"> {{ block.settings.text }} </li>
+              {% endcase %}            
+          {%- endfor -%}
+     </ul>
+      
+</div>
+    {%endcomment%} 
+  
+   
+
+    
+   
+   
+  </div>
+{% endif %}
+
+{% schema %}
+ {
+    "name": "General Top Section",
+    "class": "try-no",
+    "max_blocks": 10,
+    "settings": [
+      
+     {
+            "type": "checkbox",
+            "id": "try_nosection",
+            "label": "Display Section",
+            "default":true
+          }, 
+{
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+"default": "Try No Section"
+
+        
+      },
+{
+            "type": "color",
+            "id": "section_background",
+            "label": "Section Background",
+             "default": "#fff"
+          }
+      
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "No Text",
+        "settings": [
+         {
+            "type": "textarea",
+            "id": "text",
+            "label": "Text",
+            "default": "Rich text"
+          },
+        
+{
+            "type": "color",
+            "id": "text_color",
+            "label": "Text Color",
+"default": "#000"
+          },
+          {
+            "type": "select",
+            "id": "align_text",
+            "label": "Text alignment",
+            "default": "left",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Centered"
+              }
+            ]
+          }
+          
+         
+        ]
+      }
+    ]
+   
+  }
+
+
+
+
+
+{% endschema %}
+
+<style type="text/css">
+  
+  .genareal_threeparts {
+ 
+    display: flex;
+align-items: center;
+justify-content: center;
+
+    
+   
+  }
+  
+  .general_threpart_sc {
+  width:31%;
+  position:relative;
+  margin:0px 1.6%;
+  padding:0px;
+  }
+ 
+  .gen_three_prt_tittle {
+  line-height:110%;
+    font-size:26px;
+  }
+  
+  
+  
+  
+@media only screen and (max-width:770px){
+  .gen_three_prt_tittle {font-size:20px;}
+  
+}
+  @media only screen and (max-width:550px){
+  .gen_three_prt_tittle {font-size:13px;}
+  
+} 
+  
+  
+  .page-width.page-content.try_nosection{text-align:center;}
+  
+  .try_no_section_list {
+  margin:0px;
+    padding:0px;
+    display:block;
+     width:100%;
+  }
+  .try_list_no {
+  margin:0px;
+    padding:0px;
+  }
+  .try_list_no li {
+  display:inline-table;
+   font-size: 30px;
+font-weight: 900;
+text-transform: uppercase;
+margin: 0px;
+padding: 8px 35px; 
+    position:relative;
+  }
+  .try_list_no li:after {
+  content:'+';
+  color:#e00808;
+    position: absolute;
+right: -10px;
+  }
+  .try_list_no li:nth-child(4):after{
+  display:none;
+  }
+  #shopify-section-try_2_no_section{background:{{ section.settings.section_background }}; padding-bottom:0px; margin-top:0px;}
+  @media only screen and (max-width:1160px){
+  .try_list_no li {
+  
+   font-size: 22px;
+font-weight: 900;
+padding: 8px 25px; 
+   
+  }
+  }
+   @media only screen and (max-width:880px){
+  .try_list_no li {
+  
+   font-size: 18px;
+
+padding: 8px 15px; 
+   
+  }
+     #shopify-section-try_no_section{margin-top:0px;}
+  }
+   
+  @media only screen and (max-width:605px){
+     .try_list_no li {font-size:14px ; padding: 8px 5px ;}
+    .try_list_no li:after {
+    position:relative;
+    right: -3px ;
+}
+    .try_list_no li:nth-child(4):after {
+
+    display: none ;
+
+}
+   }
+ 
+  @media only screen and (max-width:451px){
+     .try_list_no li {font-size:11.5px ; padding: 8px 2px ;}
+    .try_list_no li:after {
+     position:relative;
+    right: 0px ;
+}
+    .try_list_no li:nth-child(4):after {
+
+    display: none ;
+
+}
+   }
+  
+</style>

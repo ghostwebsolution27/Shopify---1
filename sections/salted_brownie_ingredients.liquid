@@ -1,0 +1,406 @@
+{% if section.settings.divider %}<div class="section--divider">{% endif %}
+<div  class="page-width">
+  <ul class="tabs product_tabs">
+   <li><a href="#tab-1">{{ section.settings.tab_one }}</a></li>
+     <li><a href="#tab-2">Nutrition</a></li>
+    <li><a href="#tab-3">{{ section.settings.tab_two }}</a></li>
+  </ul>
+  <div id="tab-1">
+    <div
+  data-section-id="{{ section.id }}"
+  data-section-type="library-articles-section"
+  class="text-{{ section.settings.align_text }} ingredients_section"
+  >
+
+  <div class="page-width">
+    <div class="grid">
+      <div class="grid__item{% if section.settings.narrow_column %} medium-up--three-quarters medium-up--push-one-eighth{% endif %}">
+        {% if section.settings.title != blank %}
+          <h3 class=" ingredients_sec_title" style="text-align: center; {% if section.settings.title_fill_color != blank %} color: {{ section.settings.title_fill_color }};{% endif %} {% if section.settings.outline_text %}-o-text-stroke: 2px black; -moz-text-stroke: 2px black; -webkit-text-stroke: 2px black; text-stroke: 2px black;{% endif %}">{{ section.settings.title }}</h3>
+        {% endif %}
+        <div class="ingredients_wrapper">
+        {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'text' %}
+                {% if block.settings.ingredient_img != blank %}
+                  <div class="ingredient_wrapper">
+                    {% if block.settings.ingredient_img != blank %}
+                    <img class="ingredient_image" src="{{ block.settings.ingredient_img | img_url: '600x' }}" alt="{{ block.settings.ingredient_img.alt }}"/>
+                    {% endif %}
+                    <div class="ingredient_textbox" style="{% if block.settings.white_text != blank %}color: #fff;{% endif %}">
+                     {% if block.settings.ingredient_title != blank %}
+                      <h4>{{ block.settings.ingredient_title }}</h4>
+                     {% endif %}
+                     {% if block.settings.enlarge_text %}<div class="enlarge-text">{% endif %}
+                     {{ block.settings.ingredient_text }}
+                     {% if block.settings.enlarge_text %}</div>{% endif %}
+                     {% if block.settings.ingredient_answer != blank %}
+                      <div class=" answer">
+                      <a href="{{ block.settings.ingredient_link }}" class="simple_link">
+                      {{ block.settings.ingredient_answer }}
+                      </a>
+                      </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% else %}
+                  {{ 'home_page.onboarding.no_content' | t }}
+                {% endif %}
+            {% endcase %}
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+  
+  
+  <div id="tab-2" class="tab_contentBox" style="">
+    <div class="nutration_section">   
+ 
+      <div class="tabInner"> <h3 class="tab_content_title "> Nutritional Facts</h3></div>
+      
+      
+      <div class="tab_contents_wrapper product_indt single_iconse">
+                    
+        <div class="tabproductBox">
+                     <div class="tab_nutri_textbox">                                     
+                       <h4 style="color:#fff; background:#47413c; "> salted brownie  </h4>               
+                    </div>
+                    
+                    <img class="tab_nutri_image" src="//cdn.shopify.com/s/files/1/0248/8084/0813/files/salted_13eb7fcf-9643-4798-a99a-0ef8cf4c7e09_350x.jpg?v=1580147653" alt="">
+                                        
+                  </div>
+       
+                  
+                  
+               </div>
+      
+	</div>
+  </div>
+  
+  
+  
+  <div id="tab-3" class="reviews_tab">
+    <div id="stamped-main-widget"   
+data-widget-style="standard" 
+data-product-id="{{ product.id }}"   
+data-name="{{ product.title | escape }}"   
+data-url="{{ shop.url }}{{ product.url }}"   
+data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}" 
+data-description="{{ product.description | escape }}"   
+data-product-sku="{{product.handle}}">   
+{{ product.metafields.stamped.reviews }}   
+</div>
+  </div>
+</div>
+
+{% if section.settings.divider %}</div>{% endif %}
+
+{% schema %}
+  {
+    "name": "Banana Bread Ingredients",
+    "class": "index-section",
+    "max_blocks": 10,
+    "settings": [
+      {
+        "type": "text",
+        "id": "tab_one",
+        "label": "Tab One Title"
+      },
+      {
+        "type": "text",
+        "id": "tab_two",
+        "label": "Tab Two Title"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Ingredients Section Title"
+      },
+      {
+        "type": "checkbox",
+        "id": "outline_text",
+        "label": "Heading Outline"
+      },
+      {
+        "type": "color",
+        "id": "title_fill_color",
+        "label": "Heading fill color"
+      },
+      {
+        "type": "checkbox",
+        "id": "divider",
+        "label": "Show section divider",
+        "default": false
+      }
+    ],
+    "presets": [{
+      "name": "Banan Bread Ingredients",
+      "category": "Library"
+    }],
+    "blocks" : [
+      {
+        "type": "text",
+        "name": "Text",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "enlarge_text",
+            "label": "Enlarge text",
+            "default": false
+          },
+          {
+            "id": "ingredient_img",
+            "type": "image_picker",
+            "label": "Ingredient Image"
+          },
+          {
+            "id": "ingredient_title",
+            "type": "text",
+            "label": "Ingredient Title"
+          },
+          {
+            "id": "ingredient_text",
+            "type": "richtext",
+            "label": "Ingredient Text",
+            "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+          },
+          {
+            "id": "ingredient_answer",
+            "type": "text",
+            "label": "Answer",
+            "default": "Answer"
+          },
+          {
+            "type": "url",
+            "id": "ingredient_link",
+            "label": "Article Link"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+
+{% javascript %}
+
+{% endjavascript %}
+<style type="text/css">
+  .tab_content_title  {text-align:center;}
+  .tab_contents_wrapper.single_iconse{
+  align-items: center;
+        justify-content: center;
+        flex-direction: column;
+  }
+  .try_innser_sec {
+   width:100%;
+    margin:0px;
+    padding:0px;
+    text-align:center;
+  }
+  .try_secthree_title {
+  text-align:center;
+    display:block;
+  }
+  .try_iconlist_area{
+  display:flex;
+    text-align:center;
+  }
+  .try_secTitle{
+  text-transform:uppercase;
+  }
+  .page-width.page-content.try_sec_three {
+  padding-top: 75px;
+
+padding-bottom: 75px;
+  }
+  .shopify-section.try-icons{background:{{ section.settings.section_background }}; margin: 25px 0px 20px 0px;}
+  @media only screen and (max-width:999px){
+    
+  .try_iconlist_area{
+ flex-wrap: wrap;
+align-items: center;
+justify-content: center;
+ 
+  }
+    .try_secTitle{margin-bottom:15px;}
+    .page-width.page-content.try_sec_three {
+       padding-top: 35px;
+padding-bottom: 45px;
+  }
+  } 
+  .try_secTitle.tab_headers span{
+  font-size:34px;
+  font-weight:300;
+  display:block;
+  text-transform:none;
+  }
+  ul.tabs.product_tabs li {
+   
+    text-align:center;
+}
+  ul.tabs.product_tabs{
+  text-align:left;
+  }
+  .tab_contentBox{
+  border:2px solid #000;
+  padding:70px 20px 55px 20px;
+  }
+  .tabInner{
+  width:100%;
+  position:relative;
+  margin:0px;
+  padding:0px;
+  }
+  .tab_contents_wrapper{
+  width: 100%;
+display: flex;
+margin: 45px 0px 0px 0px;
+padding: 0px;
+flex-flow: wrap;
+    
+  }
+  .ingrdientBox{
+  width:calc(22% - 20px);
+margin: 10px 10px 10px 10px;
+padding: 0px;
+  }
+  .ingrdientBox.end_last{
+  width:calc(34% - 20px);
+
+  }
+  .tab_ingredient_textbox{
+  text-align:center;
+  }
+  .tab_ingredient_textbox p {
+  font-weight:400;
+  }
+  .tab_ingredient_textbox h4{
+  font-size:30px;
+    text-transform:uppercase;
+    font-weight:900;
+    line-height:130%;
+  }
+  .tab_ingredient_textbox h4 span{
+  font-weight:400;
+  display:block;
+    font-size:25px;
+  }
+  .tab_content_title{
+  font-size:3vw;
+  font-weight:900;
+  text-transform:uppercase;
+    color:#ffffff;
+-o-text-stroke: 2px black;
+-moz-text-stroke: 2px black;
+-webkit-text-stroke: 2px black;
+text-stroke: 2px black;
+    letter-spacing: 1px;
+  }
+  .tabproductBox{
+  width:calc(33.3% - 20px);
+margin: 10px 10px 10px 10px;
+padding: 0px;
+    text-align:center;
+  }
+  .tab_product_textbox p {font-weight:400;}
+  .tab_contents_wrapper.product_indt{padding-top:0px;}
+  .tab_nutri_textbox h4 {
+text-transform: uppercase;
+font-size: 25px;
+font-weight: 900;
+padding: 15px 46px;
+
+  }
+  .tab_ingred_textbox h4 {
+ text-transform: uppercase;
+font-size: 20px;
+font-weight: 900;
+  }
+  .tabbox_ingree{
+  width:calc(16.6% - 20px);
+margin: 10px 10px 10px 10px;
+padding: 0px;
+  }
+  .tabbox_ingree img {border:2px solid #000;}
+  .tab_content_title.tabseC {
+  font-size:2.5vw;
+  }
+  @media only screen and (max-width:1180px){
+   .tab_content_title.tabseC {
+  font-size:4vw;
+  }
+    .tab_content_title{
+    font-size:4vw;
+    }
+    .tab_ingred_textbox h4{
+    font-size:16px;
+    }
+  }
+  @media only screen and (max-width:999px){
+    .tabbox_ingree{
+  width:calc(33.3% - 20px);
+  }
+     .tab_ingred_textbox h4{
+    font-size:20px;
+    }
+     .ingrdientBox{
+  width:calc(50% - 20px);
+  }
+  .ingrdientBox.end_last{
+  width:calc(50% - 20px);
+
+  }
+  }
+  
+  @media only screen and (max-width:770px){
+    .tab_content_title.tabseC {
+  font-size:7vw;
+  }
+    .tab_content_title{
+    font-size:7vw;
+    }
+    .tabproductBox{
+  width:calc(100% - 20px);
+
+  }
+    .tab_nutri_textbox h4{font-size:20px;]
+  }
+   
+   @media only screen and (max-width:604px){
+      .ingrdientBox{
+  width:calc(100% - 20px);
+  }
+  .ingrdientBox.end_last{
+  width:calc(100% - 20px);
+
+  }
+     .tab_content_title.tabseC {
+  font-size:8vw;
+  }
+    .tab_content_title{
+    font-size:8vw;
+    }
+    .tabbox_ingree{
+  width:calc(50% - 20px);
+  }
+     .tab_ingred_textbox h4{
+    font-size:16px;
+    }
+  }
+      @media only screen and (max-width:591px){
+  ul.tabs.product_tabs li:nth-child(2) a.active {
+   
+  padding-bottom: 43px;
+
+}
+     ul.tabs.product_tabs li:nth-child(3) a.active {
+   
+  padding-bottom: 43px;
+
+}
+  }
+</style>

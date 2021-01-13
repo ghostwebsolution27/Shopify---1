@@ -1,0 +1,33 @@
+{% schema %}
+  {
+    "name": "Section name",
+    "settings": []
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+<script type="text/javascript">
+
+  $( document ).ready(function() {  
+  
+    $(".bold_option_title:contains('subscription_id')").parents('.bold_option_line').hide();  
+      
+  });
+
+  
+</script>
+<style type="text/css">
+  .grid.grid--full.cart__row--table {padding-bottom:15px;}
+  .additional-notes {display:none ;}
+  .cart_nodis {display:none;}
+  .wcp-original-cart-total-text {padding-right:10px;}
+  @media only screen and (max-width:770px){
+    .grid__item.one-half.mobset_dis{display:none;}
+    .grid__item.one-half.mobset_dis_on{width:100%;}
+  }
+</style>

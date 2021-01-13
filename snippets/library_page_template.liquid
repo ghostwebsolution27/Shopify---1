@@ -1,0 +1,109 @@
+            <div class="benefits_image_lib_wrap">
+              {% if section.settings.icon_one != blank %}
+              <div class="product-single__benifits rte library_sidebar">
+                <h4>Benefits</h4>
+                <div class="library_title_icons_wrapper item_page">
+                {% if section.settings.icon_one != blank %}
+                <div class="library_icon">
+                  <img class="ff" src="{{ section.settings.icon_one | img_url: '600x' }}" alt="{{ section.settings.icon_one.alt }}">
+                </div>
+                {% endif %}
+                {% if section.settings.icon_two != blank %}
+                <div class="library_icon">
+                  <img src="{{ section.settings.icon_two | img_url: '600x' }}" alt="{{ section.settings.icon_two.alt }}">
+                </div>
+                {% endif %}
+                {% if section.settings.icon_three != blank %}
+                <div class="library_icon">
+                  <img src="{{ section.settings.icon_three | img_url: '600x' }}" alt="{{ section.settings.icon_three.alt }}">
+                </div>
+                {% endif %}
+                {% if section.settings.icon_four != blank %}
+                <div class="library_icon">
+                  <img src="{{ section.settings.icon_four | img_url: '600x' }}" alt="{{ section.settings.icon_four.alt }}">
+                </div>
+                {% endif %}
+              </div>
+              </div>
+            {% endif %}
+            <div class="library_pg_image_wrapper">
+              {% if section.settings.image != blank %}
+                <div class="image-wrap">
+                  {%- assign img_url = section.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+                  <img class="lazyload"
+                      data-src="{{ img_url }}"
+                      data-widths="[ 1080, 1600]"
+                      data-aspectratio="{{ section.settings.image.aspect_ratio }}"
+                      data-sizes="auto"
+                      alt="{{ section.settings.image.alt }}">
+                  <noscript>
+                    <img class="lazyloaded" src="{{ section.settings.image | img_url: '400x' }}" alt="{{ section.settings.image.alt }}">
+                  </noscript>
+                </div>
+                {% else %}
+                  <div class="image-wrap">
+                    {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                  </div>
+              {% endif %}
+              </div>
+            </div>            
+ 
+            <div class="content_lib_wrap">
+            {% if section.settings.title != blank %}
+              <div class="rte" data-section-id="{{ section.id }}" data-section-type="featured-content-section">
+                <h2>{{ section.settings.title }}</h2>
+              </div>
+            {% endif %}
+        
+              <div class="question_answer">
+                {% if section.settings.question != blank %}
+                {{ section.settings.question }}
+                {% endif %}
+                {% if section.settings.answer != blank %}
+                {{ section.settings.answer }}
+                {% endif %}
+               </div>
+              {% if section.settings.description != blank %}
+                 <div class="library_item_description">
+                   {{ section.settings.description }}
+                 </div>
+              {% endif %}
+        
+              <div class="products_found_in">
+                {% if section.settings.product_one != blank %}
+                <h4><span>Found In:</span></h4>
+                {% endif %}
+                <div class="products_found_in_images">
+                {% if section.settings.product_one != blank %}
+                <div class="product_wrap">
+                  <a href="{{ section.settings.product_one_link }}">
+                  <img src="{{ section.settings.product_one | img_url: '600x' }}" alt="{{ section.settings.product_one.alt }}">
+                  </a>
+                </div>
+                {% endif %}
+                {% if section.settings.product_two != blank %}
+                <div class="product_wrap">
+                  <a href="{{ section.settings.product_two_link }}">
+                  <img src="{{ section.settings.product_two | img_url: '600x' }}" alt="{{ section.settings.product_two.alt }}">
+                  </a>
+                </div>
+                {% endif %}
+                {% if section.settings.product_three != blank %}
+                <div class="product_wrap">
+                  <a href="{{ section.settings.product_three_link }}">
+                  <img src="{{ section.settings.product_three | img_url: '600x' }}" alt="{{ section.settings.product_three.alt }}">
+                  </a>
+                </div>
+                {% endif %}
+                {% if section.settings.product_four != blank %}
+                <div class="product_wrap">
+                  <a href="{{ section.settings.product_four_link }}">
+                  <img src="{{ section.settings.product_four | img_url: '600x' }}" alt="{{ section.settings.product_four.alt }}">
+                  </a>
+                </div>
+                {% endif %}
+                </div>
+              </div>
+</div>
+          
+            

@@ -1,0 +1,138 @@
+{% if section.settings.show_bar %}
+<div class="timer_wrapper" style="background:{% if section.settings.bg_color %} {{section.settings.bg_color}} {%endif%}">
+  <div class="timer_inner">
+    <p id="demos"></p><span class="timmerbeforetext">{{ section.settings.timer_beforetext }} </span>
+  </div>
+</div>
+{% endif %}
+
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("{{ section.settings.month }} {{ section.settings.day }}, {{ section.settings.year }} {{ section.settings.time }}").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  document.getElementById("demos").innerHTML = hours + " HOURS "
+  + minutes + " MINS" + "<span>" + seconds + "s " + "</span>";
+  /* document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + "<span>" + seconds + "s " + "</span>";*/
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demos").innerHTML = "EXPIRED";
+  }
+}, 1000);
+</script>
+
+{% schema %}
+  {
+    "name": "Timer Taster Page",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_bar",
+        "label": "Display Timer",
+        "default": false
+      },
+{
+        "type": "text",
+        "id": "timer_beforetext",
+        "info": "Before Timmer Text",
+"label": "Before Timmer Text"
+      },
+{
+            "type": "color",
+            "id": "bg_color",
+            "label": "Background Color",
+"default": "#000"
+          },
+      {
+        "type": "text",
+        "id": "month",
+        "info": "Please type in full. Use example 'June'",
+        "label": "Month"
+      },
+      {
+        "type": "text",
+        "id": "day",
+        "label": "Day"
+      },
+      {
+        "type": "text",
+        "id": "year",
+        "label": "Year"
+      },
+      {
+        "type": "text",
+        "id": "time",
+        "info": "Please use this example '15:37:25'. Please hit save to see changes",
+        "label": "Time"
+      }
+],
+    "presets": [
+      {
+        "name": "Timer Countdown",
+        "category": "Header"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+<style type="text/css">
+  .timmerbeforetext {
+  display: inline-table;
+ font-size: 20px;
+    font-weight:800;
+  }
+  .timer_wrapper p#demos {    
+    display: inline-table;
+    font-size: 18px;
+    font-weight: 600;
+    padding-right: 5px;
+    margin: 0px;
+}
+  .timer_inner {
+    color: #212529;
+    text-transform: uppercase;
+}
+  .timer_wrapper {   
+    padding: 5px;
+}
+  .timmerbeforetext {
+    display: inline-table;
+    font-size: 18px;
+    font-weight: 600;
+}
+  .timer_wrapper p#demos span {display:none;}
+  @media only screen and (max-width:440px){
+  .timmerbeforetext {  
+    font-size: 16px;   
+}
+    .timer_wrapper p#demos {   
+   padding-left: 0px;
+      font-size: 16px;
+
+}
+  }
+</style>

@@ -1,0 +1,225 @@
+<div class="page-width page-content spec_try bfbntext bfbntexts" id="grid_first_container">
+	<div class=" sec_twos" id="banner_first_grid_div" style="">
+		<h3 class="big_banner_text midbtext alltext " style="text-align:left"> {{ section.settings.title_top }} 
+			<br/> {{ section.settings.title_bottom }}
+		</h3>
+	</div>
+	<div class="faq-section">
+		<div class="fqmatter">
+			<div class="container table_for_reduce">
+				<table class="table">
+					<tbody>
+                      	{% for block in section.blocks %}
+                          <tr>
+                              <td>{{block.settings.faq_title}}</td>
+                              <td></td>
+                              <td class="green">{{block.settings.faq_answer}}</td>
+                          </tr>
+                        {% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% schema %}
+  {
+    "name": "Short FAQs Section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title_top",
+        "label": "Top Title",
+		"default": "YES, IT REALLY"
+      },
+	  {
+        "type": "text",
+        "id": "title_bottom",
+        "label": "Bottom Title",
+		"default": "IS THIS GOOD"
+      }
+    ],
+	"blocks": [
+	  {
+		"type": "text",
+        "name": "Short FAQs Blocks",
+        "settings": [
+		  {
+            "type": "textarea",
+            "id": "faq_title",
+            "label": "FAQ Title"
+          },
+		  {
+            "type": "textarea",
+            "id": "faq_answer",
+            "label": "FAQ Answer"
+          }
+		] 
+      }
+	]
+  }
+{% endschema %}
+
+<style type="text/css">
+  
+  #bf1 div#shopify-section-subscription-catch-editable .page-width.page-content.spec_try.bfbntexts {
+      background: none ;
+      background-attachment: fixed;
+      background-image: none ;
+      max-width: 1500px ;
+      background: transparent ;
+      padding: 0 20px ;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  
+  div#shopify-section-subscription-catch-editable {
+    background: #000;
+    padding: 32vh 0 10vh;
+    margin-top: -15vh;
+  }
+  
+  #bf1 div#shopify-section-subscription-catch-editable #banner_first_grid_div {
+     padding: 0 5vw 0 0;
+  }
+ 
+  .try_half {
+    width:50%;
+    padding:0px 2%;
+  }
+  .try_landing_sec{
+  position:relative;
+  display:flex;
+  margin:0px;
+    padding:0px;
+    
+  }
+  .index-section.try-qes-ans-sec{
+  margin:10px 0px;
+  }
+  .index-section.try-qes-ans-sec .h2 {text-transform:uppercase;}
+  .try_sec_right img{max-width:100%;}
+  .grid.try_secs{margin-left:0px;}
+  #shopify-section-subscription-catch-editable .collapsible-trigger--inline {
+
+    padding: 11px 40px 11px 10px;
+    text-align: left ;
+  
+margin: 5px 0px;
+color:#000;
+width: 100%;
+   border:2px solid #000;
+
+}
+  .collapsible-trigger--inline .collapsible-trigger__icon {
+
+    right: 10px;
+    left: auto;
+    border:none;
+
+}
+  .try-butn-ara{
+  display:block;
+    text-align:center;
+    margin:0px;
+    padding:15px 0px 10px 0px;
+  }
+  .try_button{
+  	text-transform:uppercase;
+    font-size:15px;
+    font-weight:400;
+    text-transform:uppercase;
+    padding:11px 20px;
+    background:#e00808;
+    color:#fff;
+    line-height: 1.42;
+    letter-spacing:1px;
+    
+  }
+  .page-width.page-content.spec_try {padding-top:35px; padding-bottom:35px;}
+  @media only screen and (max-width:999px){
+  .try_half {
+    width:100%;
+    padding: 0px;
+    
+  }
+    .try_half.try_sec_right{margin-top:20px;}
+    .try_landing_sec{
+
+    flex-flow: wrap;
+  }
+  }
+  #shopify-section-bf_banertext{background:#e1e1e1;}
+  .btn.try-button-full{
+  width:100%;
+    padding: 17px 20px;
+  }
+  .try_landing_sec.sec_twos {
+  align-items: center;
+justify-content: center;
+  }
+  .image-try-blockc {
+   width:90px; 
+  }
+  .image_caption {text-align:right;
+  position: absolute;
+    right: 50px;}
+  .image_caption p {
+    text-align:right;
+    padding: 15px 10px 8px 10px;
+position: relative;
+    display:inline-table;
+  }
+  .image_caption p:before {
+  content:'';
+    position:absolute;
+    top:10px;
+    right:0;
+    width:194px;
+    height:1px;
+   background: #bdbbbb;
+  }
+  .try_half {
+    padding-bottom:15px;
+}
+   .page-width.page-content.spec_try.bfbntext {
+  padding:20px ;
+    
+  }
+  .midbtext {text-align:center; margin:0px; padding:15px;}
+  .midbtext span {display:block; color:#E00808;}
+  
+  @media only screen and (max-width:520px){
+   
+      .midbtext {font-size:18px;}
+  }
+  
+  @media only screen and (max-width: 372px) {
+    #bf1 div#shopify-section-subscription-catch-editable .table_for_reduce tr {
+      height: auto ;
+    }
+    #bf1 div#shopify-section-subscription-catch-editable h3.midbtext, #bf1 div#shopify-section-subscription-catch-editable .midbtext.h3, #bf1 div#shopify-section-subscription-catch-editable .midbtext.h3 {
+        font-size: 35px ;
+    	line-height: 30px ;
+    }
+  }
+  
+  @media only screen and (max-width:768px){
+    
+     #bf1 div#shopify-section-subscription-catch-editable #banner_first_grid_div {
+     padding: 0;
+  }
+   
+    #bf1 div#shopify-section-subscription-catch-editable .page-width.page-content.spec_try.bfbntexts { 
+     	 flex-wrap: wrap;
+    }
+    
+    #bf1 div#shopify-section-subscription-catch-editable h3.midbtext, #bf1 div#shopify-section-subscription-catch-editable .midbtext.h3, #bf1 div#shopify-section-subscription-catch-editable .midbtext.h3 {
+        font-size: 35px ;
+    	line-height: 30px ;
+    }
+    
+  }
+</style>

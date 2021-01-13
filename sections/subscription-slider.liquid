@@ -1,0 +1,182 @@
+<div class="subscription-slider-mobile">
+  <div class="page-width">
+    <h3 class="flavor-section-title"> {{ section.settings.section_subtitle }} </h3>
+    <h2 class="flavor-section-title"> {{ section.settings.section_title }} </h2>
+    <div class="main-carousel">
+      {% for block in section.blocks %}
+      <div class="carousel-cell">
+        <div class="grid">
+          	<div class="grid__item small--one-whole">
+              <div class="ss-desc">
+                <p>{{ block.settings.ss_toptext }}</p>
+                <p>{{ block.settings.ss_bottext }}</p>
+              </div>
+              <div class="ss-bar-body">
+                <img src="{{ block.settings.ss_image | img_url: 'master' }}"/>
+                <h5>{{ block.settings.ss_image_bottext }}</h5>
+                <a class="subscription-button btn" href="{{block.settings.ss_button_link}}">{{ block.settings.ss_button_title }}</a>
+              </div>
+          	</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% comment %}
+<div class="subscription-slider-desktop">
+  <div class="grid">
+    {% for block in section.blocks %}
+    {% if forloop.length == 4 %}
+    	{% assign desktop_col = 'medium-up--one-quarter' %}
+    {% elsif forloop.length == 3 %}
+    	{% assign desktop_col = 'medium-up--one-third' %}
+    {% elsif forloop.length == 2 %}
+    	{% assign desktop_col = 'medium-up--one-half' %}
+   	{% else %}
+    	{% assign desktop_col = 'medium-up--one-whole' %}
+    {% endif %}
+    <div class="grid__item small--one-third {{ desktop_col }}">
+      <div class="flavor-body" style="background-color:{{ block.settings.flavor_bg }}">
+        <div class="page-width">
+          {% if block.settings.flavor_title != blank %}
+          <h3>
+            {{ block.settings.flavor_title }}
+            <span>{{ block.settings.flavor_subtitle }}</span>
+          </h3>
+          {% endif %}
+          <div class="grid">
+            <div class="grid__item regular-flavor-desktop small--one-half medium-up--one-half">
+              <img src="{{ block.settings.flavor_regular_image | img_url: 'master' }}">
+              <a href="{{ block.settings.flavor_regular_button_link }}">{{ block.settings.flavor_regular_button_text }}</a>
+            </div>
+            <div class="grid__item mini-flavor-desktop small--one-half medium-up--one-half">
+              <img src="{{ block.settings.flavor_mini_image | img_url: 'master' }}">                  		
+              <a href="{{ block.settings.flavor_mini_button_link }}">{{ block.settings.flavor_mini_button_text }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endcomment %}
+
+<!-- FLICKTY CSS -->
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
+<!-- no-conflict mode. -->
+<!-- FLICKTY JavaScript -->
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js" async="true"></script>
+
+<script>
+ 
+jQuery.noConflict();
+ 
+jQuery( document ).ready(function( $ ) {
+  
+  	var tapArea, startX ;
+    tapArea = document.querySelectorAll('.main-carousel');
+    startX = 0;
+    for (var item of tapArea) {
+      item.ontouchstart = function(e) {
+        startX = e.touches[0].clientX;
+      };
+      item.ontouchmove = function(e) {
+        if (Math.abs(e.touches[0].clientX - startX) > 5 && e.cancelable ) {
+          e.preventDefault();
+        }
+      };
+    }
+  
+    var $carousel = $('.main-carousel').flickity({
+      wrapAround: true,
+      contain: true,
+      prevNextButtons: false,
+      pageDots: false
+    });
+  
+});
+ 
+</script>
+
+{% schema %}
+  {
+    "name": "Subscription Slider",
+	"max_blocks": 4,
+    "settings": [
+        {
+          "type": "text",
+          "id": "section_title",
+          "label": "Section Title",
+          "default": "Static Title"
+        },
+		{
+          "type": "text",
+          "id": "section_subtitle",
+          "label": "Section Top Subtitle",
+          "default": "Static Title"
+        }
+    ],
+	"blocks": [
+	  {
+		"type": "image",
+        "name": "Subscription Blocks",
+        "settings": [
+		  {
+            "type": "image_picker",
+            "id": "ss_image",
+            "label": "Subscription Slider Image"
+          },
+		  {
+            "type": "text",
+            "id": "ss_image_bottext",
+            "label": "Subscription Slider Image Bottom Text",
+			"default": "Focus with Lion's Mane"
+          },
+		  {
+            "type": "text",
+            "id": "ss_toptext",
+            "label": "Slider Description Top Text",
+			"default": "DID YOU KNOW:"
+          },
+		  {
+            "type": "text",
+            "id": "ss_bottext",
+            "label": "Slider Description Bottom Text",
+			"default": "Adaptogens help your body fight fatigue and stress"
+          },
+		  {
+            "type": "text",
+            "id": "ss_button_title",
+            "label": "Subscription Slider Button Title",
+			"default": "I like to feel good"
+          },
+		  {
+            "id": "ss_button_link",
+            "type": "url",
+            "label": "Subscription Slider Button Link"
+          },
+		  {
+            "type": "image_picker",
+            "id": "ss_icon_1",
+            "label": "Subscription Icon 1"
+          },
+		  {
+            "type": "image_picker",
+            "id": "ss_icon_2",
+            "label": "Subscription Icon 2"
+          },
+		  {
+            "type": "image_picker",
+            "id": "ss_icon_3",
+            "label": "Subscription Icon 3"
+          }
+		] 
+      }
+	]
+  }
+{% endschema %}

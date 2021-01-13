@@ -1,0 +1,143 @@
+<div class="team_wrapper">
+<div class="page-width teampage"> 
+  <div class="container">
+    {% if section.settings.text-boxTwo != blank %}
+  <h1 class="page_title" style="{% if section.settings.text-boxTwo != blank %} color: {{ section.settings.title_fill_color }};{% endif %} {% if section.settings.outline_text %}-o-text-stroke: 2px black; -moz-text-stroke: 2px black; -webkit-text-stroke: 2px black; text-stroke: 2px black;{% endif %}">{{ section.settings.text-boxTwo }} </h1>
+    {% endif %}
+  </div>
+{% if section.settings.show_team_block %}
+<div data-section-id="{{ section.id }}"  id="slick-{{ section.id }}" class="team-row{% if section.settings.slideshow_width == 'contained' %} container mb30 {% else %} mt-30 {% endif %}" data-section-type="brands-slideshow-section">  
+  {% for block in section.blocks %}
+    <div class="center team half_page team_member">
+      <img class="team-front" src="{{ block.settings.team_image | img_url: 'original' }}" alt="{{ block.settings.team_image.alt }}"/>
+      <div class="team_info_box">
+        {% if block.settings.name != blank %}
+        <h3 class="team_name"> {{ block.settings.name }} </h3>
+        {% endif %}
+        {% if block.settings.title != blank %}
+        <div class="title"> {{ block.settings.title }} </div>
+        {% endif %}
+        {% if block.settings.fun_title != blank %}
+        <div class="fun_title"> {{ block.settings.fun_title }} </div>
+        {% endif %}
+        </div>
+    </div>
+     
+  {% endfor %} 
+
+</div>
+{% endif %}
+</div>
+</div>
+
+
+
+{% schema %}
+ {
+    "name": "Our Team",
+    "max_blocks": 20,
+    "settings": [
+      {
+      "id": "text-boxTwo",
+      "type": "text",
+      "label": "Heading",
+      "default": "Title"
+      },
+      {
+        "type": "checkbox",
+        "id": "outline_text",
+        "label": "Heading Outline"
+      },
+      {
+        "type": "color",
+        "id": "title_fill_color",
+        "label": "Heading fill color"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_team_block",
+        "label": "Enable Team Page",
+		"default": true
+      },
+
+      {
+        "type": "header",
+        "content": "Info"
+      },
+      {
+        "type": "paragraph",
+        "content": "You may upload up to 25 members"
+      },
+	  {
+        "type": "paragraph",
+        "content": "Please try to use the same pixel size for all images - Please crop all images to be square (1x1) size. Maximum width is 800px."
+      }
+
+	],
+     "blocks" : [
+      {
+        "type": "brand",
+        "name": "Team Member",
+        "settings": [
+      {
+        "type": "header",
+        "content": "Team Member"
+      },
+      {
+        "type": "image_picker",
+        "id": "team_image",
+        "label": "Image",
+		"info": "Front Image"
+      },
+      {
+        "id": "name",
+        "type": "text",
+        "label": "Name",
+        "default": "Name"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "default": "Title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "fun_title",
+        "label": "Fun Titles"
+      }
+	  ]
+ 	 }
+
+	],
+  "presets": [{
+    "name": "Our Team Block",
+    "category": "Team",
+    "settings": {
+    },
+    "blocks": [
+      {
+        "type": "brand"
+      },
+      {
+        "type": "brand"
+      },
+      {
+        "type": "brand"
+      },
+      {
+        "type": "brand"
+      }
+    ]
+  }]
+ }
+{% endschema %}
+
+
+
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

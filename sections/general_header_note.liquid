@@ -1,0 +1,136 @@
+{% if section.settings.announce_bar != false %}
+
+<div class="full_try_area announce_bar">
+  <div class="page-width page-content announce_b">
+    <div class="try_landing_sec anoucesNG">
+   
+{%- if section.blocks.size > 0 -%}
+       
+          {%- for block in section.blocks -%}
+           
+              {% case block.type %}
+                {% when 'rich-text'%}
+                  
+      <div class="textannounce" style="{% if block.settings.text_color != blank %}
+       color:{{ block.settings.text_color }};{% endif %}{% if block.settings.text_color != blank %}
+                                       text-align:{{ block.settings.align_text }};{% endif %}">{{ block.settings.title }} </div> 
+               
+   
+
+              {% endcase %}
+           
+          {%- endfor -%}
+      
+
+     {%- endif -%}
+   
+   
+</div>
+  </div>
+</div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Announcement Bar",
+    "settings": [
+       {
+            "type": "checkbox",
+            "id": "announce_bar",
+            "label": "Display Announcement Bar",
+            "default":true
+          },
+
+{
+            "type": "color",
+            "id": "ano_back_color",
+            "label": "Background Color",
+            "default":"#000"
+          },
+
+{
+            "type": "checkbox",
+            "id": "display_header",
+            "label": "Hide Header",
+            "default":true
+          },
+{
+            "type": "checkbox",
+            "id": "display_footer",
+            "label": "Hide Footer",
+            "default":true
+          }
+    ],
+    
+    "blocks": [
+      {
+        "type": "rich-text",
+        "name": "Rich text",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Rich text"
+          },
+          {
+            "type": "color",
+            "id": "text_color",
+            "label": "Text Color",
+"default": "#fff"
+          },
+          {
+            "type": "select",
+            "id": "align_text",
+            "label": "Text alignment",
+            "default": "left",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Centered"
+              }
+            ]
+          }
+        ]
+      }
+      
+
+    ]
+  }
+{% endschema %}
+
+<style type="text/css">
+  .announcement-bar {display:none;}
+  .page-width.page-content {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  .full_try_area.announce_bar {
+  width:100%;
+    position:relative;
+    background:{{ section.settings.ano_back_color }};
+   
+  }
+  .try_landing_sec.anoucesNG{flex-flow: column;}
+  .textannounce{
+   
+    display: inline-block;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 6px 0px;
+
+}
+  .textannounce a {color:#fff; text-decoration: underline; font-size:15.3px;}
+  {% if section.settings.display_header != false %}
+  .header-sticky-wrapper{display:none;}
+  {% endif %}
+  {% if section.settings.display_footer != false %}
+  .site-footer .grid {display:none;}
+   .site-footer  {padding:0px;}
+  .site-footer p.footer__small-text {padding:20px 0px;}
+    {% endif %}
+</style>

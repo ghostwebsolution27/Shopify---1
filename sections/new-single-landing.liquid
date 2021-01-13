@@ -1,0 +1,382 @@
+{% include 'new-single-template',
+  description_style: section.settings.description_style,
+  text_align: section.settings.text_align,
+  image_position: section.settings.image_position,
+  image_container_width: section.settings.image_size,
+  section_id: product.id,
+  social: section.settings.social_enable,
+  thumbnail_position: section.settings.thumbnail_position,
+  icon_one: section.settings.icon_one,
+  icon_one_description: section.settings.icon_one_description,
+  icon_two: section.settings.icon_two,
+  icon_two_description: section.settings.icon_twoo_description,
+  icon_three: section.settings.icon_three,
+  icon_three_description: section.settings.icon_three_description,
+  icon_four: section.settings.icon_four,
+  icon_four_description: section.settings.icon_one_description
+%}
+
+{% if settings.enable_product_reviews and settings.reviews_layout == 'full' %}
+  <hr id="Reviews-{{ product.id }}" class="hr--large">
+  <div class="index-section index-section--small product-reviews product-reviews--full">
+    <div class="page-width">
+      <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+    </div>
+  </div>
+{% endif %}
+
+{% include 'page-template-blocks' %}
+
+<style>
+  
+  p.free-shipping-product-page {
+    text-align: center;
+    margin-right: 40px;
+}
+  
+  div[data-value="BOX OF 12"] label.variant__button-label:after {
+    content: '{{ section.settings.discount_after }}';
+    position: absolute;
+    left: 0;
+    top: -25px;
+    font-size: 16px;
+    text-transform: lowercase;
+    color: #000;
+    opacity: .3;
+    letter-spacing: 0;
+    font-weight: 800;
+}
+  #shopify-section-bannabreadlanding .page-content {
+  padding-top:0px;
+  }
+.product-banner-width.page-width {
+  max-width:100%;
+  width:100%;
+  padding:0px;
+}
+  .product-single__meta {
+  padding:7% 28% 0px 0px;    
+  }
+  h1.h2.product-single__title, .h2.product-single__title.h1 {
+    font-size: 3.5vw;
+    line-height: 1em;
+}
+  .product-single__description p {
+    font-size: 20px;
+    padding-right: 30%;
+    margin-top: 10px;
+}
+  .product-single__description {
+    margin-bottom: 0px;
+}
+  .product__quantity {display:none;}
+  
+.payment-buttons .btn.add-to-cart {
+    border-color: #000;
+    background-color: #000;
+    color: #fff;
+    padding: 5px 0;
+    font-weight: 500;
+    min-height: 45px;
+    width: 100%;
+}
+  .payment-buttons .btn.add-to-cart span {
+   	/**font-size: 15px ; **/
+  }
+  
+  .product-image-main {
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+25,ffffff+25,fbefd5+69 */
+background: #ffffff; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #ffffff 25%, #ffffff 25%, #fbefd5 69%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg,  #ffffff 25%,#ffffff 25%,#fbefd5 69%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg,  #ffffff 25%,#ffffff 25%,#fbefd5 69%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#fbefd5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+
+  }
+
+
+padding-top:30px;
+padding-bottom: 30px;
+  }
+  .product__photos img {
+   
+    max-width: 86%;
+    width: 86%;
+    margin-left: 0px;
+    padding-top: 6%;
+}
+  
+@media only screen and (max-width:1590px){
+  
+  .product-single__meta {
+  padding:7% 0px 0px 0px;    
+  } 
+}
+  @media only screen and (max-width:999px){
+    
+    h1.h2.product-single__title, .h2.product-single__title.h1 {
+    font-size: 36px;
+    
+}    
+  }
+
+@media only screen and (min-width:960px){
+    .payment-buttons .btn.add-to-cart {
+        margin-right: 40px;
+    }
+}
+
+@media only screen and (max-width:960px){
+   .grid__item.product_speical {   
+    width: 100%;   
+}
+  .product-single__meta {
+    padding: 40px 40px 20px 40px;
+}
+  .product-single__description p {   
+    padding-right: 0px;
+    
+}
+  .product_img_benefits_wrapper .product_images_wrapper {
+    width: calc(100% - 0px);
+}
+}
+@media only screen and (max-width:768px){
+  
+  p.free-shipping-product-page {
+    margin-right: 0;
+}
+  
+  .product-single__meta {
+    padding: 0px 20px 20px 20px;
+}
+.product_img_benefits_wrapper .product_images_wrapper {
+  left: 0px;
+padding-right: 0px;
+}
+  .product__main-photos .slick-slide .product-image-main {
+    margin-right: 0px;
+}
+h1.h2.product-single__title, .h2.product-single__title.h1 {
+    font-size: 36px;
+   
+}
+}
+@media only screen and (max-width:500px){
+  h1.h2.product-single__title, .h2.product-single__title.h1 {
+    font-size: 26px;
+   
+}
+  .slick-dotted.slick-slider {
+    margin-bottom: 15px;
+}
+  .product-single__description p {
+    font-size: 16px;
+    line-height: 125%;
+}
+  .product__photos img {
+    max-width: 100%;
+    width: 100%;
+    margin-left: 0px;
+    padding-top: 0px
+  }
+  
+  .product-image-main {   
+    padding-top: 0px;
+    padding-bottom: 0px;
+    max-height: 275px ;
+    height: 275px ;
+}
+  .product__main-photos .image-wrap img {    
+    max-height: 200px;
+    margin-top: 30px ;
+}
+  .slick-slide[aria-describedby="slick-slide10"] .image-wrap img {
+ 
+margin-top: 4.5vh ;
+   
+}
+  .slick-slider:after {
+   width: 104%;
+position: absolute;
+content: '';
+bottom: -46px;
+height: 74px;
+background: #fff;
+transform: rotate(-8deg);
+left: -2%;
+z-index: 1;
+}
+  #reChargelevel {
+    padding-bottom: 10px;
+}
+  .product-single__meta {
+   
+    margin-top: 8px;
+}
+  .site-header__logo img {max-width:80px;}
+  .site-nav__link--icon {
+  
+    padding-top: 8px;
+    padding-bottom: 0px;
+}
+  .site-header {    
+    padding: 2px 0;
+   
+background: #fff;
+
+}
+.slick-dots {
+    bottom: 5px;
+    z-index: 10;
+    text-align: right;
+    padding-right: 25px;
+}
+}
+</style>
+
+{% schema %}
+  {
+    "name": "Banana Bread",
+    "settings": [
+      {
+        "type": "color",
+        "id": "pr_image_background",
+        "label": "Image Background Color",
+"default": "#F8EAAC"
+      },
+      {
+        "type": "image_picker",
+        "id": "background_meta_image",
+        "label": "Background Image"         
+      },
+      {
+        "type": "select",
+        "id": "image_position",
+        "label": "Images position",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "image_size",
+        "label": "Image size",
+        "default": "medium",
+        "options": [
+          {
+            "value": "small",
+            "label": "Small"
+          },
+          {
+            "value": "medium",
+            "label": "Medium"
+          },
+          {
+            "value": "large",
+            "label": "Large"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "thumbnail_position",
+        "label": "Thumbnail position",
+        "default": "below",
+        "options": [
+          {
+            "value": "beside",
+            "label": "Next to image"
+          },
+          {
+            "value": "below",
+            "label": "Below image"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "text_align",
+        "label": "Text Align",
+        "default": "right",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "description_style",
+        "label": "Description position",
+        "default": "default",
+        "options": [
+          {
+            "value": "default",
+            "label": "Next to images"
+          },
+          {
+            "value": "full",
+            "label": "Below images"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "social_enable",
+        "label": "Enable social sharing",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "collection_links_enable",
+        "label": "Show back/next product links",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "discount_after",
+        "label": "Discount Text"
+      },
+      {
+        "type": "image_picker",
+        "id": "icon_one",
+        "label": "Icon One"
+      },
+      {
+        "type": "image_picker",
+        "id": "icon_two",
+        "label": "Icon Two"
+      },
+      {
+        "type": "image_picker",
+        "id": "icon_three",
+        "label": "Icon Three"
+      },
+      {
+        "type": "image_picker",
+        "id": "icon_four",
+        "label": "Icon Four"
+      }
+    ]
+
+  }
+{% endschema %}

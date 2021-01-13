@@ -1,0 +1,68 @@
+<style>
+  
+  .fitness_benefits_section h3, .fitness_benefits_section h4, .fitness_benefits_section p  {
+   	color: {{ section.settings.text_color }}; 
+  }
+  
+</style>
+
+<div class="fitness_benefits_section" style="background-color: {{ section.settings.section_bg }} ">
+  <div class="page-width">
+    {% for block in section.blocks %}
+    <div class="grid benefits_blocks">
+      <div class="grid__item small--one-whole medium--one-whole large-up--one-half">
+        <img src="{{ block.settings.benefits_image | img_url: 'master' }}">
+      </div>
+      <div class="grid__item small--one-whole medium--one-whole large-up--one-half">
+        <h3>{{ block.settings.benefits_title }}</h3>
+        <p>{{ block.settings.benefits_subtitle }}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Fitness Benefits Section",
+    "settings": [
+	  {
+        "type": "color",
+        "id": "section_bg",
+        "label": "Section Background color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#FFFFFF"
+      }
+    ],
+	"blocks": [
+	  {
+		"type": "image",
+        "name": "Benefits Blocks",
+        "settings": [
+		  {
+            "type": "image_picker",
+            "id": "benefits_image",
+            "label": "Benefits Image"
+          },
+		  {
+            "type": "text",
+            "id": "benefits_title",
+            "label": "Benefits Title",
+            "default": "Low environmental impact. 100% vegan. Zero food waste."
+          },
+          {
+            "type": "textarea",
+            "id": "benefits_subtitle",
+            "label": "Benefits Subtitle",
+            "default": "With its naturally long shelf life of 12 months, Huel Powder helps  reduce food waste. It also uses minimal packaging, and just like all Huel products, it is 100% vegan, so it contains zero animal products."
+          }
+		] 
+      }
+	]
+  }
+{% endschema %}

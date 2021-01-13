@@ -1,0 +1,16 @@
+{% if settings.enable_currencies %}
+  <span
+    class="currency-picker__wrapper {{ currency_class }}">
+    <label for="CurrencyPicker-{{ picker_id }}" class="visually-hidden">Pick a currency</label>
+    <select class="currency-input" id="CurrencyPicker-{{ picker_id }}" name="currencies">
+    {%- assign codes = 'USD,EUR,GBP,CAD,ARS,AUD,BRL,CLP,CNY,CYP,CZK,DKK,EEK,HKD,HUF,ISK,INR,JMD,JPY,LVL,LTL,MTL,MXN,NZD,NOK,PLN,SGD,SKK,SIT,ZAR,KRW,SEK,CHF,TWD,UYU,MYR,BSD,CRC,RON,PHP,AED,VEB,IDR,TRY,THB,TTD,ILS,SYP,XCD,COP,RUB,HRK,KZT,TZS,XPT,SAR,NIO,LAK,OMR,AMD,CDF,KPW,SPL,KES,ZWD,KHR,MVR,GTQ,BZD,BYR,LYD,DZD,BIF,GIP,BOB,XOF,STD,NGN,PGK,ERN,MWK,CUP,GMD,CVE,BTN,XAF,UGX,MAD,MNT,LSL,XAG,TOP,SHP,RSD,HTG,MGA,MZN,FKP,BWP,HNL,PYG,JEP,EGP,LBP,ANG,WST,TVD,GYD,GGP,NPR,KMF,IRR,XPD,SRD,TMM,SZL,MOP,BMD,XPF,ETB,JOD,MDL,MRO,YER,BAM,AWG,PEN,VEF,SLL,KYD,AOA,TND,TJS,SCR,LKR,DJF,GNF,VUV,SDG,IMP,GEL,FJD,DOP,XDR,MUR,MMK,LRD,BBD,ZMK,XAU,VND,UAH,TMT,IQD,BGN,KGS,RWF,BHD,UZS,PKR,MKD,AFN,NAD,BDT,AZN,SOS,QAR,PAB,CUC,SVC,SBD,ALL,BND,KWD,GHS,ZMW,XBT,NTD,BYN,CNH,MRU,STN,VES' | split: ',' -%}
+    {%- assign supported_codes = settings.supported_currencies | split: ' ' -%}
+    <option value="{{ shop.currency }}" selected="selected">{{ shop.currency }}</option>
+    {% for code in supported_codes %}
+      {% if code != shop.currency and codes contains code %}
+      <option value="{{ code }}">{{ code }}</option>
+      {% endif %}
+    {% endfor %}
+    </select>
+  </span>
+{% endif %}

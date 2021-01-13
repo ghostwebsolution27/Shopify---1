@@ -1,0 +1,202 @@
+{% for mini in product.collections %}
+  {% if mini.handle == "minis" %}
+  	{% assign minis = true %}
+  {% endif %}
+{% endfor %}
+
+{% comment %}ECPWS{% endcomment %}{% capture ec-pw-ify %}
+{% section 'new-gift-card' %}
+
+
+
+
+
+<style>
+  /* button#AddToCart-3940060004461:nth-child(1) {
+    display: none ; */
+  
+  .magnify-mobile .lens-mobile {
+   	  background: #fff; 
+  }
+  
+  .magnify-mobile .lens-mobile img {
+      max-width: initial;
+      width: initial;
+  }
+
+   h1, .h1, h2, .h2, h3, .h3 {
+    font-family: "proxima-nova", sans-serif ;
+    font-weight: 900 ;
+}
+  body {
+    font-family: "proxima-nova", sans-serif;
+}
+h1.h2.product-single__title, .h2.product-single__title.h1 {
+   color:#000;
+}
+  #ProductThumbs-4741118066797 {display:none;}
+  .template-product .stamped-badge i.stamped-fa {
+    color: #ecc559 ;
+}
+  .page-width.reviews_veriety_pack.try_c h3 {
+    display:none;
+}
+  .index-section {
+    margin: 0px 0px 25px 0;
+}
+  .kvformtitle {text-align:center; margin-top: 0;}
+  .titlereviews,.kvformtitle {
+ line-height: 110%;
+font-size: 3.5vw;
+font-weight: 900;
+text-transform: uppercase;
+    margin-top: 44px;
+    font-family: "proxima-nova", sans-serif;
+  }
+  .titlereviews span, .kvformtitle span {
+  display:block;
+  }
+  .instagram-section h4 {
+  display:none;
+  }
+  .instagram .section-header__title {
+line-height: 110%;
+font-size: 3.5vw ;
+font-weight: 800;
+text-transform: uppercase ;
+margin-top: 44px;
+font-family: "proxima-nova", sans-serif;
+  }
+  .instagram .section-header__title span {
+  display:block;
+  }
+  .instagram-feed-wrap .btn {
+  background:#000 ;
+  }
+ .sawpboxarea.slick-slider .slick-slide img {
+    display: inline-block;
+}
+  
+  .magnify {
+    width: 100%;
+  }
+  
+  @media only screen and (min-width: 1600px){
+     
+    .product__main-photos .starting-slide img, .product__main-photos .slick-initialized img {
+        max-width: 27.5vw;
+    }
+    
+    .product-image-main {
+        max-height: 27.5vw;
+    }
+    
+  }
+  
+  @media only screen and (max-width:990px){
+   .instagram .section-header__title {
+font-size: 36px ;
+  }
+      .titlereviews,.kvformtitle {
+font-size: 36px;
+  }
+   
+  }
+  
+    @media only screen and (min-width:768px) and (max-width:1024px){
+     
+      .kalivoSec {
+        padding: 7.5vh 0 5vh ;
+        margin-top: -5vh ;
+      }
+      
+    }
+  
+  @media only screen and (max-width:500px){
+   .instagram .section-header__title {
+font-size: 30px ;
+  }
+      .titlereviews {
+font-size: 30px;
+  }
+    .sawpboxarea.slick-slider:after {display:none;}
+  }
+  
+  .kalivoSec {
+  min-height:100px;
+    padding:25px 0px;
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+0,fbefd7+100 */
+background: #ffffff; /* Old browsers */
+background: -moz-linear-gradient(45deg,  #ffffff 0%, #fbefd7 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(45deg,  #ffffff 0%,#fbefd7 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(45deg,  #ffffff 0%,#fbefd7 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#fbefd7',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+
+  }  
+  .kalivoSec p.textNorg { 
+  text-align:center;
+    text-transform:uppercase;
+  }
+
+  .klaviyo-form .FormComponent__StyledFormComponentWrapper-e0xun6-0 {
+    padding: 3px ;
+}
+
+.klaviyo-form input {
+    border-radius: 5px ;
+    min-height: 45px ;
+    box-shadow: none ;
+    text-align: center ;
+}
+
+.klaviyo-form button {
+    border-radius: 5px ;
+    min-height: 25px;
+}
+
+  .payment-buttons .btn.add-to-cart {
+    border: none ;
+    color: #fff ;
+    border-radius: 5px ;
+    box-shadow: 0px 4px 10px 1px rgba(52,52,52,0.35) ;
+    min-height: 40px;
+}
+.variant__button-label {
+    background: #ECEBEB ;
+    border: none ;
+    border-radius: 5px ;
+    box-shadow: 0px 10px 17px -3px rgba(212, 212, 212, 0.86) ;
+}
+
+input:checked + .variant__button-label {
+    background: #000 ;
+    border: none ;
+    color: #fff ;
+    border-radius: 5px ;
+    box-shadow: 0px 4px 10px 1px rgba(52, 52, 52, 0.35) ;
+}
+input:checked+.variant__button-label .mostpopu {
+    color: #000;
+}
+.variant__button-label > span {
+	color: #000;
+    background: transparent ;
+    box-shadow: none ;
+    border: none;
+    font-weight: 100;
+}
+input:checked+.variant__button-label > span {
+        font-weight: bold ;
+}
+input:checked+.variant__button-label .saveamout {
+    color: #fff;
+}
+  
+
+  
+</style>
+
+
+
+{% comment %}ECPWS{% endcomment %}{% endcapture %}{% include 'ec-passwordify' %}

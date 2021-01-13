@@ -1,0 +1,101 @@
+
+{% if section.settings.divider %}<div class="section--divider">{% endif %}
+
+<div class="page-width library_header_icons_wrapper">
+  <div class="library_title_wrapper">
+    <p class="h3" style="color: {{ section.settings.color_text }};">{% if section.settings.subtitle %}{{ section.settings.subtitle }}{% endif %}<br>
+              
+                  <span style="color: {{ section.settings.color_text_fill }}; -o-text-stroke: 2px black; -moz-text-stroke: 2px black; -webkit-text-stroke: 2px black; text-stroke: 2px black;">{% if section.settings.title != blank %}{{ section.settings.title | escape }}{% endif %}</span></p>
+  </div>
+  
+  <div class="library_icons_wrapper">
+  {% if section.blocks.size > 0 %}
+    <div class="icons-bar logo-bar--{{ section.id }}">
+      {% for block in section.blocks %}
+        <div class="icons-bar__item" {{ block.shopify_attributes }}>
+          {% if block.settings.image != blank %}
+            {%- assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+            <img class="icon-bar__image lazyload"
+                data-src="{{ img_url }}"
+                data-widths="[720]"
+                data-aspectratio="{{ block.settings.image.aspect_ratio }}"
+                data-sizes="auto"
+                alt="{{ block.settings.image.alt }}">
+          {% else %}
+            {{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+  </div>
+</div>
+
+{% if section.settings.divider %}</div>{% endif %}
+
+
+{% schema %}
+  {
+    "name": "Icons list",
+    "class": "index-section",
+    "max_blocks": 10,
+    "settings": [
+      {
+        "type": "text",
+        "id": "subtitle",
+        "label": "Header",
+        "default": "Impressive"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Header Outline",
+        "default": "Large image with text box"
+      },
+      {
+        "type": "color",
+        "id": "color_text_fill",
+        "label": "Outline Fill Color"
+      },
+      {
+        "type": "checkbox",
+        "id": "divider",
+        "label": "Show section divider",
+        "default": false
+      }
+    ],
+    "blocks": [
+      {
+        "type": "logo_image",
+        "name": "Icon",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Icons list",
+        "category": "Image",
+        "blocks": [
+          {
+            "type": "logo_image"
+          },
+          {
+            "type": "logo_image"
+          },
+          {
+            "type": "logo_image"
+          },
+          {
+            "type": "logo_image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

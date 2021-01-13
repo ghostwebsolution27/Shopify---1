@@ -1,0 +1,215 @@
+<style>
+  
+  .fitness_inside_section h3, .fitness_inside_section h4, .fitness_inside_section p  {
+   	color: {{ section.settings.text_color }}; 
+  }
+  
+</style>
+
+<div class="fitness_inside_section" style="background-color: {{ section.settings.section_bg }} ">
+  <div class="page-width">
+    <div class="grid">
+      <div class="grid__item small--one-whole medium--one-whole large-up--one-whole">
+      	<h3>{{ section.settings.title }}</h3>
+      </div>
+    </div>
+    <div class="grid inside_blocks">
+      	<div class="grid__item small--one-whole medium--one-whole large-up--one-third">
+            {% for block in section.blocks %}
+          		{% if forloop.index <= 2 %}
+                  <div class="grid">
+                    <div class="grid__item small--one-whole medium--one-whole large-up--one-whole">
+                      <h4>{{ block.settings.block_title }}</h4>
+                      <p>{{ block.settings.block_subtitle }}</p>
+                    </div>
+                  </div>
+          		{% endif %}
+            {% endfor %}
+        </div>
+      	<div class="grid__item small--one-whole medium--one-whole large-up--one-third">
+          <img src="{{ section.settings.middile_image | img_url: 'master' }}">
+        </div>
+        <div class="grid__item small--one-whole medium--one-whole large-up--one-third">
+            {% for block in section.blocks %}
+          		{% if forloop.index > 2 %}
+                  <div class="grid">
+                    <div class="grid__item small--one-whole medium--one-whole large-up--one-whole">
+                      <h4>{{ block.settings.block_title }}</h4>
+                      <p>{{ block.settings.block_subtitle }}</p>
+                    </div>
+                  </div>
+          		{% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="grid inside_buttons">
+      <div class="grid__item small--one-whole medium--one-whole large-up--one-whole">
+        <a id="nutritional_button" class="btn transparent-btn">{{ section.settings.button_1_title }}</a>
+        <a href="#anchor-tag" class="btn"> 
+          	<span class="bundle-orig-price" data-add-to-cart-text></span> 
+			<span class="bundle-price" data-add-to-cart-text></span> 
+            <span class="cart-text" data-add-to-cart-text>Minimum 4 Packs</span> 
+		</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="nutrition_modal">
+  <div class="nutritional_body">
+    <div id="nutrition_close"></div>
+    <div class="grid desktop_nfp">
+      <div class="grid__item small--one-whole medium--one-half large-up--one-quarter">
+        <img src="{{ section.settings.level_bar_nfp_1 | img_url: 'master' }}">
+      </div>
+      <div class="grid__item small--one-whole medium--one-half large-up--one-quarter">
+        <img src="{{ section.settings.level_bar_nfp_2 | img_url: 'master' }}">
+      </div>
+      <div class="grid__item small--one-whole medium--one-half large-up--one-quarter">
+        <img src="{{ section.settings.level_bar_nfp_3 | img_url: 'master' }}">
+      </div>
+      <div class="grid__item small--one-whole medium--one-half large-up--one-quarter">
+        <img src="{{ section.settings.level_bar_nfp_4 | img_url: 'master' }}">
+      </div>
+    </div>
+    <div class="mobile_nfp">
+      <div class="nfp-carousel">
+        <div class="carousel-cell"><img src="{{ section.settings.level_bar_nfp_1 | img_url: 'master' }}"></div>
+        <div class="carousel-cell"><img src="{{ section.settings.level_bar_nfp_2| img_url: 'master' }}"></div>
+        <div class="carousel-cell"><img src="{{ section.settings.level_bar_nfp_3| img_url: 'master' }}"></div>
+        <div class="carousel-cell"><img src="{{ section.settings.level_bar_nfp_4| img_url: 'master' }}"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FLICKTY CSS -->
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
+<!-- no-conflict mode. -->
+<!-- FLICKTY JavaScript -->
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js" async="true"></script>
+
+<script>
+ 
+jQuery.noConflict();
+ 
+jQuery( document ).ready(function( $ ) {
+  
+    var $nfpcarousel = $('.nfp-carousel').flickity({
+      wrapAround: true,
+      contain: true,
+      prevNextButtons: false,
+      pageDots: true,
+      autoPlay: 5000,
+	  pauseAutoPlayOnHover: true
+    });
+  
+   	$( "#nutritional_button" ).click(function() {
+    	$('#nutrition_modal').css("visibility", "visible");
+      	$('#nutrition_modal').css("opacity", "1");
+  	});
+    
+    $( "#nutrition_close" ).click(function() {
+    	$('#nutrition_modal').css("visibility", "hidden");
+      	$('#nutrition_modal').css("opacity", "0");
+  	});
+  
+});
+ 
+</script>
+
+{% schema %}
+  {
+    "name": "Fitness Inside Section",
+	"max_blocks": 6,
+    "settings": [
+	  {
+        "type": "color",
+        "id": "section_bg",
+        "label": "Section Background color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#FFFFFF"
+      },
+	  {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+		"default": "Fast Food. Not Junk Food"
+      },
+	  {
+        "type": "image_picker",
+        "id": "middile_image",
+        "label": "Inside Middle Image"
+      },
+	  {
+        "type": "text",
+        "id": "button_1_title",
+        "label": "Button 1 Title",
+		"default": "Nutritional Information"
+      },
+	  {
+        "type": "url",
+        "id": "button_1_url",
+        "label": "Button 1 URL"
+      },
+	  {
+        "type": "text",
+        "id": "button_2_title",
+        "label": "Button 2 Title",
+		"default": "Ingredients Information"
+      },
+	  {
+        "type": "url",
+        "id": "button_2_url",
+        "label": "Button 2 URL"
+      },
+	  {
+        "type": "image_picker",
+        "id": "level_bar_nfp_1",
+        "label": "Level Bar NFP 1"
+      },
+	  {
+        "type": "image_picker",
+        "id": "level_bar_nfp_2",
+        "label": "Level Bar NFP 2"
+      },
+	  {
+        "type": "image_picker",
+        "id": "level_bar_nfp_3",
+        "label": "Level Bar NFP 3"
+      },
+	  {
+        "type": "image_picker",
+        "id": "level_bar_nfp_4",
+        "label": "Level Bar NFP 4"
+      }
+    ],
+	"blocks": [
+	  {
+		"type": "text",
+        "name": "Inside Blocks",
+        "settings": [
+		  {
+            "type": "text",
+            "id": "block_title",
+            "label": "Inside Block Title",
+            "default": "27 Vitamins and Minerals"
+          },
+          {
+            "type": "textarea",
+            "id": "block_subtitle",
+            "label": "Inside Block Subtitle",
+            "default": "Ideal amounts of all the 27 essential vitamins and minerals."
+          }
+		] 
+      }
+	]
+  }
+{% endschema %}

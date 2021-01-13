@@ -1,0 +1,992 @@
+{% assign bundle_min = 0 %}
+{% assign bundle_max = 999 %}
+{% assign placeholder_image = 'https://cdn.shopify.com/s/files/1/0248/8084/0813/files/level-icon-placeholder.png?v=1598028464' %}
+{% assign placeholder_image_last = 'https://cdn.shopify.com/s/files/1/0248/8084/0813/files/level-icon-placeholder_1.png?v=1598263869' %}
+{% assign subscription_product = product.metafields.subscriptions %}
+
+<!-- FLICKTY CSS -->
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
+<!-- no-conflict mode. -->
+<!-- FLICKTY JavaScript -->
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js" async="true"></script>
+
+<div class="page-width" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}"
+   data-section-type="product" data-enable-history-state="true" data-ajax-enabled="{{ settings.enable_ajax
+   }}">
+   <div class="grid bundle">
+      <div class="grid__item bundle-items medium-up--two-thirds">
+         <div class="grid bundle-grid" data-bundle-min="{{ bundle_min }}" data-bundle-max="{{ bundle_max
+            }}">
+            {% for variant in product.variants %}
+              	<div class="grid__item bundle_product bundle_mini small--one-half medium--one-third large-up--one-quarter" data-product-handle="{{ variant.title | replace: ' ', '_' | downcase }}">
+                    <div class="grid bundle-item" data-variant-id="{{ variant.id }}" data-qty="0">
+                      {% if variant.metafields.global.link != blank %}
+                      <a href="{{variant.metafields.global.link}}">
+                        {% endif %}
+                        <img class="bundle-image" src="{{ variant.image.src | img_url: 'master' }}" alt="{{ variant.title }}">
+                        {% if variant.metafields.global.link != blank %}
+                      </a>
+                      {% endif %}
+                      <h4>Box of 10</h4>
+                      <div class="h3 bundle-title">{{ variant.title | replace: 'MINIS', '' }}</div>
+                      <div class="bundle-handle hidden">{{ variant.title | replace: ' ', '_' | downcase }}</div>
+                      {% if variant.available == false %}
+                      <span class="h6 block">Out of stock</span>
+                      {% else %}
+                      <div class="bundle-item-selector">
+                        <div class="grid initial-add">
+                          <div class="grid__item small--one-whole medium-up--one-whole">
+                            <button class="btn">+</button>
+                          </div>
+                        </div>
+                        <div class="grid">
+                          <div class="grid__item small--one-third medium-up--one-third">
+                            <span class="minus">
+                              <button class="btn" disabled>-</button>
+                            </span>
+                          </div>
+                          <div class="grid__item small--one-third medium-up--one-third">
+                            <span class="quantity">0</span>
+                          </div>
+                          <div class="grid__item small--one-third medium-up--one-third">
+                            <span class="plus">
+                              <button class="btn">+</button>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      {% endif %}
+                    </div>
+               </div>
+            {% endfor %}
+         </div>
+      </div>
+      <div class="grid__item bundle-details medium-up--one-third">
+         <div class="bundle-details">
+           	<div class="bundle-banner">
+              <h1>
+                 <span role="text">{{ product.title }}</span>
+              </h1>
+              <div class="h1 bundle-price hidden-style">$0.00</div>
+              {% comment %}
+                <div class="bundle-qty">
+                   Items:
+                   <span class="current-qty">0</span>
+                   of {{ bundle_max }}
+                </div>
+              {% endcomment %}
+              {% form 'product', product, data-productid: product.id, class:form_classes, novalidate:
+              'novalidate', data-product-form: '' %}
+              <!-- Begin ReCharge code -->
+              {% if product.available %}{% include 'subscription-bundle' %}{% endif %}
+              <!-- End ReCharge code -->
+              <select name="id" data-productid="{{ product.id }}" id="ProductSelect-{{ section.id }}"
+                 class="product-form__variants no-js">
+              {% for variant in product.variants %}
+              <option value="{{ variant.idz }}"
+              {%- if variant == current_variant %} selected="selected" {%- endif -%}
+              >
+              {{ variant.title }} {%- if variant.available == false %} - {{ 'products.product.sold_out'
+              | t }}{% endif %}
+              </option>
+              {% endfor %}
+              </select>
+           	</div>
+            <div class="bundle-form product-form__controls-group product-form__controls-group--submit">
+               <div class="product-form__item product-form__item--submit">
+                  <button
+                     id="bundle-add-to-cart"
+                     type="submit"
+                     name="add"
+                     aria-label="{{ 'products.product.add_to_cart' | t }}"
+                     class="btn product-form__cart-submit btn--primary-accent"
+                     data-add-to-cart
+                     disabled
+                     >
+                    <span class="bundle-price" data-add-to-cart-text></span> 
+                    <span class="cart-text" data-add-to-cart-text>Select 2 Boxes</span> 
+                  </button>
+               </div>
+            </div>
+            {% endform %}
+         </div>
+      </div>
+   </div>
+   <div class="mb_shipping_v2">
+      <div class="mb_container">
+      <h2>HEALTHY HABITS <br> DELIVERED TO YOUR DOOR</h2>
+        <div class="grid">
+            <div class="grid__item small--one-half medium--one-whole large-up--one-quarter">
+              <img src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/Group_24_2x_2.png?v=1604316077">
+              <h6>Free <br> Shipping</h6>
+              <p>On any order over $55.</p>
+            </div>
+           	<div class="grid__item small--one-half medium--one-whole large-up--one-quarter">
+              <img src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/guarantee_2x_6b7f1c1f-96de-41de-bff3-64f5a98d2e5c.png?v=1604315322">
+              <h6>Satisfaction <br> Guaranteed</h6>
+              <p>Don't love them? Return them.</p>
+            </div>
+          	<div class="grid__item small--one-half medium--one-whole large-up--one-quarter">
+              <img src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/appointment_2x_4a5b8f91-1311-4b87-a6d5-0a4d8cf5924b.png?v=1604316031">
+              <h6>Subscribe <br> & Save</h6>
+              <p>Subscribers get 15% OFF.</p>
+            </div>
+          	<div class="grid__item small--one-half medium--one-whole large-up--one-quarter">
+              <img src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/tongue_2x_989e50dc-e662-4159-8a39-daa317c6780c.png?v=1604316031">
+              <h6>Flavors <br> are Flying</h6>
+              <p>So good they sold out 4x already!</p>
+            </div>
+        </div>
+      </div>
+  </div>
+</div>
+<div class="mbs_section">
+  <div class="page-width">
+    <div class="mini_bundle_slider">
+      {% for block in section.blocks %}
+      <div class="mbs_body">
+        <div class="mbs_product_image">
+          <img src="{{block.settings.mini_image | img_url: 'master' }}">  
+        </div>
+        <div class="mbs_ingredients">
+          <h3>{{block.settings.mini_title }}</h3>
+          <p>{{block.settings.mini_ingredients }}</p>
+        </div>
+        <div class="mbs_nfp">
+          <img src="{{block.settings.mini_nfp | img_url: 'master' }}">
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+  
+  /** GENERAL STYLING **/
+  
+  .grid.submenu {
+    display: none ;
+  }
+  
+  ul.site-nav.site-navigation {
+    display: none;
+  }
+  
+  .site-nav .display_cd_account {
+    display: none;
+  }
+  
+  div#yoHolder {
+    display: none ;
+  }
+  
+  div#shopify-section-footer {
+    display: none;
+  }
+  
+  body > div:nth-last-child(3) {
+    display: none;
+  }
+  
+  .hidden-style {
+   	display: none; 
+  }
+  
+  .template-product h1, .template-product .h1, .template-product h2, .template-product .h2, .template-product h3, .template-product .h3, .template-product h4, .template-product .h4, .template-product h5, .template-product .h5, .template-product h6, .template-product .h6 {
+      font-family: proxima-nova-condensed, sans-serif ;
+   	  text-transform: uppercase ;
+      font-weight: 900 ;
+  }
+
+  .template-product p, .template-product a {
+      font-family:"proxima-nova" ;
+  }
+  
+  .btn:not(.btn--secondary):not(.btn--tertiary):not(.btn--inverse):hover, .rte .btn:not(.btn--secondary):not(.btn--tertiary):not(.btn--inverse):hover, .shopify-payment-button .shopify-payment-button__button--unbranded:not(.btn--secondary):not(.btn--tertiary):not(.btn--inverse):hover, .product-reviews .spr-summary-actions a:not(.btn--secondary):not(.btn--tertiary):not(.btn--inverse):hover, .product-reviews .spr-button:not(.btn--secondary):not(.btn--tertiary):not(.btn--inverse):hover {
+    background-color: #333 ;
+    color: #fff ;
+    transition-delay: 0s ;
+  }
+
+  /** BUNDLE STYLING **/
+  
+  .falvors_separator {
+    height: 1px;
+    background: #ddd;
+    margin: 50px 0 50px 0;
+  }
+
+  .bundle-grid h3 {
+    font-size: 35px;
+    line-height: 35px;
+    margin-bottom: 0;
+  }
+
+  .product-form__variants {
+    display: none;
+  }
+  
+  .grid__item.bundle-items {
+    padding-right: 5%;
+  }
+  
+  .grid.bundle-item {
+    background: #f6f6f6;
+    padding: 0;
+    text-align: center;
+    position: relative;
+    margin-top: 45%;
+    padding-top: 90%;
+    border-radius: 5px;
+  }
+  
+  .bundle_mini .grid.bundle-item {
+    margin-top: 30%;
+    padding-top: 65%;
+  }
+  
+  .bundle_mini  .bundle-item img.bundle-image {
+    top: -35%;
+   	transform: scale(1.25);
+  }
+
+  .grid.bundle-item .h3 {
+    font-size: 20px;
+    line-height: 20px;
+  }
+  
+  .bundle-item img.bundle-image {
+    position: absolute;
+    top: -18%;
+    left: 0;
+  }
+  
+  .bundle_bar .bundle-item img.bundle-image {
+    transform: scale(1.25);
+  }
+  
+  .grid.bundle-grid .bundle_product {
+    padding: 0 30px 0 0;
+  }
+  
+  .btn, .rte .btn, .shopify-payment-button .shopify-payment-button__button--unbranded, .product-reviews .spr-summary-actions a, .product-reviews .spr-button {
+   	background-color: #000; 
+  }
+  
+  .btn:not(.btn--secondary):not(.btn--tertiary):not(.btn--inverse):hover, .rte .btn:not(.btn--secondary):not(.btn--tertiary):not(.btn--inverse):hover, .shopify-payment-button .shopify-payment-button__button--unbranded:not(.btn--secondary):not(.btn--tertiary):not(.btn--inverse):hover, .product-reviews .spr-summary-actions a:not(.btn--secondary):not(.btn--tertiary):not(.btn--inverse):hover, .product-reviews .spr-button:not(.btn--secondary):not(.btn--tertiary):not(.btn--inverse):hover {
+   	background-color:  #f0e5d3;
+    color: #000;
+  }
+  
+  .hidden {
+   	display: none ; 
+  }
+  
+  main#MainContent {
+    padding: 75px 0 0;
+  }
+  
+  .bundle-images.grid img {
+    width: 90%;
+    margin: auto;
+  }
+  
+  .bundle-images.grid .not_bundle_placeholder {
+   	position: relative; 
+  }
+  
+  .bundle-images.grid .not_bundle_placeholder img {
+    border: 1px solid #000;
+    border-radius: 5px;
+  }
+  
+  a.remove-image {
+    display: block;
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background-color: #fff;
+    background-image: url(https://cdn.shopify.com/s/files/1/0248/8084/0813/files/close.svg?v=1598019211);
+    background-size: cover;
+    cursor: pointer;
+    top: -7px;
+    right: -2px;
+    border-radius: 50px;
+  }
+  
+  .bundle-images.grid h6 {
+    font-size: 10px;
+    line-height: 10px;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+  
+  .bundle-images.grid {
+    border-left: 1px solid #e1e1e1;
+    border-right: 1px solid #e1e1e1;
+    border-bottom: 1px solid #e1e1e1;
+    margin: 0;
+    padding: 20px 10px 10px;
+    width: 100%;
+    background: #fff;
+  }
+  
+  .bundle-images.grid .grid__item {
+    text-align: center;
+  }
+  
+  .bundle-item h4 {
+    font-size: 15px;
+    line-height: 15px;
+    font-weight: 300 ;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  
+  .bundle-item-selector .grid {
+    display: flex;
+    align-items: center;
+  }
+  
+  .bundle-item-selector span {
+    display: block;
+  }
+  
+  .bundle-item-selector .btn {
+    padding: 10px 0;
+    min-width: 100%;
+    display: block;
+  }
+  
+  .bundle-item-selector .minus .btn {
+    border-bottom-left-radius: 5px;
+  }
+  
+  .bundle-item-selector .plus .btn {
+    border-bottom-right-radius: 5px;
+  }
+  
+  .bundle-banner {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background: rgb(249,244,244);
+    background: -moz-linear-gradient(left, rgba(249,244,244,1) 0%, rgba(242,232,218,1) 100%);
+    background: -webkit-linear-gradient(left, rgba(249,244,244,1) 0%,rgba(242,232,218,1) 100%);
+    background: linear-gradient(to right, rgba(249,244,244,1) 0%,rgba(242,232,218,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9f4f4', endColorstr='#f2e8da',GradientType=1 );
+    text-align: center;
+    padding: 25px 0;
+  }
+  
+  .bundle-form {
+    border-left: 1px solid #e1e1e1;
+    border-right: 1px solid #e1e1e1;
+    border-bottom: 1px solid #e1e1e1;
+    padding: 20px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  
+  .bundle-details .rc_popup {
+    display: none;
+  }
+  
+  .bundle-details div#rc_radio_options {
+    display: flex;
+  }
+  
+  .bundle-details label.rc_label {
+    font-family: proxima-nova-condensed, sans-serif ;
+    text-transform: uppercase ;
+    font-weight: 700 ;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  
+  .bundle-details div#rc_radio_options > .rc_block:first-child {
+    text-align: right;
+  }
+  
+  .bundle-details div#rc_radio_options > .rc_block:last-child {
+    text-align: left;
+  }
+  
+  .bundle-details div.rc_block__type--active label.rc_label {
+   	color: #000 
+  }
+  
+  .bundle-banner h1, .bundle-banner .h1 {
+    font-size: 25px;
+    line-height: 25px;
+    margin-bottom: 0;
+  }
+  
+  .bundle-banner .h1.bundle-price {
+    font-size: 30px;
+    line-height: 30px;
+    margin: 15px 0 5px;
+  }
+  
+  .bundle-form #bundle-add-to-cart {
+    border-radius: 5px;
+  }
+  
+  .bundle-item-selector {
+    position: relative;
+  }
+  
+  .initial-add .grid__item {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+  }
+  
+  .initial-add .btn {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size: 30px;
+    font-weight: 300;
+    line-height: 30px;
+    padding: 4.5px 0;
+  }
+  
+  .grid__item.bundle-details {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 10px;
+  }
+  
+  .rc_block__type__autodeliver.rc_block__type--active {
+    height: 165px;
+  }
+  
+  div#rc_autodeliver_options {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 5px;
+  }
+  
+  .grid.subscription-benefits {
+    max-width: 350px;
+    margin: 5px auto 0 ;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
+  }
+  
+  .grid.subscription-benefits .grid__item {
+    padding: 15px 0;
+  }
+  
+  .grid.subscription-benefits .grid__item:nth-child(2) {
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+  }
+  
+  .grid.subscription-benefits p {
+    font-size: 9px;
+    margin-bottom: 0;
+  }
+  
+  .bundle-details div.rc_block__type--active label.rc_label.rc_label__deliver_every {
+    color: #000;
+    width: 100%;
+    max-width: 350px;
+    padding: 10px 0;
+  }
+  
+  .bundle-details div.rc_block__type--active label.rc_label.rc_label__deliver_every select.rc_select {
+    width: 100%;
+    max-width: 60%;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 5px 30px 5px 10px;
+    font-size: 12px ;
+    text-transform: uppercase;
+  }
+  
+  .bundle-images.grid {
+    z-index: 99997;
+  }
+  
+  .grid.subscription-benefits img {
+      width: 40px;
+  }
+  
+  .template-product .bundle .question-faq {
+      margin-right: 0;
+  }
+  
+  .template-product .bundle .nutrition_faqs .grid.desktop_nfp {
+      display: block;
+  }
+  
+  .template-product .bundle .nutrition_faqs .nfp-carousel {
+      display: none;
+  }
+  
+  .template-product .bundle .nutrition_faqs .nfp-carousel .carousel-cell {
+   	  width: 100%; 
+      text-align: center;
+  }
+  
+  div#FAQ-content-2 {
+    padding-top: 20px;
+  }
+  
+	/** SHIPPING **/
+  
+  .mb_container {
+    padding: 0 15px;
+  }
+  
+  .mb_shipping_v2 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  
+  .mb_shipping_v2 h2 {
+    text-align: center;
+    font-size: 28px;
+    line-height: 1;
+  }
+  
+  .mb_shipping_v2 .grid {
+    max-width: 90%;
+    margin: auto ;
+  }
+  
+  .mb_shipping_v2 .grid .grid__item {
+    padding: 0 10px;
+  }
+  
+  .mb_shipping_v2 .grid img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin: 20px auto 10px;
+    display: block;
+  }
+  
+  .mb_shipping_v2 h6 {
+    font-size: 15px;
+    font-family: "proxima-nova" ;
+    line-height: 20px;
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: normal;
+    text-align: center;
+  }
+  
+  .mb_shipping_v2 p {
+    font-size: 15px;
+    font-family: "proxima-nova" ;
+    line-height: 20px;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: normal;
+    text-align: center;
+  }
+  
+  /** MINI BUNDLE SLIDER **/
+  
+  .mbs_section .page-width {
+    padding: 0;
+  }
+  
+  .mbs_section {
+    background-color: #f0e5d3;
+    padding: 50px 0 75px;
+  }
+  
+  .mbs_section .slick-prev, .mbs_section .slick-next {
+    top: 15%;
+  }
+  
+  .mbs_section .slick-prev {
+    left: 0;
+  }
+  
+  .mbs_section .slick-next {
+    right: 0;
+  }
+  
+  .mbs_section .slick-prev:before, .mbs_section .slick-next:before {
+    font-family: monospace;
+    text-shadow: none;
+    color: #000 ;
+  }
+  
+  .mbs_body {
+   	padding: 0 20px; 
+  }
+  
+  .mbs_ingredients {
+    padding: 0 20px;
+    min-height: 300px;
+  }
+  
+  .mbs_ingredients h3 {
+    text-align: center;
+  }
+  
+  .mbs_product_image img {
+    max-width: 225px;
+    margin: auto;
+  }
+  
+  .mbs_nfp img {
+    width: 100%;
+  }
+  
+  .mbs_section .page-width {
+    padding: 0;
+   }
+  
+  .mbs_ingredients p {
+    font-size: 16px;
+  }
+  
+  /** RESPONSIVE STYLING **/
+  
+  @media only screen and (min-width: 2000px) {
+   	
+    .initial-add .btn {
+        padding: 6px 0px;
+    }
+    
+  }
+  
+  @media only screen and (min-width: 1500px) {
+	.mbs_ingredients p {
+      font-size: 16px ;
+    }
+  }
+  
+  @media only screen and (min-width: 1100px) {
+   	
+    .mbs_body {
+      padding: 0 10px;
+     }
+    
+    .mbs_ingredients p {
+      font-size: 14px;
+     }
+    
+    .bundle-banner h1, .bundle-banner .h1 {
+      font-size: 40px;
+      line-height: 40px;
+    }
+    
+  }
+  
+  @media only screen and (max-width: 768px) {
+    
+    div#ProductSection-product-template-bar-bundle {
+    	padding: 0;
+    }
+    
+    .header-mobile .mainmenu::after {
+      display: none;
+    }
+    
+    .header-mobile .site-header__logo {
+      margin: 0 auto 0 0;
+      max-width: 85px;
+    }
+    
+    .header-mobile .grid__item.mobile-drawer {
+    	display: none;
+    }
+    
+    .header-mobile .mainmenu {
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    div#ProductSection-product-template-mini-bundle {
+      padding: 0;
+    }
+    
+    .template-product .bundle .nutrition_faqs .grid.desktop_nfp {
+        display: none;
+    }
+
+    .template-product .bundle .nutrition_faqs .nfp-carousel {
+        display: block;
+    }
+    
+    .falvors_separator {
+        margin: 50px 0 30px 0;
+    }
+    
+    main#MainContent {
+        padding: 50px 0 0;
+    }
+    
+    #shopify-section-product-template-bundle .page-width {
+        padding: 0;
+    }
+    
+    .grid__item.bundle-details {
+     	position: static; 
+    }
+    
+    .grid.bundle {
+        display: flex;
+      	overflow: hidden;
+        flex-wrap: wrap-reverse;
+    }
+    
+    .section_title h3 {
+     	text-align: center; 
+    }
+    
+    .grid__item.bundle-items {
+      	padding-top: 0;
+        padding-right: 15px;
+      	padding-left: 15px;
+    }
+    
+    .grid.bundle-grid .bundle_product {
+        padding: 0 10px;
+    }.bundle_mini .grid.bundle-item
+    
+    .grid.bundle-item {
+        margin-top: 50%;
+        padding-top: 130%;
+    }
+    
+    .bundle_bar .bundle-item img.bundle-image {
+        transform: scale(1.75);
+    }
+    
+    .bundle-item img.bundle-image {
+        top: -5%;
+    }
+    
+    .bundle_mini .grid.bundle-item {
+      margin-top: 70%;
+      padding-top: 70%;
+    }
+    
+    .bundle_mini .bundle-item img.bundle-image {
+        top: -35%;
+        transform: scale(1.5);
+    }
+    
+    .bundle-form {
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+      	left: 0;
+      	right: 0;
+        z-index: 9999;
+        background: #fff;
+        -webkit-box-shadow: 0px -1px 4px 0px rgba(0,0,0,0.5);
+        -moz-box-shadow: 0px -1px 4px 0px rgba(0,0,0,0.5);
+        box-shadow: 0px -1px 4px 0px rgba(0,0,0,0.5);
+    }
+
+    iframe#launcher {
+        display: none;
+    }
+    
+    .bundle-images.grid.bundle-images-shadow {
+        -webkit-box-shadow: 0px -1px 5px 2px rgba(0,0,0,0.5);
+        -moz-box-shadow: 0px -1px 5px 2px rgba(0,0,0,0.5);
+        box-shadow: 0px -1px 5px 2px rgba(0,0,0,0.5);
+    }
+    
+    .bundle-banner.sticky-bundle-image {
+      	padding: 190px 0 25px
+    }
+    
+  }
+  
+  @media only screen and (min-width: 580px) and (max-width: 768px) {
+    
+    .grid.bundle-grid .bundle_product {
+        width: 33.333%;
+    }
+    
+  }
+  
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    
+    .bundle-details label.rc_label {
+        font-size: 10px;
+    }
+    
+    .template-product .bundle .nutrition_faqs .grid.desktop_nfp {
+        display: none;
+    }
+
+    .template-product .bundle .nutrition_faqs .nfp-carousel {
+        display: block;
+    }
+    
+  }
+  
+  @media only screen and (max-width: 1024px) and (min-width: 769px) {
+    .grid.bundle-grid .bundle_product {
+        width: 50%;
+    }
+    
+    .grid.subscription-benefits p {
+        font-size: 9px;
+        margin-bottom: 0;
+        white-space: pre-wrap;
+        display: block;
+    }
+    
+    .bundle-details div#rc_radio_options {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    
+    .bundle-details div#rc_radio_options > .rc_block:first-child {
+      text-align: center;
+  	}
+    
+    .bundle-details div#rc_radio_options > .rc_block:last-child {
+      text-align: center;
+  	}
+    
+    .bundle-images.grid .grid__item {
+      width: 50%; 
+    }
+    
+    button#bundle-add-to-cart {
+       font-size: 8px; 
+    }
+    
+    .rc_block__type__autodeliver.rc_block__type--active {
+      height: 180px;
+  	}
+  }
+  
+  @media only screen and (min-width: 1025px) and (max-width: 1300px) {
+    
+    .grid.bundle-grid .bundle_product {
+        width: 33.333%;
+    }
+    
+  }
+  
+  @media only screen and (max-width: 375px) {
+   
+    .grid.bundle-item .h3 {
+      max-width: 135px;
+      margin: 0 auto 10px;
+      font-size: 18px;
+      line-height: 18px;
+    }
+    
+    .bundle_mini .grid.bundle-item {
+      margin-top: 60%;
+      padding-top: 85%;
+    }
+    
+    .bundle_mini .bundle-item img.bundle-image {
+      top: -22%;
+      transform: scale(1.5);
+    }
+  }
+
+</style>
+  
+<script>
+  
+$( document ).ready(function() {
+	$('select.rc_select__frequency  option[value="4"]').attr("selected",true);
+  
+  	$('.mini_bundle_slider').slick({
+      infinite: true,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      responsive: [{
+
+        breakpoint: 1025,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1
+        }
+
+      }, {
+
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 1,
+      	  slidesToScroll: 1
+        }
+
+      }]
+    });
+});
+
+	
+var bundleimages = $('.bundle-images').offset().top;
+var bundledetails = $('.bundle-details').offset().top;
+var bundlebanner = $('.bundle-banner').offset().top + $('.bundle-banner').outerHeight();
+  
+setInterval(function(){ 
+    var viewportWidth = $(window).width();
+    var currentScroll = $(window).scrollTop(); 
+  	var headerheight = $('.header-mobile').height();
+  	var bundleheight = $('.bundle-details').height();
+  	var bundleheaderheight = headerheight + bundleheight;
+  
+  	if (currentScroll >= bundleimages && viewportWidth <= 768) {
+    	$('.grid.bundle-images').css({position: 'fixed', right: '0', top: headerheight});
+    } else if (currentScroll <= bundleheaderheight && viewportWidth <= 768) {
+     	$('.grid.bundle-images').css({position: 'static', right: '0', top: '0'});
+    }   
+}, 1);
+  
+</script>
+
+{% schema %}
+  {
+    "name": "Build a Box Options",
+    "settings": [],
+	"blocks": [
+	  {
+		"type": "Image",
+        "name": "Slider",
+        "settings": [
+		  {
+            "type": "image_picker",
+            "id": "mini_image",
+            "label": "Mini Image"
+          },
+		  {
+            "type": "text",
+            "id": "mini_title",
+            "label": "Mini Title"
+          },
+		  {
+            "type": "richtext",
+            "id": "mini_ingredients",
+            "label": "Ingredient Content"
+          },
+		  {
+            "type": "image_picker",
+            "id": "mini_nfp",
+            "label": "Mini NFP"
+          }
+		] 
+      }
+	]
+  }
+{% endschema %}

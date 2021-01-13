@@ -1,0 +1,814 @@
+
+
+
+  <div class="page-width page-content try_sec_three">
+    <div class="try_landing_sec">
+   
+    <div class="try_innser_sec">
+           
+   	{% if section.settings.title != blank %}
+      <div class="try_secthree_title"> <h2 class="try_secTitle tab_headers"> {{ section.settings.title }}</h2>
+      
+      <span>{{ section.settings.section_sub_title }}</span>
+      </div>
+      {% endif %}
+       
+      <ul class="tabs product_tabs">
+    <li><a href="#tab-1">{{ section.settings.tab_one }}</a></li>
+    <li><a href="#tab-2">{{ section.settings.tab_two }}</a></li>
+    <li><a href="#tab-3">{{ section.settings.tab_three }}</a></li>
+        <li><a href="#tab-4"><span class="visible-desk1">{{ section.settings.tab_four }}</span><span class="visible-desk">NUTRITIONAL FACTS</span></a></li>
+  	</ul>
+      
+    
+
+ {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'text' %}
+        <div id="tab-1" class="tab_contentBox">
+    <div class="ingredients_section">
+        {% if block.settings.tab_title_one != blank %}
+      <div class="tabInner"> <h3 class="tab_content_title"> {{block.settings.tab_title_one}}</h3></div>
+      {% endif %}
+               
+                  <div class="tab_contents_wrapper">
+                    <div class="ingrdientBox">
+                    {% if block.settings.ingredient_img_one != blank %}
+                    <img class="tab_ingredient_image" src="{{ block.settings.ingredient_img_one | img_url: '350x' }}" alt="{{ block.settings.ingredient_img_one.alt }}"/>
+                    {% endif %}
+                    <div class="tab_ingredient_textbox">
+                     {% if block.settings.ingredient_title_one != blank %}
+                      <h4>{{ block.settings.ingredient_title_one }}<span>{{ block.settings.ingredient_sub_title_one }}</span></h4>
+                     {% endif %}                    
+                      {{ block.settings.ingredient_text_one }}                 
+                    </div>
+                  </div>
+                     <div class="ingrdientBox">
+                    {% if block.settings.ingredient_img_two != blank %}
+                    <img class="tab_ingredient_image" src="{{ block.settings.ingredient_img_two | img_url: '350x' }}" alt="{{ block.settings.ingredient_img_two.alt }}"/>
+                    {% endif %}
+                    <div class="tab_ingredient_textbox">
+                     {% if block.settings.ingredient_title_two != blank %}
+                      <h4>{{ block.settings.ingredient_title_two }}<span>{{ block.settings.ingredient_sub_title_two }}</span></h4>
+                     {% endif %}                    
+                      {{ block.settings.ingredient_text_two }}                 
+                    </div>
+                  </div>
+                     <div class="ingrdientBox">
+                    {% if block.settings.ingredient_img_three != blank %}
+                    <img class="tab_ingredient_image" src="{{ block.settings.ingredient_img_three | img_url: '350x' }}" alt="{{ block.settings.ingredient_img_three.alt }}"/>
+                    {% endif %}
+                    <div class="tab_ingredient_textbox">
+                     {% if block.settings.ingredient_title_three != blank %}
+                      <h4>{{ block.settings.ingredient_title_three }}<span>{{ block.settings.ingredient_sub_title_three }}</span></h4>
+                     {% endif %}                    
+                      {{ block.settings.ingredient_text_three }}                 
+                    </div>
+                  </div>
+                     <div class="ingrdientBox end_last">
+                    {% if block.settings.ingredient_img_four != blank %}
+                    <img class="tab_ingredient_image" src="{{ block.settings.ingredient_img_four | img_url: '350x' }}" alt="{{ block.settings.ingredient_img_four.alt }}"/>
+                    {% endif %}
+                    <div class="tab_ingredient_textbox">
+                     {% if block.settings.ingredient_title_four != blank %}
+                      <h4>{{ block.settings.ingredient_title_four }}<span>{{ block.settings.ingredient_sub_title_four }}</span></h4>
+                     {% endif %}                    
+                      {{ block.settings.ingredient_text_four }}                 
+                    </div>
+                  </div>
+               </div>
+                 </div>
+  </div>
+      {% when 'text_tab_two' %}
+       <div id="tab-2" class="tab_contentBox">
+    <div class="product_section">   
+ {% if block.settings.tab_title_two != blank %}
+      <div class="tabInner"> <h3 class="tab_content_title"> {{block.settings.tab_title_two}}</h3></div>
+      {% endif %}
+      
+      <div class="tab_contents_wrapper product_indt">
+                    <div class="tabproductBox">
+                    {% if block.settings.product_img_one != blank %}
+                    <img class="tab_product_image" src="{{ block.settings.product_img_one | img_url: '350x' }}" alt="{{ block.settings.product_img_one.alt }}"/>
+                    {% endif %}
+                    <div class="tab_product_textbox">                                     
+                      {{ block.settings.product_text_one }}                 
+                    </div>
+                  </div>
+                     <div class="tabproductBox">
+                    {% if block.settings.product_img_two != blank %}
+                    <img class="tab_product_image" src="{{ block.settings.product_img_two | img_url: '350x' }}" alt="{{ block.settings.product_img_two.alt }}"/>
+                    {% endif %}
+                    <div class="tab_product_textbox">
+                     {% if block.settings.ingredient_title_two != blank %}
+                      <h4>{{ block.settings.ingredient_title_two }}<span>{{ block.settings.ingredient_sub_title_two }}</span></h4>
+                     {% endif %}                    
+                      {{ block.settings.product_text_two }}                 
+                    </div>
+                  </div>
+                     <div class="tabproductBox">
+                    {% if block.settings.product_img_three != blank %}
+                    <img class="tab_product_image" src="{{ block.settings.product_img_three | img_url: '350x' }}" alt="{{ block.settings.product_img_three.alt }}"/>
+                    {% endif %}
+                    <div class="tab_product_textbox">                                      
+                      {{ block.settings.productt_text_three }}                 
+                    </div>
+                  </div>
+                  
+               </div>
+      
+	</div>
+  </div>
+       {% when 'text_tab_four' %}
+       <div id="tab-3" class="tab_contentBox">
+    <div class="nutration_section">   
+ {% if block.settings.tab_title_four != blank %}
+      <div class="tabInner"> <h3 class="tab_content_title tabseC"> {{block.settings.tab_title_four}}</h3></div>
+      {% endif %}
+      
+      <div class="tab_contents_wrapper product_indt">
+                    <div class="tabbox_ingree">
+                     <div class="tab_ingred_textbox">                                     
+                       <h4> {{ block.settings.ingred_title_one }}  </h4>               
+                    </div>
+                    {% if block.settings.ingred_img_one != blank %}
+                    <img class="tab_nutri_image" src="{{ block.settings.ingred_img_one | img_url: '350x' }}" alt="{{ block.settings.ingred_img_one.alt }}"/>
+                    {% endif %}                    
+                  </div>
+        <div class="tabbox_ingree">
+                     <div class="tab_ingred_textbox">                                     
+                       <h4> {{ block.settings.ingred_title_two }}  </h4>               
+                    </div>
+                    {% if block.settings.ingred_img_one != blank %}
+                    <img class="tab_nutri_image" src="{{ block.settings.ingred_img_two | img_url: '350x' }}" alt="{{ block.settings.ingred_img_two.alt }}"/>
+                    {% endif %}                    
+                  </div> <div class="tabbox_ingree">
+                     <div class="tab_ingred_textbox">                                     
+                       <h4> {{ block.settings.ingred_title_three }}  </h4>               
+                    </div>
+                    {% if block.settings.ingred_img_one != blank %}
+                    <img class="tab_nutri_image" src="{{ block.settings.ingred_img_three | img_url: '350x' }}" alt="{{ block.settings.ingred_img_three.alt }}"/>
+                    {% endif %}                    
+                  </div> <div class="tabbox_ingree">
+                     <div class="tab_ingred_textbox">                                     
+                       <h4> {{ block.settings.ingred_title_four }}  </h4>               
+                    </div>
+                    {% if block.settings.ingred_img_one != blank %}
+                    <img class="tab_nutri_image" src="{{ block.settings.ingred_img_four | img_url: '350x' }}" alt="{{ block.settings.ingred_img_four.alt }}"/>
+                    {% endif %}                    
+                  </div> <div class="tabbox_ingree">
+                     <div class="tab_ingred_textbox">                                     
+                       <h4> {{ block.settings.ingred_title_five }}   </h4>               
+                    </div>
+                    {% if block.settings.ingred_img_one != blank %}
+                    <img class="tab_nutri_image" src="{{ block.settings.ingred_img_five | img_url: '350x' }}" alt="{{ block.settings.ingred_img_five.alt }}"/>
+                    {% endif %}                    
+                  </div> <div class="tabbox_ingree">
+                     <div class="tab_ingred_textbox">                                     
+                       <h4> {{ block.settings.ingred_title_six }}  </h4>               
+                    </div>
+                    {% if block.settings.ingred_img_one != blank %}
+                    <img class="tab_nutri_image" src="{{ block.settings.ingred_img_six | img_url: '350x' }}" alt="{{ block.settings.ingred_img_six.alt }}"/>
+                    {% endif %}                    
+                  </div>
+                  
+                  
+               </div>
+      
+	</div>
+  </div>
+             
+       {% when 'text_tab_three' %}
+       <div id="tab-4" class="tab_contentBox">
+    <div class="nutration_section">   
+ {% if block.settings.tab_title_three != blank %}
+      <div class="tabInner"> <h3 class="tab_content_title "> {{block.settings.tab_title_three}}</h3></div>
+      {% endif %}
+      
+      <div class="tab_contents_wrapper product_indt">
+                    <div class="tabproductBox">
+                     <div class="tab_nutri_textbox">                                     
+                       <h4 style="color:{{ block.settings.nu_title_color_one }}; background:{{ block.settings.nu_title_bg_one }}; "> {{ block.settings.nutritional_title_one }}  </h4>               
+                    </div>
+                    {% if block.settings.nutritional_img_one != blank %}
+                    <img class="tab_nutri_image" src="{{ block.settings.nutritional_img_one | img_url: '350x' }}" alt="{{ block.settings.nutritional_img_one.alt }}"/>
+                    {% endif %}                    
+                  </div>
+        <div class="tabproductBox">
+                     <div class="tab_nutri_textbox">                                     
+                       <h4 style="color:{{ block.settings.nu_title_color_two }}; background:{{ block.settings.nu_title_bg_two }}; "> {{ block.settings.nutritional_title_two }}  </h4>               
+                    </div>
+                    {% if block.settings.nutritional_img_two != blank %}
+                    <img class="tab_nutri_image" src="{{ block.settings.nutritional_img_two | img_url: '350x' }}" alt="{{ block.settings.nutritional_img_two.alt }}"/>
+                    {% endif %}                    
+                  </div>
+        <div class="tabproductBox">
+                     <div class="tab_nutri_textbox">                                     
+                       <h4 style="color:{{ block.settings.nu_title_color_three }}; background:{{ block.settings.nu_title_bg_three }}; "> {{ block.settings.nutritional_title_three }}  </h4>               
+                    </div>
+                    {% if block.settings.nutritional_img_three != blank %}
+                    <img class="tab_nutri_image" src="{{ block.settings.nutritional_img_three | img_url: '350x' }}" alt="{{ block.settings.nutritional_img_three.alt }}"/>
+                    {% endif %}                    
+                  </div>
+                  
+                  
+               </div> 
+      
+	</div>
+  </div>
+               
+            {% endcase %}
+        {% endfor %}
+      
+
+ 
+      
+     
+    </div>
+</div>
+  </div>
+
+
+
+{% schema %}
+  {
+    "name": "Try 2.0 Tabs",
+    "class": "try-icons",
+	"max_blocks": 4,
+    "settings": [
+      
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title"
+        
+      },{
+        "type": "text",
+        "id": "section_sub_title",
+        "label": "Section sub title"
+        
+      },{
+        "type": "text",
+        "id": "tab_one",
+        "label": "Tab one title",
+"default": "Benefits "
+        
+      },{
+        "type": "text",
+        "id": "tab_two",
+        "label": "Tab two title",
+"default": "Flavors "
+        
+      },{
+        "type": "text",
+        "id": "tab_three",
+        "label": "Tab three title",
+"default": "Ingredients "
+        
+      },{
+        "type": "text",
+        "id": "tab_four",
+        "label": "Tab one title",
+"default": "Nutritional Facts "
+        
+      },
+{
+            "type": "color",
+            "id": "section_background",
+            "label": "Section Background",
+             "default": "#fff"
+          }
+      
+    ],"blocks" : [
+      {
+        "type": "text",
+        "name": "Tab Benefits",
+        "settings": [
+{
+            "type": "text",
+            "id": "tab_title_one",
+            "label": "Tab Title",
+            "default": "Snack for how you want to feel"
+          },
+          
+          {
+            "id": "ingredient_img_one",
+            "type": "image_picker",
+            "label": "Ingredient Image"
+          },
+          {
+            "id": "ingredient_title_one",
+            "type": "text",
+            "label": "Ingredient Title"
+          },
+{
+            "id": "ingredient_sub_title_one",
+            "type": "text",
+            "label": "Ingredient Sub Title"
+          },
+          {
+            "id": "ingredient_text_one",
+            "type": "richtext",
+            "label": "Ingredient Text",
+            "default": "<p>Powered by focusing force of Lion's Mane, Banana Bread helps gets your brain in gear. </p>"
+          },
+          
+          {
+            "id": "ingredient_img_two",
+            "type": "image_picker",
+            "label": "Ingredient Image"
+          },
+          {
+            "id": "ingredient_title_two",
+            "type": "text",
+            "label": "Ingredient Title"
+          },
+{
+            "id": "ingredient_sub_title_two",
+            "type": "text",
+            "label": "Ingredient Sub Title"
+          },
+          {
+            "id": "ingredient_text_two",
+            "type": "richtext",
+            "label": "Ingredient Text",
+            "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+          },
+          
+          {
+            "id": "ingredient_img_three",
+            "type": "image_picker",
+            "label": "Ingredient Image"
+          },
+          {
+            "id": "ingredient_title_three",
+            "type": "text",
+            "label": "Ingredient Title"
+          },
+{
+            "id": "ingredient_sub_title_three",
+            "type": "text",
+            "label": "Ingredient Sub Title"
+          },
+          {
+            "id": "ingredient_text_three",
+            "type": "richtext",
+            "label": "Ingredient Text",
+            "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+          },
+          
+          {
+            "id": "ingredient_img_four",
+            "type": "image_picker",
+            "label": "Ingredient Image"
+          },
+          {
+            "id": "ingredient_title_four",
+            "type": "text",
+            "label": "Ingredient Title"
+          },
+{
+            "id": "ingredient_sub_title_four",
+            "type": "text",
+            "label": "Ingredient Sub Title"
+          },
+          {
+            "id": "ingredient_text_four",
+            "type": "richtext",
+            "label": "Ingredient Text",
+            "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+          }
+        ]
+      },
+{
+        "type": "text_tab_two",
+        "name": "Tab Flavors",
+        "settings": [
+{
+            "type": "text",
+            "id": "tab_title_two",
+            "label": "Tab Title",
+            "default": "Snack for how you want to feel"
+          },
+          
+          {
+            "id": "product_img_one",
+            "type": "image_picker",
+            "label": "Product Image"
+          },
+          
+          {
+            "id": "product_text_one",
+            "type": "richtext",
+            "label": "Product Text",
+            "default": "<p>Powered by focusing force of Lion's Mane, Banana Bread helps gets your brain in gear. </p>"
+          },
+          
+          {
+            "id": "product_img_two",
+            "type": "image_picker",
+            "label": "Product Image"
+          },
+        
+          {
+            "id": "product_text_two",
+            "type": "richtext",
+            "label": "Product Text",
+            "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+          },
+          
+          {
+            "id": "product_img_three",
+            "type": "image_picker",
+            "label": "Ingredient Image"
+          },
+          
+          {
+            "id": "productt_text_three",
+            "type": "richtext",
+            "label": "Product Text",
+            "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+          }
+          
+          
+        ]
+      },
+{
+        "type": "text_tab_three",
+        "name": "Tab Nutritional",
+        "settings": [
+{
+            "type": "text",
+            "id": "tab_title_three",
+            "label": "Tab Title",
+            "default": "Nutritional Facts "
+          },
+          
+          {
+            "id": "nutritional_img_one",
+            "type": "image_picker",
+            "label": "Nutritional Image"
+          },
+          
+          {
+            "type": "text",
+            "id": "nutritional_title_one",
+            "label": "Nutritional Title ",
+            "default": "banana bread"
+          },{
+            "type": "color",
+            "id": "nu_title_color_one",
+            "label": "Nutritional Title Color",
+            "default": "#fff"
+          },
+{
+            "type": "color",
+            "id": "nu_title_bg_one",
+            "label": "Nutritional Title Background",
+            "default": "#f1e27c"
+          },{
+            "id": "nutritional_img_two",
+            "type": "image_picker",
+            "label": "Nutritional Image"
+          },
+          
+          {
+            "type": "text",
+            "id": "nutritional_title_two",
+            "label": "Nutritional Title ",
+            "default": "banana bread"
+          },{
+            "type": "color",
+            "id": "nu_title_color_two",
+            "label": "Nutritional Title Color",
+            "default": "#fff"
+          },
+{
+            "type": "color",
+            "id": "nu_title_bg_two",
+            "label": "Nutritional Title Background",
+            "default": "#47413c"
+          },{
+            "id": "nutritional_img_three",
+            "type": "image_picker",
+            "label": "Nutritional Image"
+          },
+          
+          {
+            "type": "text",
+            "id": "nutritional_title_three",
+            "label": "Nutritional Title ",
+            "default": "banana bread"
+          },{
+            "type": "color",
+            "id": "nu_title_color_three",
+            "label": "Nutritional Title Color",
+            "default": "#fff"
+          },
+{
+            "type": "color",
+            "id": "nu_title_bg_three",
+            "label": "Nutritional Title Background",
+            "default": "#ece4d2"
+          }
+          
+          
+        ]
+      },{
+        "type": "text_tab_four",
+        "name": "Tab Ingredients ",
+        "settings": [
+{
+            "type": "text",
+            "id": "tab_title_four",
+            "label": "Tab Title",
+            "default": "Clean ingredients that you can pronounce."
+          },
+          
+          {
+            "id": "ingred_img_one",
+            "type": "image_picker",
+            "label": "Ingredients Image"
+          },
+          
+          {
+            "type": "text",
+            "id": "ingred_title_one",
+            "label": "Ingredients Title ",
+            "default": "collagen"
+          },{
+            "id": "ingred_img_two",
+            "type": "image_picker",
+            "label": "Ingredients Image"
+          },
+          
+          {
+            "type": "text",
+            "id": "ingred_title_two",
+            "label": "Ingredients Title ",
+            "default": "cordyceps"
+          },{
+            "id": "ingred_img_three",
+            "type": "image_picker",
+            "label": "Ingredients Image"
+          },
+          
+          {
+            "type": "text",
+            "id": "ingred_title_three",
+            "label": "Ingredients Title ",
+            "default": "egg white "
+          },{
+            "id": "ingred_img_four",
+            "type": "image_picker",
+            "label": "Ingredients Image"
+          },
+          
+          {
+            "type": "text",
+            "id": "ingred_title_four",
+            "label": "Ingredients Title ",
+            "default": "chicory root"
+          },{
+            "id": "ingred_img_five",
+            "type": "image_picker",
+            "label": "Ingredients Image"
+          },
+          
+          {
+            "type": "text",
+            "id": "ingred_title_five",
+            "label": "Ingredients Title ",
+            "default": "lion's mane"
+          },{
+            "id": "ingred_img_six",
+            "type": "image_picker",
+            "label": "Ingredients Image"
+          },
+          
+          {
+            "type": "text",
+            "id": "ingred_title_six",
+            "label": "Ingredients Title ",
+            "default": "reishi "
+          }
+
+          
+          
+        ]
+      }
+    ]
+   
+  }
+{% endschema %}
+
+<style type="text/css">
+  .try_innser_sec {
+   width:100%;
+    margin:0px;
+    padding:0px;
+    text-align:center;
+  }
+  .try_secthree_title {
+  text-align:center;
+    display:block;
+  }
+  .try_iconlist_area{
+  display:flex;
+    text-align:center;
+  }
+  .try_secTitle{
+  text-transform:uppercase;
+  }
+  .page-width.page-content.try_sec_three {
+  padding-top: 75px;
+
+padding-bottom: 75px;
+  }
+  .shopify-section.try-icons{background:{{ section.settings.section_background }}; margin: 25px 0px 20px 0px;}
+  @media only screen and (max-width:999px){
+    
+  .try_iconlist_area{
+ flex-wrap: wrap;
+align-items: center;
+justify-content: center;
+ 
+  }
+    .try_secTitle{margin-bottom:15px;}
+    .page-width.page-content.try_sec_three {
+       padding-top: 35px;
+padding-bottom: 45px;
+  }
+  } 
+  .try_secTitle.tab_headers span{
+  font-size:34px;
+  font-weight:300;
+  display:block;
+  text-transform:none;
+  }
+  ul.tabs.product_tabs li {
+    width: calc(24% - 0.15em);
+    margin-bottom: 0;
+    text-align:center;
+}
+  ul.tabs.product_tabs{
+  text-align:left;
+  }
+  .tab_contentBox{
+  border:2px solid #000;
+  padding:70px 20px 55px 20px;
+  }
+  .tabInner{
+  width:100%;
+  position:relative;
+  margin:0px;
+  padding:0px;
+  }
+  .tab_contents_wrapper{
+  width: 100%;
+display: flex;
+margin: 45px 0px 0px 0px;
+padding: 0px;
+flex-flow: wrap;
+    
+  }
+  .ingrdientBox{
+  width:calc(22% - 20px);
+margin: 10px 10px 10px 10px;
+padding: 0px;
+  }
+  .ingrdientBox.end_last{
+  width:calc(34% - 20px);
+
+  }
+  .tab_ingredient_textbox{
+  text-align:center;
+  }
+  .tab_ingredient_textbox p {
+  font-weight:400;
+  }
+  .tab_ingredient_textbox h4{
+  font-size:30px;
+    text-transform:uppercase;
+    font-weight:900;
+    line-height:130%;
+  }
+  .tab_ingredient_textbox h4 span{
+  font-weight:400;
+  display:block;
+    font-size:25px;
+  }
+  .tab_content_title{
+  font-size:3vw;
+  font-weight:900;
+  text-transform:uppercase;
+    color:#ffffff;
+-o-text-stroke: 2px black;
+-moz-text-stroke: 2px black;
+-webkit-text-stroke: 2px black;
+text-stroke: 2px black;
+    letter-spacing: 1px;
+  }
+  .tabproductBox{
+  width:calc(33.3% - 20px);
+margin: 10px 10px 10px 10px;
+padding: 0px;
+  }
+  .tab_product_textbox p {font-weight:400;}
+  .tab_contents_wrapper.product_indt{padding-top:0px;}
+  .tab_nutri_textbox h4 {
+text-transform: uppercase;
+font-size: 25px;
+font-weight: 900;
+padding: 15px 46px;
+
+  }
+  .tab_ingred_textbox h4 {
+ text-transform: uppercase;
+font-size: 20px;
+font-weight: 900;
+  }
+  .tabbox_ingree{
+  width:calc(16.6% - 20px);
+margin: 10px 10px 10px 10px;
+padding: 0px;
+  }
+  .tabbox_ingree img {border:2px solid #000;}
+  .tab_content_title.tabseC {
+  font-size:2.5vw;
+  }
+  @media only screen and (max-width:1180px){
+   .tab_content_title.tabseC {
+  font-size:4vw;
+  }
+    .tab_content_title{
+    font-size:4vw;
+    }
+    .tab_ingred_textbox h4{
+    font-size:16px;
+    }
+  }
+  @media only screen and (max-width:999px){
+    .tabbox_ingree{
+  width:calc(33.3% - 20px);
+  }
+     .tab_ingred_textbox h4{
+    font-size:20px;
+    }
+     .ingrdientBox{
+  width:calc(50% - 20px);
+  }
+  .ingrdientBox.end_last{
+  width:calc(50% - 20px);
+
+  }
+  }
+  @media only screen and (max-width:920px){
+    ul.tabs.product_tabs li a {
+    font-size:15px;
+    padding:20px 0px;
+    }
+    
+  }
+  @media only screen and (max-width:770px){
+    .tab_content_title.tabseC {
+  font-size:7vw;
+  }
+    .tab_content_title{
+    font-size:7vw;
+    }
+    .tabproductBox{
+  width:calc(100% - 20px);
+
+  }
+    .tab_nutri_textbox h4{font-size:20px;]
+  }
+    @media only screen and (max-width:665px){
+    ul.tabs.product_tabs li a {
+    font-size:12px;
+    padding:20px 0px;
+    }
+    
+  }
+   @media only screen and (max-width:604px){
+      .ingrdientBox{
+  width:calc(100% - 20px);
+  }
+  .ingrdientBox.end_last{
+  width:calc(100% - 20px);
+
+  }
+     .tab_content_title.tabseC {
+  font-size:8vw;
+  }
+    .tab_content_title{
+    font-size:8vw;
+    }
+    .tabbox_ingree{
+  width:calc(50% - 20px);
+  }
+     .tab_ingred_textbox h4{
+    font-size:16px;
+    }
+  }
+</style>

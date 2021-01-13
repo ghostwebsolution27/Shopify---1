@@ -1,0 +1,273 @@
+
+
+{%- if section.setting.try_display != false -%}
+  <div class="page-width page-content try_logoarea">
+   
+    
+ 
+   <div class="fulllogo_area">
+    
+          {%- for block in section.blocks -%}
+             
+              {% case block.type %}
+                {% when 'image'%}
+    
+     
+       {% if block.settings.image != blank %}
+     <img class="try-logo-img  try-log-how{{ block.id }}"
+                        src="{{ block.settings.image | img_url: '150x' }}"
+                        alt="{{ block.settings.image.alt | escape }}">
+      {% else %}
+                    <svg class="placeholder-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1052 400" style="background-color: #000;"></svg>
+       {% endif %}
+        
+     </div>
+              {% endcase %}
+            
+          {%- endfor -%}
+    
+      
+</div>
+     
+  
+   
+
+    
+
+{%- endif -%}
+
+{% schema %}
+ {
+    "name": "Try Logo",
+    "class": "try-logo",
+    "max_blocks": 10,
+    "settings": [
+      
+     {
+            "type": "checkbox",
+            "id": "try_display",
+            "label": "Display Section",
+            "default":true
+          }, 
+
+{
+            "type": "color",
+            "id": "section_background",
+            "label": "Section Background",
+             "default": "#fff"
+          }
+      
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Logo",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }
+          
+         
+        ]
+      },{
+        "type": "text",
+        "name": "No Text",
+        "settings": [
+         {
+            "type": "textarea",
+            "id": "text",
+            "label": "Text",
+            "default": "Rich text"
+          },
+        
+{
+            "type": "color",
+            "id": "text_color",
+            "label": "Text Color",
+"default": "#000"
+          },
+          {
+            "type": "select",
+            "id": "align_text",
+            "label": "Text alignment",
+            "default": "left",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Centered"
+              }
+            ]
+          }
+          
+         
+        ]
+      }
+    ]
+   
+  }
+
+
+
+
+
+{% endschema %}
+
+<style type="text/css">
+  .fulllogo_area {
+  text-align:center;
+  }
+  .try-logo-img {padding-top:10px;}
+  .try_step_secT {
+  width:850px;
+    margin:0px auto;
+    padding:0px;
+  }
+  .inser_setpSec{
+  width:100%;
+  margin:0px;
+    padding:0px;
+    position:relative;
+    display:flex;
+    border:2px solid #000;
+     
+  }
+  .box_stIcon{
+  width:50%;
+  margin:0px;
+    padding:15px 20px;
+   
+  }
+  .box_stIcon.secRight{
+  border-left:2px solid #000;
+  }
+  .iConSec:before {
+  content: '\2713';
+position: absolute;
+left: 0;
+padding: 3px 7px;
+border-radius: 50%;
+background:#e00808;
+color:#fff;
+font-size: 12px;
+
+    
+  }
+  .iConSec{
+  color:#000;
+   padding-left:34px;
+  }
+  .arrow_area{
+  width:100%;
+  position:relative;
+  display:block;
+  margin:0px;
+  text-align:center;
+  }
+  .arrow_area img {
+  
+    max-width:160px;
+  }
+  .inser_setpSec.spectint {
+  
+  padding:24px 40px;
+  
+  }
+  .area_noteSec
+  {
+  width:100%;
+  position:relative;
+  display:block;
+  margin:0px;
+  text-align:center;
+  }
+  .area_noteSec h4{
+  padding: 21px 10px 10px 10px;
+font-weight: 700;
+  }
+  .try_secTitlesg{
+  
+  text-align:center;
+    padding-bottom: 30px;
+    text-transform: uppercase;
+  }
+  
+  
+  
+  
+  
+  
+  
+  .sec_title_lf {
+    text-align:center; padding:10px;
+text-transform: uppercase;
+
+  }
+  .try_setp_titlearea{
+  
+  width:100%;
+  
+  }
+  .try_setp_textarea{
+  width:100%;
+   margin:0px 0px 0px 0px;
+    border-left: 2px solid #eee;
+    padding: 10px 15px;
+  }
+ 
+  .try_landing_sec.sec_setp{
+  align-items: center;
+  justify-content: center;
+    flex-flow: wrap;
+  }
+  .try_setp_textarea p {
+  font-size:22px;
+    font-weight:900;
+  }
+  #shopify-section-try_steps{background:{{ section.settings.section_background }}; padding-bottom:30px; padding-top:0px;}
+  @media only screen and (max-width:642px){
+  
+  .try_setp_titlearea{
+  
+  width:100%;
+  
+  }
+  .try_setp_textarea{
+  width:100%;
+   margin:0px ;
+    border-left: 0px solid #eee;
+   
+  }
+    .sec_title_lf {
+    text-align:center; 
+  }
+  }
+  .try_setp_textarea.full_trys {
+  width:100%;
+    margin:0px;
+    border:none;
+    display:flex;
+    flex-flow: wrap;
+  }
+   .sec_hw_imgarea{
+  width:31.33%;
+    margin:10px 1%;
+    
+     text-align:center;
+     padding: 15px;
+  }
+  .sec_hw_imgarea img {max-width:70%;}
+  @media only screen and (max-width:500px){
+  .sec_hw_imgarea{
+  width:100%;
+    margin:10px 0px;
+
+  }
+  
+  }
+</style>

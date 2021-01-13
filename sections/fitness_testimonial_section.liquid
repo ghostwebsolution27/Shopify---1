@@ -1,0 +1,165 @@
+{% for block in section.blocks %}
+{% assign testimonial_quantity = forloop.length  %}
+{% endfor %}
+
+<div class="fitness_testimonial_section"  style="background-color: {{ section.settings.section_bg }} ">
+  <div class="page-width">
+    {% if section.settings.section_title != blank %}
+    	<h3 class="testimonial-section-title"> {{ section.settings.section_title }} </h3>
+    {% endif %}
+    {% if testimonial_quantity > 3 %} <div class="testimonial-carousel"> {% else %} <div class="testimonial-boxes"> {% endif %}
+      {% for block in section.blocks %}
+      <div class="carousel-cell">
+        <div class="grid">
+          	<div class="grid__item small--one-whole">
+              <div class="testimonial-image" style="background-image: url({{ block.settings.testimonial_image | img_url: 'master' }})"></div>
+              <div class="testimonial-comment">
+                <p>"{{ block.settings.testimonial_comment }}"</p>
+              </div>
+              <div class="testimonial-stars">
+              	{% assign max-loop = block.settings.testimonial_stars %}
+                {% assign star-image = 'https://cdn.shopify.com/s/files/1/0248/8084/0813/files/star.svg?v=1598455535' %}
+                {% for i in (1..max-loop) %}
+                  <img src="{{ star-image }}">
+                {% endfor %}
+              </div>
+              <div class="testimonial-name">
+                <h4>{{ block.settings.testimonial_name }}</h4>
+              </div>
+              <div class="testimonial-job">
+                <h5>{{ block.settings.testimonial_job }}</h5>
+              </div>
+          	</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- FLICKTY CSS -->
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
+<!-- no-conflict mode. -->
+<!-- FLICKTY JavaScript -->
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js" async="true"></script>
+
+<script>
+ 
+jQuery.noConflict();
+ 
+jQuery( document ).ready(function( $ ) {
+  
+  	var tapArea, startX ;
+    tapArea = document.querySelectorAll('.testimonial-carousel');
+    startX = 0;
+    for (var item of tapArea) {
+      item.ontouchstart = function(e) {
+        startX = e.touches[0].clientX;
+      };
+      item.ontouchmove = function(e) {
+        if (Math.abs(e.touches[0].clientX - startX) > 5 && e.cancelable ) {
+          e.preventDefault();
+        }
+      };
+    }
+  
+    var $carousel = $('.testimonial-carousel').flickity({
+      wrapAround: true,
+      contain: true,
+      prevNextButtons: false,
+      pageDots: true,
+      autoPlay: 5000,
+	  pauseAutoPlayOnHover: true
+    });
+  
+  	var viewportWidth = $(window).width();
+  
+  	if (viewportWidth < 1025) {
+      
+    	var $carousel = $('.testimonial-boxes').flickity({
+          wrapAround: true,
+          contain: true,
+          prevNextButtons: false,
+          pageDots: true,
+          autoPlay: 5000,
+          pauseAutoPlayOnHover: true,
+        });
+      
+      	var testimonialheight = $('.testimonial-boxes .flickity-viewport').height();
+      	$('.testimonial-boxes .carousel-cell > .grid').height(testimonialheight - 45);
+      
+  	}
+  
+  	var testimonialheight = $('.testimonial-boxes').height();
+    $('.testimonial-boxes .carousel-cell > .grid').height(testimonialheight - 45);
+  
+  	var testimonialheight = $('.testimonial-carousel .flickity-viewport').height();
+  	$('.testimonial-carousel .carousel-cell > .grid').height(testimonialheight - 45);
+  
+  
+});
+ 
+</script>
+
+{% schema %}
+  {
+    "name": "Fitness Testimonials",
+	"max_blocks": 6,
+    "settings": [
+  		{
+          "type": "color",
+          "id": "section_bg",
+          "label": "Section Background color",
+          "default": "#f5f5f5"
+        },
+        {
+          "type": "text",
+          "id": "section_title",
+          "label": "Section Title",
+          "default": "Static Title"
+        }
+    ],
+	"blocks": [
+	  {
+		"type": "image",
+        "name": "Subscription Testimonials",
+        "settings": [
+		  {
+            "type": "image_picker",
+            "id": "testimonial_image",
+            "label": "Testimonial Image"
+          },
+		  {
+            "type": "textarea",
+            "id": "testimonial_comment",
+            "label": "Testimonial Comment",
+			"default": "Reishi, lions mane, codyceps and maca mushrooms contain powerful properties"
+          },
+		  {
+            "type":      "range",
+            "id":        "testimonial_stars",
+            "min":       1,
+            "max":        5,
+            "step":       1,
+            "label":     "Testimonial Stars",
+            "default":   5
+          },
+		  {
+            "type": "text",
+            "id": "testimonial_name",
+            "label": "Testimonial Name",
+			"default": "Dr. Nick Perceptively"
+          },
+		  {
+            "type": "text",
+            "id": "testimonial_job",
+            "label": "Testimonial Job",
+			"default": "CEO and New York Times bestselling author"
+          }
+		] 
+      }
+	]
+  }
+{% endschema %}

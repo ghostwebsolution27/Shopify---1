@@ -1,0 +1,782 @@
+{%- assign per_row = section.settings.per_row -%}
+{%- assign paginate_by = per_row | times: section.settings.rows_per_page -%}
+
+{% paginate collection.products by paginate_by %}
+
+<div
+  id="CollectionSection"
+  data-section-id="{{ section.id }}"
+  data-section-type="collection-template" class="bigger_pack_products combo_pk">
+
+  {% if collection.description != blank %}
+    <div class="rte">
+      {{ collection.description }}
+    </div>
+    <hr class="hr--clear hr--small">
+  {% endif %}
+  {% if section.settings.subcollection_style == 'above' %}
+    {% include 'subcollections', per_row: section.settings.subcollections_per_row %}
+  {% endif %}
+  {% if section.settings.header_collection != blank %}
+ <h2  style="margin:0 auto; line-height: 4vw; text-align: center; font-size: 3.5vw" class="section-header__title" style=" color: {{ section.settings.title_fill_color }}; {% if section.settings.outline_text %}-o-text-stroke: 2px black; -moz-text-stroke: 2px black; -webkit-text-stroke: 2px black; text-stroke: 2px black;{% endif %}">
+          {{ section.settings.header_collection }}
+        </h2>  
+
+    <button type="button" class="btn" id="collection-signup" >Click here</button>
+  
+{% endif %}
+  <div class="collection-filter">
+    {%- assign current_filter_size = current_tags | size -%}
+    <div class="collection-filter__item collection-filter__item--drawer">
+      <button
+        type="button"
+        class="js-drawer-open-collection-filters btn btn--tertiary{% unless current_filter_size == 0 %} btn--tertiary-active{% endunless %}"
+        aria-controls="FilterDrawer">
+        {% include 'icon-filter' %}
+        {{ 'collections.filters.title_tags' | t }}
+        {% if current_filter_size > 0 %}
+          ({{ current_filter_size }})
+        {% endif %}
+      </button>
+    </div>
+
+    <div class="collection-filter__item collection-filter__item--sort">
+      <div class="collection-filter__sort-container">
+        {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+        {%- assign default_sorted = false -%}
+        {% if sort_by == collection.default_sort_by %}
+          {%- assign default_sorted = true -%}
+        {% endif %}
+        <label for="SortBy" class="hidden-label">{{ 'collections.sorting.title' | t }}</label>
+        <select name="SortBy" id="SortBy">
+          <option value="title-ascending"{% if sort_by == collection.default_sort_by %} selected="selected"{% endif %}>{{ 'collections.sorting.title' | t }}</option>
+          {% for option in collection.sort_options %}
+            <option value="{{ option.value }}" {% unless default_sorted %}{% if option.value == sort_by %}selected="selected"{% endif %}{% endunless %}>{{ option.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid--uniform grid--collection">
+    {%- assign grid_item_width = 'small--one-half medium-up--one-third' -%}
+
+    {% case per_row %}
+    {% when 2 %}
+      {%- assign grid_item_width = 'medium-up--one-half' -%}
+    {% when 3 %}
+      {%- assign grid_item_width = 'small--one-half medium-up--one-third' -%}
+    {% when 4 %}
+      {%- assign grid_item_width = 'small--one-half medium-up--one-quarter' -%}
+    {% when 5 %}
+      {%- assign grid_item_width = 'small--one-half medium-up--one-fifth' -%}
+    {% endcase %}
+
+    {% for product in collection.products %}
+      {% include 'product-grid-item-new' %}
+    {% else %}
+      <div class="grid__item">
+        <p>{{ 'collections.general.no_matches' | t }}</p>
+      </div>
+    {% endfor %}
+
+  </div>
+
+  {% if section.settings.subcollection_style == 'below' %}
+    {% include 'subcollections', per_row: section.settings.subcollections_per_row %}
+  {% endif %}
+
+  {% if paginate.pages > 1 %}
+    {% include 'pagination' %}
+  {% endif %}
+
+  {% if settings.quick_shop_enable %}
+    {% for product in collection.products %}
+      {% if product.available %}
+        {% include 'quick-shop-modal' %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+</div>
+
+{% endpaginate %}
+
+{% schema %}
+  {
+    "name": "12 Bar Collection",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Subcollections"
+      },
+
+		{
+        "type": "text",
+        "id": "page_header",
+        "label": "Page Header"
+      },
+      {
+        "type": "text",
+        "id": "header_collection",
+        "label": "Collection Header"
+      },
+      {
+        "type": "checkbox",
+        "id": "outline_text",
+        "label": "Heading Outline"
+      },
+      {
+        "type": "color",
+        "id": "title_fill_color",
+        "label": "Heading fill color"
+      },
+      {
+        "type": "header",
+        "content": "Subcollections"
+      },
+      {
+        "type": "select",
+        "id": "subcollection_style",
+        "label": "Subcollection style",
+        "default": "above",
+        "options": [
+          {
+            "value": "above",
+            "label": "Above products"
+          },
+          {
+            "value": "below",
+            "label": "Below products"
+          },
+          {
+            "value": "none",
+            "label": "None"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "subcollections_per_row",
+        "label": "Subcollections per row",
+        "default": 5,
+        "min": 2,
+        "max": 5,
+        "step": 1
+      },
+      {
+        "type": "header",
+        "content": "Products"
+      },
+      {
+        "type": "range",
+        "id": "per_row",
+        "label": "Products per row",
+        "default": 4,
+        "min": 2,
+        "max": 5,
+        "step": 1
+      },
+      {
+        "type": "range",
+        "id": "rows_per_page",
+        "label": "Rows per page",
+        "default": 7,
+        "min": 3,
+        "max": 20,
+        "step": 1
+      }
+    ],
+    "presets": [{
+      "name": "12 Bar Collection",
+      "category": "Shop"
+    }]
+  }
+{% endschema %}
+<style>
+  
+  
+  
+  .grid-product__tag--sold-out{
+  	display: none;
+  }
+  .grid-product__image-mask{
+  	opacity: 1 ;
+  }
+  #collection-signup{
+  	max-width: 400px;
+    margin: 20px auto;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    list-style: cadetblue;
+    justify-content: center;
+    
+}
+
+  
+  
+
+  
+.col_form_action {
+  padding:15px 0px 10px 0px; text-align:center;
+}
+.col_form_action input {
+  width:100%;
+}
+  .col_pro_action #quantity { -moz-appearance: textfield;}
+  
+  
+  .data_col_pro { width:48%; font-size:15px; padding-top:10px; padding-bottom:11px;}
+  
+  @media only screen and (max-width:1420px){
+  .data_col_pro { width:38%;}
+  
+  }
+  @media only screen and (max-width:1230px){
+  .data_col_pro { width:57%;}
+  
+  }
+  
+  
+
+  
+/* -- quantity box -- */
+  .data_col_pro {border:2px solid #000;}
+  .data_col_pro:focus {border:2px solid #000;}
+.quantity {
+ display: inline-block; }
+
+.quantity .input-text.qty {
+ width: 35px;
+ height: 41px;
+ padding: 0 5px;
+ text-align: center;
+ background-color: transparent;
+ border: 2px solid #000;
+  border-top:0;
+  border-right:0;
+  border-bottom:0;
+  
+}
+
+.quantity.buttons_added {
+ text-align: left;
+ position: relative;
+ white-space: nowrap;
+ vertical-align: middle;
+  float:right;
+  border:2px solid #000;
+  line-height:43px;
+}
+  .quantity.buttons_added span {
+  	line-height:40px;
+    font-size:16px;
+    text-transform:uppercase;
+    padding-right:20px;
+    padding-left:10px;
+  }
+  
+ 
+
+.quantity.buttons_added input {
+ display: inline-block;
+ margin: 0;
+
+ box-shadow: none;
+}
+
+.quantity.buttons_added .minus,
+.quantity.buttons_added .plus {
+ padding: 7px 10px 8px;
+ height: 41px;
+ background-color: #ffffff;
+ border:2px solid #000;
+ cursor:pointer;}
+
+.quantity.buttons_added .minus {
+ border-right: 0;
+ border-top: 0;
+ border-bottom: 0;}
+
+.quantity.buttons_added .plus {
+ border-right: 0; 
+ border-top: 0;
+ border-bottom: 0;}
+  
+  
+   @media only screen and (max-width:1230px){
+    .quantity.buttons_added span {display:none;}
+     
+     .quantity.buttons_added .minus {
+ border-left: 0;
+}
+  }
+  @media only screen and (max-width:959px){
+    .quantity.buttons_added {
+    
+      line-height:40px;
+     
+    }
+    .quantity.buttons_added .minus {
+
+      height:40px;
+}
+    .quantity.buttons_added .plus{
+    
+     height:40px;
+    }
+    .quantity .input-text.qty {
+    height:40px;
+     
+    }
+    
+  }
+  @media only screen and (max-width:850px){
+    .col_form_action .btn {
+      font-size:12px ;
+    letter-spacing: 0.1em;
+      margin-top:10px;
+    }
+    .data_col_pro {
+    width:100%;
+    }
+    .quantity.buttons_added {
+    width:100%;
+      display:block;
+      text-align:end;
+      border:none;
+      line-height:40px;
+      margin-top:10px;
+      border:2px solid #000;
+    }
+    .quantity.buttons_added .minus {
+ border-left: 2px solid #000;
+      
+      line-height:10px;
+      height:40px;
+}
+    .quantity.buttons_added .plus{
+    
+     border-right: 0;
+       border-top: 0;
+       border-bottom: 0;
+      line-height:10px;
+      height:40px;
+      border-left: 0;
+    }
+    .quantity .input-text.qty {
+    line-height:10px;
+      height:40px;
+      border:2px solid #000;
+       border-top: 0;
+       border-bottom: 0;
+     
+    }
+    .quantity.buttons_added span {
+      display:inline-table;
+      position:absolute;
+      vertical-align: middle;
+      left:10px;
+      font-size:15px;
+      padding:0px;
+    }
+  }
+  @media only screen and (max-width:469px){
+    
+     .quantity.buttons_added span {
+      display: none;
+    position: relative;
+    text-align: center;
+    padding: 0px;
+    left: 0;
+     
+    }
+     .quantity.buttons_added {
+   
+      line-height:29px;
+       border-top:0;
+    
+    }
+     .quantity.buttons_added .minus {
+      height:29px;
+       width:33.33%;
+       box-sizing:border-box;
+       border-left:0;
+           border-top: 2px solid #000;
+}
+    .quantity.buttons_added .plus{
+    
+     height:29px;
+       width:33.33%;
+       box-sizing:border-box;
+          border-top: 2px solid #000;
+    }
+    .quantity .input-text.qty {
+     height:30px;
+       width:33.33%;
+       box-sizing:border-box;
+          border-top: 2px solid #000;
+      border-bottom:2px solid transparent;
+     
+    }
+  }
+
+.quantity.buttons_added .minus:hover,
+.quantity.buttons_added .plus:hover {
+ background: #e00808; color:#fff; }
+
+.quantity input::-webkit-outer-spin-button,
+.quantity input::-webkit-inner-spin-button {
+ -webkit-appearance: none;
+ -moz-appearance: none;
+ margin: 0; }
+ 
+ .quantity.buttons_added .minus:focus,
+.quantity.buttons_added .plus:focus {
+ outline: none; }
+  
+  .combo_pk .grid-product__title--heading {
+  text-align:center;
+    font-size: 19px;
+ }
+   @media only screen and (max-width: 1453px) {
+.combo_pk .grid-product__title--heading {
+ 
+  font-size: 18px;
+  
+ }
+}
+  @media only screen and (max-width: 530px) {
+.combo_pk .grid-product__title--heading {
+  text-align:center;
+  font-size: 14px;
+  
+ }
+}
+  @media only screen and (max-width: 480px) {
+
+    .data_col_pro {
+    font-size:9px ;
+    }
+    .combo_pk .grid-product__title--heading.banna_breads {
+    padding-bottom:19px;
+    }
+}
+  @media only screen and (max-width: 320px) {
+
+  
+    .combo_pk .grid-product__title--heading.banna_breads {
+    padding-bottom:0px;
+    }
+}
+  
+  @media only screen and (max-width:1384px){
+    .combo_pk .grid-product__title--heading.ban_bree{padding-bottom:24px;}
+    .combo_pk .grid-product__title--heading.ba_oat{padding-bottom:24px;}
+  }
+  
+  @media only screen and (max-width:1272px){
+    .combo_pk .grid-product__title--heading.oat_coo, .combo_pk .grid-product__title--heading.sal_bro{padding-bottom:24px;}
+  }
+   @media only screen and (max-width:1230px){
+    .combo_pk .grid-product__title--heading.ba_oat{padding-bottom:0px;}
+  }
+   @media only screen and (max-width:874px){
+    .combo_pk .grid-product__title--heading.ban_bree {padding-bottom:48px;}
+    .combo_pk .grid-product__title--heading.ba_oat{padding-bottom:24px;}
+  }
+  @media only screen and (max-width:774px){
+    .combo_pk .grid-product__title--heading.ban_bree {padding-bottom:24px;}
+    .combo_pk .grid-product__title--heading.ba_oat{padding-bottom:0px;}
+  }
+  @media only screen and (max-width:768px){
+    .combo_pk .grid-product__title--heading.ban_bree {padding-bottom:0px;}
+    .combo_pk .grid-product__title--heading.ba_oat{padding-bottom:0px;}
+    .combo_pk .grid-product__title--heading.oat_coo, .combo_pk .grid-product__title--heading.sal_bro{padding-bottom:0px;}
+  }
+  @media only screen and (max-width:591px){
+   
+    .combo_pk .grid-product__title--heading.oat_coo{padding-bottom:24px;}
+  }
+  @media only screen and (max-width:568px){
+   
+    .combo_pk .grid-product__title--heading.sal_bro{padding-bottom:24px;}
+  }
+  @media only screen and (max-width:551px){
+   
+    .combo_pk .grid-product__title--heading.ban_bree{padding-bottom:24px;}
+  }
+  @media only screen and (max-width:530px){
+   
+    .combo_pk .grid-product__title--heading.sal_bro,.combo_pk .grid-product__title--heading.ban_bree{padding-bottom:19px;}
+    .combo_pk .grid-product__title--heading.oat_coo{padding-bottom:19px;}
+  }
+   @media only screen and (max-width:344px){
+   
+  
+    .combo_pk .grid-product__title--heading.oat_coo{padding-bottom:38px;}
+  }
+  @media only screen and (max-width:323px){
+   
+  
+    .combo_pk .grid-product__title--heading.ban_bree{padding-bottom:0px;}
+  }
+  
+  .grid-product__link--disabled.disableD{border:2px solid #000; cursor:not-allowed;}
+   @media only screen and (max-width:1150px){
+  
+     .rc_label.rc_label__autodeliver span {display:none;}     
+     .rc_label.rc_label__onetime span {display:none;}
+     }
+   @media only screen and (max-width:670px){
+  .rc_popup .rc_popup__hover {font-size:12px;}
+     .rc_label.rc_label__autodeliver {font-size:9px;}
+     .rc_label.rc_label__autodeliver span {display:none;}
+     .rc_label.rc_label__onetime {font-size:9px;}
+     .rc_label.rc_label__onetime span {display:none;}
+     }
+  @media only screen and (max-width:980px){
+  span.rc_label__delivery, span.rc_label__frequency {   
+    font-size: 14px;
+    letter-spacing: 0px;
+
+}
+     }
+  @media only screen and (max-width:768px){
+   span.rc_label__delivery, span.rc_label__frequency {   
+    font-size: 12px;
+    letter-spacing: 0px;
+
+}
+     }
+  @media only screen and (max-width:670px){
+   span.rc_label__delivery, span.rc_label__frequency {   
+    font-size: 10px;
+    letter-spacing: 0px;
+
+}
+     }
+  
+   @media only screen and (max-width:940px){
+  .col_pro_action .rc_label__deliver_every {   
+    width: 100%;
+    padding-left: 0px;
+
+}
+    .col_pro_action .rc_select__frequency {
+
+    display: block;
+    width: 100%;
+
+}
+     }
+  
+  label.rc_label {letter-spacing: 1.5px ;}
+  .ntextTl {text-transform:none;}
+  #rc_price_onetime, #rc_price_autodeliver {display:none;}
+   @media only screen and (max-width:1337px){
+     .ntextTl {display:none;}
+   }
+</style>
+<script>
+  $( document ).ready(function() {
+   
+    $('#collection-signup').on('click', function(e){
+      jQuery(".overlay-popup-oat").fadeIn();
+
+})
+});
+  
+$( document ).ready(function() {
+  
+  $( ".grid-product__link--disabled" ).parents('.grid-product__content').css({'opacity': 0.3, 'cursor':'not-allowed'});
+  $( ".grid-product__link--disabled" ).css('cursor','not-allowed');
+  $( ".grid-product__link--disabled" ).nextAll().find('.add_tobuttons').prop('disabled', true).addClass('disableD');
+});
+  
+$( document ).ready(function() {
+     
+  
+  $( ".data_col_pro option" ).each(function() {
+      var str = $( this ).text();
+    
+     if(str == 'BOX OF 12' || str == 'Box of 12'){
+  $(this).text('12 PACK - ($2.92/bar)');
+  }
+    if(str == 'BOX OF 6'){
+  $(this).text('6 PACK - ($3.33/bar)');
+  }
+   
+    });
+  
+  
+  $( ".rc_label__onetime" ).each(function() {    
+    
+     $(this).append( '<span class="ntextTl"> ($2.92/bar)</span>' );
+     $(this).html($(this).html().replace(/:/g , ''));
+   
+    });
+  $( ".rc_label__autodeliver" ).each(function() {    
+    
+     $(this).append( '<span class="ntextTl"> ($2.66/bar)</span>' );
+     $(this).html($(this).html().replace(/:/g , ''));
+   
+    });
+ 
+  
+  
+$('.data_col_pro').bind('change paste keyup', function() {
+  var optionSected = $("option:selected", this);
+  
+var optionval = this.value;
+   var dataprice = $(this).parents('.col_pro_action').find('.data_col_pro option:selected').data( "price" ).replace("$", ""); 
+  /*var dataprice = optionSected.data( "price" ).replace("$", ""); */
+  var quat_select = $(this).nextAll('.quantity').find('.qty').val();
+  
+  var price_total = dataprice * quat_select;
+ /*console.log(quat_select); */
+  var dataupval = 'Add to cart' + '(' + '$' + price_total + ')';
+$(this).next('.prodict_sets').val(optionval);
+$(this).nextAll('.col_form_action').find('.add_tobuttons').val(dataupval);
+
+});
+
+$('.qty').on('click change keyup', function() {
+  
+   var dataprice = $(this).parents('.col_pro_action').find('.data_col_pro option:selected').data( "price" ).replace("$", ""); 
+  /*var dataprice = optionSected.data( "price" ).replace("$", ""); */
+  var quat_select = $(this).parents('.quantity').find('.qty').val();
+ 
+  var price_total = dataprice * quat_select;
+ console.log(price_total); 
+  var dataupval = 'Add to cart' + '(' + '$' + price_total + ')';
+
+ $(this).parents('.col_pro_action').find('.add_tobuttons').val(dataupval);
+
+});
+}); 
+  
+  
+
+function wcqib_refresh_quantity_increments() {
+    jQuery("div.quantity:not(.buttons_added), td.quantity:not(.buttons_added)").each(function(a, b) {
+        var c = jQuery(b);
+        c.addClass("buttons_added"), c.children().first().before('<input type="button" value="-" class="minus" />'), c.children().last().after('<input type="button" value="+" class="plus" />')
+    })
+}
+String.prototype.getDecimals || (String.prototype.getDecimals = function() {
+    var a = this,
+        b = ("" + a).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
+    return b ? Math.max(0, (b[1] ? b[1].length : 0) - (b[2] ? +b[2] : 0)) : 0
+}), jQuery(document).ready(function() {
+    wcqib_refresh_quantity_increments()
+}), jQuery(document).on("updated_wc_div", function() {
+    wcqib_refresh_quantity_increments()
+}), jQuery(document).on("click", ".plus, .minus", function() {
+    var a = jQuery(this).closest(".quantity").find(".qty"),
+        b = parseFloat(a.val()),
+        c = parseFloat(a.attr("max")),
+        d = parseFloat(a.attr("min")),
+        e = a.attr("step");
+    b && "" !== b && "NaN" !== b || (b = 0), "" !== c && "NaN" !== c || (c = ""), "" !== d && "NaN" !== d || (d = 0), "any" !== e && "" !== e && void 0 !== e && "NaN" !== parseFloat(e) || (e = 1), jQuery(this).is(".plus") ? c && b >= c ? a.val(c) : a.val((b + parseFloat(e)).toFixed(e.getDecimals())) : d && b <= d ? a.val(d) : b > 0 && a.val((b - parseFloat(e)).toFixed(e.getDecimals())), a.trigger("change")
+	
+});
+ if (window.location.href.indexOf("level-bars") > -1) {
+  
+  $(".combo_pk .grid-product__title--heading").filter(function() {
+    return $(this).text() === "Salted Brownie";
+}).addClass("banna_breads sal_bro");
+  
+     $(".combo_pk .grid-product__title--heading").filter(function() {
+    return $(this).text() === "Oat Cookie";
+}).addClass("oat_coo");
+  
+      $(".combo_pk .grid-product__title--heading").filter(function() {
+    return $(this).text() === "Banana Bread";
+}).addClass("ban_bree");
+   
+      $(".combo_pk .grid-product__title--heading").filter(function() {
+    return $(this).text() === "Banana Bread & Oat Cookie Combo Pack";
+}).addClass("ba_oat");
+ }
+  
+  
+if (window.location.href.indexOf("level-bars") > -1) {
+
+  if ($(window).width() < 775) {
+    $(".rc_label.rc_label__onetime:contains('One-time purchase')").text("One-time purchase");
+                      
+  }
+                          
+  
+}
+
+  
+  if (window.location.href.indexOf("level-bars") > -1) {
+  var ban_ana = $(".combo_pk .grid-product__title--heading").filter(function() {
+    return $(this).text() === "Banana Bread";
+});
+    // Banana bread hide 6 pack
+    /*
+   $(".combo_pk .grid-product__title--heading").filter(function() {
+    return $(this).text() === "Banana Bread";
+}).parents(".grid-product__content").find(".rc_block__type__autodeliver").prepend('<label for="rc_purchase_type_autodeliver-nhxryeoc9" class="rc_label rc_label__autodeliver">Subscribe &amp; Save	<span class="rc_label__discount" aria-label="subscription discount">(8.6%):</span><span id="rc_price_autodeliver" class="rc_price rc_price__autodeliver" aria-label="recurring price">$31.99</span></label>');
+    
+   
+  $(".combo_pk .grid-product__title--heading").filter(function() {
+    return $(this).text() === "Banana Bread";
+}).parents(".grid-product__content").find(".rc_popup").css('padding-bottom', '3px'); 
+    
+    $(".combo_pk .grid-product__title--heading").filter(function() {
+    return $(this).text() === "Banana Bread";
+}).parents('.grid-product__content').find('.data_col_pro').children('option[data-value^="BOX OF 6"]').hide();*/
+   
+ }
+</script>
+{% javascript %}
+
+
+
+
+if (window.location.href.indexOf("level-bars") > -1) {
+
+$(".combo_pk .grid-product__title--heading:contains('Banana Bread & Salted Brownie')").text("Banana Bread & Salted Brownie Combo");
+    $(".combo_pk .grid-product__title--heading:contains('Banana Bread & Oat Cookie')").text("Banana Bread & Oat Cookie Combo");
+    $(".combo_pk .grid-product__title--heading:contains('Oat Cookie & Salted Brownie')").text("Oat Cookie & Salted Brownie Combo");
+
+  
+
+  if ($(window).width() < 775) {
+    $(".combo_pk .grid-product__title--heading:contains('Banana Bread & Salted Brownie')").text("BANANA-BROWNIE COMBO ");
+    $(".combo_pk .grid-product__title--heading:contains('Banana Bread & Oat Cookie')").text("BANANA-COOKIE COMBO ");
+    $(".combo_pk .grid-product__title--heading:contains('Oat Cookie & Salted Brownie')").text("COOKIE-BROWNIE COMBO ");                          
+  }
+                          
+  
+ }   
+
+$(window).resize(function() {
+  var width = $(window).width();
+if (window.location.href.indexOf("level-bars") > -1) {                              
+  if (width < 775){
+     $(".combo_pk .grid-product__title--heading:contains('Banana Bread & Salted Brownie')").text("BANANA-BROWNIE COMBO ");
+    $(".combo_pk .grid-product__title--heading:contains('Banana Bread & Oat Cookie')").text("BANANA-COOKIE COMBO ");
+    $(".combo_pk .grid-product__title--heading:contains('Oat Cookie & Salted Brownie')").text("COOKIE-BROWNIE COMBO ");  
+  } 
+if (width > 775){ 
+$(".combo_pk .grid-product__title--heading:contains('BANANA-BROWNIE COMBO ')").text("Banana Bread & Salted Brownie Combo ");
+    $(".combo_pk .grid-product__title--heading:contains('BANANA-COOKIE COMBO ')").text("Banana Bread & Oat Cookie Combo ");
+    $(".combo_pk .grid-product__title--heading:contains('COOKIE-BROWNIE COMBO ')").text("Oat Cookie & Salted Brownie Combo ");
+}
+}
+});
+{% endjavascript %}
+
+{% stylesheet %}
+@media only screen and (max-width: 530px) {
+.combo_pk .grid-product__title--heading {
+  font-size:16px;
+ }
+}
+
+{% endstylesheet %}

@@ -1,0 +1,22 @@
+{% comment %}ECPWS{% endcomment %}{% capture ec-pw-ify %}{% section 'page-faq-template' %}
+{% comment %}ECPWS{% endcomment %}{% endcapture %}{% include 'ec-passwordify' %}
+
+<script>
+  
+  jQuery(document).ready(function( $ ) {
+	
+      const $navbar = $('#shopify-section-header');
+
+      $('a[href^="#"]').on('click', function(e) {
+          e.preventDefault();
+
+          const scrollTop =
+              $($(this).attr('href')).position().top -
+              $navbar.outerHeight();
+
+          $('html, body').animate({ scrollTop });
+      })
+
+  });
+  
+</script>

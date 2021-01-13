@@ -1,0 +1,90 @@
+<div class="new-home-zone-slider" style="background-color: {{ section.settings.section_bg }} ">
+  <div class="page-width">
+    <div class="grid">
+      <div class="grid__item zone-slider-content small--one-whole medium-up--one-whole">
+        {% if section.settings.title != blank %}
+          <h2 style="color: {{ section.settings.text_color }}">{{ section.settings.title }}</h2>
+        {% endif %}
+        {% if section.settings.text != blank %}
+          <p style="color: {{ section.settings.text_color }}">{{ section.settings.text }}</p>
+        {% endif %}
+      </div>
+      <div class="grid__item zone-slider-comparison small--one-whole medium-up--one-whole">
+          <div class="cocoen">
+            <img src="{{ section.settings.before_image | img_url: 'master' }}" alt="">
+            <img src="{{ section.settings.after_image | img_url: 'master'  }}" alt="">
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{ 'cocoen.min.js' | asset_url | script_tag }}
+{{ 'cocoen-jquery.min.js' | asset_url | script_tag }}
+{{ 'cocoen.min.css' | asset_url | stylesheet_tag  }}
+
+<style>
+  .new-home-zone-slider .cocoen-drag::before {
+      background-image: url({{ section.settings.logo_separator | img_url: 'master' }}) ;
+  }
+</style>
+
+<script>
+ 
+jQuery.noConflict();
+ 
+jQuery( document ).ready(function( $ ) {
+  
+	$('.cocoen').cocoen();
+  
+});
+ 
+</script>
+
+{% schema %}
+  {
+    "name": "New Home - Zone Slider",
+    "settings": [
+	  {
+        "type": "color",
+        "id": "section_bg",
+        "label": "Section Background color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "html",
+        "id": "title",
+        "label": "Heading",
+		"default": "NBA Couple, Meyers & Elle Leonard"
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Description",
+        "default": "wanted a protein bar that combined..."
+      },
+	  {
+		"type": "image_picker",
+      	"id": "logo_separator",
+      	"label": "Divider Logo",
+		"info": "Recommended dimension is square imag (E.g. https://cdn.shopify.com/s/files/1/0248/8084/0813/files/basketball.png?v=1596272980)"
+      },
+	  {
+		"type": "image_picker",
+      	"id": "before_image",
+      	"label": "Before Image"
+      },
+	  {
+		"type": "image_picker",
+      	"id": "after_image",
+      	"label": "Afteer Image"
+      }
+    ]
+  }
+{% endschema %}

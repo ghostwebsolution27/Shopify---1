@@ -1,0 +1,70 @@
+<div class="collection-bab"style="background-color:{{ section.settings.section_bg_top }}">
+  <div class="page-width">
+    <div class="grid">
+      <div class="grid__item banner-image small--one-whole medium-up--one-whole">
+        <a href="{{ section.settings.image_url }}"><img class="lazyloaded" src="{{ section.settings.image | img_url: 'master' }}"></a>
+      </div>
+      <div class="grid__item banner-text small--one-whole medium-up--one-whole">
+          <h2>{{ section.settings.title }}</h2>
+          <p>{{ section.settings.subtitle }} </p>
+          <a href="{{ section.settings.button_link }}" class="banner-button btn">{{ section.settings.button_title }}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Collection Build a Box",
+    "settings": [
+	  {
+        "type": "color",
+        "id": "section_bg_top",
+        "label": "Section Background color",
+        "default": "#f0e5d3"
+      },
+      {
+		"type": "image_picker",
+      	"id": "image",
+      	"label": "Banner Image"
+      },
+      {
+        "type": "url",
+        "id": "image_url",
+        "label": "Image Link"
+      },
+	  {
+        "type": "url",
+        "id": "add_to_cart_url",
+        "label": "Add to Cart Url"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+		"default": "Variety Pack"
+      },
+      {
+        "type": "text",
+        "id": "subtitle",
+        "label": "Subtitle",
+		"default": "3 Flavors"
+      },
+	  {
+        "type": "text",
+        "id": "button_title",
+        "label": "Button Title",
+		"default": "Shop Now"
+      },
+	  {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button Link"
+      }
+    ],
+    "presets": [{
+      "name": "Collection Banner",
+      "category": "New Collection Sections"
+    }]
+  }
+{% endschema %}

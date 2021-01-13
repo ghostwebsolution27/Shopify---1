@@ -1,0 +1,135 @@
+{% for block in section.blocks %}
+{% assign testimonial_quantity = forloop.length  %}
+{% endfor %}
+
+<div class="fitness_testimonial_section">
+  <div class="page-width">
+    {% if testimonial_quantity > 3 %} <div class="testimonial-carousel"> {% else %} <div class="testimonial-boxes"> {% endif %}
+      {% for block in section.blocks %}
+      <div class="carousel-cell">
+        <div class="grid">
+          	<div class="grid__item small--one-whole">
+              <img class="testimonial-image" src="{{ block.settings.testimonial_image | img_url: 'master' }}">
+              <div class="testimonial-name">
+                <h4>{{ block.settings.testimonial_name }}</h4>
+              </div>
+              <div class="testimonial-job">
+                <h5>{{ block.settings.testimonial_job }}</h5>
+              </div>
+              <div class="testimonial-comment">
+                <p>"{{ block.settings.testimonial_comment }}"</p>
+              </div>
+          	</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- FLICKTY CSS -->
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
+<!-- no-conflict mode. -->
+<!-- FLICKTY JavaScript -->
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js" async="true"></script>
+
+<script>
+ 
+jQuery.noConflict();
+ 
+jQuery( document ).ready(function( $ ) {
+  
+  	var tapArea, startX ;
+    tapArea = document.querySelectorAll('.testimonial-carousel');
+    startX = 0;
+    for (var item of tapArea) {
+      item.ontouchstart = function(e) {
+        startX = e.touches[0].clientX;
+      };
+      item.ontouchmove = function(e) {
+        if (Math.abs(e.touches[0].clientX - startX) > 5 && e.cancelable ) {
+          e.preventDefault();
+        }
+      };
+    }
+  
+    var $carousel = $('.testimonial-carousel').flickity({
+      wrapAround: true,
+      contain: true,
+      prevNextButtons: false,
+      pageDots: false,
+      autoPlay: 5000,
+      cellAlign: 'left',
+	  pauseAutoPlayOnHover: true
+    });
+  
+  	var viewportWidth = $(window).width();
+  
+  	if (viewportWidth < 1025) {
+      
+    	var $carousel = $('.testimonial-boxes').flickity({
+          wrapAround: true,
+          contain: true,
+          prevNextButtons: false,
+          pageDots: false,
+          autoPlay: 5000,
+          cellAlign: 'left',
+          pauseAutoPlayOnHover: true
+        });
+      
+      	var testimonialheight = $('.testimonial-boxes .flickity-viewport').height();
+      	$('.testimonial-boxes .carousel-cell > .grid').height(testimonialheight - 45);
+      
+  	}
+  
+  	var testimonialheight = $('.testimonial-boxes').height();
+    $('.testimonial-boxes .carousel-cell > .grid').height(testimonialheight - 45);
+  
+  	var testimonialheight = $('.testimonial-carousel .flickity-viewport').height();
+  	$('.testimonial-carousel .carousel-cell > .grid').height(testimonialheight - 45);
+  
+  
+});
+ 
+</script>
+
+{% schema %}
+  {
+    "name": "Mini Testimonials",
+	"max_blocks": 6,
+    "settings": [],
+	"blocks": [
+	  {
+		"type": "image",
+        "name": "Subscription Testimonials",
+        "settings": [
+		  {
+            "type": "image_picker",
+            "id": "testimonial_image",
+            "label": "Testimonial Image"
+          },
+		  {
+            "type": "textarea",
+            "id": "testimonial_comment",
+            "label": "Testimonial Comment",
+			"default": "Reishi, lions mane, codyceps and maca mushrooms contain powerful properties"
+          },
+		  {
+            "type": "text",
+            "id": "testimonial_name",
+            "label": "Testimonial Name",
+			"default": "Dr. Nick Perceptively"
+          },
+		  {
+            "type": "text",
+            "id": "testimonial_job",
+            "label": "Testimonial Job",
+			"default": "CEO and New York Times bestselling author"
+          }
+		] 
+      }
+	]
+  }
+{% endschema %}

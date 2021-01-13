@@ -1,0 +1,126 @@
+{% comment %}ECPWS{% endcomment %}{% capture ec-pw-ify %}
+
+<!-- <div class="page-width page-content">
+
+  {% include 'breadcrumbs' %}
+
+	<div class="grid">
+    <div class="grid__item medium-up--three-quarters medium-up--push-one-eighth">
+
+      <header class="section-header">
+        <h1 class="section-header__title">{{ page.title }}</h1>
+      </header>
+
+      <div class="rte rte--nomargin">
+        {{ page.content }}
+      </div>
+    </div>
+  </div>
+
+</div> -->
+
+
+
+      
+<!--  Landing Page Start.      -->
+ {% section 'timer-taster' %}
+
+      {% section 'section-landing-applecrisp' %}
+ {% section 'instagram' %}
+<div class="container">
+  <div class="ll_review my-5">
+  	<div class="container">
+      <div class="row text-center text-uppercase">
+        <div class="col-md-12">
+          <p class="display-4">Don't Just take it from us</p>
+          <p class="h2">See What our customers are saying</p>        
+        </div>
+
+      </div>
+      
+     
+    </div>
+  </div>
+      <div class="row">
+        <div class="col-md-12">
+        {% section 'bf_reviews' %}  
+        </div>
+      </div>
+
+    </div>
+		
+
+
+ {% section 'landing-callaction-applecrisp' %}
+{% comment %}ECPWS{% endcomment %}{% endcapture %}{% include 'ec-passwordify' %}
+
+<style type="text/css">
+  
+  #shopify-section-instagram .section-header__title {
+  font-weight:800;
+  }
+  #shopify-section-instagram a {
+  text-decoration:none ;
+  }
+  #shopify-section-instagram  {
+  padding-top:70px;
+  }
+  #shopify-section-instagram .btn{
+  
+    color: #fff;
+    background: #000;
+     
+}
+  #shopify-section-instagram .section-header__title{
+  z-index:1;
+    display: inline;
+    font-size: 90px;
+  }
+  #shopify-section-instagram .section-header__title:after {
+   position: absolute;
+    content: '';
+    top: 77px;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    background: #ffc107;
+    width: 100%;
+    height: 35px;
+    z-index: -1;
+    right: 0;
+  }
+  @media only screen and (max-width:1024px){  
+  #shopify-section-instagram .section-header__title:after {
+   
+    top: 37px;
+    
+}
+  }
+   @media only screen and (max-width:840px){ 
+      #shopify-section-instagram .section-header__title{
+ 
+    font-size: 60px;
+  }
+  #shopify-section-instagram .section-header__title:after {
+    top: 42px;
+    height: 28px;
+}
+     }
+   @media only screen and (max-width:550px){ 
+      #shopify-section-instagram  {
+  padding-top:18px;
+  }
+      #shopify-section-instagram .section-header__title {
+font-size: 50px;
+  }
+      #shopify-section-instagram .section-header__title:after {
+    top: 37px;
+    height: 28px;
+}
+   
+   }
+  .stamped-pagination a {
+   
+    color: #000 ;
+}
+</style>

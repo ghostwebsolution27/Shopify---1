@@ -1,0 +1,47 @@
+<div class="kalivoSec new-home-cta" style="background-color: {{ section.settings.section_bg }} ">
+  <div class="page-width">
+    <div class="grid">
+      <div class="grid__item small--one-whole medium-up--one-whole">
+        {% if section.settings.title != blank %}
+          <h2 style="color: {{ section.settings.text_color }}">{{ section.settings.title }}</h2>
+        {% endif %}
+        {% if section.settings.text != blank %}
+          <p style="color: {{ section.settings.text_color }}">{{ section.settings.text }}</p>
+        {% endif %}
+        <div class="klaviyo-form-XMRvGd"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "New Home - CTA",
+    "settings": [
+      {
+        "type": "color",
+        "id": "section_bg",
+        "label": "Section Background color",
+        "default": "#fbefd7"
+      },
+	  {
+        "type": "html",
+        "id": "title",
+        "label": "Heading",
+		"default": "TREAT <br/> YOUR INBOX"
+      },
+	  {
+        "type": "text",
+        "id": "text",
+        "label": "Content",
+		"default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ligula magna, iaculis sit amet luctus pulvinar, porta ac augue."
+      },
+	  {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#000000"
+      }
+    ]
+  }
+{% endschema %}

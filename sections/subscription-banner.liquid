@@ -1,0 +1,70 @@
+<div class="subscription-banner" style="background-color: {{ section.settings.section_bg }} ">
+  <div class="page-width">
+    <div class="grid">
+      <div class="grid__item small--one-whole medium-up--one-whole">
+        {% if section.settings.title != blank %}
+          <h2 style="color: {{ section.settings.text_color }}">{{ section.settings.title }}</h2>
+          <p style="color: {{ section.settings.text_color }}">{{ section.settings.subtitle }}</p>
+        {% endif %}
+      </div>
+      <div class="grid__item image-grid small--one-whole medium-up--one-whole">
+        {% if section.settings.image != blank %}
+          <img class="lazyloaded" src="{{ section.settings.image | img_url: 'master' }}">
+        {% endif %}
+      </div>
+      <div class="grid__item small--one-whole medium-up--one-whole">
+        {% if section.settings.button_title != blank %}
+          <a class="subscription-button btn" href="{{section.settings.button_link}}">{{ section.settings.button_title }}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Subscription Banner",
+    "settings": [
+	  {
+        "type": "color",
+        "id": "section_bg",
+        "label": "Section Background color",
+        "default": "#f0e5d3"
+      },
+	  {
+		"type": "image_picker",
+      	"id": "image",
+      	"label": "Section Image"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#000000"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+		"default": "Welcome to the level fam"
+      },
+	  {
+        "type": "text",
+        "id": "subtitle",
+        "label": "Subtitle",
+		"default": "What began in our home kitchen is now delivered to your door monthly"
+      },
+	  {
+        "type": "text",
+        "id": "button_title",
+        "label": "Button Title",
+		"default": "Start Now"
+      },
+	  {
+        "id": "button_link",
+        "type": "url",
+        "label": "Button Link"
+      }
+    ]
+  }
+{% endschema %}

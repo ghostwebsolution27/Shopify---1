@@ -1,0 +1,243 @@
+
+
+{%- if section.blocks.size > 0 -%}
+  <div class="page-width page-content try_sec_three">
+    <div class="try_landing_sec">
+   
+    <div class="try_innser_sec">
+           
+   	{% if section.settings.title != blank %}
+      <div class="try_secthree_title"> <h2 class="try_secTitle"> {{ section.settings.title }}</h2></div>
+      {% endif %}
+       
+       <div class="try_our_prolist">
+        
+           {%- for block in section.blocks -%}
+           
+              {% case block.type %}
+              
+      {% when 'image'%}
+     <div class="our_product_items"><a class="try-icons-btn" herf="#"> 
+        <img class="image-try-products  try-icon-{{ block.id }}"
+                        src="{{ block.settings.image | img_url: '720x' }}"
+                        alt="{{ block.settings.image.alt | escape }}">
+       </a> 
+       <div class="icon-below-text">
+          <p>{{ block.settings.title }}</p> 
+          {{ block.settings.text }}
+       </div>
+           <div class="icon-with-title">
+             
+             <img class="imgicon-set  try-inicon-{{ block.id }}"
+                        src="{{ block.settings.icon_image | img_url: '330x' }}"
+                        alt="{{ block.settings.icon_image.alt | escape }}">
+         
+       </div>
+      
+         </div>
+
+              {% endcase %}
+           
+          {%- endfor -%}
+         
+      </div>
+      {%comment%}
+      
+      <div class="try_iconlist_area">
+        {%- for block in section.blocks -%}
+           
+              {% case block.type %}
+              
+      {% when 'image'%}
+     <div class="icons-bar__item"><a class="try-icons-btn" herf="#"> 
+        <img class="image-try-icon  try-icon-{{ block.id }}"
+                        src="{{ block.settings.image | img_url: '720x' }}"
+                        alt="{{ block.settings.image.alt | escape }}">
+       </a> 
+       
+      
+        
+        </div>
+
+              {% endcase %}
+           
+          {%- endfor -%}
+      
+      
+      </div>
+       {%endcomment%}
+    </div>
+</div>
+  </div>
+{%- endif -%}
+
+
+{% schema %}
+  {
+    "name": "Try Section Three",
+    "class": "try-icons",
+    "max_blocks": 10,
+    "settings": [
+      
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title"
+        
+      },
+{
+            "type": "color",
+            "id": "section_background",
+            "label": "Section Background",
+             "default": "#fff"
+          }
+      
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Icons",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Product Image"
+          },
+{
+            "type": "image_picker",
+            "id": "icon_image",
+            "label": "Icon Image"
+          },
+{
+            "type": "textarea",
+            "id": "title",
+            "label": "Text",
+            "default": "Icon Title"
+          },
+{
+            "type": "textarea",
+            "id": "text",
+            "label": "Text",
+            "default": "Rich text"
+          },
+        
+{
+            "type": "color",
+            "id": "title_color",
+            "label": "Text Color",
+"default": "#000"
+          },
+          {
+            "type": "select",
+            "id": "align_text",
+            "label": "Text alignment",
+            "default": "left",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Centered"
+              }
+            ]
+          }
+          
+         
+        ]
+      }
+    ]
+   
+  }
+{% endschema %}
+
+<style type="text/css">
+  .try_innser_sec {
+   width:100%;
+    margin:0px;
+    padding:0px;
+    text-align:center;
+  }
+  .try_secthree_title {
+  text-align:center;
+    display:block;
+  }
+  .try_iconlist_area{
+  display:flex;
+    text-align:center;
+  }
+  .try_secTitle{
+  text-transform:uppercase;
+  }
+  .page-width.page-content.try_sec_three {
+  padding-top: 75px;
+
+padding-bottom: 75px;
+  }
+  .shopify-section.try-icons{background:{{ section.settings.section_background }}; margin: 65px 0px 20px 0px;}
+  @media only screen and (max-width:999px){
+    
+  .try_iconlist_area{
+ flex-wrap: wrap;
+align-items: center;
+justify-content: center;
+ 
+  }
+    .try_secTitle{margin-bottom:15px;}
+    .page-width.page-content.try_sec_three {
+       padding-top: 35px;
+padding-bottom: 45px;
+  }
+  }
+   @media only screen and (max-width:420px){
+  .icons-bar__item {
+    margin: 6px 5px;
+    width: calc(26% - 10px);
+}
+     
+     
+      }
+  
+  .try_our_prolist {
+  width:100%;
+    display:flex;
+    margin:0px;
+    padding:0px;
+    flex-flow: wrap;
+  }
+  .our_product_items{
+  width:23%;
+  margin: 30px 1% 10px 1%;
+padding: 0px;
+
+  }
+  .our_product_items .image-try-products {
+  max-width:100%;
+    border: 2px solid #000;
+  }
+  @media only screen and (max-width:876px){
+    .our_product_items{
+  width:48%;
+  margin:10px 1%;
+    padding:0px;
+  }
+  }
+  .icon-with-title{
+  display: block;
+text-align:center;
+    font-weight:700;
+    
+  }
+  .imgicon-set {
+  max-width:100%;
+  }
+  .icon-below-text p {
+  font-weight:700;
+  margin:0px;
+  }
+  .icon-below-text{
+  padding:10px 0px;
+  }
+ 
+</style>

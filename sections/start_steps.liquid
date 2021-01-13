@@ -1,0 +1,333 @@
+
+
+{%- if section.setting.try_display != false -%}
+  <div class="page-width page-content try_steps">
+    {%comment%}
+    <div class="try_step_secT ">
+      <h2 class="try_secTitlesg"> How it works</h2>
+      <div class="inser_setpSec">
+   			<div class="box_stIcon">
+              <h5 class="iConSec"> We'll send you full sized bars of our three flavors. </h5>
+        	</div>
+        <div class="box_stIcon secRight">
+               <h5 class="iConSec"> You try them! </h5>
+        	</div>
+      </div>
+      <div class="arrow_area"><img src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/arrow-black_750x.png"></div>
+       <div class="inser_setpSec spectint">
+   			
+              <h5 class="iConSec"> Five days after delivery, we'll text you about your first 12-bar box. </h5>
+        
+      </div>
+      <div class="area_noteSec"> <h4 class="hfourDn"> The default flavor is our best seller, Oat Cookie. But, you can</br>
+easily change the flavor or cancel.  </h4></div>
+	</div>
+{%endcomment%}
+   
+       
+    
+    <div class="try_setp_titlearea">
+      
+      <h2 class="sec_title_lf">{{ section.settings.title }}</h2>
+      
+      </div>
+       
+   <div class="try_setp_textarea full_trys">
+    
+          {%- for block in section.blocks -%}
+             
+              {% case block.type %}
+                {% when 'image'%}
+    
+      <div class="sec_hw_imgarea">     
+       {% if block.settings.image != blank %}
+     <img class="image-how  try--how{{ block.id }}"
+                        src="{{ block.settings.image | img_url: '450x' }}"
+                        alt="{{ block.settings.image.alt | escape }}">
+      {% else %}
+                    <svg class="placeholder-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1052 400" style="background-color: #000;"></svg>
+       {% endif %}
+        <div class="image_btitles" style="color:{{ block.settings.text_color }}; text-align:{{ block.settings.align_text }};"> {{ block.settings.text }}</div>
+     </div>
+              {% endcase %}
+            
+          {%- endfor -%}
+    
+      
+</div>
+     
+  
+   
+
+    
+   
+   
+  </div>
+{%- endif -%}
+
+{% schema %}
+ {
+    "name": "Steps",
+    "class": "try-steps",
+    "max_blocks": 10,
+    "settings": [
+      
+     {
+            "type": "checkbox",
+            "id": "try_display",
+            "label": "Display Section",
+            "default":true
+          }, 
+{
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+"default": "Steps"
+
+        
+      },
+{
+            "type": "color",
+            "id": "section_background",
+            "label": "Section Background",
+             "default": "#fff"
+          }
+      
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Image With Text",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },{
+            "type": "textarea",
+            "id": "text",
+            "label": "Text",
+            "default": "Rich text"
+          },
+        
+{
+            "type": "color",
+            "id": "title_color",
+            "label": "Text Color",
+"default": "#000"
+          },
+          {
+            "type": "select",
+            "id": "align_text",
+            "label": "Text alignment",
+            "default": "left",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Centered"
+              }
+            ]
+          }
+          
+         
+        ]
+      },{
+        "type": "text",
+        "name": "No Text",
+        "settings": [
+         {
+            "type": "textarea",
+            "id": "text",
+            "label": "Text",
+            "default": "Rich text"
+          },
+        
+{
+            "type": "color",
+            "id": "text_color",
+            "label": "Text Color",
+"default": "#000"
+          },
+          {
+            "type": "select",
+            "id": "align_text",
+            "label": "Text alignment",
+            "default": "left",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Centered"
+              }
+            ]
+          }
+          
+         
+        ]
+      }
+    ]
+   
+  }
+
+
+
+
+
+{% endschema %}
+
+<style type="text/css">
+  .try_step_secT {
+  width:850px;
+    margin:0px auto;
+    padding:0px;
+  }
+  .inser_setpSec{
+  width:100%;
+  margin:0px;
+    padding:0px;
+    position:relative;
+    display:flex;
+    border:2px solid #000;
+     
+  }
+  .box_stIcon{
+  width:50%;
+  margin:0px;
+    padding:15px 20px;
+   
+  }
+  .box_stIcon.secRight{
+  border-left:2px solid #000;
+  }
+  .iConSec:before {
+  content: '\2713';
+position: absolute;
+left: 0;
+padding: 3px 7px;
+border-radius: 50%;
+background:#e00808;
+color:#fff;
+font-size: 12px;
+
+    
+  }
+  .iConSec{
+  color:#000;
+   padding-left:34px;
+  }
+  .arrow_area{
+  width:100%;
+  position:relative;
+  display:block;
+  margin:0px;
+  text-align:center;
+  }
+  .arrow_area img {
+  
+    max-width:160px;
+  }
+  .inser_setpSec.spectint {
+  
+  padding:24px 40px;
+  
+  }
+  .area_noteSec
+  {
+  width:100%;
+  position:relative;
+  display:block;
+  margin:0px;
+  text-align:center;
+  }
+  .area_noteSec h4{
+  padding: 21px 10px 10px 10px;
+font-weight: 700;
+  }
+  .try_secTitlesg{
+  
+  text-align:center;
+    padding-bottom: 30px;
+    text-transform: uppercase;
+  }
+  
+  
+  
+  
+  
+  
+  
+  .sec_title_lf {
+    text-align:center; padding:10px;
+text-transform: uppercase;
+
+  }
+  .try_setp_titlearea{
+  
+  width:100%;
+  
+  }
+  .try_setp_textarea{
+  width:100%;
+   margin:0px 0px 0px 0px;
+    border-left: 2px solid #eee;
+    padding: 10px 15px;
+  }
+ 
+  .try_landing_sec.sec_setp{
+  align-items: center;
+  justify-content: center;
+    flex-flow: wrap;
+  }
+  .try_setp_textarea p {
+  font-size:22px;
+    font-weight:900;
+  }
+  #shopify-section-start_steps{background:{{ section.settings.section_background }}; padding-bottom:30px; padding-top:0px; margin-top:-30px;}
+  @media only screen and (max-width:642px){
+  
+  .try_setp_titlearea{
+  
+  width:100%;
+  
+  }
+  .try_setp_textarea{
+  width:100%;
+   margin:0px ;
+    border-left: 0px solid #eee;
+   
+  }
+    .sec_title_lf {
+    text-align:center; 
+  }
+  }
+  .try_setp_textarea.full_trys {
+  width:100%;
+    margin:0px;
+    border:none;
+    display:flex;
+    flex-flow: wrap;
+  }
+   .sec_hw_imgarea{
+  width:31.33%;
+    margin:10px 1%;
+    
+     text-align:center;
+     padding: 15px;
+  }
+  .sec_hw_imgarea img {max-width:70%;}
+  @media only screen and (max-width:500px){
+  .sec_hw_imgarea{
+  width:100%;
+    margin:10px 0px;
+
+  }
+  
+  }
+</style>

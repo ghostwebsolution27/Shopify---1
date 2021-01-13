@@ -1,0 +1,1872 @@
+<!-- jQuery Modal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+
+<!-- ANIMATE.CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+
+<div id="FAQ-content-1" class="nutrition_faqs collapsible-content collapsible-content--all">
+  <div class="collapsible-content__inner collapsible-content__inner--faq rte">
+    {% if product.handle contains 'apple-crisp' %}
+    <img class="one-faq-image" src="{{  product.images[1] | img_url: 'master' }}">
+    {% elsif product.handle contains 'mini' and product.handle != 'variety-pack-mini' %}
+    <img class="one-faq-image" src="{{  product.images[1] | img_url: 'master' }}">
+    {% elsif product.handle contains 'variety-pack-mini' %}
+
+    <div class="faq-carousel">
+      <div class="carousel-cell">
+        <img src="{{  product.images[2] | img_url: 'master' }}">
+      </div>
+      <div class="carousel-cell">
+        <img src="{{  product.images[3] | img_url: 'master' }}">
+      </div>
+      <div class="carousel-cell">
+        <img src="{{  product.images[4] | img_url: 'master' }}">
+      </div>
+      <div class="carousel-cell">
+        <img src="{{  product.images[5] | img_url: 'master' }}">
+      </div>
+    </div>
+    
+    <div class="grid desktop-faq-carousel four-nfp">
+      <div class="grid__item large-up--one-quarter ">
+        <img src="{{  product.images[2] | img_url: 'master' }}">
+      </div>
+      <div class="grid__item large-up--one-quarter ">
+        <img src="{{  product.images[3] | img_url: 'master' }}">
+      </div>
+      <div class="grid__item large-up--one-quarter ">
+        <img src="{{  product.images[4] | img_url: 'master' }}">
+      </div>
+      <div class="grid__item large-up--one-quarter ">
+        <img src="{{  product.images[5] | img_url: 'master' }}">
+      </div>
+    </div>
+
+    {% elsif product.handle contains 'variety-pack-bars' %}
+
+    <div class="faq-carousel">
+      <div class="carousel-cell">
+        <img src="{{  product.images[4] | img_url: 'master' }}">
+      </div>
+      <div class="carousel-cell">
+        <img src="{{  product.images[5] | img_url: 'master' }}">
+      </div>
+      <div class="carousel-cell">
+        <img src="{{  product.images[6] | img_url: 'master' }}">
+      </div>
+    </div>
+    
+    <div class="grid desktop-faq-carousel">
+      <div class="grid__item large-up--one-third ">
+        <img src="{{  product.images[4] | img_url: 'master' }}">
+      </div>
+      <div class="grid__item large-up--one-third ">
+        <img src="{{  product.images[5] | img_url: 'master' }}">
+      </div>
+      <div class="grid__item large-up--one-third ">
+        <img src="{{  product.images[6] | img_url: 'master' }}">
+      </div>
+    </div>
+
+    {% else %}
+    <img class="one-faq-image" src="{{  product.images[2] | img_url: 'master' }}">
+    {% endif %}
+  </div>
+</div>
+
+<div class="custom_pp_warrper">  
+ 
+  	<div class="iconsetaround healthy-hard">
+      	{% assign found = false %}
+      	{% if product.handle contains "mini" %}
+            {% assign minis = true %}
+        {% endif %}
+        {% for mini in product.collections %}
+          {% if mini.handle == "minis" %}
+            {% assign minis = true %}
+          {% endif %}
+        {% endfor %}
+      	<img class="hand_leftfree" src="{% if product.metafields.customization.healthy-image != blank %}{{ product.metafields.customization.healthy-image}}{% else %} {% if minis == true %} https://cdn.shopify.com/s/files/1/0248/8084/0813/files/minivarietysticker.png?v=1594478031  {% else %} {{ settings.regular_variety_image | img_url: 'master' }} {% endif %} {% endif %}">
+      
+        <div class="page-width">
+        	<h2 class="headingH center">
+         Because healthy  <span class="br"> shouldn't be hard </span>
+          </h2> 
+          <div class="innerPage iconareainn">
+             <div class="gl_icon soy-free right-top"><p>SOY FREE</p></div>
+             <div class="gl_icon dairy-free left-top"><p>DAIRY</p><p>FREE</p></div>
+             <div class="gl_icon non-gmo left-bottom"><p>NON-GMO</p></div>
+             <div class="gl_icon gluten-free right-bottom"><p>GLUTEN-FREE CERTIFIED</p></div>
+          </div>
+      </div>
+    </div>
+      
+<div class="new-home-chart" style="background-color:#fcf3e1">
+  <div class="page-width">
+    
+    	<h2>see, we're not <br> your basic bar</h2>
+    
+    <div class="mobile-chart">
+      <div class="grid bar-table-start">
+        <div class="grid__item small--one-half medium-up--one-half us-title" style="background-image: url( //cdn.shopify.com/s/files/1/0248/8084/0813/files/variety-mini-table_47d75126-e573-4813-a15c-694a6ff8d920.png?v=1596561055 )">
+          <h3 class="chart-title us-title">
+            Us
+          </h3>
+        </div>
+        <div class="grid__item small--one-half medium-up--one-half them-title">
+          <h3 class="chart-title them-title">
+            Them
+          </h3>
+        </div>
+      </div>
+      
+        <div class="grid bar-table-body">
+          <div class="grid__item small--one-half medium-up--one-half text-box-dark">
+            <div class="side-text">
+              <p>Protein</p>
+            </div>
+            <div class="text-box-body">
+              <p>LEAN EGG WHITES + COLLAGEN</p>
+            </div>
+          </div>
+          <div class="grid__item small--one-half medium-up--one-half text-box-white">
+            <div class="text-box-body">
+              <p>WHEY OR OTHER SINGLE PROTEIN SOURCES</p>
+            </div>
+          </div>
+        </div>
+      
+        <div class="grid bar-table-body">
+          <div class="grid__item small--one-half medium-up--one-half text-box-dark">
+            <div class="side-text">
+              <p>SUPERFOODS</p>
+            </div>
+            <div class="text-box-body">
+              <p>REAL INGREDIENTS + AN ADAPTOGENIC BOOST</p>
+            </div>
+          </div>
+          <div class="grid__item small--one-half medium-up--one-half text-box-white">
+            <div class="text-box-body">
+              <p>SUPER...WHAT?!</p>
+            </div>
+          </div>
+        </div>
+      
+        <div class="grid bar-table-body">
+          <div class="grid__item small--one-half medium-up--one-half text-box-dark">
+            <div class="side-text">
+              <p>ENERGY</p>
+            </div>
+            <div class="text-box-body">
+              <p>OUR ADAPTOGENS HELP YOUR BODY FIGHT STRESS AND FATIGUE</p>
+            </div>
+          </div>
+          <div class="grid__item small--one-half medium-up--one-half text-box-white">
+            <div class="text-box-body">
+              <p>ARTIFICIAL FOODS FUEL AFTERNOON CRASHES</p>
+            </div>
+          </div>
+        </div>
+      
+        <div class="grid bar-table-body">
+          <div class="grid__item small--one-half medium-up--one-half text-box-dark">
+            <div class="side-text">
+              <p>HUNGRY</p>
+            </div>
+            <div class="text-box-body">
+              <p>REAL FOOD TO KEEP YOU FUELED</p>
+            </div>
+          </div>
+          <div class="grid__item small--one-half medium-up--one-half text-box-white">
+            <div class="text-box-body">
+              <p>ALWAYS CRAVING ANOTHER SNACK</p>
+            </div>
+          </div>
+        </div>
+      
+        <div class="grid bar-table-body">
+          <div class="grid__item small--one-half medium-up--one-half text-box-dark">
+            <div class="side-text">
+              <p>FLAVOR</p>
+            </div>
+            <div class="text-box-body">
+              <p>PEOPLE CAN’T STOP RAVING ABOUT OUR FLAVOR.</p>
+            </div>
+          </div>
+          <div class="grid__item small--one-half medium-up--one-half text-box-white">
+            <div class="text-box-body">
+              <p>IF YOU LIKE A NICE CARDBOARD FLAVOR</p>
+            </div>
+          </div>
+        </div>
+      
+    </div>
+    <div class="desktop-chart">
+      <div class="grid bar-table-start">
+        <div class="grid__item medium-up--one-sixth"></div>
+        
+          <div class="grid__item medium-up--one-sixth">
+			<p>Protein</p>
+          </div>
+        
+          <div class="grid__item medium-up--one-sixth">
+			<p>SUPERFOODS</p>
+          </div>
+        
+          <div class="grid__item medium-up--one-sixth">
+			<p>ENERGY</p>
+          </div>
+        
+          <div class="grid__item medium-up--one-sixth">
+			<p>HUNGRY</p>
+          </div>
+        
+          <div class="grid__item medium-up--one-sixth">
+			<p>FLAVOR</p>
+          </div>
+        
+      </div>
+	  <div class="grid bar-table-body">
+        <div class="grid__item medium-up--one-sixth desktop-title">
+          <h3 class="chart-title desktop-us-title">
+            Us
+          </h3>
+        </div>
+        
+          <div class="grid__item medium-up--one-sixth text-box-dark">
+            <div class="text-box-body">
+				<p>LEAN EGG WHITES + COLLAGEN</p>
+            </div>
+          </div>
+        
+          <div class="grid__item medium-up--one-sixth text-box-dark">
+            <div class="text-box-body">
+				<p>REAL INGREDIENTS + AN ADAPTOGENIC BOOST</p>
+            </div>
+          </div>
+        
+          <div class="grid__item medium-up--one-sixth text-box-dark">
+            <div class="text-box-body">
+				<p>OUR ADAPTOGENS HELP YOUR BODY FIGHT STRESS AND FATIGUE</p>
+            </div>
+          </div>
+        
+          <div class="grid__item medium-up--one-sixth text-box-dark">
+            <div class="text-box-body">
+				<p>REAL FOOD TO KEEP YOU FUELED</p>
+            </div>
+          </div>
+        
+          <div class="grid__item medium-up--one-sixth text-box-dark">
+            <div class="text-box-body">
+				<p>PEOPLE CAN’T STOP RAVING ABOUT OUR FLAVOR.</p>
+            </div>
+          </div>
+        
+      </div>
+      <div class="grid bar-table-body">
+        <div class="grid__item medium-up--one-sixth desktop-title">
+          <h3 class="chart-title dekstop-them-title">
+            Them
+          </h3>
+        </div>
+        
+          <div class="grid__item medium-up--one-sixth text-box-white">
+            <div class="text-box-body">
+				<p>WHEY OR OTHER SINGLE PROTEIN SOURCES</p>
+            </div>
+          </div>
+        
+          <div class="grid__item medium-up--one-sixth text-box-white">
+            <div class="text-box-body">
+				<p>SUPER...WHAT?!</p>
+            </div>
+          </div>
+        
+          <div class="grid__item medium-up--one-sixth text-box-white">
+            <div class="text-box-body">
+				<p>ARTIFICIAL FOODS FUEL AFTERNOON CRASHES</p>
+            </div>
+          </div>
+        
+          <div class="grid__item medium-up--one-sixth text-box-white">
+            <div class="text-box-body">
+				<p>ALWAYS CRAVING ANOTHER SNACK</p>
+            </div>
+          </div>
+        
+          <div class="grid__item medium-up--one-sixth text-box-white">
+            <div class="text-box-body">
+				<p>IF YOU LIKE A NICE CARDBOARD FLAVOR</p>
+            </div>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+  
+  
+  
+   <div class="quoteBoxsection" {% if settings.variety_pack_chat %} style="display:none" {% endif %}> 
+    <div class="grid table-arrow mobile-arrow">
+        <div class="grid__item small--one-half">
+           <img src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/59691_3x_7ab6361b-3849-4985-99ed-f8027ceae36b.png?v=1594362620">
+        </div>
+    </div>
+  	<div class="page-width" >
+        <div class="innerPage fullw">
+          
+          	<div class="quoteBoxarea">
+          		<div class="sectionInners animate-left">
+                  <div class="quoteBox left_same">
+                  	<div class="double-quote"></div>
+                  	<p>The freshness of the bars is what makes them so good!!!!</p>
+                  	<p>- Kelley B.</p>
+                  </div>
+              </div>
+              <div class="sectionInners animate-right">
+                  <div class="quoteBox right_small">
+                  	<div class="double-quote white">
+	                  	<p>Omg It tastes just like a salted brownie but without all the guilt!</p>
+                      <p>- Debbie B.</p>
+	                  </div>
+                  </div>
+              </div>
+              <div class="sectionInners animate-left">
+                  <div class="quoteBox left_same">
+                  	<div class="double-quote dark">
+	                  	<p>One word: YUMMMM &#127850;</p>
+	                  	<p>&#127820; &#127838; &#x1f60b;</p>
+	                  </div>
+                  </div>
+              </div>
+              <div class="sectionInners animate-right">
+                  <div class="quoteBox right_small">
+                  	<div class="double-quote">
+	                  	<p>I keep a Mini in my bag at all times for when I need a snack on the go.</p>	                  	
+	                  </div>
+                  </div>
+              </div>
+              
+          </div>
+              
+            </div>
+    </div>
+     
+  </div>
+
+  <div class="grid modal-video-section">
+  	<!-- Modal HTML embedded directly into document -->
+	<div id="video-modal" class="modal">
+	  <iframe width="100%" height="315" src="https://www.youtube.com/embed/NVZK0fwaJ4o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <a href="#" rel="modal:close" class="modal-close">Close</a>
+	</div>
+
+	<div class="page-width">
+		<h2 class="headingH center">NEXT GENERATION <br/> PROTEIN BARS</h2>           
+		<p>We are all unique. So, what you eat should address what YOU NEED. <br/>Here’s why Level isn’t your average protein bar.</p>
+		<a id="video-modal-open" href="#video-modal" rel="modal:open"><img src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/Image_9a_3x_d2d254aa-f7aa-4926-9c7e-9ed7cab5d8e5.png?v=1594277964"></a>
+	</div>
+  </div>
+
+  <div class="grid start-eating-section">
+  	<h2 class="headingH center">Combining flavor <br/> and function</h2>   
+  </div>
+
+</div>  <!--.level_landing end -->
+
+
+{% schema %}
+  {
+    "name": "BB Landing Mid Section",
+    "settings": []
+  }
+{% endschema %}
+
+{% stylesheet %}
+ 
+
+.ll_banana_bread {
+    background: linear-gradient(1245deg, #fff0 14%,#F1F1F1 0%,#F1F1F1 85%, #51272700 50%) ;
+}
+
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+
+<style type="text/css">
+  
+  .custom_pp_warrper {
+  width:100%;
+    position:relative;
+    padding-top:50px;
+  }
+  .br {display:block;}
+  .innerPage{position:relative;}
+ .headingH {
+    line-height: 110%;
+    font-size: 3.5vw;
+    font-weight: 800;
+    text-transform: uppercase;
+    padding-top: 20px;
+}
+  .headingH.center {text-align:center;}
+  
+  .iconsetaround {
+  min-height:750px;
+    position:relative;
+    
+  }
+  
+.hand_leftfree {
+    position: absolute;
+    max-width: 761px;
+    z-index: 9;
+    bottom: -10vw;
+}
+  
+  .hand_leftfree.mini-image {
+    position: absolute;
+    max-width: 700px;
+    z-index: 9;
+    bottom: 0;
+    width: 100%;
+}
+
+.hand_leftfree.mobile {
+	display: none;
+}
+
+  .iconareainn {min-height: 700px;}
+  .gl_icon {
+   position:absolute;
+    max-width:30%;
+    z-index: 1;
+  }
+  .gl_icon.left-top {
+left: 33%;
+top: 28%;
+  }
+  .gl_icon.right-top {
+  right: 20%;
+top: 27%;
+  }
+  .gl_icon.right-bottom {
+  right:20%;
+    bottom:10%;
+  }
+  .gl_icon.left-bottom {
+    left: 20%;
+    bottom: 10%;
+  }
+  
+   @media only screen and (max-width:1650px){
+     
+      .gl_icon.left-top {
+left: 40%;
+top: 28%;
+  }
+  .gl_icon.right-top {
+  right: 20%;
+top: 27%;
+  }
+.gl_icon.right-bottom {
+    right: 10%;
+    bottom: 10%;
+}
+.gl_icon.left-bottom {
+    left: 40%;
+    bottom: 15%;
+}
+   }
+   @media only screen and (max-width:1290px){
+     
+      .gl_icon.left-top {
+left: 2%;
+top: 28%;
+  }
+  .gl_icon.right-top {
+ right: 30%;
+top: 27%;
+  }
+  .gl_icon.right-bottom {
+right: 5%;
+bottom: 57px;
+  }
+  .gl_icon.left-bottom {
+left: 35%;
+bottom: 55px;
+  }
+   }
+   @media only screen and (max-width:999px){
+     
+      .gl_icon.left-top {
+left: 2%;
+top: 28%;
+  }
+  .gl_icon.right-top {
+    right: 8%;
+    top: 27%;
+}
+ .gl_icon.right-bottom {
+    right: 6%;
+    bottom: 91px;
+}
+  .gl_icon.left-bottom {
+    left: -2%;
+    bottom: 173px;
+}
+  .headingH.center {
+    font-size:36px;
+}
+     .custom_pp_warrper {
+   
+    padding-top: 0px;
+}
+   }
+  
+    @media only screen and (max-width:780px){
+      #shopify-section-bblanding_mid_section {overflow:hidden;}
+     .hand_leftfree {   
+    max-width:100%;
+   left: -20px;
+bottom: -117px;
+  }
+      .gl_icon {   
+    max-width: 24%;   
+}
+      .gl_icon.left-top {
+left: 2%;
+top: 28%;
+  }
+  .gl_icon.right-top {
+    right: 8%;
+    top: 27%;
+}
+ .gl_icon.right-bottom {
+    right: 6%;
+    bottom: 91px;
+}
+  .gl_icon.left-bottom {
+    left: -2%;
+    bottom: 173px;
+}
+   }
+  
+  @media only screen and (max-width:500px){
+    
+img.hand_leftfree.mini-image {
+    width: 70%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 10%;
+}
+  	.hand_leftfree.mobile {
+	display: block;
+}
+
+.hand_leftfree.desktop {
+	display: none;
+}
+
+  .custom_pp_warrper {
+  
+    padding-top: 0px;
+}
+    .headingH {   
+    font-size: 36px;    
+    padding-top: 0px;
+      margin-top: 0px;
+}
+  .hand_leftfree {    
+    max-width: 100%;
+    left: 0;
+    top: 18%;
+}
+    .iconsetaround {
+    min-height: 550px;
+   
+}
+    .iconareainn {
+    min-height: 470px;
+}
+    .gl_icon {    
+    max-width: 56%;
+    
+}
+    .gl_icon.left-bottom {
+   left: -4%;
+bottom: 210px;
+}
+    
+    .gl_icon.left-bottom.mini-sticker {
+    left: -7%;
+    bottom: 160px;
+}
+   
+    .gl_icon.left-top {
+   left: 4%;
+top: 8%;
+}
+    .gl_icon.right-bottom {
+ right: 5%;
+bottom: 30px;
+}
+    .gl_icon.right-top {
+    right: -1%;
+top: 11%;
+}
+    #insta-feed .instafeed-container {
+    width: 47% ;
+    padding-top: 50% ;
+    margin: 5px 5px;
+}
+  }  
+  
+  @media only screen and (max-width:400px){
+.hand_leftfree {
+    max-width: 100%;
+    left: -9px;
+    top: 31%;
+}
+
+.gl_icon.left-bottom {
+    left: -8%;
+    bottom: 190px;
+}
+
+.grid__item.small--one-half.us-title {
+    background-size: 100px ;
+    background-position: -5px 0px ;
+}
+    
+  }
+
+@media only screen and (min-width:1100px){
+.slider-section .slider-body h1.h2.product-single__title {
+    width: 80%;
+    display: block;
+    margin: auto;
+    text-align: center;
+    font-size: 35px ;
+}
+.slider-section .slider-body h1.h2 span {
+    text-align: right;
+    font-size: 30px ;
+    line-height: 30px ;
+    font-weight: 600;
+    color: #000;
+}
+.slider-section .slider-body .shop-button p {
+    font-size: 25px ;
+}
+
+}
+  
+ 
+/******* Section one finish ******/
+  .gradintbgtext {
+  position: relative;
+margin-top: 175px;
+z-index: 999;
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#cbcbcb+0,f4e08a+100 */
+background: #FCF3E1;
+
+    min-height:400px;
+    {% if settings.variety_pack_chat %} padding-bottom:50px; {% else %} padding-bottom:300px; {% endif %}
+  }
+  .gradintbgtext:before {
+   position: absolute;
+    content: '';
+  top: -138px;
+left: 0%;
+width: 100%;
+height: 343px;
+   
+   -webkit-transform: skew(0deg,-8deg);
+transform: skew(0deg,-8deg);
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#cbcbcb+0,f4e08a+100 */
+background: #FCF3E1;
+
+  }
+  .innersection {position:relative;}
+  
+  .innersection.padd-top {padding-top:40px;}
+  .linner-box {
+  position:relative;
+    width:100%;
+    display:flex;
+     align-items: center;
+  justify-content: center;
+    text-transform:uppercase;
+  }
+  .box_colunm{
+  box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+  }
+  .box_c2 {
+  width:50px;
+    position:relative;
+    
+  }
+  .box_c5 {
+  width: calc(50% - 35px);
+position: relative;
+box-shadow: 0px 0px 8px #a6a3a3;
+padding: 30px 25px;
+align-self: center ;
+text-align: center;
+margin: 5px;
+  }
+  .box_c5 p {margin-bottom:0px;}
+  .box_c5.blackbox {
+  background:#433F3A;
+    color:#fff;
+  }
+  .box_c5.whitebox {
+  background:#fff;
+    color:#433F3A;
+  }
+  
+  .box_colunm h4{
+font-family: "proxima-nova", sans-serif;
+font-weight: 900;
+font-size: 15px;
+color: #433F3A;
+transform-origin: unset;
+padding-bottom: 0;
+transform: rotate(-90deg);
+min-height: 60px;
+text-align: center;
+width: 100px;
+  }
+  
+  
+   @media only screen and (max-width:500px){
+     .gradintbgtext::before {
+     top: -70px;
+}
+     .gradintbgtext {   
+    margin-top: 90px;
+     }
+     .innersection.padd-top {
+    padding-top: 20px;
+}
+     .box_c2 {
+    width: 35px;
+   
+}
+     .box_c5 {
+    width: calc(50% - 25px);    
+    height: 160px;
+    
+}
+     .box_colunm h4 {
+   
+    transform-origin: bottom;   
+    min-height: 43px;
+    
+}
+   }
+  
+/******* Section two finish ******/  
+  .quoteBoxsection{
+  position: relative;
+margin-top: -44px;
+z-index: 999;
+    background: #000; 
+    min-height:400px;
+     padding-bottom:50px;
+  }
+  .quoteBoxsection:before {
+   position: absolute;
+    content: '';
+top: -140px;
+left: 0%;
+width: 100%;
+height: 343px;
+   
+   -webkit-transform: skew(0deg,-8deg);
+transform: skew(0deg,-8deg);
+ 
+background: #000;
+
+  }
+  .sectionInners {
+  position:relative;
+    display:block;
+    width:100%;
+    visibility: hidden;
+  }
+  .sectionInners.unhide-animate {
+   	visibility: visible; 
+  }
+  .quoteBoxarea {
+  position:relative;
+  display: flex;
+flex-wrap: nowrap;
+flex-direction: column;
+  }
+  .quoteBox {
+    width: 50%;
+    position: relative;
+    float: right;
+    background: #fff;
+    padding: 10px 20px;
+    min-height: auto;
+    border-radius: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    margin: 40px 0px;
+  }
+  .quoteBox.left_same {
+  float:left;
+        padding-top: 20px;
+    padding-bottom: 20px;
+    margin-left: 10px;
+  }
+  .quoteBox.right_small {
+  width:30%;
+  }
+.quoteBox:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: auto;
+    right: 38px;
+    bottom: -40px;
+    border-top: 20px solid;
+    border-right: 30px solid;
+    border-left: 20px solid;
+    border-bottom: 31px solid;
+    border-color: #fff #fff transparent transparent;
+    transform: skew(20deg, 0deg);
+}
+.quoteBox::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    z-index: -1;
+    border: 7.5px solid #fbefd7;
+    right: -20px;
+    bottom: -20px;
+}
+.quoteBox.left_same:after {
+    bottom: -42px;
+    left: 38px;
+    width: 0;
+    height: 0;
+    transform: scaleX(-1) skew(20deg, 0deg);
+}
+  
+  .quoteBoxarea .sectionInners:first-child .quoteBox::before {
+    border: 7.5px solid #f3e08f;
+  }
+  
+  .quoteBoxarea .sectionInners:nth-child(2) .quoteBox::before {
+    border: 7.5px solid #ece3d0;
+  }
+  
+  .quoteBoxarea .sectionInners:nth-child(3) .quoteBox::before {
+    border: 7.5px solid #444444;
+  }
+  
+  .quoteBoxarea .sectionInners:last-child .quoteBox::before {
+    border: 7.5px solid #f3e08f;
+  }
+  
+  .innerPage.titlebottomS .headingH {color:#fff; margin-top:50px;}
+  .innerPage.fullw {
+  width:100%;
+    position:relative;
+    display:block;
+    font-family: "proxima-nova", sans-serif;
+    
+  }
+@media only screen and (max-width:500px){
+     .quoteBoxsection::before {
+   
+    top: -42px;   
+    height: 80px;
+   
+}
+  .quoteBoxsection {
+   
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+  .quoteBox {
+    width: 75%;   
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top:20px;
+    margin-bottom: 50px;
+}
+  .quoteBox.right_small {
+    width: 60%;
+}
+}
+ /**************************/
+
+  .related_sawp {
+    width:100%;
+    position:relative;
+    padding-top: 50px;
+  }
+  .sawpboxarea {
+   position:relative;
+    width:100%;
+    display:flex;
+     align-items: center;
+  justify-content: center;
+    text-transform:uppercase;
+  }
+  .swapBox {
+  width:25%;
+  padding:20px;
+    box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    text-align:center;
+  }
+  .swapBox.banana_s {
+  background:#F4E08A;
+  }
+   .swapBox.oat_s {
+  background:#ECE3CF;
+  }
+  .swapBox.apple_s {
+  background:#DFE99D;
+  }
+   .swapBox.salted_s {
+  background:#957f83;
+  }
+  .swapBox h3 {
+   font-family: "proxima-nova", sans-serif;
+    font-weight:800;
+    font-size:18px; 
+    margin-bottom: 5px;
+margin-top: 10px;
+  }
+  .btn_flovor {
+  display:block;
+  }
+  .text_products {
+ text-transform: none;
+  }
+  .btn_flovor {
+  padding:10px;
+    display:block;
+    background:#000;
+    color:#fff;
+    font-weight:800;
+    font-size:20px;
+  }
+  .btn_flovor:hover {
+  color:#fff;
+  }
+ @media only screen and (max-width:900px){
+   .swapBox {
+  width:33.33%; 
+  }
+   .related_sawp {
+    
+    padding-top: 0px;
+}
+   .related_sawp .page-width {padding:0px ;}
+ }
+  @media only screen and (max-width:500px){
+   .swapBox {
+  width:50%; 
+  }
+    
+    
+ }
+  
+/** BASIC BAR SECTION **/
+
+.grid__item.small--one-half.us-title {
+    background: url(https://cdn.shopify.com/s/files/1/0248/8084/0813/files/level_prod_349_3x_7806744a-8087-45d7-8ffd-c76d1ac73985.png?v=1594127574);
+    background-size: 120px;
+    background-position: -10px 0px;
+    background-repeat: no-repeat;
+    height: 130px;
+  	position: relative;
+}
+  
+.grid__item.small--one-half.medium-up--one-half.us-title.variety-pack-mini{
+	 background: url(https://cdn.shopify.com/s/files/1/0248/8084/0813/files/variety-mini-table.png?v=1594486333);
+  	 background-size: 120px;
+     background-position: -10px 0px;
+     background-repeat: no-repeat;
+}
+
+.us-title h1.h2.product-single__title {
+    position: absolute;
+    bottom: 0;
+    text-align: right;
+    left: 0;
+    right: 10px;
+}
+
+.them-title h1.h2.product-single__title {
+  	position: absolute;
+    bottom: 0;
+    text-align: center;
+    left: 10px;
+    right: 10px;
+}
+
+.bar-table-body .text-box-dark {
+    padding: 0 10px;
+  	position: relative;
+}
+
+.grid.bar-table-body {
+ 	position: relative; 
+  	margin-bottom: 15px;
+}
+
+.bar-table-body .text-box-dark .text-box-body {
+    height: 90px;
+    position: relative;
+    background: #433F3A;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  	border: 1px solid #707070;
+  	-webkit-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.25);
+    box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.25);
+}
+
+.bar-table-body .side-text {
+    position: absolute;
+    left: 0;
+}
+
+.bar-table-body .side-text {
+    display: flex;
+    position: absolute;
+    left: -75px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 100px;
+    height: 1px;
+    text-align: center;
+}
+
+.bar-table-body .side-text p {
+    transform: rotate(-90deg);
+    font-size: 14px;
+    font-weight: 900;
+    color: #000;
+    text-transform: uppercase;
+    width: 100px;
+    text-align: center;
+}
+
+.text-box-dark .text-box-body p {
+    color: #fff;
+    font-weight: 300;
+    font-size: 10px;
+    text-align: center;
+    margin-bottom: 0;
+    font-family: 'Nunito Sans', sans-serif;
+    text-transform: uppercase;
+}
+
+.bar-table-body .text-box-white {
+    padding: 0 10px;
+  	position: relative;
+}
+
+.bar-table-body .text-box-white .text-box-body {
+    height: 90px;
+    position: relative;
+    background: rgb(241,241,241);
+	background: linear-gradient(90deg, rgba(241,241,241,1) 0%, rgba(255,255,255,1) 40%, rgba(255,255,255,1) 60%, rgba(238,238,238,1) 100%);
+    padding: 10px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  	border: 1px solid #d9d9d9;
+  	-webkit-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.25);
+    box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.25);
+}
+
+.text-box-white .text-box-body p {
+    color: #888888;
+    font-weight: 400;
+    font-size: 10px;
+    text-align: center;
+    margin-bottom: 0;
+    font-family: 'Nunito Sans', sans-serif;
+    text-transform: uppercase;
+}
+  
+.page-width.basic-bar-width {
+    width: 85%;
+    margin: auto;
+}
+
+.table-top-text p {
+    font-size: 25px;
+    font-weight: 900;
+    color: #000;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.desktop-table .text-box-dark .text-box-body p, .desktop-table .text-box-white .text-box-body p {
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.mobile-table {
+  display:none;
+}
+
+.desktop-table {
+    margin-top: 75px;
+    margin-bottom: 75px;
+}
+
+.us-column, .them-column {
+    vertical-align: middle;
+    align-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 130px;
+}
+
+.us-column img {
+    height: 130px;
+    width: 50%;
+    display: inline-block;
+    object-fit: cover;
+    object-position: top;
+}
+
+.us-column h2.headingH.center {
+    padding-top: 0;
+    margin-bottom: 0;
+    height: 3.5vw;
+}
+
+.them-column h2.headingH.center {
+    color:#505050;
+    padding-top:0;
+    margin-bottom: 0;
+    height: 3.5vw;
+}
+
+.desktop-table .bar-table-body .text-box-dark .text-box-body, .desktop-table .bar-table-body .text-box-white .text-box-body {
+    height: 130px;
+
+}
+
+.grid.table-arrow img {
+    position: absolute;
+    top: -21%;
+    left: 3%;
+    width: 50vw;
+  	display: none;
+}
+
+.grid.table-arrow.mobile-arrow {
+    display:none;
+}
+
+@media only screen and (max-width:500px){
+   .mobile-table {
+      display:block; 
+    }
+    .desktop-table {
+      display:none; 
+    }
+    .grid.table-arrow.mobile-arrow {
+      display:block;
+  }
+}
+  
+  @media only screen and (min-width:1150px){
+    .grid__item.small--one-half.us-title {
+        background: url(https://cdn.shopify.com/s/files/1/0248/8084/0813/files/level_prod_349_3x_7806744a-8087-45d7-8ffd-c76d1ac73985.png?v=1594127574);
+        background-size: 300px;
+        background-position: 50px -20px;
+        background-repeat: no-repeat;
+        height: 300px;
+        position: relative;
+    }
+    
+    .us-title h1.h2.product-single__title {
+      position: absolute;
+      bottom: 0;
+      text-align: center;
+      left: 50px;
+      right: 10px;
+  }
+    
+    .grid__item.small--one-half.them-title {
+    height: 300px;
+    position: relative;
+}
+
+  }
+  
+  
+/** SLIDER SECTION **/
+
+.carousel-cell {
+    width: 70%;
+}
+
+.slider-section .slider-body.banana {
+    background: #F4E08A;
+  	padding: 30px 15px;
+}
+
+.slider-section .slider-body.oat {
+    background: #ECE3CF;
+  	padding: 30px 15px;
+}
+  
+.slider-section .slider-body.brownie {
+ 	background: #ececec;
+  	padding: 30px 15px;
+}
+
+.slider-section .slider-body img {
+    width: 80%;
+    margin: auto;
+    display: block;
+  	margin-bottom: 15px;
+}
+
+.slider-section .slider-body h1.h2.product-single__title {
+    font-size: 20px;
+    font-weight: 900;
+    text-align: center;
+    display: table;
+    width: auto;
+    margin: auto;
+}
+
+.slider-section .slider-body h1.h2.product-single__title span {
+    display: block;
+    text-align: right;
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 600;
+}
+
+.slider-section .slider-body .shop-button {
+    width: 70%;
+  	margin: auto;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 700;
+    padding: 11px 0;
+    text-align: center;
+    cursor: pointer;
+    background: #000;
+    display: block;
+    border-radius: 5px ;
+    min-height: 25px;
+    text-transform: uppercase;
+    margin-top: 15px;
+}
+  
+.slider-section.desktop .slider-body img {
+    width: 70%;
+    margin: auto;
+    display: block;
+    margin-bottom: 25px;
+}
+
+.grid.slider-section.desktop {
+	padding: 50px 0;
+}
+
+.slider-section.mobile {
+	display: none;
+}
+
+  @media only screen and (max-width:500px){
+    .slider-section .slider-body .shop-button {
+    	width: 100%;
+    }
+  	.slider-section.mobile {
+  		display: block;
+  	}
+  	.slider-section.desktop {
+  		display: none;
+  	}
+  }
+
+/** VIDEO SECTION **/
+
+.grid.modal-video-section {
+    padding: 50px 0;
+}
+
+.grid.modal-video-section p {
+    text-align: center;
+}
+
+.jquery-modal.blocker.current {
+    padding: 0;
+}
+
+#video-modal.modal {
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+}
+  
+.modal-close {
+    position: absolute;
+    top: -22.5px;
+    right: -22.5px;
+    display: block;
+    width: 50px;
+    height: 50px;
+    text-indent: -9999px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAAAXNSR0IArs4c6QAAA3hJREFUaAXlm8+K00Acx7MiCIJH/yw+gA9g25O49SL4AO3Bp1jw5NvktC+wF88qevK4BU97EmzxUBCEolK/n5gp3W6TTJPfpNPNF37MNsl85/vN/DaTmU6PknC4K+pniqeKJ3k8UnkvDxXJzzy+q/yaxxeVHxW/FNHjgRSeKt4rFoplzaAuHHDBGR2eS9G54reirsmienDCTRt7xwsp+KAoEmt9nLaGitZxrBbPFNaGfPloGw2t4JVamSt8xYW6Dg1oCYo3Yv+rCGViV160oMkcd8SYKnYV1Nb1aEOjCe6L5ZOiLfF120EjWhuBu3YIZt1NQmujnk5F4MgOpURzLfAwOBSTmzp3fpDxuI/pabxpqOoz2r2HLAb0GMbZKlNV5/Hg9XJypguryA7lPF5KMdTZQzHjqxNPhWhzIuAruOl1eNqKEx1tSh5rfbxdw7mOxCq4qS68ZTjKS1YVvilu559vWvFHhh4rZrdyZ69Vmpgdj8fJbDZLJpNJ0uv1cnr/gjrUhQMuI+ANjyuwftQ0bbL6Erp0mM/ny8Fg4M3LtdRxgMtKl3jwmIHVxYXChFy94/Rmpa/pTbNUhstKV+4Rr8lLQ9KlUvJKLyG8yvQ2s9SBy1Jb7jV5a0yapfF6apaZLjLLcWtd4sNrmJUMHyM+1xibTjH82Zh01TNlhsrOhdKTe00uAzZQmN6+KW+sDa/JD2PSVQ873m29yf+1Q9VDzfEYlHi1G5LKBBWZbtEsHbFwb1oYDwr1ZiF/2bnCSg1OBE/pfr9/bWx26UxJL3ONPISOLKUvQza0LZUxSKyjpdTGa/vDEr25rddbMM0Q3O6Lx3rqFvU+x6UrRKQY7tyrZecmD9FODy8uLizTmilwNj0kraNcAJhOp5aGVwsAGD5VmJBrWWbJSgWT9zrzWepQF47RaGSiKfeGx6Szi3gzmX/HHbihwBser4B9UJYpFBNX4R6vTn3VQnez0SymnrHQMsRYGTr1dSk34ljRqS/EMd2pLQ8YBp3a1PLfcqCpo8gtHkZFHKkTX6fs3MY0blKnth66rKCnU0VRGu37ONrQaA4eZDFtWAu2fXj9zjFkxTBOo8F7t926gTp/83Kyzzcy2kZD6xiqxTYnHLRFm3vHiRSwNSjkz3hoIzo8lCKWUlg/YtGs7tObunDAZfpDLbfEI15zsEIY3U/x/gHHc/G1zltnAgAAAABJRU5ErkJggg==);
+} 
+  
+    
+.modal a.close-modal {
+    display: none;
+}
+  
+.jquery-modal.blocker.current #video-modal {
+    pointer-events: all;
+}
+
+.jquery-modal.blocker.current {
+    pointer-events: none;
+}
+
+@media only screen and (min-width:1100px){
+
+.grid.modal-video-section img {
+    width: 75%;
+    margin: auto;
+    display: block;
+}
+
+#video-modal.modal {
+    max-width: 50%;
+}
+
+#video-modal.modal iframe {
+    height: 50vh;
+}
+
+
+}
+  
+@media only screen and (max-width:768px){  
+
+  .grid.modal-video-section h2.headingH br, .grid.modal-video-section p br, .grid.start-eating-section h2.headingH br{
+      display: none;
+  }
+  
+}
+
+
+/** START EATING SECTION **/
+
+.grid.start-eating-section h2 {
+    color: #FFDA3B;
+}
+
+.grid.start-eating-section {
+    background: #000;
+    padding: 20px 0;
+}
+
+/** NEW HEALTHY SECTION **/
+
+.dairy-free {
+    transform: rotate(-20deg);
+}
+
+.dairy-free p {
+    font-size: 30px;
+    font-weight: 900;
+    margin-bottom: 0;
+    line-height: 30px;
+    text-align: center;
+    color: #FFCC54;
+}
+
+.dairy-free p:first-child {
+    background: #000;
+    padding: 5px 10px;
+}
+
+.dairy-free p:last-child {
+    padding: 5px 10px;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.soy-free {
+    background: #000;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.soy-free p {
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 30px;
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    margin: auto;
+    height: 50%;
+    top: 0;
+    bottom: 0;
+    transform: rotate(-5deg);
+}
+
+.non-gmo p {
+    font-size: 30px;
+    font-weight: 900;
+    margin-bottom: 0;
+    line-height: 30px;
+    text-align: center;
+    color: #FFCC54;
+    padding: 5px 10px;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    transform: rotate(-35deg);
+}
+
+.gluten-free p {
+    font-size: 22px;
+    font-weight: 900;
+    margin-bottom: 0;
+    line-height: 24px;
+}
+
+.gluten-free {
+    background: #ffcc54;
+    padding: 5px 20px;
+    border: 1px solid #000;
+    text-align: center;
+    transform: rotate(-15deg);
+}
+
+.hand_leftfree.desktop {
+    max-width: 100%;
+    top: -10vw;
+    left: -25vw;
+}
+
+@media only screen and (min-width:1100px){
+
+	.dairy-free p {
+	    font-size: 50px;
+	    font-weight: 900;
+	    margin-bottom: 0;
+	    line-height: 50px;
+	    text-align: center;
+	    color: #FFCC54;
+	}
+
+	.non-gmo p {
+	    font-size: 50px;
+	    line-height: 50px;
+	}
+
+	.gluten-free p {
+	    font-size: 50px;
+	    line-height: 50px;
+	}
+
+	.soy-free p {
+	    font-size: 50px;
+	    line-height: 50px;
+	}
+
+	.soy-free {
+	    width: 200px;
+	    height: 200px;
+	}
+
+
+
+}
+
+/** CHAT BOX **/
+
+.double-quote:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: auto;
+    right: 10px;
+    top: -20px;
+    border-top: 20px solid;
+    border-right: 20px solid;
+    border-left: 0 solid;
+    border-bottom: 25px solid;
+    border-color: #f3e08f #f3e08f transparent transparent;
+}
+
+.double-quote:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: auto;
+    right: 35px;
+    top: -20px;
+    border-top: 20px solid;
+    border-right: 20px solid;
+    border-left: 0 solid;
+    border-bottom: 25px solid;
+    border-color: #f3e08f #f3e08f transparent transparent;
+}
+
+.quoteBox p {
+	margin-bottom:0;
+}
+
+.quoteBox.right_small {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.double-quote.white::before, .double-quote.white::after  {
+	border-color: #ece3d0 #ece3d0 transparent transparent ;
+	border-top: 20px solid;
+    border-right: 20px solid;
+    border-left: 0 solid;
+    border-bottom: 25px solid;
+}
+
+.double-quote.dark::before, .double-quote.dark::after {
+    border-color: #444 #444 transparent transparent ;
+    border-top: 20px solid;
+    border-right: 20px solid;
+    border-left: 0 solid;
+    border-bottom: 25px solid;
+}
+
+
+.quoteBox.right_small .double-quote::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    right: initial;
+    left: 10px;
+    top: -20px;
+    border-top: 20px solid;
+    border-right: 20px solid;
+    border-left: 0 solid;
+    border-bottom: 25px solid;
+    transform: scaleX(-1);
+    border-color: #f3e08f #f3e08f transparent transparent;
+}
+
+.quoteBox.right_small .double-quote::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    right: initial;
+    left: 35px;
+    top: -20px;
+    border-top: 20px solid;
+    border-right: 20px solid;
+    border-left: 0 solid;
+    border-bottom: 25px solid;
+    transform: scaleX(-1);
+    border-color: #f3e08f #f3e08f transparent transparent;
+}
+
+@media only screen and (max-width:321px){
+
+    .hand_leftfree {
+        max-width: 100%;
+        left: 0px;
+        top: 45%;
+    }
+
+	.mostpopu, .bestvalue {
+	    font-size: 9px;
+	}
+
+	.gl_icon.left-bottom {
+	    left: -14%;
+	    bottom: 250px;
+	}
+
+	.gl_icon.right-top {
+	    right: 0px;
+	    top: 0;
+	}
+
+	.gl_icon.right-bottom {
+	    right: 5%;
+	    bottom: 2.5%;
+	}
+
+	.page-width.basic-bar-width {
+	    width: 90%;
+	    margin: auto;
+	}
+
+	.page-width.basic-bar-width .headingH.center {
+	    font-size: 32px;
+	}
+
+	.bar-table-body .text-box-dark .text-box-body {
+    	height: 130px;
+    }
+
+    .bar-table-body .text-box-white .text-box-body {
+	    height: 130px;
+	}
+
+	.quoteBox p {
+	    margin-bottom: 0;
+	    font-size: 12px;
+	}
+
+	.grid.start-eating-section {
+	    background: #000;
+	    padding: 20px 10px 10px;
+	}
+
+	.slider-section .slider-body p {
+    	width: 80%;
+    }
+
+    #insta-feed .instafeed-container { 
+    	width: 45% ;
+    }
+
+}
+
+
+@media only screen and (min-width:1100px){
+
+	.kalivoSec .klaviyo-form {
+	    max-width: 750px;
+	    margin: auto;
+	}
+
+}
+  
+  
+@media only screen and (max-width:399px){
+
+.non-gmo p {
+    font-size: 24px;    
+    transform: rotate(-40deg);
+}
+  .gl_icon.left-bottom {
+    left: -7%;
+    bottom: 203px;
+}
+.dairy-free p {
+    font-size: 24px;   
+}
+  .gl_icon.left-top {
+    left: 5%;
+    top: 11%;
+}
+  .soy-free {   
+    width: 90px;
+    height: 90px;  
+}
+  .gl_icon.right-top {
+    right: 3%;
+    top: 10%;
+}
+  .gluten-free p {  
+    line-height: 17px;
+    font-size: 16px;
+}
+  .gluten-free {
+   
+    transform: rotate(-24deg);
+}
+  .gl_icon {
+    max-width: 45%;
+}
+  .gl_icon.right-bottom {
+    right: 2%;
+    bottom: 34px;
+}
+  .soy-free p {
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 22px;
+}
+  .dairy-free p {
+   
+    line-height: 18px;
+   
+}
+}
+  
+ 
+/** BASIC BAR FROM HOMEPAGE **/
+  
+.template-product .new-home-chart {
+    padding-top: 10vh;
+    padding-bottom: 15vh;
+}
+  
+@media only screen and (min-width:1024px) and (max-width:1200px) {
+ 	
+  	.template-product .new-home-chart .desktop-chart .chart-title {
+        font-size: 50px;
+        line-height: 50px;
+    }
+  
+  	.template-product .new-home-chart .desktop-chart .bar-table-start p {
+    	font-size: 20px;
+    }
+  
+}
+  
+@media only screen and (min-width:768px) and (max-width:1024px) {
+  
+ 	body.template-product .grid.start-eating-section {
+      z-index: 9999;
+      position: relative;
+    }
+  
+  	.new-home-flavors-slider {
+      padding: 10vh 0 7.5vh ;
+      margin-top: -5vh ;
+    }
+  
+  	.ll_review.my-5 {
+      margin-top: 7.5vh;
+  	}
+  
+  	label.variant__button-label.valbox.mostpopular span.labelvalue, label.variant__button-label.valbox.best-value span.labelvalue {
+        position: relative;
+        color: #000;
+        font-weight: 800;
+        top: 0;
+    }
+  
+  	.variant-input-wrap input[type="radio"]:checked + label.variant__button-label.valbox.mostpopular span.labelvalue, .variant-input-wrap input[type="radio"]:checked + label.variant__button-label.valbox.best-value span.labelvalue {
+        color: #fff;
+        top: 0;
+    }
+  
+    .quoteBoxarea {
+      padding: 0 20px 0 0;
+    }
+  
+  	.slick-dots {
+      bottom: 20px;
+    }
+  
+  	.variant-input-wrap input[type="radio"]:checked + label.variant__button-label span:first-child::before {
+      content: "";
+      width: 35px;
+      height: 35px;
+      background: transparent;
+      display: block;
+      position: absolute;
+      top: 5px;
+      right: -140px;
+      left: 0;
+      margin: auto;
+      background-image: url(https://cdn.shopify.com/s/files/1/0248/8084/0813/files/squiggly-arrow-png-18_3x_ff84113c-e69d-4146-9483-f238b32903e9.png?v=1594299461);
+      background-size: contain;
+      transform: rotate(-25deg);
+      background-repeat: no-repeat;
+  	}
+  
+}
+</style>
+
+
+<script>
+  
+  $(document).ready(function() {   
+
+  	var tapArea, startX ;
+    tapArea = document.querySelectorAll('.main-carousel');
+    startX = 0;
+    for (var item of tapArea) {
+      item.ontouchstart = function(e) {
+        startX = e.touches[0].clientX;
+      };
+      item.ontouchmove = function(e) {
+        if (Math.abs(e.touches[0].clientX - startX) > 5 && e.cancelable ) {
+          e.preventDefault();
+        }
+      };
+    }
+    
+    var videoSrc = $("#video-modal iframe").attr("src");
+    
+    $('#video-modal-open').click(function(event) {
+      $("#video-modal iframe").attr("src", videoSrc+"?autoplay=1");
+    });
+    
+    $('#video-modal .modal-close').click(function(event) {
+      $("#video-modal iframe").attr("src", null);
+    });
+    
+    function isScrolledIntoView(elem) {
+        var docViewTop = $(window).scrollTop();
+        var docViewBottom = docViewTop + $(window).height();
+
+        var elemTop = $(elem).offset().top;
+        var elemBottom = elemTop + $(elem).height();
+
+        return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+    }
+
+    $(window).scroll(function () {
+        $('.sectionInners.animate-left').each(function () {
+            if (isScrolledIntoView(this) === true) {
+                $(this).addClass('animate__bounceInLeft animate__animated unhide-animate');
+            }
+        });
+      	$('.sectionInners.animate-right').each(function () {
+            if (isScrolledIntoView(this) === true) {
+                $(this).addClass('animate__bounceInRight animate__animated unhide-animate');
+            }
+        });
+
+    });
+    
+  });
+
+</script>

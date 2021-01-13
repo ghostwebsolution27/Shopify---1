@@ -1,0 +1,56 @@
+<div class="new-home-boxes" style="background-color: {{ section.settings.section_bg }} ">
+  <div class="page-width">
+    <div class="grid">
+      {% for block in section.blocks %}
+        <div class="grid__item {% if forloop.last == true %} small--one-whole {% else %} small--one-half {% endif %} medium--one-third large-up--one-third">
+          <div class="home_box_body">
+            <img src="{{ block.settings.box_image | img_url: 'master' }}">
+            <a class="btn" href="{{block.settings.button_link}}">{{block.settings.box_title}}</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "New Home - Boxes",
+    "settings": [
+	  {
+        "type": "color",
+        "id": "section_bg",
+        "label": "Section Background color",
+        "default": "#000000"
+      }
+    ],
+	"blocks": [
+	  {
+		"type": "image",
+        "name": "Home Boxes",
+        "settings": [
+		  {
+            "type": "image_picker",
+            "id": "box_image",
+            "label": "Box Image"
+          },
+		  {
+            "type": "html",
+            "id": "box_title",
+            "label": "Box Button Text",
+			"default": "Shop Bars"
+          },
+		  {
+            "id": "button_link",
+            "type": "url",
+            "label": "Button Link"
+          }
+		] 
+      }
+	],
+    "presets": [{
+      "name": "New Home - Boxes",
+      "category": "New Homepage Sections"
+    }]
+  }
+{% endschema %}

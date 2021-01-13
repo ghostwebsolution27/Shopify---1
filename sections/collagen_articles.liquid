@@ -1,0 +1,121 @@
+{% if section.settings.divider %}
+<div class="section--divider">
+   {% endif %}
+   <div
+      data-section-id="{{ section.id }}"
+      data-section-type="library-articles-section"
+      class="text-{{ section.settings.align_text }} library_articles_section"
+      style="{% if section.settings.background_image != blank %}background-image: url({{ section.settings.background_image | img_url: '2200x' }});{% endif %} {% if section.settings.background_color != blank %}background-color: {{ section.settings.background_color }};{% endif %}    background-position: center; background-size: cover;">
+      <div class="page-width">
+         <div class="grid">
+            <div class="grid__item{% if section.settings.narrow_column %} medium-up--three-quarters medium-up--push-one-eighth{% endif %}">
+               {% if section.settings.title != blank %}
+               <h3 style="text-align: center;">{{ section.settings.title }}</h3>
+               {% endif %}
+               <div class="articles_wraper">
+                  {% for block in section.blocks %}
+                  {% case block.type %}
+                  {% when 'text' %}
+                  {% if block.settings.article_text != blank %}
+                  <div class="article" style="{% if block.settings.white_text != blank %}color: #fff;{% endif %}">
+                     <div class="article_number_wrapper">
+                        <h1 class="article_number">{{ block.settings.article_number }}</h1>
+                     </div>
+                     <div>
+                        {% if block.settings.enlarge_text %}
+                        <div class="enlarge-text">{% endif %}
+                           {{ block.settings.article_text }}
+                           {% if block.settings.enlarge_text %}
+                        </div>
+                        {% endif %}
+                        <a href="{{ block.settings.box_link }}" target="_blank" class="simple_link">Read Now</a>
+                     </div>
+                  </div>
+                  {% else %}
+                  {{ 'home_page.onboarding.no_content' | t }}
+                  {% endif %}
+                  {% endcase %}
+                  {% endfor %}
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   {% if section.settings.divider %}
+</div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Collagen Articles",
+    "class": "index-section",
+    "max_blocks": 10,
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color "
+      },
+      {
+        "type": "image_picker",
+        "id": "background_image",
+        "label": "Background Image"
+      },
+      {
+        "type": "checkbox",
+        "id": "divider",
+        "label": "Show section divider",
+        "default": false
+      }
+    ],
+    "presets": [{
+      "name": "Collagen Articles",
+      "category": "Library"
+    }],
+    "blocks" : [
+      {
+        "type": "text",
+        "name": "Text",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "enlarge_text",
+            "label": "Enlarge text",
+            "default": false
+          },
+          {
+            "id": "article_number",
+            "type": "text",
+            "label": "Number"
+          },
+          {
+            "id": "article_text",
+            "type": "richtext",
+            "label": "Article",
+            "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+          },
+          {
+            "type": "checkbox",
+            "id": "white_text",
+            "label": "Reverse Color Header",
+            "default": false
+          },
+          {
+            "type": "url",
+            "id": "box_link",
+            "label": "Article Link"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+
+{% javascript %}
+{% endjavascript %}

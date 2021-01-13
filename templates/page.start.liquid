@@ -1,0 +1,34 @@
+{% comment %}ECPWS{% endcomment %}{% capture ec-pw-ify %}{% section 'start_header_note' %}
+<div id="start">
+{% section 'try_logo_sec' %}
+{% section 'start_slideshow' %}
+{% section 'start_no_section' %}
+{% section 'start_steps' %}
+{% section 'start_section_2' %}
+{% section 'start_tabs' %}
+
+{% section 'start_section_four' %}
+{% section 'start_testimoni' %}
+{% section 'start_reviews' %}
+
+<div class="grid">
+  <div class="grid__item medium-up--three-quarters medium-up--push-one-eighth">
+    {% comment %}
+    <header class="section-header">
+      <h1 class="section-header__title">{{ page.title }}</h1>
+    </header>
+    {% endcomment %}
+    <div class="rte rte--nomargin">
+      {{ page.content }}
+    </div>
+
+  </div>
+</div>
+ </div>
+
+{% section 'start_call_action' %}
+{% comment %}ECPWS{% endcomment %}{% endcapture %}{% include 'ec-passwordify' %}
+
+<style type="text/css">
+  .textannounce {font-size:13px;}
+</style>

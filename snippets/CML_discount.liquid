@@ -1,0 +1,16 @@
+
+<!-- discount script -->
+{% assign customer_tag = "" %}
+{% if customer %}
+{% for tag in customer.tags %}
+{% for meta in shop.metafields.customer_tags %}
+{% assign tag_name = meta.last | split: "," %}
+{% if tag_name[0] contains tag %}
+{% assign customer_tag = tag %}
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% endif %}
+{% assign show_note = false %}
+{% assign store_logo = '' %}
+{% assign checkout_heading = 'Your Order details' %}

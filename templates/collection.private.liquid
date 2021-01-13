@@ -1,0 +1,30 @@
+{% comment %}ECPWS{% endcomment %}{% capture ec-pw-ify %}{% section 'collection-header' %}
+
+<div class="variety-store"><h1>PRIVATE STORE</h1> </div>
+<div id="CollectionAjaxResult" class="collection-content privatecoll">
+  <div id="CollectionAjaxContent">
+    <div class="page-width">
+      
+      <div class="grid">
+        <div class="grid__item medium-up--one-fifth grid__item--sidebar">
+          {% section 'collection-sidebar' %}
+        </div>
+        <div class="grid__item medium-up--four-fifths grid__item--content">
+          {% section 'private-template' %}
+        
+         
+        </div>
+      </div>
+    </div>
+    
+   {% section 'private-template_smaller_pack' %}
+      
+
+       
+        
+     
+   
+    
+  </div>
+</div>
+{% comment %}ECPWS{% endcomment %}{% endcapture %}{% include 'ec-passwordify' %}

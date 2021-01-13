@@ -1,0 +1,121 @@
+<div id="bf1" style="text-align: center;">
+  <div class="reg-switch tabs-outer">
+    <ul class="reg-switch tabs" style="margin-top:20;">
+<!--       <li>
+        <img class="reg-switch tab_product_image bannanbar ot1" style=" " src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/banana_front_1_3x_bdde4b21-7a7e-4f6b-a648-a0c1098fa3b6.png?v=1594273876" alt="">
+        <img class="reg-switch  bannanbar ot4" style= " display:none;    " src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/bb_720.png?v=1585337390" alt="">
+        <p class="reg-switch btn1 tab12">NUTRITION FACTS</p>
+      </li> -->
+      <li>
+        <img class="reg-switch tab_product_image chocolatebar ot2" style=" "  src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/OC-Bar-Single_3x_839479fc-04d2-476c-b2f9-a543031cc345.png?v=1606029382" alt="">
+        <img class="reg-switch  chocolatebar ot8" style="display:none;;  "  src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/sb.png?v=1585337390" alt="">
+      </li>
+      <li>
+        <h6>Oat Cookie to help you power through the holidays.</h6>
+      	<p class="reg-switch btn1 tab13">NUTRITION FACTS</p>
+      </li>
+      <li>
+        <img class="reg-switch tab_product_image oatsbar ot3" style=" "  src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/OC-Bar-Single_-1.png?v=1606029892" alt="">
+        <img class="reg-switch  oatsbar ot6" style="display:none;    "  src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/oc.png?v=1585337390" alt="">
+      </li>
+      <li>
+        <h6>Salted Brownie to help you relax after holiday madness.</h6>
+        <p class="reg-switch btn1 tab14" style="background-color:#020202">NUTRITION FACTS</p>
+      </li>
+    </ul>
+
+<!--     <div id="tab1" class="reg-switch tab_contentBox">
+      <div class="reg-switch tab_product_textbox">                                     
+        <p>Decadence in disguise, our Banana Bread flavor unites soft cinnamon oats and a subtle sweet banana.</p>                 
+      </div>
+      <div class="reg-switch tabproductBox_">
+        <div class="reg-switch tab_nutri_textbox">                                     
+          <h4 style="color:#fff; background:#ecd113; "> banana bread  </h4>               
+        </div>
+        <img class="reg-switch tab_nutri_image" src="//cdn.shopify.com/s/files/1/0248/8084/0813/files/banana_04a24318-8791-451a-b8b3-fd0582d7efa3_350x.jpg?v=1580147632" alt="">                                    
+      </div>
+    </div> -->
+    
+    <div id="tab2" class="reg-switch tab_contentBox">
+<!--       <div class="reg-switch tab_product_textbox">                                     
+      <p>The perfect balance of milk and dark chocolate, our Salted Brownie flavor brings you the decadence of almond-sprinkled brownie batter.</p>
+      </div> -->
+      <div class="reg-switch tabproductBox_">
+        <div class="reg-switch tab_nutri_textbox">                                     
+          <h4 style="color:#fff; background:#e2c687; ">oat cookie</h4>               
+        </div>
+        <img class="reg-switch tab_nutri_image" src="//cdn.shopify.com/s/files/1/0248/8084/0813/files/oat_219dcecc-1328-42f5-a6ff-dd780ff627c0_350x.jpg?v=1580149326" alt="">
+      </div>
+    </div>
+    
+    <div id="tab3" class="reg-switch tab_contentBox">
+<!--       <div class="reg-switch tab_product_textbox">                                     
+        <p>Like the first step into your hometown bakery, our Oat Cookie bar melds deep notes of buttered brown sugar and warm maple syrup.</p>               
+      </div> -->
+      <div class="reg-switch tabproductBox_">
+        <div class="reg-switch tab_nutri_textbox">                                     
+          <h4 style="color:#fff; background:#020202; ">salted brownie</h4>               
+        </div>
+        <img class="reg-switch tab_nutri_image" src="//cdn.shopify.com/s/files/1/0248/8084/0813/files/salted_13eb7fcf-9643-4798-a99a-0ef8cf4c7e09_350x.jpg?v=1580147653" alt="">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  ;jQuery(document).ready(function(){
+    
+    
+    jQuery('a[href="#tab-1"]').removeClass("active");
+    jQuery(".tab12.reg-switch").click(function(e){
+      e.preventDefault()
+      jQuery(".bannanbar.reg-switch").toggle();
+      jQuery(".ot2.reg-switch").show();
+      jQuery(".ot8.reg-switch").hide();
+      jQuery(".ot3.reg-switch").show();
+      jQuery(".ot6.reg-switch").hide();
+      jQuery("#tab3.reg-switch").hide();
+      jQuery(".tab14.reg-switch").removeClass("active");
+      jQuery("#tab2.reg-switch").hide();
+      jQuery(".tab13.reg-switch").removeClass("active");
+      jQuery("#tab1.reg-switch").slideToggle();
+      jQuery(".tab12.reg-switch").toggleClass("active");
+    });
+
+    jQuery(".tab13.reg-switch").click(function(){
+      jQuery(".chocolatebar.reg-switch").toggle();
+      jQuery(".ot1.reg-switch").show();
+      jQuery(".ot4.reg-switch").hide();
+      jQuery(".ot3.reg-switch").show();
+      jQuery(".ot6.reg-switch").hide();
+      jQuery("#tab1.reg-switch").hide();
+      jQuery(".tab12.reg-switch").removeClass("active");
+      jQuery("#tab3.reg-switch").hide();
+      jQuery(".tab14.reg-switch").removeClass("active");
+      jQuery("#tab2.reg-switch").slideToggle();
+      jQuery(".tab13.reg-switch").toggleClass("active");
+    });
+    
+    
+    
+    jQuery(".tab14.reg-switch").click(function(){
+      jQuery(".oatsbar.reg-switch").toggle();
+      jQuery(".ot1.reg-switch").show();
+      jQuery(".ot4.reg-switch").hide();
+      jQuery(".ot2.reg-switch").show();
+      jQuery(".ot8.reg-switch").hide(); 
+      jQuery("#tab2.reg-switch").hide();
+      jQuery(".tab13.reg-switch").removeClass("active");
+      jQuery("#tab1.reg-switch").hide();
+      jQuery(".tab12.reg-switch").removeClass("active");
+      jQuery("#tab3.reg-switch").slideToggle();
+      jQuery(".tab14.reg-switch").toggleClass("active");
+    });
+    
+    
+    
+  });
+  
+  
+</script>

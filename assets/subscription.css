@@ -1,0 +1,697 @@
+/** 
+GENERAL STYLING 
+**/
+
+a.subscription-button.btn:hover, a.subscription-button.btn:active {
+ 	background: #333 ; 
+}
+
+.site-header {
+    background: transparent;
+}
+
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.subscription-template h1, .subscription-template .h1, .subscription-template h2, .subscription-template .h2, .subscription-template h3, .subscription-template .h3, .subscription-template h4, .subscription-template .h4, .subscription-template h5, .subscription-template .h5, .subscription-template h6, .subscription-template .h6 {
+    font-family: proxima-nova-condensed, sans-serif ;
+  	text-transform: uppercase;
+  	font-weight: 900;
+}
+
+.subscription-template h2, .subscription-template .h2 {
+ 	font-size: 35px;
+  	line-height: 30px;
+}
+
+.subscription-template p, .subscription-template a {
+    font-family:"proxima-nova" ;
+}
+
+.subscription-template p {
+ 	font-size: 15px;
+  	line-height: 15px;
+  	margin-bottom: 0;
+}
+
+.subscription-button {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 0;
+    text-align: center;
+    background: #000;
+    border-radius: 5px;
+    text-transform: uppercase;
+  	width: 200px;
+    max-width: 200px;
+    display: block;
+    margin: auto;
+}
+
+@media only screen and (min-width: 1025px) {
+  	
+  .subscription-template h2, .subscription-template .h2 {
+      font-size: 48px;
+      line-height: 43px;
+  }
+
+}
+
+/** 
+BANNER STYLING 
+**/
+
+.subscription-banner {
+    transform: skewY(-7.5deg);
+    padding: 16vh 0 8vh;
+    text-align: center;
+    margin-top: -6vh;
+}
+
+.subscription-banner .page-width{
+  	transform: skewY(7.5deg);
+  	padding: 0 0;
+}
+
+.subscription-banner .grid .grid__item:not(.image-grid) {
+ 	padding: 0 20px; 
+}
+
+.subscription-banner h2 {
+   	max-width: 275px;
+    margin: auto;
+}
+
+.subscription-banner p {
+ 	line-height: 15px;
+    max-width: 300px;
+    margin: 15px auto 0;
+}
+
+.subscription-banner img {
+    max-width: 100%;
+    margin: 30px 0;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  
+  	.subscription-banner {
+        transform: skewY(-7.5deg);
+        padding: 25vw 0 10vw;
+        text-align: center;
+        margin-top: -20vw;
+    }
+ 
+  	.subscription-banner img {
+        max-width: 75vw;
+    }
+  
+}
+
+
+@media only screen and (min-width: 1025px) {
+  
+  	.subscription-banner h2 {
+        max-width: 350px;
+    }
+
+    .subscription-banner {
+        padding: 28vh 0 13vh;
+        margin-top: -28vh;
+    }
+  
+  	.subscription-banner img {
+        max-width: 45vh;
+        margin: 30px 0;
+    }
+
+}
+
+/** 
+REWARD STYLING 
+**/
+
+.subscription-rewards {
+    padding: 75px 0 75px;
+    text-align: center;
+}
+
+.subscription-rewards h3 {
+ 	font-size: 32px;
+    line-height: 30px;
+    margin-bottom: 0;
+    font-weight: 400;
+}
+
+.subscription-rewards h2 {
+ 	margin-bottom: 25px;
+}
+
+.subscription-rewards .grid.hiw-blocks {
+    margin: 50px 0;
+}
+
+.subscription-rewards .grid.reward-content {
+    max-width: 90%;
+    display: flex;
+    align-items: center;
+    margin: 10px auto ;
+}
+
+.subscription-rewards  .grid.reward-content .grid__item:first-child {
+    background: #efefef;
+    border-radius: 5px;
+  	margin-right: 50px;
+}
+
+.subscription-rewards .grid.reward-content img {
+    max-width: 90px;
+    margin: auto;
+    margin-right: -35px;
+}
+
+.subscription-rewards .subscription-button {
+    margin-top: 50px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+
+	.subscription-rewards .page-width {
+        max-width: 500px;
+    }
+  
+}
+
+@media only screen and (min-width: 1025px) {
+	
+  	.subscription-rewards .page-width {
+        max-width: 750px;
+      	padding: 0 20px;
+    }
+  
+  	.subscription-rewards .grid.reward-content img {
+        max-width: 125px;
+        margin: auto;
+        margin-right: 0;
+    }
+  
+  	.subscription-rewards .grid.reward-content {
+      	max-width: 100%;
+    }
+
+}
+
+/** 
+HOW IT WORKS STYLING
+**/
+
+.subscription-how-it-works {
+  	transform: skewY(-7.5deg);
+    padding: 10vh 0 5vh;
+  	text-align: center;
+}
+
+.subscription-how-it-works .page-width {
+    transform: skewY(7.5deg);
+    padding: 0 10px;
+}
+
+.subscription-how-it-works h2 {
+ 	width: 100%; 
+}
+
+.subscription-how-it-works .grid {
+    display: flex;
+    align-items: stretch;
+  	justify-content: space-between;
+}
+
+.subscription-how-it-works .grid.hiw-blocks {
+    margin: 50px 0;
+}
+
+.subscription-how-it-works .grid__item {
+    display: flex;
+    align-items: flex-end;
+    width: 31%;
+    padding: 10px;
+    background: #fff;
+    color: #fff;
+    text-transform: uppercase;
+    min-height: 175px;
+    position: relative;
+    padding-bottom: 25px;
+    border-radius: 5px;
+}
+
+.hiw-body img {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 50%;
+}
+
+.subscription-how-it-works .grid__item p {
+    color: #000;
+    font-size: 13px;
+}
+
+.subscription-how-it-works  .grid::after {
+ 	display:none; 
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  
+  	.subscription-how-it-works .page-width {
+        max-width: 600px;
+    }
+  
+  	.subscription-how-it-works .grid__item {
+        min-height: 160px;
+    }
+ 
+  	.hiw-body img {
+        width: 35%;
+    }
+  
+}
+
+@media only screen and (min-width: 1025px) {
+  
+  .subscription-how-it-works {
+    padding: 10vh 0 10vh;
+  }
+
+  .subscription-how-it-works .page-width {
+      max-width: 750px;
+      padding: 0 20px;
+  }
+  
+  .hiw-body img {
+      width: 80px;
+  }
+
+}
+
+/** 
+SLIDER STYLING
+**/
+
+.subscription-slider-mobile {
+  	padding: 75px 0;
+  	text-align: center;
+}
+
+.subscription-slider-mobile .page-width {
+ 	padding: 0; 
+}
+
+.subscription-slider-mobile h3 {
+    font-size: 32px;
+    line-height: 30px;
+    margin-bottom: 0;
+    font-weight: 400;
+}	
+
+.subscription-slider-mobile .main-carousel {
+ 	margin-top: 25px; 
+}
+
+.subscription-slider-mobile .carousel-cell {
+ 	width: 75%; 
+  	padding: 0 10px;
+}
+
+.ss-bar-body {
+    background: #f6f6f6;
+    border-radius: 5px;
+    position: relative;
+  	margin-bottom: 25px;
+  	margin-top: 125px;
+  	overflow: visible;
+}
+
+.ss-bar-body img {
+    max-width: 200px;
+    margin-top: -100px;
+}
+
+.ss-bar-body h5 {
+    color: #000;
+    margin: 15px 0;
+    text-align: center;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+  	font-weight: 400;
+}
+
+.ss-bar-body a.subscription-button {
+    display: block;
+    margin: 0;
+    width: 100% ;
+    max-width: 100% ;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.subscription-slider-mobile h4 {
+    color: #fff;
+    font-size: 20px;
+    line-height: 20px;
+    margin: 0;
+}
+
+.subscription-slider-mobile .ss-desc {
+    opacity: 0;
+  	transition: all 0.5s ease-out;
+}
+
+.subscription-slider-mobile  .ss-button {
+    opacity: 0;
+  	transition: all 0.5s ease-out;
+}
+
+.subscription-slider-mobile .grid.ss-icons {
+    opacity: 0;
+    transition: all 0.5s ease-out;
+}
+
+.subscription-slider-mobile .carousel-cell.is-selected .ss-desc {
+    opacity: 1;
+}
+
+.subscription-slider-mobile .carousel-cell.is-selected .ss-button {
+    opacity: 1;
+}
+
+.subscription-slider-mobile .carousel-cell.is-selected .grid.ss-icons {
+    opacity: 1
+}
+
+.subscription-slider-mobile .ss-desc {
+    margin: 0 0 25px;
+  	padding: 0 20px;
+}
+
+.subscription-slider-mobile  .ss-button {
+    margin-bottom: 25px;
+}
+
+.subscription-slider-mobile .grid.ss-icons img {
+    max-width: 75px;
+    margin: auto;
+}
+
+.ss-bar-body a.subscription-button:hover {
+    color: #fff;
+    background: #333;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+ 
+  	.subscription-slider-mobile .carousel-cell {
+        width: 50%;
+    }
+  
+}
+
+@media only screen and (min-width: 1025px) {
+
+  	.subscription-slider-mobile .carousel-cell {
+        width: 33.333%;
+    }
+  
+  	.subscription-slider-mobile {
+        padding: 10vh 0 15vh;
+    }
+
+}
+
+/** 
+TESTIMONIALS STYLING
+**/
+
+.subscription-testimonial-mobile {
+    background: #f0e5d3;
+    padding: 75px 0;
+    transform: skewY(-7.5deg);
+}
+
+.subscription-testimonial-mobile .page-width {
+    padding: 0;
+  	transform: skewY(7.5deg);
+}
+
+.subscription-testimonial-mobile .carousel-cell {
+    width: 80%;
+    padding: 0 15px 15px;
+}
+
+.subscription-testimonial-mobile .carousel-cell > .grid {
+    background: #fff; 
+  	padding-bottom: 25px;
+    -webkit-box-shadow: 10px 10px 2px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 2px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 2px 0px rgba(0,0,0,0.75);
+}
+
+.subscription-testimonial-mobile h3.testimonial-section-title {
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.subscription-testimonial-mobile h2.testimonial-section-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.subscription-testimonial-mobile .testimonial-image {
+    min-height: 70vw;
+    background-size: cover;
+    background-position: center;
+  	margin-bottom: 25px;
+}
+
+.subscription-testimonial-mobile .testimonial-comment, .subscription-testimonial-mobile .testimonial-stars, .subscription-testimonial-mobile .testimonial-name, .subscription-testimonial-mobile .testimonial-job {
+ 	padding: 0 20px; 
+}
+
+.subscription-testimonial-mobile .testimonial-comment h2 {
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: 400;
+    margin-bottom: 0;
+    text-transform: none;
+}
+
+.subscription-testimonial-mobile .testimonial-stars {
+    margin: 10px 0;
+}
+
+.subscription-testimonial-mobile .testimonial-stars img {
+    display: inline-block;
+    width: 15px;
+}
+
+.subscription-testimonial-mobile .testimonial-name h4 {
+    font-weight: 300;
+}
+
+.subscription-testimonial-mobile .testimonial-job h5 {
+    color: #000;
+    font-size: 15px;
+    line-height: 15px;
+    font-weight: 600;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .subscription-testimonial-mobile {
+      padding: 15vw 0;
+  }
+  .subscription-testimonial-mobile .carousel-cell {
+      width: 75%;
+  }
+  .subscription-testimonial-mobile .testimonial-image {
+      min-height: 50vw;
+      background-size: cover;
+      background-position: top;
+      margin-bottom: 25px;
+  }
+  .subscription-testimonial-mobile .carousel-cell > .grid {
+   	  height: 100%; 
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  
+  	.subscription-testimonial-mobile {
+        padding: 10vw 0;
+    }
+
+  	.subscription-testimonial-mobile .carousel-cell {
+        width: 33.333%;
+    }
+  
+  	.subscription-testimonial-mobile .testimonial-image {
+        min-height: 350px;
+      	background-position: top;
+    }
+  
+  	.subscription-testimonial-mobile .testimonial-name h4 {
+     	margin-bottom: 0; 
+    }
+  
+  	.subscription-testimonial-mobile .carousel-cell > .grid {
+     	min-height: auto; 
+    }
+  
+  	.subscription-testimonial-mobile .testimonial-boxes {
+        display: flex;
+        align-items: stretch;
+    }
+  
+  	.subscription-testimonial-mobile .testimonial-boxes .carousel-cell > .grid {
+        min-height: auto;
+        height: 100%;
+    }
+
+}
+
+/** 
+FAQs STYLING
+**/
+.subscription-template #shopify-section-subscription-faq {
+    padding: 75px 0;
+}
+
+.subscription-template #shopify-section-subscription-faq .page-width {
+    padding: 0 20px;
+}
+
+.subscription-template #shopify-section-subscription-faq .title_and_arrow_wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.subscription-template #shopify-section-subscription-faq .collapsible-trigger--inline {
+    padding: 15px 35px 15px 0;
+    text-align: left ;
+    display: block;
+    width: 100%;
+  	position: relative;
+  	font-size: 18px;
+  	line-height: 18px;
+  	font-family: "proxima-nova" ;
+}
+
+.subscription-template #shopify-section-subscription-faq .collapsible-trigger--inline img {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    display: block;
+    margin: auto;
+}
+
+.subscription-template #shopify-section-subscription-faq .collapsible-trigger--inline img.open-faq {
+ 	display: block; 
+}
+
+.subscription-template #shopify-section-subscription-faq .collapsible-trigger--inline img.close-faq {
+ 	display: none; 
+}
+
+.subscription-template #shopify-section-subscription-faq .collapsible-trigger--inline.is-open img.open-faq {
+ 	display: none; 
+}
+
+.subscription-template #shopify-section-subscription-faq .collapsible-trigger--inline.is-open img.close-faq {
+ 	display: block; 
+}
+
+.subscription-template #shopify-section-subscription-faq .question-faq:last-child {
+    border-bottom: 1px solid #ddd;
+}
+
+.subscription-template #shopify-section-subscription-faq .question-faq {
+    border-top: 1px solid #ddd;
+}
+
+.subscription-template #shopify-section-subscription-faq .rte.collapsible-content__inner--faq p {
+    border: none;
+    padding: 0;
+    margin-bottom: 0 ;
+}
+
+.subscription-template #shopify-section-subscription-faq h2, .subscription-template #shopify-section-subscription-faq .h2 {
+  	margin-bottom: 50px;
+}
+
+@media only screen and (min-width: 768px) {
+  
+    .subscription-template #shopify-section-subscription-faq .page-width {
+        max-width: 750px ;
+    }
+  
+  	.subscription-template #shopify-section-subscription-faq {
+        padding: 5vw 0;
+    }
+
+}
+
+/** 
+INSTAFEED STYLING 
+**/
+
+div#shopify-section-instagram {
+    padding-top: 5vh;
+}
+
+.subscription-template #insta-feed .instafeed-container, .subscription-template .instafeed-shopify .instafeed-container {
+    width: 50% ;
+    padding-top: 50% ;
+}
+
+.subscription-template .instagram-section .btn {
+  	display: none;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) { 
+  
+  	.subscription-template #insta-feed .instafeed-container, .subscription-template .instafeed-shopify .instafeed-container {
+        width: 33.333% ;
+        padding-top: 33.333% ;
+    }
+  
+}
+
+@media only screen and (min-width: 768px) {
+  
+  	.grid.hiw-blocks .grid__item {
+        justify-content: center;
+    }
+  
+  	.subscription-template #shopify-section-subscription-faq .page-width {
+        padding: 0 10px;
+        max-width: 550px;
+    }
+  
+}
+
+@media only screen and (min-width: 1025px) {
+  
+  	.subscription-template #insta-feed .instafeed-container, .subscription-template .instafeed-shopify .instafeed-container {
+        width: 16.666667% ;
+    	padding-top: 16.666667% ;
+    }
+  
+}
+
+    

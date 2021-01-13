@@ -1,0 +1,76 @@
+{% comment %}ECPWS{% endcomment %}{% capture ec-pw-ify %}{% include 'elspw_product' %}
+
+{{ 'bundle.js' | asset_url | script_tag }}
+
+{% section 'product-template-bundle' %}
+{% section 'product-recommendations' %}
+{% section 'recently-viewed' %}
+
+{% if collection %}
+  <div class="text-center page-content page-content--bottom">
+    <a href="{% if collection.handle == 'frontpage' %}/{% else %}{{ collection.url }}{% endif %}" class="btn btn--small return-link">
+      <p>
+      {% include 'icon-arrow-left' %} {{ 'products.general.collection_return' | t: collection: collection.title }}
+      </p>
+    </a>
+  </div>
+{% endif %}
+
+<script>
+  // Override default values of shop.strings for each template.
+  // Alternate product templates can change values of
+  // add to cart button, sold out, and unavailable states here.
+  theme.productStrings = {
+    addToCart: {{ 'products.product.add_to_cart' | t | json }},
+    soldOut: {{ 'products.product.sold_out' | t | json }},
+    unavailable: {{ 'products.product.unavailable' | t | json }}
+  };
+ 
+</script>
+
+<script type="text/javascript">
+ 
+  	//alert(fourChildNode.textContent);
+ 
+	var _learnq = _learnq || [];
+  
+	jQuery(document).ready(function( $ ) {
+      
+      	$( "#bundle_dummy" ).click(function() {
+          
+          var firstVariant = $( ".bundle-images .grid__item:nth-child(1) h6" ).text();
+          var secondVariant = $( ".bundle-images .grid__item:nth-child(2) h6" ).text();
+          var thirdVariant = $( ".bundle-images .grid__item:nth-child(3) h6" ).text();
+          var fourthVariant = $( ".bundle-images .grid__item:nth-child(4) h6" ).text();
+          var priceVariant = $( "#bundle-add-to-cart .bundle-price" ).text();
+
+          console.log(firstVariant);
+          console.log(secondVariant);
+          console.log(thirdVariant);
+          console.log(fourthVariant);
+          console.log(priceVariant);
+
+          var item = {
+            Name: {{ product.title|json }},
+            ProductID: {{ product.id|json }},
+            Categories: {{ product.collections|map:'title'|json }},
+            ImageURL: "https:{{ product.featured_image.src|img_url:'grande' }}",
+            URL: "{{ shop.secure_url }}{{ product.url }}",
+            Brand: {{ product.vendor|json }},
+            VariantOne: firstVariant,
+            VariantTwo: secondVariant,
+            VariantThree: thirdVariant,
+            VariantFour: fourthVariant,
+            Price: priceVariant
+          };
+
+          _learnq.push(['track', 'Added to Cart', item]);
+          
+        });
+      
+	});
+  
+</script>
+
+{% comment %}ECPWS{% endcomment %}{% endcapture %}{% include 'ec-passwordify' %}
+

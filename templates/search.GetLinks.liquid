@@ -1,0 +1,47 @@
+{% layout none %}
+
+
+{% capture output %}
+{
+"collectionLinks":[
+{% for collection in collections %}
+    {% assign custom_tags = true %}                                   
+{% if customer %}
+
+{% assign words = collection.metafields.spofcollect.hidebytags | split: ',' %}
+
+                            {% for word in words %}
+								
+								{% assign dword = word | downcase | strip %}
+			
+								{% for cust in customer.tags %}
+ 	
+									{% assign custTag = cust | downcase | strip %}
+					
+									{% if custTag == dword %} 
+											
+											{% assign custom_tags = false %}
+
+											{% continue %}
+						
+									{% endif  %}
+
+								{% endfor %}
+
+						{% endfor %}
+
+				{% endif  %}
+       
+{% if collection.metafields.spofcollect.hideall !='true' and custom_tags %}
+        {
+	 "id":"{{collection.id}}"
+	 ,"title":"{% include 'esf-rem-slash' with collection.title %}"
+	 ,"handle":"{% include 'esf-rem-slash' with collection.handle %}"
+	}
+,
+{% endif %}
+{% endfor %}
+{}   
+]}
+{% endcapture %}
+{{ output | strip_newlines }}

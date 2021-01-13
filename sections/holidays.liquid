@@ -1,0 +1,646 @@
+<div id="holidays">
+  <div class="grid holiday_banner">
+    <div class="grid__item small--one-whole medium--one-whole large-up--one-half">
+      <img class="level-logo" src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/level_dark_logo_200x@2x.png?v=1564863418">
+      <h1>{{ section.settings.banner_title }}</h1>
+      <p id="countdown-timer"></p>
+      <h4>{{ section.settings.banner_subtitle }}</h4>
+	  
+      {% if section.settings.banner_klaviyo == blank %}
+        <form>
+            <input name="email" type="email" placeholder="Email Address..." /> 
+            <button class="btn" type="submit" value="Submit">Submit</button>
+        </form>
+      {% else %}
+      	{{ section.settings.banner_klaviyo }}
+      {% endif %}
+
+    </div>
+    <div class="grid__item image_grid small--one-whole medium--one-whole large-up--one-half">
+      <img src="{{section.settings.banner_image | img_url: 'master' }}">
+    </div>
+  </div>
+  <div class="grid under_banner">
+    <div class="grid__item small--one-whole medium--one-whole large-up--one-whole">
+      <h1>{{ section.settings.benefits_title }}</h1>
+      <h4>{{ section.settings.benefits_subtitle }}</h4>
+      <div class="benefits_lists">
+        {{ section.settings.benefits_content }}
+      </div>
+      <a class="btn" href="{{ section.settings.benefits_button_url }}">{{ section.settings.benefits_button_text }}</a>
+      <img src="{{section.settings.benefits_image | img_url: 'master' }}">
+    </div>
+  </div>
+  <div class="grid mini_section">
+    <div class="grid__item small--one-whole medium--one-whole large-up--one-whole">
+      <h1>{{ section.settings.mini_title }}</h1>
+      <h2>{{ section.settings.mini_subtitle }}</h2>
+      <img src="{{section.settings.mini_image | img_url: 'master' }}">
+      <p>{{ section.settings.mini_content }}</p>
+      <a class="btn" href="{{ section.settings.mini_button_url}}">{{ section.settings.mini_button_text }}</a>
+    </div>
+  </div>
+  <div class="grid bab_section">
+    <div class="grid__item small--one-whole medium--one-whole large-up--one-whole">
+      <h1>{{ section.settings.bab_title }}</h1>
+      <img src="{{section.settings.bab_image | img_url: 'master' }}">
+      <p>{{ section.settings.bab_content }}</p>
+      <a class="btn" href="{{ section.settings.bab_button_url }}">{{ section.settings.bab_button_text }}</a>
+    </div>
+  </div>
+  <div class="grid cta_section">
+    <div class="grid__item small--one-whole medium--one-whole large-up--one-whole">
+      <h1>{{ section.settings.cta_title }}</h1>
+      <h4>{{ section.settings.cta_subtitle }}</h4>
+      {% if section.settings.cta_klaviyo == blank %}
+        <form>
+            <input name="email" type="email" placeholder="Email Address..." /> 
+            <button class="btn" type="submit" value="Submit">Submit</button>
+        </form>
+      {% else %}
+      	{{ section.settings.cta_klaviyo }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+  
+  div#yoHolder {
+    display: none ;
+  }
+  
+  footer.site-footer {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  
+  footer.site-footer .page-width > .grid {
+    display: none;
+  }
+  
+  footer.site-footer p.footer__small-text {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  
+  div#shopify-section-header {
+    display: none;
+  }
+  
+  p#countdown-timer {
+    background: #000;
+    max-width: 300px;
+    margin: 0 auto 15px;
+    color: #fff;
+    font-family: proxima-nova-condensed, sans-serif ;
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 1;
+    padding: 10px;
+  }
+  
+  .main-content {
+    padding-top: 40px;
+  }
+  
+  #holidays h1, #holidays .h1, #holidays h2, #holidays .h2, #holidays h3, #holidays .h3, #holidays h4, #holidays .h4, #holidays h5, #holidays .h5, #holidays h6, #holidays .h6 {
+    font-family: proxima-nova-condensed, sans-serif ;
+  }
+
+  #holidays p, #holidays a {
+      font-family: "proxima-nova" ;
+  }
+  
+  #holidays h1 {
+   	font-weight: 800; 
+    line-height: 1;
+  }
+  
+  #holidays .grid .grid__item:not(.image_grid) {
+    padding: 25px 10px;
+  }
+  
+  #holidays .grid .grid__item {
+    text-align: center;
+  }
+  
+  #holidays .grid a.btn {
+    border-radius: 25px;
+    width: 100%;
+    max-width: 240px;
+    margin: 20px 0;
+  }
+  
+  #holidays .grid h4 {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.25;
+    margin-bottom: 0;
+  }
+  
+  #holidays .grid.holiday_banner img.level-logo {
+    max-width: 150px;
+    margin: 0 auto 25px;
+  }
+  
+  #holidays .grid.holiday_banner h4 {
+   	margin-bottom: 25px; 
+  }
+  
+  #holidays .grid.holiday_banner input {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+  }
+  
+  #holidays .grid button.btn {
+    font-family: "proxima-nova" ;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    max-width: 280px;
+    border-radius: 25px;
+  }
+  
+  #holidays .grid.under_banner .benefits_lists {
+    padding: 25px 0 0;
+  }
+  
+  #holidays .grid.under_banner .benefits_lists p {
+    font-weight: 700;
+    margin-bottom: 0;
+  }
+  
+  #holidays .grid.mini_section, #holidays .grid.cta_section {
+    background: #f9f4ed;
+  }
+  
+  #holidays .grid.mini_section h2 {
+    font-weight: 700;
+  }
+  
+  #holidays .grid.mini_section p {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 18px;
+  }
+  
+  #holidays .grid.bab_section p {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 18px;
+  }
+  
+  #holidays .grid.cta_section .grid__item {
+    padding: 50px 0;
+  }
+  
+  #holidays .grid.cta_section h4 {
+   	margin-bottom: 25px; 
+  }
+  
+  #holidays .grid.cta_section input {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
+  }
+  
+  #holidays .grid.testimonials_section {
+    background: #f7f7f7;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  #holidays .grid.testimonials_section h1 {
+    margin-bottom: 25px;
+  }
+  
+  #holidays .grid.testimonials_section p {
+    font-weight: 600;
+  }
+  
+  #holidays .grid.testimonials_section .testimonial_start:not(:last-child) {
+    margin-bottom: 50px;
+  }
+
+  /** KLAVIYO FORM **/
+  
+  #holidays .grid .klaviyo-form .needsclick[data-testid="form-row"] {
+    display: flex ;
+    flex-wrap: wrap ;
+  }
+  
+  #holidays .grid .klaviyo-form .needsclick[data-testid="form-row"] > .needsclick[data-testid="form-component"] {
+    width: 100%;
+    padding: 1px; 
+  }
+  
+  #holidays .grid input[type=email] {
+    width: 100% ;
+    max-width: 280px;
+    margin: 0 auto 10px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    display: block ;
+  }
+  
+  #holidays .grid button[type=button] {
+    border-radius: 25px;
+    width: 100%;
+    max-width: 240px;
+    margin: auto;
+    padding: 12px 0px;
+  }
+
+  /** TESTIMONIALS **/
+  
+  .fitness_testimonial_section {
+   	padding: 5vh 0 10vh; 
+    font-family: proxima-nova-condensed, sans-serif ;
+  }
+  
+   .fitness_testimonial_section .page-width {
+   	padding: 0;
+  }
+  
+  .fitness_testimonial_section h1 {
+   	text-align: center; 
+    font-family: proxima-nova-condensed, sans-serif ;
+  }
+  
+  .fitness_testimonial_section .testimonial-carousel .carousel-cell, .fitness_testimonial_section .testimonial-boxes .carousel-cell {
+   	width: 75%; 
+    padding: 15px;
+  }
+  
+  .fitness_testimonial_section .testimonial-carousel .carousel-cell .testimonial-image, .fitness_testimonial_section .testimonial-boxes .carousel-cell .testimonial-image {
+    min-height: 200px;
+    background-size: cover;
+    background-position: top;
+    margin-bottom: 20px;
+  }
+  
+  .fitness_testimonial_section .testimonial-carousel .carousel-cell .testimonial-stars img, .fitness_testimonial_section .testimonial-boxes .carousel-cell .testimonial-stars img {
+    display: inline-block;
+    width: 20px;
+  }
+  
+  .fitness_testimonial_section .testimonial-carousel .carousel-cell .testimonial-job h5, .fitness_testimonial_section .testimonial-boxes .carousel-cell .testimonial-job h5 {
+    color: #000;
+    font-size: 15px;
+    line-height: 15px;
+  }
+  
+  .fitness_testimonial_section .carousel-cell .grid, .fitness_testimonial_section .carousel-cell .grid {
+    background: #fff;
+    padding-bottom: 15px;
+  }
+  
+  .fitness_testimonial_section .carousel-cell .grid .grid__item > div:not(.testimonial-image), .fitness_testimonial_section .carousel-cell .grid .grid__item > div:not(.testimonial-image) {
+    padding: 0 10px;
+  }
+  
+  .fitness_testimonial_section .flickity-page-dots {
+    bottom: -40px;
+  }
+  
+  .fitness_testimonial_section .flickity-page-dots .dot {
+    background: #fff;
+    opacity: 1;
+  }
+  
+  .fitness_testimonial_section .flickity-page-dots .dot.is-selected {
+    background: #444;
+  }
+  
+  .fitness_testimonial_section .testimonial-comment p {
+    font-family: "proxima-nova" ;
+  }
+  
+  .fitness_testimonial_section .testimonial-name h4 {
+    margin-bottom: 5px;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 16px;
+  }
+  
+  @media only screen and (min-width: 1024px) {
+    
+    #holidays .grid.holiday_banner img.level-logo {
+      max-width: 175px;
+    }
+	
+    .fitness_testimonial_section {
+      padding: 5vh 0 7.5vh;
+  	}
+    
+    .fitness_testimonial_section .page-width {
+      max-width: 1300px;
+  	}
+    
+    .fitness_testimonial_section .testimonial-carousel .carousel-cell, .fitness_testimonial_section .testimonial-boxes .carousel-cell  {
+      width: 33.333%;
+      padding: 15px;
+  	}
+    
+    .fitness_testimonial_section .testimonial-carousel .carousel-cell .testimonial-image, .fitness_testimonial_section .testimonial-boxes .carousel-cell .testimonial-image {
+      min-height: 400px;
+      background-size: cover;
+      background-position: top left;
+  	}
+    
+  }
+  
+  @media only screen and (min-width: 1025px) {
+    
+    .fitness_testimonial_section .testimonial-boxes {
+      display: flex;
+  	}
+    
+  }
+  
+  @media only screen and (min-width: 800px) and (max-width: 1199px) {
+    
+    #holidays .grid.holiday_banner {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      padding: 50px 0;
+    }
+    
+    #holidays .grid:not(.holiday_banner) .grid__item {
+      padding: 75px 0;
+    }
+    
+    #holidays .grid:not(.holiday_banner) .grid__item img {
+      max-width: 500px;
+    }
+    
+  }
+  
+  @media only screen and (min-width: 1200px) {
+    
+    #holidays h1 {
+      font-size: 70px;
+      line-height: 1;
+    }
+    
+    #holidays h2 {
+      font-size: 50px;
+      line-height: 1;
+    }
+    
+    #holidays .grid.holiday_banner {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      padding: 50px 0;
+    }
+    
+    #holidays .grid .grid__item.image_grid {
+      text-align: left;
+    }
+    
+    #holidays .grid:not(.holiday_banner) .grid__item {
+      padding: 75px 0;
+    }
+    
+    #holidays .grid:not(.holiday_banner) .grid__item img {
+      max-width: 500px;
+      display: block;
+      margin: auto;
+  	}
+    
+  }
+  
+</style>
+
+<script>
+  
+// Set the date we're counting down to
+var countDownDate = new Date("Jan 5, 2025 15:37:25").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor(((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)) / 9);
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  document.getElementById("countdown-timer").innerHTML = hours + "h "
+  + minutes + "m " + seconds + "s ";
+
+  // If the count down is finished, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("countdown-timer").innerHTML = "EXPIRED";
+  }
+}, 1000);
+  
+</script>
+
+{% schema %}
+  {
+    "name": "Holidays Section Contents",
+    "settings": [
+      {
+       "type": "header",
+       "content": "Banner Section"
+      },
+	  {
+        "type": "image_picker",
+        "id": "banner_image",
+        "label": "Banner Image"
+      },
+	  {
+        "type": "text",
+        "id": "banner_title",
+        "label": "Banner Title",
+		"default": "Header Here"
+      },
+	  {
+        "type": "text",
+        "id": "banner_subtitle",
+        "label": "Banner Subtitle Title",
+		"default": "Subheader Here <br> Describing what we are offering!"
+      },
+	  {
+        "type": "html",
+        "id": "banner_klaviyo",
+        "label": "Banner Klaviyo Embed"
+      },
+	  {
+       "type": "header",
+       "content": "Benefits Section"
+      },
+	  {
+        "type": "text",
+        "id": "benefits_title",
+        "label": "Benefits Title",
+		"default": "Header Here"
+      },
+	  {
+        "type": "text",
+        "id": "benefits_subtitle",
+        "label": "Benefits Subtitle Title",
+		"default": "Subheader Here <br> Describing what we are offering!"
+      },
+	  {
+       "type": "richtext",
+       "id": "benefits_content",
+       "label": "Benefits Content",
+       "default": "<p>EGG WHITE + COLLAGEN COMPLETE PROTEIN</p><p>Powered by ADAPTOGENS</p><p>GLUTEN FREE</p><p>DAIRY FREE</p><p>SOY FREE</p><p>NONGMO</p>"
+      },
+	  {
+        "type": "text",
+        "id": "benefits_button_text",
+        "label": "Benefits Button Text",
+		"default": "Get Started!"
+      },
+	  {
+        "type": "url",
+        "id": "benefits_button_url",
+        "label": "Benefits Button URL"
+      },
+	  {
+        "type": "image_picker",
+        "id": "benefits_image",
+        "label": "Benefits Image"
+      },
+	  {
+       "type": "header",
+       "content": "Minis Section"
+      },
+	  {
+        "type": "image_picker",
+        "id": "mini_image",
+        "label": "Mini Image"
+      },
+	  {
+        "type": "text",
+        "id": "mini_title",
+        "label": "Mini Title",
+		"default": "Mini Variety"
+      },
+	  {
+        "type": "text",
+        "id": "mini_subtitle",
+        "label": "Mini Subtitle",
+		"default": "12 Pack"
+      },
+	  {
+        "type": "text",
+        "id": "mini_content",
+        "label": "Mini Content",
+		"default": "Only 100 Calories"
+      },
+	  {
+        "type": "text",
+        "id": "mini_button_text",
+        "label": "Mini Button Text",
+		"default": "Shop Mini"
+      },
+	  {
+        "type": "url",
+        "id": "mini_button_url",
+        "label": "Mini Button URL"
+      },
+	  {
+       "type": "header",
+       "content": "Build a Box Section"
+      },
+	  {
+        "type": "image_picker",
+        "id": "bab_image",
+        "label": "Build a Box Image"
+      },
+	  {
+        "type": "text",
+        "id": "bab_title",
+        "label": "Build a Box Title",
+		"default": "Mini Variety"
+      },
+	  {
+        "type": "text",
+        "id": "bab_content",
+        "label": "Build a Box Content",
+		"default": "Only 100 Calories"
+      },
+	  {
+        "type": "text",
+        "id": "bab_button_text",
+        "label": "Build a Box Button Text",
+		"default": "Shop Mini"
+      },
+	  {
+        "type": "url",
+        "id": "bab_button_url",
+        "label": "Build a Box Button URL"
+      },
+	  {
+       "type": "header",
+       "content": "CTA Section"
+      },
+	  {
+        "type": "text",
+        "id": "cta_title",
+        "label": "CTA Title",
+		"default": "Treat Your Inbox"
+      },
+	  {
+        "type": "text",
+        "id": "cta_subtitle",
+        "label": "CTA Subtitle",
+		"default": "Only 100 Calories!"
+      },
+	  {
+        "type": "html",
+        "id": "cta_klaviyo",
+        "label": "CTA Klaviyo Embed"
+      },
+	  {
+       "type": "header",
+       "content": "Testimonial Section"
+      },
+	  {
+        "type": "text",
+        "id": "testmonial_title",
+        "label": "Testimonial Title",
+		"default": "Testimonials"
+      }
+    ],
+	"blocks": [
+	  {
+		"type": "testimonials",
+        "name": "Testimonials",
+        "settings": [
+		  {
+            "type": "textarea",
+            "id": "testimonial_comment",
+            "label": "Testimonial Comment"
+          },
+		  {
+            "type": "text",
+            "id": "testimonial_author",
+            "label": "Testimonial Author"
+          }
+		] 
+      }
+	]
+  }
+{% endschema %}

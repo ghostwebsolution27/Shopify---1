@@ -1,0 +1,99 @@
+<div class="new-home-flavors">
+  <div class="grid">
+    {% for block in section.blocks %}
+    <div class="grid__item small--one-whole medium-up--one-whole">
+      <div class="flavor-body" style="background-color:{{ block.settings.flavor_bg }}">
+        <div class="page-width">
+          {% if block.settings.flavor_title != blank %}
+          <h3>
+            {{ block.settings.flavor_title }}
+            <span>{{ block.settings.flavor_subtitle }}</span>
+          </h3>
+          {% endif %}
+          <div class="grid">
+            <div class="grid__item small--one-half medium-up--one-half">
+              <img src="{{ block.settings.flavor_regular_image | img_url: 'master' }}">
+              <a href="{{ block.settings.flavor_regular_button_link }}">{{ block.settings.flavor_regular_button_text }}</a>
+            </div>
+            <div class="grid__item small--one-half medium-up--one-half">
+              <img src="{{ block.settings.flavor_mini_image | img_url: 'master' }}">                  		
+              <a href="{{ block.settings.flavor_mini_button_link }}">{{ block.settings.flavor_mini_button_text }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "New Home - Flavors",
+	"max_blocks": 5,
+    "settings": [
+    ],
+	"blocks": [
+	  {
+		"type": "image",
+        "name": "Flavors",
+        "settings": [
+          {
+            "type": "color",
+            "id": "flavor_bg",
+            "label": "Flavor Background color",
+            "default": "#f4e08a"
+          },
+          {
+            "type": "text",
+            "id": "flavor_title",
+            "label": "Flavor Title",
+			"default": "Flavor Title"
+          },
+          {
+            "type": "text",
+            "id": "flavor_subtitle",
+            "label": "Flavor Subtitle",
+			"default": "+ Subtitle"
+          },
+		  {
+            "type": "image_picker",
+            "id": "flavor_regular_image",
+            "label": "Flavor Regular Image"
+          },
+		  {
+            "type": "text",
+            "id": "flavor_regular_button_text",
+            "label": "Flavor Regular Button Text",
+			"default": "Shop Regular"
+          },
+		  {
+            "id": "flavor_regular_button_link",
+            "type": "url",
+            "label": "Flavor Regular Button Link"
+          },
+		  {
+            "type": "image_picker",
+            "id": "flavor_mini_image",
+            "label": "Flavor Mini Image"
+          },
+		  {
+            "type": "text",
+            "id": "flavor_mini_button_text",
+            "label": "Flavor Mini Button Text",
+			"default": "Shop Mini"
+          },
+		  {
+            "id": "flavor_mini_button_link",
+            "type": "url",
+            "label": "Flavor Mini Button Link"
+          }
+		] 
+      }
+	],
+    "presets": [{
+      "name": "New Home - Flavors",
+      "category": "New Homepage Sections"
+    }]
+  }
+{% endschema %}

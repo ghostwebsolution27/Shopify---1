@@ -1,0 +1,15 @@
+{% if shop.metafields.wcp_status.wcp_status != 'disabled' and customer %}
+{% assign wcp_v_compare_at_price = wcp_variant.compare_at_price %}
+{% if wcp_v_compare_at_price == blank or wcp_v_compare_at_price == 0  or shop.metafields.wcp_net.DiscountPriceRule  == '1' %}
+  {% assign wcp_v_compare_at_price = wcp_variant.price %}
+{% endif %}
+
+{% assign wcp_v_price = wcp_v_compare_at_price | times: wcp_discount_value %}
+{% if wcp_v_price > wcp_variant.price  %}
+  {% assign wcp_v_price = wcp_variant.price %}
+{% endif %}
+{% assign wcp_v_price = wcp_v_price | floor %}
+{% else %}
+{% assign wcp_v_compare_at_price = wcp_variant.compare_at_price %}
+{% assign wcp_v_price = wcp_variant.price %}
+{% endif %}

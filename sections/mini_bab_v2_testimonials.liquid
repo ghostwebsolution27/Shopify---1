@@ -1,0 +1,114 @@
+{% for block in section.blocks %}
+{% assign testimonial_quantity = forloop.length  %}
+{% endfor %}
+
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<div class="fitness_testimonial_section">
+  <div class="page-width">
+    <div class="testimonial-carousel">
+      {% for block in section.blocks %}
+      <div class="carousel-cell">
+        <div class="grid">
+          	<img class="testimonial-quotation" src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/close_df381024-d086-41eb-9396-9163a31e3f6c.png?v=1604593766">
+          	<div class="grid__item small--one-whole">
+              <img class="testimonial-image" src="{{ block.settings.testimonial_image | img_url: 'master' }}">
+              <div class="testimonial-contents">
+                <div class="testimonial-name">
+                  <h4>{{ block.settings.testimonial_name }}</h4>
+                </div>
+                <div class="testimonial-job">
+                  <h5>{{ block.settings.testimonial_job }}</h5>
+                </div>
+                <div class="testimonial-comment">
+                  <p>"{{ block.settings.testimonial_comment }}"</p>
+                </div>
+              </div>
+          	</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script>
+ 
+$( document ).ready(function() {
+  
+  	$('.testimonial-carousel').slick({
+      infinite: true,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      arrows: false,
+      speed: 100,
+      responsive: [{
+
+        breakpoint: 1101,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1
+        }
+
+      }, {
+
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 2,
+      	  slidesToScroll: 1
+        }
+
+      }]
+    }).on('beforeChange', (event, slick, currentSlide, nextSlide) => {
+        if (currentSlide !== nextSlide) {
+            document.querySelectorAll('.slick-center + .slick-cloned').forEach((next) => {
+                // timeout required or Slick will overwrite the classes
+                setTimeout(() => next.classList.add('slick-current', 'slick-center'));
+            });
+        }
+    });
+  
+});
+ 
+</script>
+
+{% schema %}
+  {
+    "name": "Mini Testimonials",
+	"max_blocks": 6,
+    "settings": [],
+	"blocks": [
+	  {
+		"type": "image",
+        "name": "Subscription Testimonials",
+        "settings": [
+		  {
+            "type": "image_picker",
+            "id": "testimonial_image",
+            "label": "Testimonial Image"
+          },
+		  {
+            "type": "textarea",
+            "id": "testimonial_comment",
+            "label": "Testimonial Comment",
+			"default": "Reishi, lions mane, codyceps and maca mushrooms contain powerful properties"
+          },
+		  {
+            "type": "text",
+            "id": "testimonial_name",
+            "label": "Testimonial Name",
+			"default": "Dr. Nick Perceptively"
+          },
+		  {
+            "type": "text",
+            "id": "testimonial_job",
+            "label": "Testimonial Job",
+			"default": "CEO and New York Times bestselling author"
+          }
+		] 
+      }
+	]
+  }
+{% endschema %}

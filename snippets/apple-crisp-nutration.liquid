@@ -1,0 +1,100 @@
+<div id="bf1" style="text-align: center;">
+  <div class="tabs-outer">
+    <ul class="tabs" style="margin-top:20;">
+      
+      <li>
+        <img class="tab_product_image chocolatebar ot2" style=" "  src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/APPLE-CRISP---OR-MNII.png?v=1591891651" alt="">
+        <img class=" chocolatebar ot8" style="display:none;;  "  src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/APPLE-CRISP---OR-MNII.png?v=1591891651" alt="">
+        <p class="btn1 tab13">NUTRITION FACTS</p></li>
+      <li>
+        <img class="tab_product_image oatsbar ot3" style=" "  src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/APPLE-CRISP---OR-FULL.png?v=1591891602" alt="">
+        <img class=" oatsbar ot6" style="display:none;    "  src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/APPLE-CRISP---OR-FULL.png?v=1591891602" alt="">
+        <p class="btn1 tab14" style="background-color:red">NUTRITION FACTS</p>
+      </li>
+    </ul>
+
+    <div id="tab3" class="tab_contentBox">
+      <div class="tab_product_textbox">                                     
+        <p>Decadence in disguise, our Banana Bread flavor unites soft cinnamon oats and a subtle sweet banana.</p>                 
+      </div>
+      <div class="tabproductBox_">
+        <div class="tab_nutri_textbox">                                     
+          <h4 style="color:#fff; background:#D5E28F; "> APPLE CRISP MINI  </h4>               
+        </div>
+        <img class="tab_nutri_image" src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/NFL-APPLE-CRISP_400x.png?v=1591889962" alt="">                                    
+      </div>
+    </div>
+    
+    <div id="tab2" class="tab_contentBox">
+      <div class="tab_product_textbox">                                     
+      <p>The perfect balance of milk and dark chocolate, our Salted Brownie flavor brings you the decadence of almond-sprinkled brownie batter.</p>
+      </div>
+      <div class="tabproductBox_">
+        <div class="tab_nutri_textbox">                                     
+          <h4 style="color:#fff; background:#D5E28F; "> APPLE CRISP BAR  </h4>               
+        </div>
+        <img class="tab_nutri_image" src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/brownie-nfp.jpg?v=1591029445" alt="">
+      </div>
+    </div>
+    
+    <div id="tab1" class="tab_contentBox">
+      <div class="tab_product_textbox">                                     
+        <p>Like the first step into your hometown bakery, our Oat Cookie bar melds deep notes of buttered brown sugar and warm maple syrup.</p>               
+      </div>
+      <div class="tabproductBox_">
+        <div class="tab_nutri_textbox">                                     
+          <h4 style="color:#fff; background:#D5E28F; "> APPLE CRISP MINI  </h4>               
+        </div>
+        <img class="tab_nutri_image" src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/NFL-APPLE-CRISP_400x.png?v=1591889962" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  jQuery(document).ready(function(){
+    jQuery('a[href="#tab-1"]').removeClass("active");
+    jQuery(".tab12").click(function(e){
+      e.preventDefault()
+      jQuery(".bannanbar").toggle();
+      jQuery(".ot2").show();
+      jQuery(".ot8").hide();
+      jQuery(".ot3").show();
+      jQuery(".ot6").hide();
+      jQuery("#tab3").hide();
+      jQuery(".tab14").removeClass("active");
+      jQuery("#tab2").hide();
+      jQuery(".tab13").removeClass("active");
+      jQuery("#tab1").slideToggle();
+      jQuery(".tab12").toggleClass("active");
+    });
+
+    jQuery(".tab13").click(function(){
+      jQuery(".chocolatebar").toggle();
+      jQuery(".ot1").show();
+      jQuery(".ot4").hide();
+      jQuery(".ot3").show();
+      jQuery(".ot6").hide();
+      jQuery("#tab1").hide();
+      jQuery(".tab12").removeClass("active");
+      jQuery("#tab3").hide();
+      jQuery(".tab14").removeClass("active");
+      jQuery("#tab2").slideToggle();
+      jQuery(".tab13").toggleClass("active");
+    });
+    
+    jQuery(".tab14").click(function(){
+      jQuery(".oatsbar").toggle();
+      jQuery(".ot1").show();
+      jQuery(".ot4").hide();
+      jQuery(".ot2").show();
+      jQuery(".ot8").hide(); 
+      jQuery("#tab2").hide();
+      jQuery(".tab13").removeClass("active");
+      jQuery("#tab1").hide();
+      jQuery(".tab12").removeClass("active");
+      jQuery("#tab3").slideToggle();
+      jQuery(".tab14").toggleClass("active");
+    });
+  });
+</script>

@@ -1,0 +1,193 @@
+{%- assign per_row = section.settings.per_row -%}
+{%- assign paginate_by = per_row | times: section.settings.rows_per_page -%}
+
+{% paginate collection.products by paginate_by %}
+
+<div
+  id="CollectionSection"
+  data-section-id="{{ section.id }}"
+  data-section-type="collection-template" class="bigger_pack_products">
+
+  {% if collection.description != blank %}
+    <div class="rte">
+      {{ collection.description }}
+    </div>
+    <hr class="hr--clear hr--small">
+  {% endif %}
+
+  {% if section.settings.subcollection_style == 'above' %}
+    {% include 'subcollections', per_row: section.settings.subcollections_per_row %}
+  {% endif %}
+  {% if section.settings.header_collection != blank %}
+  <h2 class="section-header__title" style=" color: {{ section.settings.title_fill_color }}; {% if section.settings.outline_text %}-o-text-stroke: 2px black; -moz-text-stroke: 2px black; -webkit-text-stroke: 2px black; text-stroke: 2px black;{% endif %}">
+          {{ section.settings.header_collection }}
+        </h2>
+{% endif %}
+  
+  <div class="collection-filter">
+    {%- assign current_filter_size = current_tags | size -%}
+    <div class="collection-filter__item collection-filter__item--drawer">
+      <button
+        type="button"
+        class="js-drawer-open-collection-filters btn btn--tertiary{% unless current_filter_size == 0 %} btn--tertiary-active{% endunless %}"
+        aria-controls="FilterDrawer">
+        {% include 'icon-filter' %}
+        {{ 'collections.filters.title_tags' | t }}
+        {% if current_filter_size > 0 %}
+          ({{ current_filter_size }})
+        {% endif %}
+      </button>
+    </div>
+
+    <div class="collection-filter__item collection-filter__item--sort">
+      <div class="collection-filter__sort-container">
+        {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+        {%- assign default_sorted = false -%}
+        {% if sort_by == collection.default_sort_by %}
+          {%- assign default_sorted = true -%}
+        {% endif %}
+        <label for="SortBy" class="hidden-label">{{ 'collections.sorting.title' | t }}</label>
+        <select name="SortBy" id="SortBy">
+          <option value="title-ascending"{% if sort_by == collection.default_sort_by %} selected="selected"{% endif %}>{{ 'collections.sorting.title' | t }}</option>
+          {% for option in collection.sort_options %}
+            <option value="{{ option.value }}" {% unless default_sorted %}{% if option.value == sort_by %}selected="selected"{% endif %}{% endunless %}>{{ option.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid--uniform grid--collection">
+    {%- assign grid_item_width = 'small--one-half medium-up--one-third' -%}
+
+    {% case per_row %}
+    {% when 2 %}
+      {%- assign grid_item_width = 'medium-up--one-half' -%}
+    {% when 3 %}
+      {%- assign grid_item_width = 'small--one-half medium-up--one-third' -%}
+    {% when 4 %}
+      {%- assign grid_item_width = 'small--one-half medium-up--one-quarter' -%}
+    {% when 5 %}
+      {%- assign grid_item_width = 'small--one-half medium-up--one-fifth' -%}
+    {% endcase %}
+
+    {% for product in collection.products %}
+      {% include 'product-grid-item_twelve_bars' %}
+    {% else %}
+      <div class="grid__item">
+        <p>{{ 'collections.general.no_matches' | t }}</p>
+      </div>
+    {% endfor %}
+
+  </div>
+
+  {% if section.settings.subcollection_style == 'below' %}
+    {% include 'subcollections', per_row: section.settings.subcollections_per_row %}
+  {% endif %}
+
+  {% if paginate.pages > 1 %}
+    {% include 'pagination' %}
+  {% endif %}
+
+  {% if settings.quick_shop_enable %}
+    {% for product in collection.products %}
+      {% if product.available %}
+        {% include 'quick-shop-modal' %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+</div>
+
+{% endpaginate %}
+
+{% schema %}
+  {
+    "name": "12 Bar Collection",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Subcollections"
+      },
+
+		{
+        "type": "text",
+        "id": "page_header",
+        "label": "Page Header"
+      },
+      {
+        "type": "text",
+        "id": "header_collection",
+        "label": "Collection Header"
+      },
+      {
+        "type": "checkbox",
+        "id": "outline_text",
+        "label": "Heading Outline"
+      },
+      {
+        "type": "color",
+        "id": "title_fill_color",
+        "label": "Heading fill color"
+      },
+      {
+        "type": "header",
+        "content": "Subcollections"
+      },
+      {
+        "type": "select",
+        "id": "subcollection_style",
+        "label": "Subcollection style",
+        "default": "above",
+        "options": [
+          {
+            "value": "above",
+            "label": "Above products"
+          },
+          {
+            "value": "below",
+            "label": "Below products"
+          },
+          {
+            "value": "none",
+            "label": "None"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "subcollections_per_row",
+        "label": "Subcollections per row",
+        "default": 5,
+        "min": 2,
+        "max": 5,
+        "step": 1
+      },
+      {
+        "type": "header",
+        "content": "Products"
+      },
+      {
+        "type": "range",
+        "id": "per_row",
+        "label": "Products per row",
+        "default": 4,
+        "min": 2,
+        "max": 5,
+        "step": 1
+      },
+      {
+        "type": "range",
+        "id": "rows_per_page",
+        "label": "Rows per page",
+        "default": 7,
+        "min": 3,
+        "max": 20,
+        "step": 1
+      }
+    ],
+    "presets": [{
+      "name": "12 Bar Collection",
+      "category": "Shop"
+    }]
+  }
+{% endschema %}

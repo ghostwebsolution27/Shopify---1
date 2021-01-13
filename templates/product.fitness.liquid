@@ -1,0 +1,845 @@
+{% comment %}ECPWS{% endcomment %}{% capture ec-pw-ify %}{% include 'elspw_product' %}
+
+<div id="fitness_landing">
+  {% section 'fitness_title_section' %}
+  {% comment %}
+  	{% section 'fitness_content_section' %}
+  {% endcomment %}
+  {% section 'fitness_seen_section' %}
+  {% section 'fitness_goal_section' %}
+  {% section 'fitness_testimonial_section' %}
+  {% section 'fitness_inside_section' %}
+  {% comment %}
+    {% section 'fitness_breakdown_section' %}
+    {% section 'fitness_nutrition_section' %}
+  {% endcomment %}
+  {% section 'fitness_angle_section' %}
+  {% section 'fitness_reviews_section' %}
+  {% section 'fitness_faqs_section' %}
+</div>
+
+<style>
+  
+  .bundle-orig-price {
+    font-size: 12px;
+    text-decoration: line-through;
+  }
+  
+  #anchor-tag {
+   	position: absolute;
+    bottom: 75px;
+    width: 1px;
+    height: 1px; 
+  }
+  
+  main#MainContent {
+    padding: 120px 0 0;
+  }
+  
+  #fitness_landing h2, #fitness_landing h3 {
+   	line-height: 0.9  
+  }
+  
+  #fitness_landing a.btn {
+   	padding: 20px 0;	
+    width: 100%;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+  
+  #fitness_landing a.btn.transparent-btn {
+    background: transparent;
+    color: #000;
+    border: 1px solid #888;
+  }
+  
+  .fitness_product_info .page-width {
+   	padding: 0; 
+  }
+  
+  .fitness_title_section {
+   	padding: 5vh 15px; 
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .fitness_title_section h2 {
+   	margin-bottom: 20px; 
+  }
+  
+  .fitness_title_section h2 span {
+    font-size: 50px;
+  }
+  
+  .fitness_title_section img {
+    margin-bottom: -15vh;
+  }
+  
+  .fitness_content {
+    padding: 7.5vh 0 5vh;
+    position: relative;
+  }
+  
+  .fitness_content .grid.bundle-item p {
+    margin-bottom: 0;
+    text-align: left;
+    font-size: 12px;
+    line-height: 12px;
+  }
+  
+  .fitness_content .grid.bundle-item .h3 {
+    font-size: 16px;
+    line-height: 16px;
+    margin-bottom: 0;
+    text-align: left;
+    max-width: 100%;
+  }
+  
+  .fitness_content .grid.bundle-item .h3 span {
+    text-transform: lowercase;
+  }
+  
+  .fitness_content .bundle-item-selector a.btn {
+    background-color: transparent;
+    color: #000;
+    font-size: 25px ;
+    padding: 10px 0;
+  }
+  
+  .fitness_content .bundle-item-selector a.btn:hover, .fitness_content .bundle-item-selector a.btn:active, .fitness_content .bundle-item-selector a.btn:focus {
+    background-color: transparent ;
+  }
+  
+  .fitness_content .bundle-item-selector .btn:not(.btn--secondary):not(.btn--tertiary):not(.btn--inverse):hover {
+    background-color: transparent ;
+    color: #000 ;
+  }
+  
+  .fitness_content p.variant-bottom-text, .fitness_content p.cart-bottom-text {
+    font-size: 12px;
+    text-align: center;
+    color: #666;
+    margin-top:5px;
+  }
+  
+  .fitness_content .grid.subscription-benefits {
+    display: none;
+  }
+  
+  .fitness_content .rc_block__type__autodeliver.rc_block__type--active {
+    height: 75px;
+  }
+  
+  .fitness_content .bundle-form #bundle-add-to-cart {
+    border-radius: 5px;
+    padding: 18px;
+  }
+  
+  #fitness_landing .fitness_content a.btn.transparent-btn {
+    padding: 15px;
+    margin-top: 10px;
+    font-size: 13px ;
+  }
+  
+  #fitness_landing .fitness_content .bundle-item-selector a.btn {
+    padding: 10px 0;
+    margin-bottom: 0;
+  }
+  
+  .grid__item.fitness_titles {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  
+  .fitness_seen_section {
+    text-align: center;
+    padding: 5vh 0;
+  }
+  
+  .fitness_seen_section > .page-width > .grid:nth-child(2) {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  
+  .fitness_seen_section img {
+    max-height: 75px;
+    padding: 10px;
+    max-width: 50%;
+  }
+  
+  .fitness_seen_section img:last-child, .fitness_seen_section img:nth-last-child(2) {
+    display:none;
+  }
+  
+  .fitness_goal_section {
+    padding: 5vh 0;
+    text-align: center;
+  }
+  
+  .fitness_goal_section h3 {
+    margin-bottom: 20px;
+  }
+  
+  .fitness_goal_section .goal_img_block {
+    text-align: center;
+  }
+  
+  .fitness_goal_section img {
+    max-height: 65px;
+  }
+  
+  .fitness_goal_section .grid.goal_blocks h4 {
+    margin-bottom: 0;
+    margin-top: 5px;
+    line-height: 20px;
+  }
+  
+  .fitness_goal_section .grid.goal_blocks {
+    margin-top: 25px;
+    text-align: left;
+  }
+  
+  .fitness_goal_section img {
+    max-height: 65px;
+  }
+  
+  .fitness_goal_section .goal_content_block.small--three-quarters {
+    width: 75%;
+    padding-left: 10px;
+  }
+  
+  .fitness_goal_section .grid.goal_blocks .grid__item .grid {
+    margin-bottom: 20px;
+  }
+  
+  .fitness_testimonial_section {
+   	padding: 5vh 0 10vh; 
+  }
+  
+   .fitness_testimonial_section .page-width {
+   	padding: 0;
+  }
+  
+  .fitness_testimonial_section h3 {
+   	text-align: center; 
+  }
+  
+  .fitness_testimonial_section .testimonial-carousel .carousel-cell, .fitness_testimonial_section .testimonial-boxes .carousel-cell {
+   	width: 75%; 
+    padding: 15px;
+  }
+  
+  .fitness_testimonial_section .testimonial-carousel .carousel-cell .testimonial-image, .fitness_testimonial_section .testimonial-boxes .carousel-cell .testimonial-image {
+    min-height: 200px;
+    background-size: cover;
+    background-position: top;
+    margin-bottom: 20px;
+  }
+  
+  .fitness_testimonial_section .testimonial-carousel .carousel-cell .testimonial-stars img, .fitness_testimonial_section .testimonial-boxes .carousel-cell .testimonial-stars img {
+    display: inline-block;
+    width: 20px;
+  }
+  
+  .fitness_testimonial_section .testimonial-carousel .carousel-cell .testimonial-job h5, .fitness_testimonial_section .testimonial-boxes .carousel-cell .testimonial-job h5 {
+    color: #000;
+    font-size: 15px;
+    line-height: 15px;
+  }
+  
+  .fitness_testimonial_section .carousel-cell .grid, .fitness_testimonial_section .carousel-cell .grid {
+    background: #fff;
+    padding-bottom: 15px;
+  }
+  
+  .fitness_testimonial_section .carousel-cell .grid .grid__item > div:not(.testimonial-image), .fitness_testimonial_section .carousel-cell .grid .grid__item > div:not(.testimonial-image) {
+    padding: 0 10px;
+  }
+  
+  .fitness_testimonial_section .flickity-page-dots {
+    bottom: -40px;
+  }
+  
+  .fitness_testimonial_section .flickity-page-dots .dot {
+    background: #fff;
+    opacity: 1;
+  }
+  
+  .fitness_testimonial_section .flickity-page-dots .dot.is-selected {
+    background: #444;
+  }
+  
+  .fitness_testimonial_section .testimonial-name h4 {
+    margin-bottom: 5px;
+  }
+  
+  .fitness_inside_section {
+    padding: 5vh 0;
+    text-align: center;
+  }
+  
+  .fitness_inside_section .grid.inside_blocks {
+   	margin-top: 25px; 
+    margin-bottom: 35px;
+  }
+  
+  .fitness_inside_section .grid.inside_blocks h4 {
+    margin-bottom: 0;
+    margin-top: 10px;
+    line-height: 20px;
+  }
+  
+  .fitness_inside_section  .grid.inside_buttons a.btn {
+    margin: 5px 0;
+  }
+  
+  .fitness_inside_section p {
+    max-width: 270px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .fitness_breakdown_section {
+    padding: 5vh 0;
+    text-align: center;
+  }
+  
+  .fitness_breakdown_section h3 {
+    max-width: 80%;
+    margin: auto;
+    text-align: left;
+  }
+  
+  .fitness_breakdown_section .grid.breakdown_blocks ul {
+    margin-left: 0;
+    text-align: left;
+    max-width: 80%;
+    margin: 20px auto 0;
+  }
+  
+  .fitness_breakdown_section .grid.breakdown_blocks ul li {
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: row;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .fitness_breakdown_section .grid.breakdown_blocks ul li p {
+    margin-bottom: 0;
+    margin-left: 15px;
+  }
+  
+  .fitness_nutrition_section {
+    padding: 5vh 0;
+    text-align: center;
+  }
+  
+  .fitness_nutrition_section .nutrition_chart {
+   	margin: 50px 0; 
+  }
+  
+  .fitness_nutrition_section ul {
+    margin-left: 0;
+    list-style: none;
+  } 
+  
+  .fitness_nutrition_section ul li {
+    text-align: left;
+  }
+  
+  .fitness_nutrition_section ul li p {
+    font-size: 18px;
+    margin-bottom: 0;
+  }
+  
+  .fitness_nutrition_section .nutrition_line {
+    height: 18px;
+    margin: 0 auto 20px 0;
+    border-radius: 20px;
+  }
+  
+  .fitness_nutrition_section .nutrition_chart_body {
+	position: relative;
+  }
+  
+  .fitness_nutrition_section .nutrition_chart_body span {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 100px;
+    font-size: 50px;
+    line-height: 50px;
+    font-family: proxima-nova-condensed, sans-serif;
+    font-weight: 900;
+  }
+  
+  .fitness_benefits_section {
+    padding: 5vh 15px;
+    text-align: center;
+  }
+  
+  .fitness_benefits_section img {
+   	margin: 25px 0 25px; 
+  }
+  
+  .fitness_benefits_section h3 {
+    line-height: 25px;
+    margin-bottom: 25px;
+  }
+  
+  .fitness_benefits_section p i {
+    font-size: 25px;
+    line-height: 25px;
+  }
+  
+  .page-width.reviews_veriety_pack.try_c h3 {
+    font-size: 1.7em ;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+  
+  #fitness_landing .page-width.reviews_veriety_pack.try_c {
+    padding-top: 5vh;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  #fitness_landing div.stamped-container[data-widget-style], #fitness_landing div[data-widget-style] div.stamped-container {
+    max-width: 1500px;
+    margin: 30px auto 0;
+    padding: 0;
+    padding-bottom: 50px ;
+  }
+  
+  #fitness_landing .stamped-fa-star {
+    color: #dfcdaf ;
+  }
+  
+  .fitness_faqs_section {
+   	padding: 5vh 0; 
+  }
+  
+  .fitness_faqs_section h3 {
+   	text-align: center; 
+  }
+  
+  .fitness_faqs_section .question-faq button.collapsible-trigger {
+    margin-top: 0;
+  }
+  
+  .fitness_faqs_section .question-faq .collapsible-content__inner {
+    padding: 10px;
+  }
+  
+  .stamped-summary-caption .stamped-summary-text {
+    display: none;
+  }
+  
+  #shopify-section-fitness_reviews_section div[data-widget-style*=standard] .stamped-header {
+    text-align: center;
+  }
+  
+  #shopify-section-fitness_reviews_section [data-widget-type=minimal] .stamped-review>.stamped-review-content {
+    margin: 0 ;
+  }
+  
+   #shopify-section-fitness_reviews_section .stamped-content {
+    max-width: 725px;
+    display: block;
+    margin: auto;
+  }
+  
+  /** FOR DESKTOP RESOLUTION **/
+  
+  @media only screen and (max-width: 1024px) and (min-width: 768px) {
+    
+    #fitness_landing h2, #fitness_landing h3 {
+      line-height: 0.9 ;
+      font-size: 40px;
+  	}
+    
+    .fitness_title_section h2 span {
+      font-size: 40px;
+  	}
+    
+    .fitness_title_section img {
+      margin-bottom: -25%;
+      margin-top: -5%;
+      max-width: 550px;
+  	}
+    
+    .fitness_content .bundle-details div#rc_radio_options {
+      z-index: 9999;
+      position: relative;
+  	}
+    
+    .fitness_content .bundle-details label.rc_label {
+      font-size: 15px;
+  	}
+    
+    .fitness_content .grid.bundle-grid .bundle_product {
+     	width: 50%; 
+    }
+    
+    .fitness_testimonial_section .testimonial-carousel .carousel-cell, .fitness_testimonial_section .testimonial-boxes .carousel-cell {
+      width: 50% ;
+  	}
+    
+    .fitness_content .rc_block__type__autodeliver.rc_block__type--active {
+      height: 85px;
+  	}
+    
+    .fitness_content .bundle-form #bundle-add-to-cart {;
+      max-width: 50vw;
+      display: block;
+      margin: auto;
+  	}
+    
+    .fitness_seen_section img {
+      max-width: 25%;
+  	}
+    
+    .fitness_seen_section > .page-width > .grid:nth-child(2) {
+      justify-content: center;
+  	}
+    
+    .fitness_inside_section .grid.inside_buttons .grid__item {
+      display: flex;
+      justify-content: space-evenly;
+  	}
+    
+    #fitness_landing .fitness_inside_section a.btn {
+		width: 45%;
+  	}
+    
+    #fitness_landing .page-width.reviews_veriety_pack.try_c h3 {
+      font-size: 40px ;
+  	}
+   	 
+  }
+  
+  @media only screen and (min-width: 1024px) {
+    
+    #fitness_landing h2, #fitness_landing h3 {
+      line-height: 0.9 ;
+      font-size: 60px;
+  	}
+    
+   	 main#MainContent {
+     	padding: 0; 
+     }
+    
+    #anchor-tag {
+      position: absolute;
+      bottom: initial;
+      width: 50px;
+      height: 50px;
+      top: 0;
+      right: 0;
+    }
+    
+    #fitness_landing .bundle-details label.rc_label {
+     	font-size: 15px; 
+    }
+    
+    .fitness_product_info > .page-width > .grid {
+      display: flex;
+  	}
+    
+    .fitness_title_section {
+       text-align: left; 
+       padding: 5vh 40px;
+    }
+    
+    .fitness_title_section h2 span {
+      font-size: 60px;
+  	}
+    
+    .fitness_title_section img {
+      margin-bottom: 0;
+      max-width: 700px;
+      margin: 0 0 -2.5vh 0;
+      display: block;
+      width: 100%;
+  	}
+    
+    .fitness_title_section p {
+      max-width: 700px;
+  	}
+    
+    .fitness_content .grid.bundle-grid .bundle_product {
+      padding: 0;
+      width: 100%;
+  	}
+    
+    .fitness_content .grid.bundle-item {
+      padding-left: 10px;
+      margin-top: 20px;
+      padding-top: 0;
+      display: flex;
+      align-items: center;
+  	}
+    
+    .fitness_content {
+      padding: 0 20px;
+      position: sticky;
+      border-radius: 5px;
+      top: 20px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      margin-right: 20px;
+  	}
+    
+    .fitness_content .bundle-images.grid {
+      display: none; 
+    }
+    
+    .fitness_content .bundle-form {
+      border-left: none;
+      border-right: none;
+      border-bottom: none;
+      padding: 10px 0;
+  	}
+    
+    .fitness_content .variant-bottom-text {
+      margin-bottom: 0; 
+    }
+    
+    .fitness_seen_section > .page-width > .grid:nth-child(2) {
+      display: flex;
+      justify-content: center;
+  	}
+  
+    .fitness_seen_section > .page-width > .grid:nth-child(2) .grid__item {
+      width: auto ;
+      margin: 0 20px;
+  	}
+    
+    .fitness_seen_section img:last-child, .fitness_seen_section img:nth-last-child(2) {
+      display:block;
+    }
+    
+    .fitness_seen_section img {
+      max-width: 200px;
+      max-height: 60px;
+      margin-top: 20px;
+  	}
+    
+    .fitness_goal_section .grid:not(.goal_blocks) {
+      max-width: 750px;
+      margin: auto ;
+      display: block;
+  	}
+    
+    .fitness_testimonial_section {
+      padding: 5vh 0 7.5vh;
+  	}
+    
+    .fitness_testimonial_section .page-width {
+      max-width: 1300px;
+  	}
+    
+    .fitness_testimonial_section .testimonial-carousel .carousel-cell, .fitness_testimonial_section .testimonial-boxes .carousel-cell  {
+      width: 33.333%;
+      padding: 15px;
+  	}
+    
+    .fitness_testimonial_section .testimonial-carousel .carousel-cell .testimonial-image, .fitness_testimonial_section .testimonial-boxes .carousel-cell .testimonial-image {
+      min-height: 300px;
+      background-size: cover;
+      background-position: top left;
+  	}
+    
+    .fitness_inside_section .grid.inside_blocks {
+      display: flex;
+      align-items: center;
+  	}
+    
+    .fitness_inside_section .grid.inside_buttons .grid__item {
+      display: flex;
+      justify-content: center;
+   	}
+    
+    .fitness_inside_section .grid.inside_buttons a.btn {
+      max-width: 350px;
+      margin: 0 10px;
+  	}
+    
+    .fitness_benefits_section .page-width {
+      max-width: 1300px;
+  	}
+    
+    .fitness_benefits_section h3,  .fitness_benefits_section p {
+      text-align: left; 
+    }
+    
+    .fitness_benefits_section .grid.benefits_blocks {
+      display: flex;
+      align-items: center;
+  	}
+    
+    .fitness_benefits_section .grid.benefits_blocks .grid__item:nth-child(2) {
+      padding: 0 20px;
+  	}
+    
+    #fitness_landing .page-width.reviews_veriety_pack.try_c {
+      max-width: 1300px;
+  	}
+    
+    div#shopify-section-fitness_reviews_section {
+     	margin: 0; 
+    }
+    
+    #fitness_landing .page-width.reviews_veriety_pack.try_c h3 {
+      font-size: 60px ;
+      text-transform: uppercase;
+   }
+    
+    .fitness_faqs_section {
+      padding: 5vh 0 0;
+    }
+    
+    .fitness_faqs_section .page-blocks {
+      max-width: 750px;
+      display: block;
+      margin: auto;
+    }
+    
+    div[data-widget-style*=standard] .stamped-header {
+      text-align: left;
+  	}
+    
+  }
+      
+  
+  @media only screen and (min-width: 1024px) and (max-width: 1368px) {
+   
+    .fitness_content .bundle-details div#rc_radio_options {
+      display: flex;
+      flex-wrap: wrap;
+  	}
+    
+    .fitness_content .bundle-details div#rc_radio_options > .rc_block:first-child {
+      text-align: center;
+  	}
+    
+    .fitness_content .bundle-details div#rc_radio_options > .rc_block:last-child {
+      text-align: center;
+	}
+    
+  }
+  
+  @media only screen and (min-width: 1025px) {
+    
+    .fitness_testimonial_section .testimonial-boxes {
+      display: flex;
+  	}
+    
+  }
+  
+  /** NUTRITIONAL MODAL CSS **/
+  
+  #nutrition_modal {
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+  }
+  
+  #nutrition_modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 999999;
+  }
+  
+  #nutrition_modal .nutritional_body {
+    background: #fff;
+    width: 75%;
+    height: 75vh;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+  
+  #nutrition_close {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #f00;
+    right: -20px;
+    top: -20px;
+    border-radius: 50%;
+    background-image: url(https://cdn.shopify.com/s/files/1/0248/8084/0813/files/nutrition_close.svg?v=1600701225);
+    background-size: 15px;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 2px solid #fff;
+    cursor: pointer;
+  }
+  
+  #nutrition_modal .mobile_nfp {
+    display: none; 
+  }
+  
+  
+  @media only screen and (max-width: 1024px) {
+    
+    #nutrition_modal .nutritional_body {
+      width: 85%;
+      height: 90vh;
+  	}
+    
+    #nutrition_modal .desktop_nfp {
+      display: none; 
+    }
+    
+    #nutrition_modal .mobile_nfp {
+      display: block; 
+    }
+    
+    #nutrition_modal .mobile_nfp .nfp-carousel .carousel-cell {
+      width: 100%;
+    }
+    
+    #nutrition_modal .mobile_nfp .nfp-carousel .carousel-cell img {
+      width: auto;
+      display: block;
+      margin: auto;
+      max-height: 85vh;
+  	} 
+    
+  }
+  
+   @media only screen and (min-width: 769px) and (max-width: 1024px) {
+     
+     #nutrition_modal .nutritional_body {
+      width: 80%;
+      height: 65vh;
+  	 }
+     
+     #nutrition_modal .mobile_nfp .nfp-carousel .carousel-cell {
+      width: 50%;
+    }
+     
+   }
+  
+  
+</style>
+
+{% comment %}ECPWS{% endcomment %}{% endcapture %}{% include 'ec-passwordify' %}
+

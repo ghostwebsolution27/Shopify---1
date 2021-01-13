@@ -1,0 +1,30 @@
+{% layout none %}
+{% paginate collection.products by 10 %}
+
+{% capture output %}
+[{
+    
+    "Page_Num": "{{paginate.pages}}",
+    "Product_Items":
+        [
+            {% for item in collection.products %}
+
+                {
+		             "Id"  : "{{item.id}}" 
+                    ,"Title":"{% include 'esf-rem-slash' with item.title %}"
+                    ,"cMeta": "{{ item.metafields.Webuick.hide_customer_es_tags }}"
+                    ,"pMeta": "{{ item.metafields.quick.products }}"
+                    ,"SpofQty": "{{ item.metafields.spofSteps.spofqty }}"				    
+                    
+                }
+          {% unless forloop.last %},{% endunless %}
+               
+            {% endfor %}
+        ]
+}]
+{% endcapture %}
+{% endpaginate %}
+{{ output | strip_newlines }}
+
+
+

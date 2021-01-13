@@ -1,0 +1,9 @@
+<script>
+  var widgetCount = document.querySelectorAll('[data-instabuy]').length;
+  if(widgetCount > 0) {
+    window.InstaBuy = window.InstaBuy || {};
+    var scriptTag = document.createElement("script");
+    scriptTag.src="https://assets.useinstabuy.com/assets/instabuy-app.js";
+    document.head.appendChild(scriptTag);
+  }
+</script>

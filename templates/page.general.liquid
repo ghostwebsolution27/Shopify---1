@@ -1,0 +1,50 @@
+{% comment %}ECPWS{% endcomment %}{% capture ec-pw-ify %}{% section 'general_header_note' %}
+<div id="general">
+  
+{% section 'general_logo_sec' %}
+{% section 'general_top_section' %}
+ 
+  {% section 'general_twopart_section' %}
+
+   {% section 'general_topbottom_section' %}
+  
+  {% section 'general_threepart_section' %}
+
+{% section 'general_red_section' %}
+{% section 'general_blackpart_section' %}
+{% section 'general_lastp_section' %}
+  {% section 'slarnke_general_tab_new' %}
+  {% section 'general_reviews' %}
+{%comment%}
+{% section 'general_slideshow' %}
+{% section 'general_steps' %}
+
+{% section 'general_section2' %}
+{% section 'general_tabs' %}
+
+{% section 'general_sectionfour' %}
+{% section 'general_tesimonials' %}
+
+{%endcomment%}
+<div class="grid">
+  <div class="grid__item medium-up--three-quarters medium-up--push-one-eighth">
+    {% comment %}
+    <header class="section-header">
+      <h1 class="section-header__title">{{ page.title }}</h1>
+    </header>
+    {% endcomment %}
+    <div class="rte rte--nomargin">
+      {{ page.content }}
+    </div>
+
+  </div>
+
+</div>
+</div>
+
+{% section 'general_callaction' %}
+{% comment %}ECPWS{% endcomment %}{% endcapture %}{% include 'ec-passwordify' %}
+
+<style type="text/css">
+  .textannounce {font-size:13px;}
+</style>

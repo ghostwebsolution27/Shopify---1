@@ -1,0 +1,241 @@
+<div class="page-width page-content login_page">
+  <div class="stynth" style="text-align:center; "> <h2 style="text-align:center;  font-size:20px; padding-bottom:50px;"> IF YOU DIDN’T MAKE A PASSWORD DURING CHECKOUT, YOU’LL NEED TO INPUT THE EMAIL USED ON YOUR ORDER TO CREATE A LOGIN USING “CREATE AN ACCOUNT” SECTION. </h2></div>
+  <div class="grid login">
+
+    <div class="grid__item medium-up--one-third medium-up--push-one-third">
+
+      <header class="section-header">
+        <h1 class="section-header__title">EXISTING USERS: LOG IN HERE</h1>
+      </header>
+
+      <div class="note note--success hide" id="ResetSuccess">
+        {{ 'customer.recover_password.success' | t }}
+      </div>
+
+      <div id="CustomerLoginForm" class="form-vertical">
+        {% form 'customer_login' %}
+
+ 
+        
+        {% if form.errors %}
+{% for field in form.errors %}
+   {% if form.errors.messages[field] contains "Incorrect email or password." %}
+     <div class="errors"><ul><li>Incorrect email or password. First time logging in? Make sure to create your account first in the "Create New Account" section or check if you had any typos in the email or password you entered.</li></ul></div>
+       {%else%}
+        {{ form.errors | default_errors }}
+   {% endif %}
+  {% endfor %}
+{% endif %}
+
+          <label for="CustomerEmail">{{ 'customer.login.email' | t }}</label>
+          <input type="email" name="customer[email]" id="CustomerEmail" placeholder="Email" class="input-full{% if form.errors contains 'email' %} error{% endif %}" autocorrect="off" autocapitalize="off" autofocus>
+
+          {% if form.password_needed %}
+            <div class="grid">
+              <div class="grid__item one-half">
+                <label for="CustomerPassword">{{ 'customer.login.password' | t }}</label>
+              </div>
+              <div class="grid__item one-half text-right">
+                <small class="label-info">
+                  <a href="#recover" id="RecoverPassword" class="js-no-transition">
+                    {{ 'customer.login.forgot_password' | t }}
+                  </a>
+                </small>
+              </div>
+            </div>
+            <input type="password" value="" name="customer[password]" id="CustomerPassword" placeholder="Password" class="input-full{% if form.errors contains 'password' %} error{% endif %}">
+          {% endif %}
+
+          <p>
+            <button type="submit" class="btn btn--full">
+             
+              LOG IN
+              
+            </button>
+          </p>
+<!--           <p>{{ 'layout.customer.create_account' | t | customer_register_link }}</p> -->
+
+        {% endform %}
+{% comment %}        
+<!-- Begin ReCharge code -->
+{% include 'subscription-account-login' %}
+<!-- End ReCharge code -->
+{% endcomment %}   
+      </div>
+
+      <div id="RecoverPasswordForm" class="hide">
+        <div class="form-vertical">
+          <h2>{{ 'customer.recover_password.title' | t }}</h2>
+          <p>{{ 'customer.recover_password.subtext' | t }}</p>
+
+          {% form 'recover_customer_password' %}
+
+    {% if form.posted_successfully? %}
+   
+{% else %}
+    {{ form.errors | default_errors }}
+{% endif %}
+
+            {% if form.posted_successfully? %}
+              <span class="hide reset-password-success"></span>
+            {% endif %}
+
+            <label for="RecoverEmail">{{ 'customer.recover_password.email' | t }}</label>
+            <input type="email" value="" name="email" id="RecoverEmail" class="input-full" autocorrect="off" placeholder="Email" autocapitalize="off">
+
+            <p>
+              <button type="submit" class="btn">
+                <p>
+                {{ 'customer.recover_password.submit' | t }}
+                </p>
+              </button>
+            </p>
+            <button type="button" id="HideRecoverPasswordLink">{{ 'customer.recover_password.cancel' | t }}</button>
+          {% endform %}
+        </div>
+
+      </div>
+
+      {% if shop.checkout.guest_login %}
+        <hr class="hr--clear">
+
+        <h2 class="checkgust">{{ 'customer.login.guest_title' | t }}</h2>
+        <hr class="hr--small">
+
+        {% form 'guest_login' %}
+          <button type="submit" class="btn">
+            <p>
+            {{ 'customer.login.guest_continue' | t }}
+            </p>
+          </button>
+        {% endform %}
+      {% endif %}
+
+    </div>
+  </div>
+  <div class="grid register area_spl">
+
+    <div class="grid__item medium-up--one-third medium-up--push-one-third">
+
+      <header class="section-header">
+        <h1 class="section-header__title">NEW USERS: CREATE YOUR ACCOUNT HERE</h1>
+      </header>
+
+      <div class="form-vertical">
+        {% form 'create_customer' %}
+
+{% if form.errors %}
+    {{ form.errors | default_errors }}
+{% endif %}
+
+          <label for="FirstName">{{ 'customer.register.first_name' | t }}</label>
+          <input type="text" name="customer[first_name]" id="FirstName" placeholder="First Name" class="input-full" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} autocapitalize="words" autofocus>
+
+          <label for="LastName">{{ 'customer.register.last_name' | t }}</label>
+          <input type="text" name="customer[last_name]" id="LastName" placeholder="Last Name" class="input-full" {% if form.last_name %}value="{{ form.last_name }}"{% endif %} autocapitalize="words">
+
+          <label for="Email">{{ 'customer.register.email' | t }}</label>
+          <input type="email" name="customer[email]" id="Email" placeholder="Email" class="input-full{% if form.errors contains 'email' %} error{% endif %}" {% if form.email %} value="{{ form.email }}"{% endif %} autocorrect="off" autocapitalize="off">
+
+          <label for="CreatePassword">{{ 'customer.register.password' | t }}</label>
+          <input type="password" name="customer[password]" id="CreatePassword" placeholder="Password" class="input-full{% if form.errors contains 'password' %} error{% endif %}">
+
+        <p class="ajaxcart__note ajaxcart__note--terms">
+                <input type="checkbox" id="CartPageAgree" />
+                <label for="CartPageAgree">                
+                
+                  I ACCEPT THE <a href="{{settings.cart_terms_conditions_link}}"> TERMS & CONDITIONS</a> AND <a href="https://level-foods.myshopify.com/pages/privacy-policy"> PRIVACY POLICY</a> WHICH CONTAIN IMPORTANT INFORMATION ABOUT MY RIGHTS INCLUDING DATA PRIVACY.
+                </label>
+              </p>
+          <p class="button_smin">
+            <input type="submit" value="SIGN UP" class="btn btn--full">
+          </p>
+
+        {% endform %}
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<style type="text/css">
+  #CartPageAgree {
+  margin-bottom: 3px;
+display: inline-table;
+width: 20px;
+box-sizing: border-box;
+  }
+  .ajaxcart__note--terms {
+
+    margin-top: 0px;
+    text-align: left;
+    margin-bottom: 15px;
+    font-size: 14px;
+
+}
+  .ajaxcart__note--terms label {
+ width: calc(100% - 50px);
+
+display: inline-table;
+
+box-sizing: border-box;
+
+line-height: 180%;
+  }
+  .stynth {width:82%; margin-left:8%; display:none;}
+  @media only screen and (max-width:999px){
+  .stynth {width:100%; margin-left:0%;box-sizing:border-box; padding:0px 25px;}
+  }
+  .checkgust {
+  font-size:24px;
+  }
+  .grid.register.area_spl {
+  border:1px solid #000;
+    padding-top:25px;
+    background:#000;
+color:#fff;
+    overflow:hidden;
+  }
+  .grid.register.area_spl input[type="submit"] {background:#e00808 ; color:#fff  ;}
+  .grid.register.area_spl .button_smin {
+  position:relative;
+  padding: 0px;
+overflow: hidden;
+height: 56px;
+margin-bottom: 35px;
+  padding:0px;
+  }
+   .grid.register.area_spl .button_smin:after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 200%;
+    height: 100%;
+    transform: skewX(-20deg);
+    background-image: linear-gradient(to right, 
+transparent, rgba(255,255,255,0.25),
+    transparent);
+     
+}
+  .grid.register.area_spl .button_smin:hover:after{
+  animation: shine 0.75s cubic-bezier(0.01, 0.56, 1, 1);
+  }
+  .grid.register.area_spl input { background-color:#fff  ; color:#000  ; border-color:#484848 ;}
+</style>
+<script>
+ $(document).ready(function() {
+   
+    $('body').on('click', '#create_customer .btn', function() {
+     
+      if ($('#CartPageAgree').is(':checked')) {
+        $(this).submit();
+      }
+      else {
+        alert("You must agree with the terms and conditions.");
+        return false;
+      }
+    });
+  });
+</script>

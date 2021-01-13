@@ -1,0 +1,409 @@
+
+
+{%- if section.blocks.size > 0 -%}
+  <div class="page-width page-content spec_try bfbntext">
+    <div class="try_landing_sec sec_twos">
+      {%comment%}
+    <div class="try_half try_sec_left">
+       
+          {%- for block in section.blocks -%}
+           
+              {% case block.type %}
+                {% when 'rich-text'%}
+                  {% include 'try-sec-block-rich-text', section_class: 'try-qes-ans-sec' %} 
+                {% when 'question'%}
+                 {% comment %} {% include 'try-block-qus' %}{% endcomment %}
+      
+{% when 'image'%}
+      <div class="secBock_image" style="text-align:{{ block.settings.align_image }};">
+         <img class="image-try-blockc  try-imblcok{{ block.id }}"
+                        src="{{ block.settings.image | img_url: '350x' }}"
+                        alt="{{ block.settings.image.alt | escape }}">
+      </div>
+      {% when 'button'%}
+     <div class="try-butn-ara"> <a class="hero_button_add btn  try-btn-ds try-button-full" style="{% if block.settings.btn_bg_color != blank %} background-color:{{ block.settings.btn_bg_color }}; {% endif %}{% if block.settings.btn_color != blank %}
+       color:{{ block.settings.btn_color }};{% endif %}" href="{{ block.settings.link }}">{{ block.settings.title }}</a></div>
+
+              {% endcase %}
+           
+          {%- endfor -%}
+      
+
+     
+    </div>
+    <div class="try_half try_sec_right">
+       {% if section.settings.image != blank %}
+      <img class="image-try  try--{{ block.id }}"
+                        src="{{ section.settings.image | img_url: '750x' }}"
+                        alt="{{ section.settings.image.alt | escape }}">
+      {% else %}
+                    <svg class="placeholder-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1052 400" style="background-color: #000;"></svg>
+       {% endif %}
+      <div class="image_caption"> <p>{{ section.settings.imagecap }}</p></div>
+    </div>
+      {%endcomment%}
+      
+      <h3 class="midbtext"> THIS IS TOO GOOD TO BE TRUE.</h3>
+     
+
+</div>
+    
+ <h3 class="midbtext alltext"> REALLY, WHAT'S THE CATCH? <span>...THERE ISN'T ONE.  </span></h3>
+    
+            <div class="faq-section">
+    <div class="fqmatter">
+<div class="container">            
+  <table class="table">
+ 
+    <tbody>
+      <tr>
+        <td>Can I really cancel anytime?</td>
+        <td></td>
+        <td class="green">Yes</td>
+      </tr>
+ 
+       <tr>
+        <td>Can I skip a month?</td>
+        <td></td>
+        <td class="green">Yeup.</td>
+      </tr>
+        <tr>
+        <td>Can I change the frequency or date of my shipment?</td>
+        
+        <td class="green">You bet!</td>
+      </tr>
+      
+      <tr>
+        <td>Can I change to a combo, variety or single flavor box of my choice</td>
+       
+        <td class="green">Yas, queen.</td>
+      </tr>
+      
+        <tr>
+        <td>  Are the best tasting protein bars out there?</td>
+       
+        <td class="green">In our unbiased opinion, HELL YA!</td>
+      </tr>
+    
+      
+        <!--tr>
+        <td>Can I push back a shipment?</td>
+        <td></td>
+        <td class="green">Yes</td>
+      </tr>
+      
+       <tr>
+        <td>Can I rush a shipment?</td>
+        <td></td>
+        <td class="green">Yes</td>
+      </tr>
+      
+       <tr>
+        <td>Can I change my order?</td>
+        <td></td>
+        <td class="green">Yes</td>
+      </tr>
+      
+       <tr>
+        <td>Can I really text you?</td>
+        <td></td>
+        <td class="green">Yes</td>
+      </tr>
+      
+      <tr>
+        <td>Am I texting a robot?</td>
+        <td></td>
+        <td class="red">Nope</td>
+      </tr>
+      
+       <tr>
+        <td>Am I send you pictures of my dog?</td>
+        <td></td>
+        <td class="green">Pls</td>
+      </tr-->
+    </tbody>
+  </table>
+</div>
+    </div>
+  </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Mid Banner",
+    "settings": [
+       {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Right Image"
+          },
+{
+            "type": "text",
+            "id": "imagecap",
+            "label": "Image Caption",
+            "default": "Elle & Meyers Leonard"
+          },
+{
+            "type": "color",
+            "id": "section_background",
+            "label": "Section Background",
+             "default": "#fff"
+          }
+    ],
+    "default": {
+      "blocks": [
+    
+    
+{
+          "type": "rich-text",
+          "settings": {
+            "title": "Shipping policy"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "title": "Where do you ship to?"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "title": "How long will my order take?"
+          }
+        }
+      ]
+    },
+    "blocks": [
+      {
+        "type": "rich-text",
+        "name": "Rich text",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Rich text"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Use this section for any descriptive text you need to fill out your pages or to add introductory headings between other blocks.</p>"
+          },
+          {
+            "type": "select",
+            "id": "align_text",
+            "label": "Text alignment",
+            "default": "left",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Centered"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "question",
+        "name": "Question",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Question",
+            "default": "Frequently asked question"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Use this text to answer questions in as much detail as possible for your customers.</p>"
+          }
+        ]
+      },
+{
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Block Image"
+          },      
+
+          {
+            "type": "select",
+            "id": "align_image",
+            "label": "Image alignment",
+            "default": "left",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+{
+                "value": "right",
+                "label": "Right"
+              },
+              {
+                "value": "center",
+                "label": "Centered"
+              }
+            ]
+          }
+          
+         
+        ]
+      },
+{
+        "type": "button",
+        "name": "Button",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Button Text",
+            "default": "Submit Now"
+          },
+{
+            "type": "text",
+            "id": "link",
+            "label": "Button Link",
+            "default": "#"
+          },
+          {
+            "type": "color",
+            "id": "btn_color",
+            "label": "Button Color"
+          },
+{
+            "type": "color",
+            "id": "btn_bg_color",
+            "label": "Button Background Color"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+<style type="text/css">
+ 
+  .try_half {
+    width:50%;
+    padding:0px 2%;
+  }
+  .try_landing_sec{
+  position:relative;
+  display:flex;
+  margin:0px;
+    padding:0px;
+    
+  }
+  .index-section.try-qes-ans-sec{
+  margin:10px 0px;
+  }
+  .index-section.try-qes-ans-sec .h2 {text-transform:uppercase;}
+  .try_sec_right img{max-width:100%;}
+  .grid.try_secs{margin-left:0px;}
+ .collapsible-trigger--inline {
+
+    padding: 11px 40px 11px 10px;
+    text-align: left ;
+  
+margin: 5px 0px;
+color:#000;
+width: 100%;
+   border:2px solid #000;
+
+}
+  .collapsible-trigger--inline .collapsible-trigger__icon {
+
+    right: 10px;
+    left: auto;
+    border:none;
+
+}
+  .try-butn-ara{
+  display:block;
+    text-align:center;
+    margin:0px;
+    padding:15px 0px 10px 0px;
+  }
+  .try_button{
+  	text-transform:uppercase;
+    font-size:15px;
+    font-weight:400;
+    text-transform:uppercase;
+    padding:11px 20px;
+    background:#e00808;
+    color:#fff;
+    line-height: 1.42;
+    letter-spacing:1px;
+    
+  }
+  .page-width.page-content.spec_try {padding-top:35px; padding-bottom:35px;}
+  @media only screen and (max-width:999px){
+  .try_half {
+    width:100%;
+    padding: 0px;
+    
+  }
+    .try_half.try_sec_right{margin-top:20px;}
+    .try_landing_sec{
+
+    flex-flow: wrap;
+  }
+  }
+  #shopify-section-bf_banertext{background:#e1e1e1;}
+  .btn.try-button-full{
+  width:100%;
+    padding: 17px 20px;
+  }
+  .try_landing_sec.sec_twos {
+  align-items: center;
+justify-content: center;
+  }
+  .image-try-blockc {
+   width:90px; 
+  }
+  .image_caption {text-align:right;
+  position: absolute;
+    right: 50px;}
+  .image_caption p {
+    text-align:right;
+    padding: 15px 10px 8px 10px;
+position: relative;
+    display:inline-table;
+  }
+  .image_caption p:before {
+  content:'';
+    position:absolute;
+    top:10px;
+    right:0;
+    width:194px;
+    height:1px;
+   background: #bdbbbb;
+  }
+  .try_half {
+    padding-bottom:15px;
+}
+   .page-width.page-content.spec_try.bfbntext {
+  padding:20px ;
+    
+  }
+  .midbtext {text-align:center; margin:0px; padding:15px;}
+  .midbtext span {display:block; color:#E00808;}
+  
+  @media only screen and (max-width:520px){
+   
+      .midbtext {font-size:18px;}
+  }
+</style>

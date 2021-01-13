@@ -1,0 +1,61 @@
+<style>
+  
+  .fitness_seen_section h3 {
+   	color: {{ section.settings.text_color }}; 
+  }
+  
+</style>
+
+<div class="fitness_seen_section" style="background-color: {{ section.settings.section_bg }} ">
+  <div class="page-width">
+    <div class="grid">
+      <div class="grid__item small--one-whole medium--one-whole large-up--one-whole">
+          <h3>{{ section.settings.title }}</h3>
+      </div>
+    </div>
+    <div class="grid">
+    {% for block in section.blocks %}
+       <img src="{{ block.settings.seen_image | img_url: 'master' }}">
+    {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Fitness Seen Section",
+    "settings": [
+	  {
+        "type": "color",
+        "id": "section_bg",
+        "label": "Section Background color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#FFFFFF"
+      },
+	  {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+		"default": "As seen on:"
+      }
+    ],
+	"blocks": [
+	  {
+		"type": "image",
+        "name": "Company Images",
+        "settings": [
+		  {
+            "type": "image_picker",
+            "id": "seen_image",
+            "label": "As Seen on Company Image"
+          }
+		] 
+      }
+	]
+  }
+{% endschema %}

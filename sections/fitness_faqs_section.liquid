@@ -1,0 +1,191 @@
+{% assign open-faq = 'https://cdn.shopify.com/s/files/1/0248/8084/0813/files/plus.svg?v=1598448547' %}
+{% assign close-faq = 'https://cdn.shopify.com/s/files/1/0248/8084/0813/files/close_1.svg?v=1598448547' %}
+
+<style>
+  
+  .fitness_faqs_section h3, .fitness_faqs_section p  {
+   	color: {{ section.settings.text_color }}; 
+  }
+  
+</style>
+
+<div class="fitness_faqs_section" style="background-color: {{ section.settings.section_bg }}" >
+  <div class="page-width page-content">
+    <div class="grid">
+      <div class="grid__item small--one-whole medium--one-whole large-up--one-whole">
+      	<h3>{{ section.settings.title }}</h3>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="grid__item medium-up--one-whole">
+        <div class="page-blocks page-blocks--flush">
+          {%- for block in section.blocks -%}
+            {% case block.type %}
+            {% when 'rich-text'%}
+              <div {{ block.shopify_attributes }}>
+                <div class="text-{{ block.settings.align_text }}">
+                  <div class="grid">
+                    <div class="grid__item{% if block.settings.narrow_column %} medium-up--three-quarters medium-up--push-one-eighth{% endif %}">
+                      {% if block.settings.title != blank %}
+                      <div class="title_and_arrow_wrapper">
+                        <p class="h2">
+                          {{ block.settings.title | escape }}
+                        </p>
+                        <span class="arrow_down"></span>
+                      </div>
+                      {% endif %}
+                      {% if block.settings.text != blank %}
+                      <div class="rte">
+                        {% if block.settings.enlarge_text %}<div class="enlarge-text">{% endif %}
+                        {{ block.settings.text }}
+                        {% if block.settings.enlarge_text %}</div>{% endif %}
+                      </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% when 'question'%}
+              <div {{ block.shopify_attributes }} class="question-faq">
+                <button type="button" class="collapsible-trigger collapsible-trigger--inline collapsible--auto-height" aria-controls="FAQ-content-{{ block.id }}">
+                  <img class="open-faq" src="{{ open-faq }}">
+                  <img class="close-faq" src="{{ close-faq }}">
+                  {{ block.settings.title }}
+                </button>
+                <div id="FAQ-content-{{ block.id }}" class="collapsible-content collapsible-content--all">
+                  <div class="collapsible-content__inner collapsible-content__inner--faq rte">
+                    {{ block.settings.text }}
+                  </div>
+                </div>
+              </div>
+            {% endcase %}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Fitness FAQs",
+    "settings": [
+	  {
+        "type": "color",
+        "id": "section_bg",
+        "label": "Section Background color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#000000"
+      },
+	  {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+		"default": "Fast Food. Not Junk Food"
+      },
+      {
+        "type": "checkbox",
+        "id": "page_title_enable",
+        "label": "Show page title"
+      },
+      {
+        "type": "checkbox",
+        "id": "page_content_enable",
+        "label": "Show page content"
+      }
+    ],
+    "default": {
+      "blocks": [
+        {
+          "type": "rich-text",
+          "settings": {
+            "title": "Shipping policy"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "title": "Where do you ship to?"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "title": "How long will my order take?"
+          }
+        },
+        {
+          "type": "rich-text",
+          "settings": {
+            "title": "Returns and exchanges"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "title": "How do I ship my order back to you?"
+          }
+        }
+      ]
+    },
+    "blocks": [
+      {
+        "type": "rich-text",
+        "name": "Rich text",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Rich text"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Use this section for any descriptive text you need to fill out your pages or to add introductory headings between other blocks.</p>"
+          },
+          {
+            "type": "select",
+            "id": "align_text",
+            "label": "Text alignment",
+            "default": "left",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Centered"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "question",
+        "name": "Question",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Question",
+            "default": "Frequently asked question"
+          },
+          {
+            "type": "html",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Use this text to answer questions in as much detail as possible for your customers.</p>"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

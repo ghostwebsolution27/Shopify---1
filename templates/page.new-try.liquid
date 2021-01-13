@@ -1,0 +1,75 @@
+{% comment %}ECPWS{% endcomment %}{% capture ec-pw-ify %}{% section 'bf_header_note' %}
+{%comment%}{% section 'try_logo_sec' %}{%endcomment%}
+<div id="bf1">
+{% section 'bf_slideshow' %}
+{% section 'bf_no_section' %}
+{% section 'Try_bf_steps'%}
+  {% section 'iconbelow' %}
+  {% section 'slarnke_bf_bannertexts' %}
+
+{% section 'slarnke_bf_video' %}
+{%comment%}
+{% section 'bf_section_2' %}
+{% section 'bf_tabs' %}
+
+{% section 'bf_section_four' %}
+{% section 'bf_testimoni' %}
+
+
+{%endcomment%}
+<div class="grid">
+  <div class="grid__item medium-up--three-quarters medium-up--push-one-eighth">
+    {% comment %}
+    <header class="section-header">
+      <h1 class="section-header__title">{{ page.title }}</h1>
+    </header>
+    {% endcomment %}
+    <div class="rte rte--nomargin">
+      {{ page.content }}
+    </div>
+
+  </div>
+</div>
+  
+{% section 'slarnke_bf_tabs_new' %}
+  
+{% section 'bf_reviews' %}
+
+{% section 'try_call_action1' %}
+  
+{% comment %}ECPWS{% endcomment %}{% endcapture %}{% include 'ec-passwordify' %}
+</div>
+
+<style type="text/css">
+  .textannounce {font-size:13px;}
+</style>
+
+<!-- 
+{{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
+
+{{ '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css' | stylesheet_tag }}
+
+{{ '//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js' | script_tag }} -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  $(".hero_button_add_scrol").click(function() {
+    console.log("clciked");
+      $('html, body').animate({
+          scrollTop: $("#shopify-section-Try_bf_steps").offset().top
+      }, 200);
+  });
+//   $(".btn").click(function() {
+//      console.log("clciked");
+//     $('html, body').animate({
+//         scrollTop: $("#shopify-section-slarnke_bf_step").offset().top;
+//     }, 2000);
+// });
+   $(".clicktoact").click(function() {
+     
+    console.log("scroll");
+    $('html, body').animate({
+        scrollTop: $(".bfe").offset().top
+    }, 200);
+}); 
+</script>

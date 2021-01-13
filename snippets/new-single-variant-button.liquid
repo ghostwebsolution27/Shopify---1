@@ -1,0 +1,580 @@
+{%- assign is_color = false -%}
+{%- assign color_swatch_drop = option_drop -%}
+{%- assign color_option_index = 0 -%}
+
+{% if settings.product_color_swatches %}
+  {% for option in product.options_with_values %}
+    {% if option == color_swatch_drop %}
+      {%- assign color_option_index = forloop.index0 -%}
+      {%- assign downcased_option = color_swatch_drop.name | downcase -%}
+      {% if downcased_option contains 'color' or downcased_option contains 'colour' %}
+        {%- assign is_color = true -%}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% for productags in product.tags %}
+  {% if productags contains 'hide-subscription' %}     
+  	{% assign subhidden = true %}
+  {% endif %}
+{% endfor %}
+
+<div class="variant-wrapper variant-wrapper--{{ settings.variant_type }} js">
+<!--   <label class="variant__label{% if option.name == 'Default' or option.name == 'Title' %} hidden-label{% endif %}{% unless settings.variant_labels_enable %} hidden-label{% endunless %}"
+    for="ProductSelect-{{ section_id }}-option-{{ forloop.index0 }}">
+    {{ option.name }}
+    {% if is_color %}
+      <span class="variant__label-info">
+        &mdash;
+        <span
+          id="VariantColorLabel-{{ section_id }}-{{ forloop.index0 }}"
+          data-option-index="{{ color_option_index }}">
+          {{ option.selected_value }}
+        </span>
+      </span>
+    {% endif %}
+  </label> -->
+  {%- assign option_index = forloop.index -%}
+  {% for mini in product.collections %}
+    {% if mini.handle == "minis" %}
+    	{% assign minis = true %}
+    {% endif %}
+  {% endfor %}
+  <fieldset class="variant-input-wrap {{ product.handle }}{% if minis == true %} mini-collection {% endif %}"
+    name="{{ option.name }}"
+    data-index="option{{ option_index }}"
+    id="ProductSelect-{{ section_id }}-option-{{ forloop.index0 }}">
+    {% for value in option.values %}
+      {%- assign product_available = true -%}
+      {% if product.options.size == 1 %}
+        {%- assign product_available = product.variants[forloop.index0].available -%}
+      {% endif %}
+      <div
+        class="variant-inputs"
+        data-index="option{{ option_index }}"
+        data-value="{{ value | escape }}"  data-variant= {{product.variants[forloop.index0].inventory_quantity}}>
+        
+        <input type="radio"
+          {% if option.selected_value == value %} checked="checked"{% endif %}
+          value="{{ value | escape }}"
+          data-index="option{{ option_index }}"
+          name="{{ option.name }}"
+          class="variant__input-{{ section_id }}{% unless product_available %} disabled{% endunless %}{% if is_color %} variant__input--color-swatch-{{ section_id }}{% endif %}"
+          {% if is_color %} data-color-name="{{ value | escape }}"{% endif %}
+          {% if is_color %} data-color-index="{{ color_option_index }}"{% endif %}
+          id="ProductSelect-{{ section_id }}-option-{{ option.name | handleize }}-{{ value | url_encode }}"  data-variant= {{product.variants[forloop.index0].inventory_quantity}}>
+        {% if is_color %}
+          {%- assign color_image = value | handle | append: '.' | append: swatch_file_extension | asset_img_url: '50x' | prepend: 'https:' | split: '?' | first -%}
+          {%- assign color_swatch_fallback = value | split: ' ' | last | handle -%}
+          <label
+            for="ProductSelect-{{ section_id }}-option-{{ option.name | handleize }}-{{ value | url_encode }}"
+            class="variant__button-label color-swatch color-swatch--{{ value | handle }}{% unless product_available %} disabled{% endunless %}"
+            style="background-image: url({{ color_image }}); background-color: {{ color_swatch_fallback }};"
+          >
+            {{ value | escape }}
+         
+          </label>
+        {% else %}
+        
+          <label
+            for="ProductSelect-{{ section_id }}-option-{{ option.name | handleize }}-{{ value | url_encode }}"
+            class="variant__button-label{% unless product_available %} disabled{% endunless %} {% if value == 'BOX OF 12' %} valbox mostpopular{% elsif  value == 'BOX OF 18' %} valbox best-value{% endif %}">
+            {% if value == 'BOX OF 12' %}
+            {% unless product.handle == "variety-pack-mini" %}<span class="mostpopu"> most popular </span> {% endunless %} <span class="labelvalue">{{ value }}</span>  {% unless product.handle == "variety-pack-mini" %}<span class="saveamout">save $5</span>{% endunless %}
+            {% elsif  value == 'BOX OF 18' %}
+            <span class="bestvalue"> Best Value </span><span class="labelvalue">{{ value }}</span>  <span class="saveamout"> save $10</span>
+            {% elsif  value == 'BOX OF 30' or value == 'BOX OF 20' or value == 'BOX OF 40' %} 
+            <span class="bestvalue"> Best Value</span>{{ value }}
+            {% else %}
+            {{ value }} 
+            {% endif %}    
+        </label>
+        {% endif %}
+        {%comment%}<span class="larg">{{ product.price_max | money }}</span>
+              <span class="small">{{ product.price_min | money }}</span>
+        {%endcomment%}
+      </div>
+    
+        
+   
+    {% endfor %}
+    
+     <div class="varient_prices">
+    {% for variant in product.variants %}
+   <div class="varient-price"  data-variant= {{product.variants[forloop.index0].inventory_quantity}}>
+     <span class="price_full"> {{ variant.price | money }}</span>
+     <span class="price_perbar">
+       {%- assign totalbar = product.variants[forloop.index0].title | split: " " | last  -%}
+       {%- assign totalbarprice = variant.price | divided_by: totalbar  -%}
+       ({{totalbarprice | money}}/ BAR)
+     </span>
+     <span class="boxSize">{{ variant.title | split: " " | last }}</span>
+       </div>
+{% endfor %}
+       </div>
+
+  </fieldset>
+</div>
+
+<style type="text/css">
+  
+  {% if subhidden == true %} 
+  	.rc_block.rc_block__type.rc_block__type__autodeliver {
+        display: none ;
+    }
+  {% endif %}
+  
+  .variant-input-wrap.variety-pack-bars .saveamout {
+  	  display: none;
+  }
+  
+  .variant-input-wrap.variety-pack-bars input[type="radio"]:checked + label span.mostpopu, .variant-input-wrap.variety-pack-bars input[type="radio"] + label span.mostpopu {
+   	  display: none; 
+  }
+
+  .variant__button-label > span.labelvalue {
+    color: #fff;
+  }
+
+  .variant-inputs {position:relative; display:inline-block;width:32%}
+  fieldset.variant-input-wrap {
+    padding-top: 50px;
+    padding-bottom:0px;
+	margin-bottom:10px;    
+}
+  .varient_prices .varient-price {display:none;}
+  .varient_prices .varient-price.v_current {display:block;}
+  .varient-price{
+    text-align: left;
+    position: relative;
+    max-width: 78%;
+}
+  .price_full {
+  font-size:36px;
+    font-weight:900;
+    font-family: "proxima-nova", sans-serif;
+    
+  }
+.variant-input-wrap input[type="radio"]:checked + label {
+  letter-spacing:0px;
+    box-shadow: 0 0 0 1px #ccc;
+      background: #FBEFD7;
+    color: #000;
+    border: 0px solid #d3b567;
+    border-radius: 0px;    
+    letter-spacing: 0px;
+    font-weight: 800;
+    margin-right: 20px;
+}
+  .variant-input-wrap label {
+    font-family: "proxima-nova", sans-serif;
+    box-shadow: 0 0 0 1px #ccc;
+    border: 0px solid #000;
+    text-transform: uppercase;
+    font-size: 18px;
+    letter-spacing: 0px;
+    font-weight: 800;
+    width: 90%;
+    text-align: center;
+    border-radius: 0px;
+    z-index:9;   
+  padding-top: 24px;
+padding-bottom: 22px;
+    margin-right: 20px;
+    background: #FEFEFE;
+   
+}
+  .variant-input-wrap label.valbox {
+    padding-top: 22px;
+ padding-bottom: 23px;
+  }
+  .variant-input-wrap label.mostpopular{
+   border: 0px solid #d3b567;
+    box-shadow: 0 0 0 1px #ccc;
+  }
+ .mostpopu {
+    position: absolute;
+    top: -42px;
+    font-size: 14px;
+    text-align: center;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;   
+    padding: 5px;
+    border-radius: 0px;       
+    z-index: -1;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    box-shadow: 0 0 0 1px #ccc;
+    border: 0px solid #000;
+   line-height:20px;
+background: #FEFEFE;
+   
+}
+  .bestvalue {
+    position: absolute;
+    top: -42px;
+    font-size: 14px;
+    text-align: center;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    background: transparent;
+    padding: 5px;
+    border-radius: 0px;       
+    z-index: -1;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+   
+   line-height:20px;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#e2e2e0+0,ffffff+27,ffffff+70,e2e2e0+100 */
+background: #FEFEFE;
+ box-shadow: 0 0 0 1px #ccc;
+    border: 0px solid #000;
+   
+}
+  
+.variant-input-wrap input[type="radio"]:checked + label span.mostpopu {
+   background: #FBEFD7;
+}
+  
+  .variant-input-wrap input[type="radio"]:checked + label span.bestvalue {
+    background: #FBEFD7;
+}
+  
+  .saveamout{
+    font-size: 14px;
+    font-weight: 500;
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+}
+  .varient_prices {
+    padding-top: 20px;
+    display:none;
+}
+  .price_perbar {padding-left:8px;}
+  #reChargelevel {padding-top:15px;}
+  #reChargelevel .rc_popup {display:none ;}
+  
+  #reChargelevel {padding-bottom:15px;}
+  div.rc_block__type--active label.rc_label {
+    color: #000 ;
+    font-weight: 900;
+}
+ #reChargelevel label.rc_label {
+   font-family: "proxima-nova-condensed", sans-serif;
+   letter-spacing:0px;
+    font-weight: 500;
+   font-size:16px;
+   line-height: 0 ;
+}
+  #rc_radio_options input {display:none;}
+ #reChargelevel div.rc_block {position:relative; padding-left: 35px ;}
+ #rc_radio_options label:before {
+  position: absolute;
+   content:'';
+  top: 2px;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #fff;
+  border-radius: 50%;
+   border:1px solid #000;
+}
+  #rc_radio_options label:after {
+    top: 6px;
+    left: 4px;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: #000;
+    content: '';
+    display: none;
+    position: absolute;
+}
+ #rc_radio_options input:checked + label:after {
+  display: block;
+}
+  #reChargelevel #rc_autodeliver_options{padding-left:0px ;}
+  #rc_autodeliver_options label:before{display:none;}
+  .shopify-payment-button {display:none ;}
+  .payment-buttons .add-to-cart {
+   font-family: "proxima-nova", sans-serif ;
+ 	letter-spacing:0px ;
+    font-size:16px !imoprtant;
+  }
+  
+/* Reponsive */
+@media only screen and (max-width:1590px){
+  .variant-input-wrap label{
+  font-size: 17px;
+    width: 95%;
+    margin: auto;
+  }
+  .variant-input-wrap input[type="radio"]:checked + label{
+  margin-right: auto;
+  }
+   .mostpopu,.bestvalue {   
+    font-size: 12px;
+   }
+}
+@media only screen and (max-width:500px){
+  
+  label.variant__button-label.valbox.mostpopular span.labelvalue, label.variant__button-label.valbox.best-value span.labelvalue {
+    color: #000;
+    font-weight: 800;
+    top: -2.5px;
+    position: relative;
+}
+  
+   .variant-input-wrap.variety-pack-bars label.variant__button-label.valbox.mostpopular span.labelvalue, .variant-input-wrap.variety-pack-bars label.variant__button-label.valbox.best-value span.labelvalue {
+    top: 0;
+}
+  
+  .variant-input-wrap input[type="radio"]:checked + label.variant__button-label.valbox.mostpopular span.labelvalue, .variant-input-wrap input[type="radio"]:checked + label.variant__button-label.valbox.best-value span.labelvalue {
+    color: #fff;
+    position: relative;
+    top: -2.5px;
+}
+  
+    .variant-input-wrap.variety-pack-bars input[type="radio"]:checked + label.variant__button-label.valbox.mostpopular span.labelvalue, .variant-input-wrap.variety-pack-bars input[type="radio"]:checked + label.variant__button-label.valbox.best-value span.labelvalue {
+    top: 0;
+}
+  
+  
+  
+  .variant-input-wrap.variety-pack-mini input[type="radio"]:checked + label.variant__button-label.valbox.mostpopular span.labelvalue, .variant-input-wrap.variety-pack-mini input[type="radio"]:checked + label.variant__button-label.valbox.best-value span.labelvalue {
+    	top: 0;
+  }
+  
+div#rc_container {
+    margin-top: 10px;
+}
+
+.variant-input-wrap input[type="radio"]:checked + label.variant__button-label span:first-child::before {
+    content: "";
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    display: block;
+    position: absolute;
+    top: 5px;
+    right: -23px;
+    background-image: url(https://cdn.shopify.com/s/files/1/0248/8084/0813/files/squiggly-arrow-png-18_3x_ff84113c-e69d-4146-9483-f238b32903e9.png?v=1594299461);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+  
+  .variant-input-wrap.variety-pack-mini .variant-inputs:nth-child(2) input[type="radio"]:checked + label.variant__button-label span:first-child::before {
+   	display: none 
+  }
+  
+  
+  .variant-input-wrap .variant-inputs:first-child label {
+    top: 4px;
+}
+  
+  .mini-collection.variant-input-wrap label {
+  	top: 4px;
+}
+  
+.variant-input-wrap label {
+    font-size: 15px;
+    width: 90%;
+    margin-right: auto;
+  	margin-left: auto;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 0;
+    padding-right: 0;
+    display: block;
+    top: 4px;
+}  
+  .variant-input-wrap label.valbox {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+  
+  .saveamout {
+    font-size: 10px;    
+    bottom: 5px;
+   
+}
+  .mostpopu, .bestvalue {
+    font-size: 11px;
+}
+  .payment-buttons .btn.add-to-cart {    
+    width: 100%;
+    font-size: 16px;
+}
+  .mostpopu,.bestvalue {   
+  line-height: 14px;
+top: -24px;
+   }
+
+fieldset.variant-input-wrap {
+    padding-top: 20px;
+  
+}
+  
+  
+}
+  
+@media only screen and (min-width:1024px){
+  
+fieldset.variant-input-wrap {
+    padding-top: 30px;
+    padding-bottom:10px;
+	margin-bottom:0px;    
+}
+  
+}
+  
+@media only screen and (min-width:1100px){
+  
+fieldset.variant-input-wrap {
+    margin-top: 20px;
+}
+
+label.variant__button-label.valbox.mostpopular span.saveamout, label.variant__button-label.valbox.best-value span.saveamout {
+  bottom: 15px;
+}
+
+.variant-input-wrap.variety-pack-bars label.variant__button-label.valbox.mostpopular span.labelvalue, .variant-input-wrap.variety-pack-bars label.variant__button-label.valbox.best-value span.labelvalue {
+  top: 0;
+}
+  
+  label.variant__button-label.valbox.mostpopular span.labelvalue, label.variant__button-label.valbox.best-value span.labelvalue {
+  position: relative;
+  color: #000;
+  font-weight: 800;
+  top: -5px;
+}
+  
+  .variant-input-wrap.variety-pack-mini label.variant__button-label.valbox.mostpopular span.labelvalue {
+   	top: 0; 
+  }
+
+.variant-input-wrap input[type="radio"]:checked + label.variant__button-label.valbox.mostpopular span.labelvalue, .variant-input-wrap input[type="radio"]:checked + label.variant__button-label.valbox.best-value span.labelvalue {
+  color: #fff;
+  top: -5px;
+}
+  
+  .variant-input-wrap.variety-pack-bars input[type="radio"]:checked + label.variant__button-label.valbox.mostpopular span.labelvalue, .variant-input-wrap.variety-pack-bars input[type="radio"]:checked + label.variant__button-label.valbox.best-value span.labelvalue {
+  top: 0;
+}
+  
+  .variant-input-wrap.variety-pack-mini input[type="radio"]:checked + label.variant__button-label.valbox.mostpopular span.labelvalue {
+    top: 0;
+  }
+
+  
+.variant-input-wrap input[type="radio"]:checked + label.variant__button-label span:first-child::before {
+    content: "";
+    width: 35px;
+    height: 35px;
+    background: transparent;
+    display: block;
+    position: absolute;
+    top: 5px;
+    right: -140px;
+    left: 0;
+    margin: auto;
+    background-image: url(https://cdn.shopify.com/s/files/1/0248/8084/0813/files/squiggly-arrow-png-18_3x_ff84113c-e69d-4146-9483-f238b32903e9.png?v=1594299461);
+    background-size: contain;
+    transform: rotate(-25deg);
+    background-repeat: no-repeat;
+}
+  
+}
+  
+/** THEME DUPLICATE CHANGES **/
+  
+label.rc_label__deliver_every {
+    padding: 8px 0 0 0 ;
+}
+  
+.payment-buttons .btn.add-to-cart {
+    background: #000 ;
+}
+
+</style>
+
+
+<script type='text/javascript'>
+  
+  
+    $(document).ready(function() {   
+   
+      
+      
+  var loadvselect = $('.variant-inputs input:checked').data('variant');
+   $('.varient-price[data-variant = '+loadvselect+']').addClass('v_current');
+  
+      var loadPrice = $('.varient-price[data-variant = '+loadvselect+'] .price_full').text()
+      	var onloadPrice = 'Add to cart';      
+       $('.add-to-cart span').text(onloadPrice);
+      
+      var boxsize = $('.varient-price[data-variant = '+loadvselect+'] .boxSize').text()
+    
+      if(boxsize == 6 || boxsize == 10){
+         $('.rc_block.rc_block__type.rc_block__type__autodeliver').hide();
+         $('.rc_block.rc_block__type.rc_block__type__autodeliver').css('display', 'none');      
+      }
+
+      
+    	$('.variant-inputs').click(function(){
+     
+       $('input.rc_radio__onetime').prop('checked',true).trigger("click");
+       $('input.rc_radio__autodeliver').prop('checked',false);
+      
+       var currentvarient =  $(this).data('variant');
+      
+      var boxsize = $('.varient-price[data-variant = '+currentvarient+'] .boxSize').text()
+
+      if(boxsize == 6 || boxsize == 10){
+         $('.rc_block.rc_block__type.rc_block__type__autodeliver').hide();
+         $('.rc_block.rc_block__type.rc_block__type__autodeliver').css('display', 'none');
+      }else{
+        $('.rc_block.rc_block__type.rc_block__type__autodeliver').show();
+        $('.rc_block.rc_block__type.rc_block__type__autodeliver').css('display', 'block');
+        
+      }
+      
+      var price = $('.varient-price');
+      var findprice =  $(price).data('variant')
+       $(price).siblings().removeClass('v_current');
+      $('.varient-price[data-variant = '+currentvarient+']').addClass('v_current');
+      
+      var clickPrice = $('.varient-price[data-variant = '+currentvarient+'] .price_full').text()
+      var onclickPrice = 'Add to cart';
+     
+       $('.add-to-cart ').text(onclickPrice);
+      
+            
+}); 
+      $('input.rc_radio').click(function(){
+        
+          if ($('input.rc_radio__autodeliver').is(':checked')) {
+             var price = $('.rc_label__autodeliver .rc_price').text();            
+      	var subsclickPrice = 'Add to cart';     
+       $('.add-to-cart ').text(subsclickPrice);
+          }else{
+           var price = $('.rc_label__onetime .rc_price').text();            
+      	var subsclickPrice = 'Add to cart';     
+       $('.add-to-cart ').text(subsclickPrice);
+          
+          }
+             
+      
+            
+}); 
+      }); 
+  
+
+</script>

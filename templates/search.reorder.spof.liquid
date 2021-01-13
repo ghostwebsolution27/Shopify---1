@@ -1,0 +1,39 @@
+{% layout none %}
+{% assign customer_login = false %}
+{% if customer %}{% assign customer_login = true %}{% endif %}
+{% paginate search.results by 10  %}
+{% capture output %}
+{
+"customer_login":"{{customer_login}}",
+"main_order":[
+ {% for order in customer.orders %}
+           {
+
+     				"odrder_number":"{{order.order_number}}"
+					,"odrder_date":"{{order.created_at | date: "%d-%m-%Y" }}"
+					,"odrder_total_item":"{{order.line_items | size}}"
+					,"odrder_payment_status":"{{order.financial_status}}"
+					,"odrder_fulfillment_status":"{{order.fulfillment_status}}"					
+					,"order_details":
+					[
+						 {% for line_item in order.line_items %}
+							{ 
+ 								{% assign img = line_item.image.src | product_img_url: 'thumb'%}
+                                 "id":"{{line_item.variant.id}}"
+								 {% capture title %}{{ line_item.title | json}}{% endcapture %}
+                                 ,"quantity":"{{line_item.quantity}}"
+								 ,"product_name":"{% include 'esf-rem-slash' with title %}"
+								 ,"varient_name":"{% include 'esf-rem-slash' with line_item.variant.title %}"
+								 ,"image":"{% include 'esf-rem-slash' with img %}"
+								 ,"price":"{{line_item.variant.price | money}}"
+								 ,"sku":"{% include 'esf-rem-slash' with line_item.variant.sku %}"
+							}
+							{% unless forloop.last %},{% endunless %}
+						{% endfor %}					
+					]}
+{% unless forloop.last %},{% endunless %}                        
+{% endfor %}
+]}
+{% endcapture %}
+{% endpaginate %}
+{{ output | strip_newlines }}

@@ -1,0 +1,371 @@
+
+
+{% if section.settings.try_nosection != false %}
+  <div class="page-width page-content genareal_topfull">
+    <div class="general_innerarea">
+      
+    <div class="gen_titleset">
+      <h2 class="top_title">THE EGG WHITE <span> & COLLAGEN BAR </span></h2>
+      <a class="hero_button_add btn  try-btn-calls gpthand" style="color:#ffffff;" href="#">SHOP NOW </a>
+     </div>
+  
+      
+  {%comment%}     
+   <div class="try_no_section_list">
+     <ul class="try_list_no">
+          {%- for block in section.blocks -%}             
+              {% case block.type %}
+                {% when 'text'%}  
+      <li style="text-align:{{ block.settings.align_text }}; color:{{ block.settings.text_color }};"> {{ block.settings.text }} </li>
+              {% endcase %}            
+          {%- endfor -%}
+     </ul>
+      
+</div>
+    {%endcomment%} 
+  
+   
+</div>
+    
+   
+   
+  </div>
+{% endif %}
+
+{% schema %}
+ {
+    "name": "General Top Section",
+    "class": "try-no",
+    "max_blocks": 10,
+    "settings": [
+      
+     {
+            "type": "checkbox",
+            "id": "try_nosection",
+            "label": "Display Section",
+            "default":true
+          }, 
+{
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+"default": "Try No Section"
+
+        
+      },
+{
+            "type": "color",
+            "id": "section_background",
+            "label": "Section Background",
+             "default": "#fff"
+          }
+      
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "No Text",
+        "settings": [
+         {
+            "type": "textarea",
+            "id": "text",
+            "label": "Text",
+            "default": "Rich text"
+          },
+        
+{
+            "type": "color",
+            "id": "text_color",
+            "label": "Text Color",
+"default": "#000"
+          },
+          {
+            "type": "select",
+            "id": "align_text",
+            "label": "Text alignment",
+            "default": "left",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Centered"
+              }
+            ]
+          }
+          
+         
+        ]
+      }
+    ]
+   
+  }
+
+
+
+
+
+{% endschema %}
+
+<style type="text/css">
+  
+  .genareal_topfull {
+  background:url(https://cdn.shopify.com/s/files/1/0248/8084/0813/files/3-bars-free.png?v=1584414371) no-repeat;
+  min-height:450px;
+  background-position:top right 0px;
+    display: flex;
+align-items: center;
+justify-content: center;
+    max-width:1000px;
+   
+  }
+  .top_title {
+    font-weight:900;
+    text-align:left;
+    line-height:120%;
+  }
+  .top_title span {
+    display:block;
+  }
+  .general_innerarea {
+  width:100%;
+  position:relative;
+  margin:0px;
+  padding:0px;
+  }
+  .gen_titleset, .gen_contents{
+  width:100%;
+  position:relative;
+  margin:0px;
+  padding:0px;
+  }
+  
+  .gen_titleset{margin-top:150px;} 
+  .gen_contents{ margin-top:100px;}
+  
+  
+  .page-width.page-content.genareal_topfull{
+   padding-top:20px;
+    padding-bottom:30px;
+  }
+  .float_text {
+  position: absolute;
+  width:500px;
+  padding:20px;
+  border:2px solid #E00808;
+  box-sizing:border-box;
+    right: 0px;
+top: 80px;
+    background:#fff;
+  }
+  .image_bar_hand { border:2px solid #E00808;}
+.floaing_title {
+    font-weight: 900;
+    line-height: 110%;
+    color: #ffffff;
+    position: relative;
+}
+  .floaing_title::after {
+    position: absolute;
+    width: 100%;
+    content: '';
+    border-bottom: 4px solid #ffffff;
+    left: 0;
+    bottom: -10px;
+}
+  .float_text ul {
+  	display:block;
+    width:100%;    
+    padding:0px;
+    margin: 20px 0 15px 0px;
+  }
+  .float_text ul li{
+  font-weight:800;
+  color:#fff;
+    list-style-type:none;
+  }
+  .float_text:after {
+    width: 0; 
+  height: 0; 
+  content:'';
+   position: absolute;
+bottom: -30px;
+left: 0;
+right: 0;
+margin-left: auto;
+margin-right: auto;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;  
+  border-top: 20px solid #fff;
+  }
+  
+  
+@media only screen and (max-width:1024px){
+   .genareal_topfull {
+ 
+  background-position:top right 80px; 
+   background-size:50%;
+     min-height:930px;
+   
+  }
+  .float_text{width:400px; left:420px;}
+  .floaing_title {font-size:20px;}
+  .float_text ul li {font-size:15px;}
+}  
+  
+@media only screen and (max-width:885px){
+ .genareal_topfull {
+    background-position: top 100px right 4px;
+    background-size: 40%;
+    min-height: 730px;
+}
+  .float_text{width: 400px;
+left: auto;
+right: 0;}
+  .floaing_title {font-size:20px;}
+  .float_text ul li {font-size:15px;}
+}
+@media only screen and (max-width:770px){
+ .genareal_topfull {
+    background-position: top 35px right 20px;
+    background-size: 40%;
+    min-height: 630px;
+}
+  .float_text{width: 400px;
+left: auto;
+right: 25px; top: 20px;}
+  .floaing_title {font-size:20px;}
+  .float_text ul li {font-size:15px;}
+  .image_bar_hand {width:320px;}
+  .gen_titleset {
+    margin-top: 80px;
+}
+  .gen_contents {
+    margin-top: 40px;
+}
+}
+  
+@media only screen and (max-width:620px){
+  .top_title{font-size:20px;}
+ .genareal_topfull {
+    background-position: top 35px right 20px;
+    background-size: 40%;
+    min-height: 630px;
+}
+  .float_text{width: 280px;
+left: auto;
+right: 5px; top: 20px;}
+  .floaing_title {font-size:16px;}
+  .float_text ul li {font-size:13px;}
+  .image_bar_hand {width:300px;}
+  .gen_titleset {
+    margin-top: 80px;
+}
+  .gen_contents {
+    margin-top: 40px;
+}
+}
+  @media only screen and (max-width:414px){
+  .top_title{font-size:20px;}
+ .genareal_topfull {
+    background-position: top 55px right 0px;
+    background-size: 50%;
+    min-height: 580px;
+}
+  .float_text{width: 220px; padding: 10px;
+left: auto;
+right: 5px; top: 20px;}
+  .floaing_title {font-size:14px;}
+  .float_text ul li {font-size:13px;}
+  .image_bar_hand {width:200px;}
+  .gen_titleset {
+    margin-top: 80px;
+}
+  .gen_contents {
+    margin-top: 40px;
+}
+    .float_text ul{margin-bottom:0px;}
+    .page-width.page-content.genareal_topfull {padding-top:0px;}
+} 
+  
+  
+  .page-width.page-content.try_nosection{text-align:center;}
+  
+  .try_no_section_list {
+  margin:0px;
+    padding:0px;
+    display:block;
+     width:100%;
+  }
+  .try_list_no {
+  margin:0px;
+    padding:0px;
+  }
+  .try_list_no li {
+  display:inline-table;
+   font-size: 30px;
+font-weight: 900;
+text-transform: uppercase;
+margin: 0px;
+padding: 8px 35px; 
+    position:relative;
+  }
+  .try_list_no li:after {
+  content:'+';
+  color:#e00808;
+    position: absolute;
+right: -10px;
+  }
+  .try_list_no li:nth-child(4):after{
+  display:none;
+  }
+  #shopify-section-try_2_no_section{background:{{ section.settings.section_background }}; padding-bottom:0px; margin-top:0px;}
+  @media only screen and (max-width:1160px){
+  .try_list_no li {
+  
+   font-size: 22px;
+font-weight: 900;
+padding: 8px 25px; 
+   
+  }
+  }
+   @media only screen and (max-width:880px){
+  .try_list_no li {
+  
+   font-size: 18px;
+
+padding: 8px 15px; 
+   
+  }
+     #shopify-section-try_no_section{margin-top:0px;}
+  }
+   
+  @media only screen and (max-width:605px){
+     .try_list_no li {font-size:14px ; padding: 8px 5px ;}
+    .try_list_no li:after {
+    position:relative;
+    right: -3px ;
+}
+    .try_list_no li:nth-child(4):after {
+
+    display: none ;
+
+}
+   }
+ 
+  @media only screen and (max-width:451px){
+     .try_list_no li {font-size:11.5px ; padding: 8px 2px ;}
+    .try_list_no li:after {
+     position:relative;
+    right: 0px ;
+}
+    .try_list_no li:nth-child(4):after {
+
+    display: none ;
+
+}
+   }
+  
+</style>

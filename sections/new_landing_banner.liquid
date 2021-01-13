@@ -1,0 +1,123 @@
+<div class="new-home-banner" style="background-color: {{ section.settings.section_bg }} ">
+  <div class="page-width">
+    <div class="grid mobile-banner">
+      <div class="grid__item banner-image small--one-whole">
+        {% if section.settings.mobile_image != blank %}
+          <img class="lazyloaded mobile-banner-image" src="{{ section.settings.mobile_image | img_url: 'master' }}">
+        {% endif %}
+        <div class="mobile-banner-button">
+          <a class="banner-button" href="{{ section.settings.button_link }}">{{ section.settings.button_title }}</a>
+          <a class="banner-link" href="{{ section.settings.link_url }}">{{ section.settings.link_title }}</a>
+        </div>
+      </div>
+      <div class="grid__item banner-text small--one-whole">
+        {% if section.settings.title != blank %}
+          <h1 style="color: {{ section.settings.text_color }}">{{ section.settings.title }}</h1>
+        {% endif %}
+        {% if section.settings.text != blank %}
+          <p style="color: {{ section.settings.text_color }}">{{ section.settings.text }}</p>
+        {% endif %}
+      </div>
+    </div>
+    <div class="grid desktop-banner">
+      <div class="grid__item banner-image medium-up--one-third">
+        {% if section.settings.left_image != blank %}
+          <img class="lazyloaded desktop-banner-image" src="{{ section.settings.left_image | img_url: 'master' }}">
+        {% endif %}
+      </div>
+      <div class="grid__item banner-text medium-up--one-third">
+        {% if section.settings.title != blank %}
+          <h1 style="color: {{ section.settings.text_color }}">{{ section.settings.title }}</h1>
+        {% endif %}
+        {% if section.settings.text != blank %}
+          <p style="color: {{ section.settings.text_color }}">{{ section.settings.text }}</p>
+        {% endif %}
+        <div class="desktop-banner-button">
+          <a class="btn banner-button" href="{{ section.settings.button_link }}">{{ section.settings.button_title }}</a>
+          <a class="banner-link" href="{{ section.settings.link_url }}">{{ section.settings.link_title }}</a>
+        </div>
+      </div>
+      <div class="grid__item banner-image medium-up--one-third">
+        {% if section.settings.right_image != blank %}
+          <img class="lazyloaded desktop-banner-image" src="{{ section.settings.right_image | img_url: 'master' }}">
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "New Home - Banner",
+    "settings": [
+	  {
+        "type": "color",
+        "id": "section_bg",
+        "label": "Section Background color",
+        "default": "#000000"
+      },
+	  {
+		"type": "image_picker",
+      	"id": "left_image",
+      	"label": "Banner Left Image",
+		"info": "Square ratio (500x500, 750x750, 1000x1000, etc.) with less spaces on the image"
+      },
+	  {
+		"type": "image_picker",
+      	"id": "right_image",
+      	"label": "Banner Right Image",
+	    "info": "Square ratio (500x500, 750x750, 1000x1000, etc.) with less spaces on the image"
+      },
+	  {
+		"type": "image_picker",
+      	"id": "mobile_image",
+      	"label": "Mobile Image",
+		"info": "Square ratio (500x500, 750x750, 1000x1000, etc.) with less spaces on the image"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+		"default": "Eat for how you want to feel."
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Description",
+        "default": "Each bar has a unique ingredients to give your body what you need, right now."
+      },
+	  {
+        "type": "text",
+        "id": "button_title",
+        "label": "Button Title",
+		"default": "Let's do it"
+      },
+	  {
+        "type": "text",
+        "id": "button_link",
+        "label": "Button Link"
+      },
+	  {
+        "type": "text",
+        "id": "link_title",
+        "label": "Link title",
+		"default": "Learn More"
+      },
+	  {
+        "type": "text",
+        "id": "link_url",
+        "label": "Link URL"
+      }
+    ],
+    "presets": [{
+      "name": "New Home - Banner",
+      "category": "New Homepage Sections"
+    }]
+  }
+{% endschema %}

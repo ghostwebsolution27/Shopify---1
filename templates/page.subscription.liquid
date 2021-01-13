@@ -1,0 +1,47 @@
+{{ 'subscription.css' | asset_url | stylesheet_tag }}
+
+<div class="subscription-template">
+  
+  {% if settings.subscription_banner %}
+  	{% section 'subscription-banner' %}
+  {% endif %}
+	
+  {% if settings.subscription_rewards %}
+  	{% section 'subscription-rewards' %}
+  {% endif %}
+  
+  {% if settings.subscription_hiw %}
+  	{% section 'subscription-how-it-works' %}
+  {% endif %}
+  
+  {% if settings.subscription_productslider %}
+  	{% section 'subscription-slider' %}
+  {% endif %}
+  
+  {% if settings.subscription_testimonials %}
+  	{% section 'subscription-testimonials' %}
+  {% endif %}
+  
+  {% if settings.subscription_short_faqs %}
+    <div id="bf1">
+      {% section 'subscription-catch-editable' %}
+    </div>
+  {% endif %}
+  
+  {% if settings.subscription_long_faqs %}
+  	{% section 'subscription-faq' %}
+  {% endif %}
+  
+  {% if settings.subscription_instagram %}
+  	{% section 'instagram' %}
+  {% endif %}
+  
+</div>
+
+<style>
+  
+  div#yoHolder {
+    display: none ;
+  }
+  
+</style>

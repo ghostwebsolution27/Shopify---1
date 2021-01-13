@@ -1,0 +1,187 @@
+{% include 'oat_cookie_template',
+  description_style: section.settings.description_style,
+  text_align: section.settings.text_align,
+  image_position: section.settings.image_position,
+  image_container_width: section.settings.image_size,
+  section_id: product.id,
+  social: section.settings.social_enable,
+  thumbnail_position: section.settings.thumbnail_position,
+  icon_one: section.settings.icon_one,
+  icon_one_description: section.settings.icon_one_description,
+  icon_two: section.settings.icon_two,
+  icon_two_description: section.settings.icon_twoo_description,
+  icon_three: section.settings.icon_three,
+  icon_three_description: section.settings.icon_three_description,
+  icon_four: section.settings.icon_four,
+  icon_four_description: section.settings.icon_one_description
+%}
+
+{% if settings.enable_product_reviews and settings.reviews_layout == 'full' %}
+  <hr id="Reviews-{{ product.id }}" class="hr--large">
+  <div class="index-section index-section--small product-reviews product-reviews--full">
+    <div class="page-width">
+      <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+    </div>
+  </div>
+{% endif %}
+
+{% include 'page-template-blocks' %}
+
+<style>
+  div[data-value="BOX OF 12"] label.variant__button-label:after {
+    content: '{{ section.settings.discount_after }}';
+    position: absolute;
+    left: 0;
+    top: -25px;
+    font-size: 16px;
+    text-transform: lowercase;
+    color: #000;
+    opacity: .3;
+    letter-spacing: 0;
+    font-weight: 800;
+}
+</style>
+
+{% schema %}
+  {
+    "name": "Oat Cookie Product",
+    "settings": [
+      {
+        "type": "color",
+        "id": "pr_image_background",
+        "label": "Image Background Color"
+      },
+      {
+        "type": "image_picker",
+        "id": "background_meta_image",
+        "label": "Background Image"
+      },
+      {
+        "type": "select",
+        "id": "image_position",
+        "label": "Images position",
+        "default": "right",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "image_size",
+        "label": "Image size",
+        "default": "medium",
+        "options": [
+          {
+            "value": "small",
+            "label": "Small"
+          },
+          {
+            "value": "medium",
+            "label": "Medium"
+          },
+          {
+            "value": "large",
+            "label": "Large"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "thumbnail_position",
+        "label": "Thumbnail position",
+        "default": "beside",
+        "options": [
+          {
+            "value": "beside",
+            "label": "Next to image"
+          },
+          {
+            "value": "below",
+            "label": "Below image"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "text_align",
+        "label": "Text Align",
+        "default": "right",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "description_style",
+        "label": "Description position",
+        "default": "default",
+        "options": [
+          {
+            "value": "default",
+            "label": "Next to images"
+          },
+          {
+            "value": "full",
+            "label": "Below images"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "social_enable",
+        "label": "Enable social sharing",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "collection_links_enable",
+        "label": "Show back/next product links",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "discount_after",
+        "label": "Discount Text"
+      },
+      {
+        "type": "image_picker",
+        "id": "icon_one",
+        "label": "Icon One"
+      },
+      {
+        "type": "image_picker",
+        "id": "icon_two",
+        "label": "Icon Two"
+      },
+      {
+        "type": "image_picker",
+        "id": "icon_three",
+        "label": "Icon Three"
+      },
+      {
+        "type": "image_picker",
+        "id": "icon_four",
+        "label": "Icon Four"
+      }
+    ]
+
+  }
+{% endschema %}

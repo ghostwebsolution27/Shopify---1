@@ -1,0 +1,74 @@
+<style>
+  
+  .fitness_breakdown_section h3, .fitness_breakdown_section p  {
+   	color: {{ section.settings.text_color }}; 
+  }
+  
+</style>
+
+<div class="fitness_breakdown_section" style="background-color: {{ section.settings.section_bg }} ">
+  <div class="page-width">
+    <div class="grid">
+      <div class="grid__item small--one-whole medium--one-whole large-up--one-whole">
+      	<h3>{{ section.settings.title }}</h3>
+      </div>
+    </div>
+    <div class="grid breakdown_blocks">
+        <div class="grid__item small--one-whole medium--one-whole large-up--one-whole">
+            <ul>
+              {% for block in section.blocks %}
+                <li>
+                  <img src="{{ section.settings.list_logo | img_url: 'master' }}">
+                  <p>{{ block.settings.block_title }}</p>
+                </li>
+              {% endfor %}
+          	</ul>
+        </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Fitness Benefits Checkbox",
+    "settings": [
+	  {
+        "type": "color",
+        "id": "section_bg",
+        "label": "Section Background color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#FFFFFF"
+      },
+	  {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+		"default": "Fast Food. Not Junk Food"
+      },
+	  {
+        "type": "image_picker",
+        "id": "list_logo",
+        "label": "List Icon"
+      }
+    ],
+	"blocks": [
+	  {
+		"type": "text",
+        "name": "Nutrition Checkboxes",
+        "settings": [
+		  {
+            "type": "text",
+            "id": "block_title",
+            "label": "Nutrition Text",
+            "default": "Zero Animal Products"
+          }
+		] 
+      }
+	]
+  }
+{% endschema %}

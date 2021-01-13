@@ -1,0 +1,98 @@
+{% section 'blog-template' %}
+
+<style>
+  
+  .template-blog h1, .template-blog .h1, .template-blog h2, .template-blog .h2, .template-blog h3, .template-blog .h3, .template-blog h4, .template-blog .h4, .template-blog h5, .template-blog .h5, .template-blog h6, .template-blog .h6 {
+    font-family: proxima-nova-condensed, sans-serif ;
+  }
+
+  .template-blog p, .template-blog a {
+      font-family:"proxima-nova" ;
+  }
+  
+  .template-blog .grid.grid--uniform {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: center;
+  }
+  
+  .template-blog .blog_outer_body {
+    background: #f6f6f6;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    border-radius: 5px;
+  }
+  
+  .grid.blog_body {
+    position: relative;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+  }
+  
+  .grid.blog_body .grid__image-ratio {
+    margin: auto;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  
+  .grid.blog_body .article__date {
+   	padding: 0 20px; 
+    text-align: center;
+  }
+  
+  .grid.blog_body .article__date, .grid.blog_body .article__date a {
+    font-size: 15px;
+    line-height: 15px;
+    font-weight: 300 ;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-family: proxima-nova-condensed, sans-serif ;
+    text-transform: uppercase;
+  }
+  
+  .grid.blog_body a.article__title {
+    font-family: proxima-nova-condensed, sans-serif ;
+    font-size: 20px;
+    line-height: 1;
+    font-weight: 900;
+    text-transform: uppercase;
+    padding: 0 20px;
+    text-align: center;
+    display:block;
+  }
+  
+  .grid.blog_body .rte.article__excerpt {
+    font-size: 15px;
+    padding: 0 20px;
+    line-height: 1.25;
+    text-align: center;
+  }
+  
+  .grid.blog_body .grid__item.read_more_button a.btn {
+    display: block;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .blog_outer_body  {
+      width: 45% ;
+      margin-bottom: 30px;
+    }
+  }
+  
+  @media only screen and (max-width: 767px) {
+    .blog_outer_body  {
+      width: 100% ;
+      margin-bottom: 30px;
+    }
+  }
+  
+</style>

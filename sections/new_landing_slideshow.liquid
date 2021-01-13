@@ -1,0 +1,153 @@
+<div id="variety">
+  <div class="new-home-slideshow mobile-slideshow" style="background-color: {{ section.settings.section_bg }} ">
+    <div class="page-width">
+      <h2 class="flavor-section-title" style="color: {{ section.settings.text_color }}"> {{ section.settings.section_title }} </h2>
+      <div class="slideshow-carousel">
+        {% for block in section.blocks %}
+        <div class="carousel-cell">
+          <div class="grid">
+            <div class="grid__item small--one-whole medium-up--one-whole slider-flavor-body">
+              <div class="slider-images">
+                <img class="slideshow-icon" src="{{ block.settings.slideshow_icon | img_url: 'master' }}">
+              </div>
+              <div class="slideshow-title">
+                <h3 style="color: {{ section.settings.text_color }}">
+                  {{ block.settings.slideshow_title }}
+                </h3>
+              </div>
+              <div class="slider-texts">
+                <p style="color: {{ section.settings.text_color }}">{{ block.settings.slideshow_text }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="new-home-slideshow desktop-slideshow">
+    <div class="page-width">
+      <h2 class="flavor-section-title" style="color: {{ section.settings.text_color }}"> {{ section.settings.section_title }} </h2>
+      <div class="grid">
+        {% for block in section.blocks %}
+        {% if forloop.length == 4 %}
+            {% assign desktop_col = 'medium-up--one-quarter' %}
+        {% elsif forloop.length == 3 %}
+            {% assign desktop_col = 'medium-up--one-third' %}
+        {% elsif forloop.length == 2 %}
+            {% assign desktop_col = 'medium-up--one-half' %}
+        {% else %}
+            {% assign desktop_col = 'medium-up--one-whole' %}
+        {% endif %}
+        <div class="grid__item {{ desktop_col }}">
+          <div class="slideshow-body">
+            <div class="slider-images">
+              <img class="slideshow-icon" src="{{ block.settings.slideshow_icon | img_url: 'master' }}">
+            </div>
+            <div class="slideshow-title">
+              <h3 style="color: {{ section.settings.text_color }}">
+                {{ block.settings.slideshow_title }}
+              </h3>
+            </div>
+            <div class="slider-texts">
+              <p style="color: {{ section.settings.text_color }}">{{ block.settings.slideshow_text }}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FLICKTY CSS -->
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
+<!-- no-conflict mode. -->
+<!-- FLICKTY JavaScript -->
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js" async="true"></script>
+
+<script>
+ 
+jQuery.noConflict();
+ 
+jQuery( document ).ready(function( $ ) {
+  
+  	var tapArea, startX ;
+    tapArea = document.querySelectorAll('.slideshow-carousel');
+    startX = 0;
+    for (var item of tapArea) {
+      item.ontouchstart = function(e) {
+        startX = e.touches[0].clientX;
+      };
+      item.ontouchmove = function(e) {
+        if (Math.abs(e.touches[0].clientX - startX) > 5 && e.cancelable ) {
+          e.preventDefault();
+        }
+      };
+    }
+  
+    var $carousel = $('.slideshow-carousel').flickity({
+      wrapAround: true,
+      contain: true,
+      prevNextButtons: false,
+      pageDots: true
+    });
+  
+});
+ 
+</script>
+
+{% schema %}
+  {
+    "name": "New Home - Selling Props",
+	"max_blocks": 5,
+    "settings": [
+        {
+          "type": "text",
+          "id": "section_title",
+          "label": "Section Title",
+          "default": "It's time to eat for how you want to feel."
+        },
+		{
+          "type": "color",
+          "id": "section_bg",
+          "label": "Slide Background color",
+          "default": "#FFFFFF"
+      	},
+		{
+          "type": "color",
+          "id": "text_color",
+          "label": "Slide Texts color",
+          "default": "#000000"
+        }
+    ],
+	"blocks": [
+	  {
+		"type": "image",
+        "name": "Slideshows",
+        "settings": [
+          {
+            "type": "html",
+            "id": "slideshow_title",
+            "label": "Slide Title",
+			"default": "Slide Title"
+          },
+		  {
+            "type": "image_picker",
+            "id": "slideshow_icon",
+            "label": "Slideshow Icon"
+          },
+		  {
+            "type": "html",
+            "id": "slideshow_text",
+            "label": "Slide Description",
+			"default": "Egg white and collagen protein bar with natural stress relieving benefits. Gluten free. Dairy free. Non-GMO."
+          }
+		] 
+      }
+	]
+  }
+{% endschema %}

@@ -1,0 +1,236 @@
+
+
+{%- if section.blocks.size > 0 -%}
+<div class="full_try_area">
+  <div class="page-width page-content call_dact">
+    <div class="try_landing_sec">
+   
+       
+          {%- for block in section.blocks -%}
+           
+              {% case block.type %}
+                {% when 'rich-text'%}
+                  
+       <div class="try_col3"><div class="call_try_text" style="{% if block.settings.text_color != blank %}
+         color:{{ block.settings.text_color }};{% endif %}">{{ block.settings.title }} </div> </div>
+               
+      {% when 'button'%}
+     <div class="try_col1"> <a class="hero_button_add btn  try-btn-calls" style="{% if block.settings.btn_bg_color != blank %} background-color:{{ block.settings.btn_bg_color }}; {% endif %}{% if block.settings.btn_color != blank %}
+       color:{{ block.settings.btn_color }};{% endif %}" href="{{ block.settings.link }}">{{ block.settings.title }}</a></div>
+
+              {% endcase %}
+           
+          {%- endfor -%}
+      
+
+     
+   
+   
+</div>
+  </div>
+</div>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Try Call Action",
+    "settings": [
+       {
+            "type": "text",
+            "id": "title",
+            "label": "Section Title",
+            "default":"Call Action"
+          },
+{
+            "type": "color",
+            "id": "section_background",
+            "label": "Section Background",
+             "default": "#fff"
+          }
+    ],
+    
+    "blocks": [
+      {
+        "type": "rich-text",
+        "name": "Rich text",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Rich text"
+          },
+          {
+            "type": "color",
+            "id": "text_color",
+            "label": "Text Color",
+"default": "#fff"
+          },
+          {
+            "type": "select",
+            "id": "align_text",
+            "label": "Text alignment",
+            "default": "left",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Centered"
+              }
+            ]
+          }
+        ]
+      },
+      
+{
+        "type": "button",
+        "name": "Button",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Button Text",
+            "default": "Submit Now"
+          },
+{
+            "type": "text",
+            "id": "link",
+            "label": "Button Link",
+            "default": "#"
+          },
+          {
+            "type": "color",
+            "id": "btn_color",
+            "label": "Button Color"
+          },
+{
+            "type": "color",
+            "id": "btn_bg_color",
+            "label": "Button Background Color"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+<style type="text/css">
+  .try_col1{
+  width:35%;
+  padding:0px 1%;
+    text-align: left;
+  }
+  .try_col3{
+  width:62%;
+    padding:0px 1%;
+    text-align:right;
+  }
+  .full_try_area {
+  width:100%;
+    position:relative;
+    background:{{ section.settings.section_background }};
+  }
+  .call_try_text{
+
+    
+    padding: 35px 10px;
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: 600;
+
+  }.try_col1 .try-btn-calls{margin-top:30px;}
+  
+  @media only screen and (max-width:999px){
+    .try_col1{
+  width:100%;
+ text-align:center;
+  }
+  .try_col3{
+  width:100%;
+    text-align:center;
+   
+  }
+    .try_col1 .try-btn-calls{margin-top:20px;}
+    .call_try_text{
+
+    
+    padding: 15px 10px;
+    
+  }
+    .page-width.page-content.call_dact{padding-bottom:20px;}
+  }
+  @media only screen and (max-width:500px){
+  .enline {display:inline;}
+  }
+</style>
+<script>
+
+$('.hero_button_add').click(function(event){
+ event.preventDefault();/* 
+jQuery(".overlay-popup-oat").fadeIn();*/
+     jQuery.ajax({
+        type: "POST",
+        url: '/cart/clear.js',
+        data: '',
+        dataType: 'json',
+        success: function() { 
+         addItemToCart(31881324560493, 1, "1", "Months", "228328")
+         // addItemToCart(32102965936237, 1, "4", "weeks", "237792")
+          console.log('ddddd');
+        },
+        error: function(XMLHttpRequest, textStatus) {
+          /* error code */
+        }
+      });
+  //addItemToCart(31653470011501, 1, "1", "Months", "228181")
+  
+});
+
+function addItemToCart (variant_id, quantity, shipping_interval_frequency, shipping_interval_unit_type, subscription_id) {
+  data = {
+      "quantity": quantity,
+      "id": variant_id,
+      "properties[shipping_interval_frequency]": shipping_interval_frequency, 
+	"properties[shipping_interval_unit_type]": shipping_interval_unit_type,            
+	"properties[subscription_id]": subscription_id
+    }
+  
+  jQuery.ajax({
+      type: 'POST',
+      url: '/cart/add.js',
+      data: data,
+      dataType: 'json',
+      success: function() { 
+        //window.location.href = '/cart'; 
+       // console.log('ddddd');
+        var paramCart = '&cart_token=' + (document.cookie.match('(^|; )cart=([^;]*)')||0)[2];
+$.ajax({
+	type: 'GET',
+	url: '/cart.js',
+	dataType: 'text',
+	success: function(data) {
+		if (data.indexOf("subscription_id") > -1) {
+			var paramDomain = 'myshopify_domain={{ shop.permanent_domain }}';
+			try {
+				var paramLinker = "&" + ga.getAll()[0].get('linkerParam');
+			} catch (err) {
+				var paramLinker = '';
+			}
+			var paramCustomer = '{% if customer %}&customer_id={{ customer.id }}&customer_email={{ customer.email }}{% endif %}';
+			window.location = "https://checkout.levelfoods.com/r/checkout?" + paramDomain +  paramCart + paramLinker + paramCustomer;
+		} else {
+			window.location = '/checkout';
+		}
+	}
+});
+      }
+  });
+  //window.location = '/checkout';
+
+}
+
+</script>
+

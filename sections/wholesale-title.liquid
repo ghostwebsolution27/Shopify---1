@@ -1,0 +1,47 @@
+
+<div class="page-width ">
+
+     <div class="container">
+    {% if section.settings.text-titleBox != blank %}
+  <h1 class="page_title career_title" style="{% if section.settings.text-titleBox != blank %} color: {{ section.settings.title_fill_color_box }};{% endif %} {% if section.settings.outline_text_box %}-o-text-stroke: 2px black; -moz-text-stroke: 2px black; -webkit-text-stroke: 2px black; text-stroke: 2px black;{% endif %}">{{ section.settings.text-titleBox }} </h1>
+    {% endif %}
+        {% if section.settings.header_sub_title != blank %}
+       <div class="career_sub_title"> {{ section.settings.header_sub_title }} </div>
+        {% endif %}
+  </div>
+ </div>
+{% schema %}
+  {
+    "name": "Page Title",
+    "settings": [
+      {
+      "id": "text-titleBox",
+      "type": "text",
+      "label": "Heading",
+      "default": "Title"
+      },
+      {
+        "type": "checkbox",
+        "id": "outline_text_box",
+        "label": "Heading Outline"
+      },
+      {
+        "type": "color",
+        "id": "title_fill_color_box",
+        "label": "Heading fill color"
+      },
+      {
+        "type": "richtext",
+        "id": "header_sub_title",
+        "label": "Description"
+      }
+      
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

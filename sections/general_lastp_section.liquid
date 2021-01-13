@@ -1,0 +1,256 @@
+
+
+{% if section.settings.try_nosection != false %}
+  <div class="page-width page-content genareal_lastPfourbox">
+    <h2 class="lastPtitle">SO, WHAT ARE YOU LOOKING FOR?</h2> 
+    <div class="general_lastfbox">
+      <a href="#" class="lastParchor">PICTURES OF DOGS?</a>
+   </div>
+    <div class="general_lastfbox">
+       <a href="#" class="lastParchor">OUR SMANCY FANCY INGREDIENTS?</a>
+   </div>
+     <div class="general_lastfbox">
+         <a href="#" class="lastParchor">SECRET CLUB ACCESS?</a>
+   </div>
+     <div class="general_lastfbox">
+       <a href="#" class="lastParchor">WHO IS BEHIND THE BRAND? </a>
+   </div>
+      
+  {%comment%}     
+   <div class="try_no_section_list">
+     <ul class="try_list_no">
+          {%- for block in section.blocks -%}             
+              {% case block.type %}
+                {% when 'text'%}  
+      <li style="text-align:{{ block.settings.align_text }}; color:{{ block.settings.text_color }};"> {{ block.settings.text }} </li>
+              {% endcase %}            
+          {%- endfor -%}
+     </ul>
+      
+</div>
+    {%endcomment%} 
+  
+   
+
+    
+   
+   
+  </div>
+{% endif %}
+
+{% schema %}
+ {
+    "name": "General Top Section",
+    "class": "try-no",
+    "max_blocks": 10,
+    "settings": [
+      
+     {
+            "type": "checkbox",
+            "id": "try_nosection",
+            "label": "Display Section",
+            "default":true
+          }, 
+{
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+"default": "Try No Section"
+
+        
+      },
+{
+            "type": "color",
+            "id": "section_background",
+            "label": "Section Background",
+             "default": "#fff"
+          }
+      
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "No Text",
+        "settings": [
+         {
+            "type": "textarea",
+            "id": "text",
+            "label": "Text",
+            "default": "Rich text"
+          },
+        
+{
+            "type": "color",
+            "id": "text_color",
+            "label": "Text Color",
+"default": "#000"
+          },
+          {
+            "type": "select",
+            "id": "align_text",
+            "label": "Text alignment",
+            "default": "left",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Centered"
+              }
+            ]
+          }
+          
+         
+        ]
+      }
+    ]
+   
+  }
+
+
+
+
+
+{% endschema %}
+
+<style type="text/css">
+  
+  .genareal_lastPfourbox {
+ 
+    display: flex;
+align-items: center;
+justify-content: center;
+    max-width:1000px;
+    flex-wrap: wrap;
+   
+  }
+  
+  .general_lastfbox {
+  width:48%;
+  position:relative;
+  margin:10px 1%; 
+    border: 1px solid #000;
+     text-align:center;
+    box-sizing:border-box;
+    padding:20px;
+    display: flex;
+align-items: center;
+justify-content: center;
+    min-height:220px;
+    
+  }
+ 
+  .lastPtitle {
+  line-height:110%;
+  font-weight:900;
+    display:block;
+    width:100%;
+    text-align:center;
+    
+  }
+  .lastParchor {
+  font-weight:900;
+  display:inline-table;
+  vertical-align:middle;
+   
+      
+  }
+  
+  @media only screen and (max-width:770px){
+   .lastPtitle {
+  font-size:25px;
+    
+  }
+  }
+   @media only screen and (max-width:500px){
+   .lastPtitle {
+  font-size:18px;
+    
+  }
+     .general_lastfbox {min-height:180px;}
+  }
+  
+  
+  
+  
+  
+  .page-width.page-content.try_nosection{text-align:center;}
+  
+  .try_no_section_list {
+  margin:0px;
+    padding:0px;
+    display:block;
+     width:100%;
+  }
+  .try_list_no {
+  margin:0px;
+    padding:0px;
+  }
+  .try_list_no li {
+  display:inline-table;
+   font-size: 30px;
+font-weight: 900;
+text-transform: uppercase;
+margin: 0px;
+padding: 8px 35px; 
+    position:relative;
+  }
+  .try_list_no li:after {
+  content:'+';
+  color:#e00808;
+    position: absolute;
+right: -10px;
+  }
+  .try_list_no li:nth-child(4):after{
+  display:none;
+  }
+  #shopify-section-general_lastp_section{background:{{ section.settings.section_background }}; margin-bottom:30px; margin-top:30px;}
+  @media only screen and (max-width:1160px){
+  .try_list_no li {
+  
+   font-size: 22px;
+font-weight: 900;
+padding: 8px 25px; 
+   
+  }
+  }
+   @media only screen and (max-width:880px){
+  .try_list_no li {
+  
+   font-size: 18px;
+
+padding: 8px 15px; 
+   
+  }
+     #shopify-section-try_no_section{margin-top:0px;}
+  }
+   
+  @media only screen and (max-width:605px){
+     .try_list_no li {font-size:14px ; padding: 8px 5px ;}
+    .try_list_no li:after {
+    position:relative;
+    right: -3px ;
+}
+    .try_list_no li:nth-child(4):after {
+
+    display: none ;
+
+}
+   }
+ 
+  @media only screen and (max-width:451px){
+     .try_list_no li {font-size:11.5px ; padding: 8px 2px ;}
+    .try_list_no li:after {
+     position:relative;
+    right: 0px ;
+}
+    .try_list_no li:nth-child(4):after {
+
+    display: none ;
+
+}
+   }
+  
+</style>

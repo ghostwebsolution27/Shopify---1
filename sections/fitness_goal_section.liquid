@@ -1,0 +1,90 @@
+<style>
+  
+  .fitness_goal_section h3, .fitness_goal_section h4, .fitness_goal_section p  {
+   	color: {{ section.settings.text_color }}; 
+  }
+  
+</style>
+
+<div class="fitness_goal_section" style="background-color: {{ section.settings.section_bg }} ">
+  <div class="page-width">
+    <div class="grid">
+      <div class="grid__item small--one-whole medium--one-whole large-up--one-whole">
+      	<h3>{{ section.settings.title }}</h3>
+        <p>{{ section.settings.paragraph }}</p>
+      </div>
+    </div>
+    <div class="grid goal_blocks">
+      	<div class="grid__item small--one-whole medium--one-whole large-up--one-whole">
+          {% for block in section.blocks %}
+            <div class="grid">
+              <div class="grid__item goal_img_block small--one-quarter medium--one-fifth large-up--one-fifth">
+                <img src="{{ block.settings.block_icon | img_url: 'master' }}">
+              </div>
+              <div class="grid__item goal_content_block small--three-quarters medium--four-fifths large-up--four-fifths">
+                <h4>{{ block.settings.block_title }}</h4>
+        		<p>{{ block.settings.block_subtitle }}</p>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Fitness Goal Section",
+    "settings": [
+	  {
+        "type": "color",
+        "id": "section_bg",
+        "label": "Section Background color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#FFFFFF"
+      },
+	  {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+		"default": "Fast Food. Not Junk Food"
+      },
+	  {
+        "type": "textarea",
+        "id": "paragraph",
+        "label": "Description",
+		"default": "A need for a bar made by athletes for athletes. Includes everything needed for optimal performance & some advances in latest nutritional research (adaptogens)."
+      }
+    ],
+	"blocks": [
+	  {
+		"type": "image",
+        "name": "Goal Blocks",
+        "settings": [
+		  {
+            "type": "image_picker",
+            "id": "block_icon",
+            "label": "Block Goal Icon"
+          },
+		  {
+            "type": "text",
+            "id": "block_title",
+            "label": "Block Title",
+            "default": "Clean, Natural Ingredients"
+          },
+          {
+            "type": "textarea",
+            "id": "block_subtitle",
+            "label": "Block Subtitle",
+            "default": "Carbs, fats, protein, fiber, 27 essential vitamins & minerals."
+          }
+		] 
+      }
+	]
+  }
+{% endschema %}

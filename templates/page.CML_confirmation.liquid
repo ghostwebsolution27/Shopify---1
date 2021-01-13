@@ -1,0 +1,380 @@
+{% comment %}ECPWS{% endcomment %}{% capture ec-pw-ify %}{% layout none %}
+<!DOCTYPE html>
+<html class="anyflexbox">
+  <head>
+    <title>Shopping Cart</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" >
+    <style>
+      #popupclose,.totals .order{cursor:pointer;float:right}.breadcrumb li a,.breadcrumb>.active a{font-weight:700;text-transform:uppercase}body{font-size:14px;background-color:#f2f6f9}a:hover{text-decoration:none}.minicart{background:url(../images/sprite.png) -156px 11px no-repeat;width:40px;height:50px;padding-right:32px}.navbar{background-color:#4ea6bc;padding:15px;border-radius:0;margin:0}.breadcrumb,.breadcrumbBox{margin:20px 0 30px}.navbar-brand{color:#fff;font-family:Open Sans,sans-serif;padding-left:32px}.navbar-brand:hover{color:#fff}.breadcrumb>.active a{color:#468595}.breadcrumb li a{color:#b3d4dc}.breadcrumb>li+li:before{content:"\00BB"}.container.text-center{padding:0 32px}.bigcart{background:url(../images/sprite.png) 0 11px no-repeat;width:155px;height:120px;margin:0 0 40px 60px}.columnCaptions span:first-child,.popbtn,.quantity{width:40px}.col-md-7.col-sm-12{padding-left:50px;margin-bottom:72px}.columnCaptions{font-size:13px;font-weight:700}.columnCaptions span{padding:0 21px 0 0}.columnCaptions span:last-child{float:right;padding-right:0}.itemName{color:#727578;font-size:15px;float:left;padding-left:5px}.price,.quantity{font-size:14px;font-weight:400}.quantity{color:#4ea6bc;float:left}.popbtn{background-color:#e6edf3;margin-left:25px;height:63px;padding:32px 0 0 14px;float:right;cursor:pointer}.arrow{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:6px solid #858e97}.price{text-align:right;width:90px}.totals span{padding:40px 15px 40px 0}.totals .price{float:left}.totals .itemName{margin-top:1px}.totals .order{padding:0 0 0 5px;margin-top:40px}.order a{background-color:#f08573;color:#fbfffa;font-weight:700;border-radius:2px;padding:20px 30px}.popover{border-radius:3px;box-shadow:0 0 1px 1px rgba(0,0,0,.2);border:0;background-color:#fff}.popover.bottom{margin-top:-9px}.glyphicon{width:24px;font-size:24px;padding:0}.glyphicon-pencil{color:#858e97;margin:7px 12px 7px 10px}.glyphicon-remove{color:#f06953;margin-right:10px}#address-form .form-control:focus{border:2px solid green}.form-control{margin-bottom:10px}.header-logo{font-size:45px}#overlay,#popup{display:none;position:fixed}#overlay{top:0;bottom:0;background:#999;width:100%;height:100%;opacity:.8;z-index:100}#popup{top:45%;left:45%;background:#fff;width:500px;margin-left:-100px;margin-top:-100px;z-index:200}span.return{background:red;padding:20px}.header-logo img{width:100px}.popupcontrols{padding:5px 8px}.popupcontent{padding:10px;margin:auto;text-align:center}.total .price{font-weight:700;font-size:17px}.anyflexbox h1{font-size:26px; margin-bottom:0;}.popupcontent p{margin-top:25px}.popupcontent span{text-align:center;display:table;background-color:#2a9dcc;padding:16px;width:auto;margin:30px auto;color:#fff;border-radius:5px}#checkout_place_order,.error,.loader,.shipping_charges{display:none}.popupcontent span a{color:#FFF}#address-form{margin-bottom:30px}#place_order{background-color:#557b97;border:0;margin:10px 0;float:right;color:#fff;padding:15px 18px}.shipping_charges{margin-top:10px;font-weight:700; clear:both;}.loader,.loader:after,.loader:before{border-radius:50%;width:1.5em;height:1.5em;-webkit-animation:load7 1.8s infinite ease-in-out;animation:load7 1.8s infinite ease-in-out}.loader{color:#f08573;font-size:10px;right:40px;margin:auto;position:relative;text-indent:-9999em;-webkit-transform:translateZ(0);-ms-transform:translateZ(0);transform:translateZ(0);-webkit-animation-delay:-.16s;animation-delay:-.16s}ul{list-style-type:none;margin:0;padding:0}.loader:after,.loader:before{content:'';position:absolute;top:0}.loader:before{left:-3.5em;-webkit-animation-delay:-.32s;animation-delay:-.32s}.shipping span span{display:inline-block}.loader:after{left:3.5em}body{height:100%;background:#fff;overflow-x:hidden}.step__footer__previous-link{float:left;vertical-align:middle;margin:30px 0;color:#197bbd}.main,.wrap{margin:0 auto}.step__footer__previous-link-content span{padding-right:2px;font-weight:700}.one-third-box{float:left;width:33.3%;padding:0 10px 0 0}.full-box .one-third-box:last-child{padding:0}.full-box{float:left;width:100%}.half-box{float:left;width:50%;padding:0 10px 0 0}.full-box .half-box:last-child{padding:0}.anyflexbox .content,.anyflexbox .content .wrap,.anyflexbox .main,.anyflexbox body{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-flex:1;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto}.wrap{padding:0 5%;width:90%;max-width:78.57143em}.wrap::after,.wrap::before{content:"";display:table}.anyflexbox .content .wrap{-webkit-box-orient:horizontal;-webkit-box-direction:normal;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row}.main{width:52%;padding-right:6%;float:left}.sidebar{width:38%;position:relative;padding-left:4%;background-position:left top;float:right}.sidebar::after{content:"";display:block;width:300%;position:absolute;top:0;bottom:0;background:left top #fafafa;z-index:-1;left:0;-webkit-box-shadow:1px 0 0 #e1e1e1 inset;box-shadow:1px 0 0 #e1e1e1 inset}.main,.sidebar{padding-top:1em}#address-form .form-control{height:45px;box-shadow:none;color:#333;border-color:#d9d9d9}.sidebar ul li{display:table;width:100%;border-bottom:1px rgba(175,175,175,.34) solid;padding:18px 0}.sidebar ul li span{display:table-cell;float:none}.sidebar ul li:last-child{border-bottom:0}@media (max-width:991px){.main,.sidebar{float:left;width:100%}.main,.sidebar,.wrap{width:100%}.main{margin:0 auto;padding-right:0}.anyflexbox .content,.anyflexbox .content .wrap,.anyflexbox .main,.anyflexbox body{display:inline-block}.sidebar{position:relative;padding:10px 30px;margin-top:30px;background-position:left top}.sidebar::after{width:100%;box-shadow:none}}@media (max-width:360px){.bottom-right{float:none;}.step__footer__previous-link{width:100%;margin:10px 0}.bottom-part{text-align:center}#place_order{float:none;display:inline-block}}@-webkit-keyframes load7{0%,100%,80%{box-shadow:0 2.5em 0 -1.3em}40%{box-shadow:0 2.5em 0 0}}@keyframes load7{0%,100%,80%{box-shadow:0 2.5em 0 -1.3em}40%{box-shadow:0 2.5em 0 0}}
+    </style><style>
+    .bottom-part{float:left; width:100%;padding-bottom: 50px;}.bottom-right{ float:right;
+
+    } @media (max-width:360px){.bottom-right{float:none;}}
+    #address-form textarea.form-control{height: 80px}
+    .sidebar .shipping{display:none}
+    </style>
+    <style>
+      .bottom-part{float:left; width:100%;padding-bottom: 50px;}.bottom-right{ float:right;
+
+      }.shipping_container {
+        float: left; border:1px #d9d9d9 solid; border-radius:5px; margin-top:15px;
+        width: 100%;
+      }
+      .shipping-row{ border-bottom:1px #d9d9d9 solid;padding: 12px 10px; vertical-align: middle;}
+      .shipping_container .shipping-row:last-child{ border-bottom:0;}
+      .select-wrapper {
+        display: table-cell;
+        width: 100%;
+      }.select-wrapper input {
+        display: table-cell;
+        width: 20px;margin-right: 5px;
+      }
+      .select-wrapper span {
+        width: 80%;
+      }
+      .price-row{display: table-cell;
+        width:100%;}
+      @media (max-width:360px){.bottom-right{float:none;}}
+      span.small-text {
+        font-size: 12px;
+        padding-top: 7px;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <script>
+    function show_logo_text(){$(".header-logo img").hide();$(".logo_text").show();}
+  </script>
+  <body>
+      {% include 'CML_discount' %}
+    <div class="content">
+      <div class="wrap">
+        <div class="main">
+          <div id="header">
+            <div class="header-logo">
+              {% if store_logo != '' %}
+                    <img class="logo-image" src="{{ store_logo }}" itemprop="logo">
+              {% else %}
+                    <h1 class="logo-text">{{ shop.name }}</h1>
+              {% endif %}
+            </div>
+          </div>
+          <h1>{{checkout_heading}}</h1>
+          <p>
+            {% if page.content > "" %}
+            {{ page.content }}
+            {% else %}
+            Please review your order first and click on "Place Order" to create order OR click <a href="/cart">here</a> to update your cart.
+            {% endif %}
+          </p>
+          <div class="shipping_form">
+            <h4>Shipping address</h4>
+            <form id="address-form" class="submit-address">
+              <div class="full-box"><div class="half-box">
+                <input class="form-control"  type="text" name="address[first_name]" value="{{ customer.default_address.first_name }}" placeholder="First Name" required></div>
+                <div class="half-box"> <input class="form-control"  type="text" name="address[last_name]" value="{{ customer.default_address.last_name }}" placeholder="Surname" required></div></div>
+              <input class="form-control"  type="email" name="email" value="{{customer.email}}" placeholder="Email" required>
+              <input class="form-control"  type="text" name="address[company]" value="{{ customer.default_address.company }}" placeholder="Company" >
+              <input class="form-control"  type="text" name="address[address1]" value="{{ customer.default_address.address1 }}" placeholder="Address Line 1" required>
+              <input class="form-control"  type="text" name="address[address2]" value="{{ customer.default_address.address2 }}" placeholder="Address Line 2" >
+              <input class="form-control"  type="text" name="address[city]" value="{{ customer.default_address.city }}" placeholder="City" required>
+              <select class="form-control"  id="AddressCountry" name="address[country]" data-default="{{ customer.default_address.country }}">{{ country_option_tags }}</select>
+              <p class="error country"></p>
+              <div class="full-box">
+                <div class="one-third-box">
+                  <div  id="AddressProvinceContainer" style="display:none">
+                    <select class="form-control"  id="AddressProvince" name="address[province]" data-default="{{ customer.default_address.province }}"></select>
+                    <p class="error state"></p>
+                  </div>
+                </div>
+                <div class="one-third-box"> <input id="zipCode" class="form-control"  type="text" name="address[zip]" value="{{ customer.default_address.zip }}" placeholder="Postcode" autocapitalize="characters" required>
+                  <p class="error zipcode"></p>
+                </div>
+                <div class="one-third-box">
+                  <input class="form-control"  type="tel" name="address[phone]" value="{{ customer.default_address.phone }}" placeholder="Phone" >
+                </div>
+              </div>
+
+               <!--<input class="form-control" type="text" name="po_number" id="purchase_number" placeholder="PO# Number" > -->
+              {% if show_note %}
+               <textarea class="form-control" name="note" id="note" placeholder="Order Notes" ></textarea>
+              {% endif %}
+
+              <input type="hidden" name="address[shop_name]" value="{{ shop.name }}">
+              <input type="hidden" name="address[shipping_charges]" value="">
+
+
+              <div class="shipping-full">
+                <div class="shipping_container"></div><span class="small-text"></span>
+              </div>
+              <div class="bottom-part">
+                <a class="step__footer__previous-link" href="/cart">
+                  <span class="step__footer__previous-link-content">
+                    <span> < </span>
+                      Return to cart
+                    </span>
+                    </a>
+                  <div class="bottom-right">
+                    <input type="submit" class="button" id="place_order" name="place_order" value="Continue to Place Order">
+                    <p class="shipping_charges">Calculating shipping....</p>
+                  </div>
+                  </div>
+                </form>
+              </div>
+          </div>
+
+          <div class="sidebar">
+            <ul>
+              <li class="list-inline columnCaptions">
+                <!-- <span>IMAGE</span> -->
+                <span>QTY</span>
+                <span>ITEM</span>
+                <span>Price</span>
+              </li>
+
+              {% assign cart_amount = 0 %}
+
+              {% for item in cart.items %}
+
+              {% assign discounted = false %}
+
+              {% capture metafield %}{{customer_tag}}~{{item.variant_id}}{% endcapture %}
+
+
+              {% for field in item.product.metafields.customer_tags %}
+
+              {% capture meta_key %}{{ field | first }}{% endcapture %}
+
+              {% if meta_key contains item.variant_id and customer_tag != blank %}
+              {% assign discounted = true %}
+              {% endif %}
+
+              {% endfor %}
+
+
+              {% assign meta_value = item.product.metafields.customer_tags[metafield] | split: ',' %}
+
+              {% assign discounted_amount = meta_value[1] | times : 100 %}
+
+              {% if discounted %}
+
+                {% assign cart_amount = discounted_amount | times: item.quantity %}
+
+                {% else %}
+
+                {% assign cart_amount = item.price | times: item.quantity   %}
+                {% endif %}
+
+                {% assign total_cart = cart_amount | plus: total_cart %}
+
+              <li class="">
+                <!-- <span class="quantity"><img class="images" src="{{ item | img_url: 'medium' }}"></span> -->
+                <span class="quantity">{{ item.quantity }}</span>
+                <span class="itemName">
+                  {{ item.product.title }}<br>
+                  {% unless item.variant.title contains 'Default' %}<small>{{ item.variant.title }}</small>{% endunless %}
+                </span>
+                <span class="price">
+                  {% if discounted %}
+                  <strike class="cut-price">{{ item.price | money }}</strike> {{ discounted_amount | money }}
+                  {% else %}
+                  {{ item.price | money}}
+                  {% endif %}
+                </span>
+              </li>
+              {% endfor %}
+              <li class=" shipping">
+                <span class="itemName" style="width:80%">Shipping (<span></span>)</span>
+                <span class="price"></span>
+              </li>
+              <li class=" total">
+                <span class="itemName">Total:</span>
+                <span class="price">
+                  {% if discounted %}
+                  <strike class="cut-price">{{ cart.total_price | money }}</strike> {{total_cart | money}}
+                  {% else %}
+                  {{ total_cart | money}}
+                  {% endif %}
+                </span>
+              </li>
+              <li class=" totals">
+                <span class="order">
+                  <a href="/checkout" id="checkout_place_order" class="checkout-skipper text-center"class="text-center">PLACE ORDER</a>
+                  <div class="loader">Loading...</div>
+                </span>
+
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+      <!-- JavaScript includes -->
+      <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+      {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+      <script>
+        new Shopify.CountryProvinceSelector(
+          'AddressCountry',
+          'AddressProvince',
+          { hideElement: 'AddressProvinceContainer' }
+        );
+
+        // calculate shipping on change country OR state
+        $("#address-form").on('change', '#AddressCountry, #AddressProvince', function(){
+          var shippingAddress = { country:$('#AddressCountry').val(), province:$('#AddressProvince').val(), zip : $('#zipCode').val() };
+          shipping(shippingAddress);
+        })
+
+        // calculate shipping charges
+        $("#address-form").submit(function(e){
+          var shippingAddress = { country:$('#AddressCountry').val(), province:$('#AddressProvince').val(), zip : $('#zipCode').val() };
+          shipping(shippingAddress);
+          return false;
+        })
+
+        var shippingDone = false;
+
+        var shipping = function(shippingAddress){
+
+          // hide the place order button
+          $('#checkout_place_order').hide();
+          $(".shipping_charges").show();
+
+          var t = {
+            type: "POST",
+            url: "/cart/prepare_shipping_rates",
+            dataType: 'json',
+            data: jQuery.param({
+              shipping_address: shippingAddress
+            }),
+            beforeSend: function(){
+              $(".error").hide().html('');
+            },
+            success: function(){
+              setTimeout(function(){
+                  CalculateShipping();
+                }, 1000);
+            },
+            complete: function(){
+              $(".shipping_charges").hide();
+            },
+            error: function(data){
+              for (var key in data.responseJSON) {
+                switch(key){
+                  case 'zip':
+                    $("#zipCode").focus();
+                    $(".zipcode.error").show().html("Zipcode is not valid");
+                    break;
+                  case 'country':
+                    $("#AddressCountry").focus();
+                    $(".country.error").show().html("Country is not supported");
+                    break;
+                  default: alert("Cannot find the shipping charges");
+                    $('#checkout_place_order').show().focus();
+                }
+              }
+            }
+          };
+          jQuery.ajax(t)
+
+          var CalculateShipping = function(){
+
+            jQuery.ajax("/cart/async_shipping_rates", {
+              dataType: "json",
+              success: function(result, n, a) {
+                var arr = [];
+                var max = 9999;
+                var show_shipping = true;
+                var html = '';
+
+                if(result != null && result.shipping_rates && result.shipping_rates.length > 0){
+
+                  // code to show the shipping rates to select first
+                  if(show_shipping){
+
+                    var shippings = result.shipping_rates;
+
+                    for(i=0; i<shippings.length; i++){
+
+                      arr.push({id: shippings[i].carrier_service_id, price: shippings[i].price, name: shippings[i].name});
+
+                      // prepare HTML for shipping
+                      html += "<div class='shipping-row'><div class='select-wrapper'>";
+                      html += "<input type='radio' name='address[shipping_charges]' value='"+ [shippings[i].name, shippings[i].price] +"'>";
+                      html += "<span>" + shippings[i].name + "</span></div>";
+                      html += "<span class='price-row'>" + shippings[i].price + "</span></div>";
+
+                    }
+
+                    $(".shipping_container").html(html);
+
+                    // auto select the first option
+                    $(".shipping_container input:first").attr('checked', true).change();
+                    $(".shipping").show();
+
+                    // hide continue button now
+                    $("#place_order").hide();
+
+                  }
+                }
+                else if(result.shipping_rates.length == 0){
+                    alert("No shipping found");
+                    $(".shipping_container").html('');
+                }else{
+                    return false;
+                    $(".shipping_container").html('');
+                }
+
+              },
+              complete: function(){
+                $(".shipping_charges").hide();
+              }
+            })
+          }
+          } ;
+
+        // if want to show the shipping first
+        $(document).on("change", ".shipping_container input", function(){
+
+          var ship_price = $(this).val().split(',');
+          var ship_name = $(this).next('span').html();
+
+          $('.shipping .itemName span').html(ship_name);
+          $('.shipping .price').html(ship_price[1]);
+
+          // add shipping charges in total
+          var totalPrice = parseFloat("{{ total_cart }}") / 100;
+
+          var total = parseFloat(totalPrice) + parseFloat(ship_price[1]);
+          $('.total .price').html(total.toFixed(2));
+
+          show_order_button();
+
+        })
+
+        function show_order_button(){
+
+          $('#checkout_place_order').show().focus();
+          $('.error').hide().html('');
+          $(".shipping_charges").hide();
+          return true;
+
+        }
+      </script>
+      {% include "CML_snippet" %}
+      <div id="overlay"></div>
+      <div id="popup">
+        <div class="popupcontrols">
+          <span id="popupclose" onclick="hide_popup()">X</span>
+        </div>
+        <div class="popupcontent">
+          <h1>Thank you for your order!</h1>
+          <p>An email receipt containing information about your order will soon follow. Please keep it for your records.</p>
+          <span><a href="/" class="text-center">Continue shopping </a></span>
+        </div>
+      </div>
+      </body>
+    </html>{% comment %}ECPWS{% endcomment %}{% endcapture %}{% include 'ec-passwordify' %}

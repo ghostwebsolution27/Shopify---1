@@ -1,0 +1,140 @@
+<div class="new-home-chart" style="background-color:{{ section.settings.section_bg }}">
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+    	<h2>{{ section.settings.title }}</h2>
+    {% endif %}
+    <div class="mobile-chart">
+      <div class="grid bar-table-start">
+        <div class="grid__item small--one-half medium-up--one-half us-title" style="background-image: url( {{ section.settings.us_image | img_url: 'master' }} )">
+          <h3 class="chart-title us-title">
+            {{ section.settings.us_title }}
+          </h3>
+        </div>
+        <div class="grid__item small--one-half medium-up--one-half them-title">
+          <h3 class="chart-title them-title">
+            {{ section.settings.them_title }}
+          </h3>
+        </div>
+      </div>
+      {% for block in section.blocks %}
+        <div class="grid bar-table-body">
+          <div class="grid__item small--one-half medium-up--one-half text-box-dark">
+            <div class="side-text">
+              <p>{{ block.settings.left_text }}</p>
+            </div>
+            <div class="text-box-body">
+              <p>{{ block.settings.us_text }}</p>
+            </div>
+          </div>
+          <div class="grid__item small--one-half medium-up--one-half text-box-white">
+            <div class="text-box-body">
+              <p>{{ block.settings.them_text }}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="desktop-chart">
+      <div class="grid bar-table-start">
+        <div class="grid__item medium-up--one-sixth"></div>
+        {% for block in section.blocks %}
+          <div class="grid__item medium-up--one-sixth">
+			<p>{{ block.settings.left_text }}</p>
+          </div>
+        {% endfor %}
+      </div>
+	  <div class="grid bar-table-body">
+        <div class="grid__item medium-up--one-sixth desktop-title">
+          <h3 class="chart-title desktop-us-title">
+            {{ section.settings.us_title }}
+          </h3>
+        </div>
+        {% for block in section.blocks %}
+          <div class="grid__item medium-up--one-sixth text-box-dark">
+            <div class="text-box-body">
+				<p>{{ block.settings.us_text }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="grid bar-table-body">
+        <div class="grid__item medium-up--one-sixth desktop-title">
+          <h3 class="chart-title dekstop-them-title">
+            {{ section.settings.them_title }}
+          </h3>
+        </div>
+        {% for block in section.blocks %}
+          <div class="grid__item medium-up--one-sixth text-box-white">
+            <div class="text-box-body">
+				<p>{{ block.settings.them_text }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "New Home - Chart",
+	"max_blocks": 5,
+    "settings": [
+      {
+        "type": "color",
+        "id": "section_bg",
+        "label": "Section Background color",
+        "default": "#fcf3e1"
+      },
+	  {
+        "type": "html",
+        "id": "title",
+        "label": "Section Heading",
+		"default": "see, we're not <br> your basic bar"
+      },
+	  {
+        "type": "image_picker",
+        "id": "us_image",
+        "label": "Us Image"
+      },
+	  {
+        "type": "text",
+        "id": "us_title",
+        "label": "Us Title",
+		"default": "Us"
+      },
+	  {
+        "type": "text",
+        "id": "them_title",
+        "label": "Them Title",
+		"default": "Them"
+      }
+    ],
+	"blocks": [
+	  {
+		"type": "image",
+        "name": "Chart Blocks",
+        "settings": [
+          {
+            "type": "text",
+            "id": "left_text",
+            "label": "Left Vertical Text",
+			"default": "Protein"
+          },
+		  {
+            "type": "textarea",
+            "id": "us_text",
+            "label": "Us Text",
+			"default": "LEAN EGG WHITES + COLLAGEN"
+          },
+		  {
+            "type": "textarea",
+            "id": "them_text",
+            "label": "Them Text",
+			"default": "WHEY OR OTHER SINGLE PROTEIN SOURCES"
+          }
+		] 
+      }
+	]
+  }
+{% endschema %}

@@ -1,0 +1,277 @@
+{% style %}
+.library-bar--{{ section.id }} {
+  width: {{ section.settings.library_width }}%;
+}
+{% endstyle %}
+
+{% if section.settings.divider %}<div class="section--divider">{% endif %}
+
+<div class="page-width" data-aos="library" style="padding-bottom: 75px;">
+
+
+  {% if section.blocks.size > 0 %}
+    <div class="library-bar library-bar--{{ section.id }}">
+      {% for block in section.blocks %}
+        <div class="library-bar__item" {{ block.shopify_attributes }}>
+          <a href="{{ block.settings.link }}" class="library-bar__link">
+          {% if block.settings.link != blank %}
+          {% endif %}
+          <div class="library_bottom_wrapper">
+          {% if block.settings.image != blank %}
+            <div class="library_title_wrap">
+              {% if block.settings.link != blank %}
+            
+          {% endif %}
+              <h4>{{ block.settings.library_item_title }}</h5>
+              {% if block.settings.link != blank %}
+          {% endif %}
+            </div>
+          {% endif %}
+            <div class="library_title_icons_wrapper library_page">
+          {% if block.settings.icon_one != blank %}
+              <div class="library_icon">
+                <img src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/{{ block.settings.icon_one }}" alt="{{ block.settings.icon_one.alt }}">
+              </div>
+          {% endif %}
+          {% if block.settings.icon_two != blank %}
+              <div class="library_icon">
+              <img src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/{{ block.settings.icon_two }}" alt="{{ block.settings.icon_two.alt }}">
+              </div>
+          {% endif %}
+          {% if block.settings.icon_three != blank %}
+              <div class="library_icon">
+              <img src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/{{ block.settings.icon_three }}" alt="{{ block.settings.icon_three.alt }}">
+              </div>
+          {% endif %}
+            </div>
+          </div>
+          {% if block.settings.image != blank %}
+            {%- assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+            <img class="library-bar__image lazyload"
+                data-src="{{ img_url }}"
+                data-widths="[180, 360, 540, 720]"
+                data-aspectratio="{{ block.settings.image.aspect_ratio }}"
+                data-sizes="auto"
+                alt="{{ block.settings.image.alt }}">
+          {% else %}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+          {% if block.settings.link != blank %}
+            </a>
+          {% endif %}
+          
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<style>
+  .reveal_icon{
+    display: block ;
+  }
+</style>
+
+{% if section.settings.divider %}</div>{% endif %}
+
+
+{% schema %}
+  {
+    "name": "Library list",
+    "class": "index-section",
+    "max_blocks": 10,
+    "settings": [
+      {
+        "type": "range",
+        "id": "library_width",
+        "label": "Library width",
+        "default": 100,
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "%"
+      },
+      {
+        "type": "checkbox",
+        "id": "divider",
+        "label": "Show section divider",
+        "default": false
+      }
+    ],
+    "blocks": [
+      {
+        "type": "library_image",
+        "name": "Photo",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "library_item_title",
+            "label": "Library Item Title"
+          },
+          {
+            "type": "select",
+            "id": "icon_one",
+            "label": "Icon",
+            "options": [
+              {
+                "value": " ",
+                "label": " "
+              },
+              {
+                "value": "Adapt.png",
+                "label": "Adapt"
+              },
+              {
+                "value": "Beauty.png",
+                "label": "Beauty"
+              },
+              {
+                "value": "Digestion.png",
+                "label": "Digestion"
+              },
+              {
+                "value": "Endure.png",
+                "label": "Endure"
+              },
+              {
+                "value": "Focus.png",
+                "label": "Focus"
+              },
+              {
+                "value": "mood_booster.png",
+                "label": "Mood Booster"
+              },
+              {
+                "value": "Prebiotic.png",
+                "label": "Prebiotic"
+              },
+              {
+                "value": "Protein.png",
+                "label": "Protein"
+              },
+              {
+                "value": "Tissue-Repair.png",
+                "label": "Tissue Repair"
+              }
+            ]
+          },
+          {
+            "type": "select",
+            "id": "icon_two",
+            "label": "Icon",
+            "options": [
+              {
+                "value": " ",
+                "label": " "
+              },
+              {
+                "value": "Adapt.png",
+                "label": "Adapt"
+              },
+              {
+                "value": "Beauty.png",
+                "label": "Beauty"
+              },
+              {
+                "value": "Digestion.png",
+                "label": "Digestion"
+              },
+              {
+                "value": "Endure.png",
+                "label": "Endure"
+              },
+              {
+                "value": "Focus.png",
+                "label": "Focus"
+              },
+              {
+                "value": "mood_booster.png",
+                "label": "Mood Booster"
+              },
+              {
+                "value": "Prebiotic.png",
+                "label": "Prebiotic"
+              },
+              {
+                "value": "Protein.png",
+                "label": "Protein"
+              },
+              {
+                "value": "Tissue-Repair.png",
+                "label": "Tissue Repair"
+              }
+            ]
+          },
+          {
+            "type": "select",
+            "id": "icon_three",
+            "label": "Icon",
+            "options": [
+              {
+                "value": " ",
+                "label": " "
+              },
+              {
+                "value": "Adapt.png",
+                "label": "Adapt"
+              },
+              {
+                "value": "Beauty.png",
+                "label": "Beauty"
+              },
+              {
+                "value": "Digestion.png",
+                "label": "Digestion"
+              },
+              {
+                "value": "Endure.png",
+                "label": "Endure"
+              },
+              {
+                "value": "Focus.png",
+                "label": "Focus"
+              },
+              {
+                "value": "mood_booster.png",
+                "label": "Mood Booster"
+              },
+              {
+                "value": "Prebiotic.png",
+                "label": "Prebiotic"
+              },
+              {
+                "value": "Protein.png",
+                "label": "Protein"
+              },
+              {
+                "value": "Tissue-Repair.png",
+                "label": "Tissue Repair"
+              }
+            ]
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link",
+            "info": "Optional"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Library list",
+        "category": "Library"
+      }
+    ]
+  }
+{% endschema %}
+
+{% javascript %}
+
+{% endjavascript %}

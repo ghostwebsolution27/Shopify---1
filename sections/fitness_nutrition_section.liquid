@@ -1,0 +1,142 @@
+<style>
+  
+  .fitness_nutrition_section h3, .fitness_nutrition_section p  {
+   	color: {{ section.settings.text_color }}; 
+  }
+  
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
+
+<div class="fitness_nutrition_section" style="background-color: {{ section.settings.section_bg }} ">
+  <div class="page-width">
+    <div class="grid">
+      <div class="grid__item small--one-whole medium--one-whole large-up--one-whole">
+      	<h3>{{ section.settings.title }}</h3>
+      </div>
+    </div>
+    <div class="grid">
+        <div class="grid__item nutrition_paragraph small--one-whole medium--one-whole large-up--one-third">
+			<p>{{ section.settings.paragraph }}</p>
+          	<a class="btn" href="{{ section.settings.button_url }}">{{ section.settings.button_title }}</a>
+        </div>
+      	<div class="grid__item nutrition_chart small--one-whole medium--one-whole large-up--one-third">
+          	<div class="nutrition_chart_body">
+				<canvas id="myChart" width="400" height="400"></canvas>
+              	<span>{{ section.settings.chart_text }}</span>
+          	</div>
+            <script>
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                  labels: [{% for block in section.blocks %}{% if forloop.last == true %}'{{ block.settings.block_title }}'{% else %}'{{ block.settings.block_title }}',{% endif %}{% endfor %}],
+                    datasets: [{
+                        data: [{% for block in section.blocks %}{% if forloop.last == true %}{{ block.settings.grams }}{% else %}{{ block.settings.grams }},{% endif %}{% endfor %}],
+                        backgroundColor: [{% for block in section.blocks %}{% if forloop.last == true %}'{{ block.settings.nutrition_color }}'{% else %}'{{ block.settings.nutrition_color }}',{% endif %}{% endfor %}],
+                      	borderColor: [{% for block in section.blocks %}{% if forloop.last == true %}'{{ block.settings.nutrition_color }}'{% else %}'{{ block.settings.nutrition_color }}',{% endif %}{% endfor %}],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                  cutoutPercentage: 85,
+                  legend: {
+                      display: false
+                  }
+                }
+            });
+            </script>
+        </div>
+      	<div class="grid__item nutrition_blocks small--one-whole medium--one-whole large-up--one-third">
+          <ul>
+			{% for block in section.blocks %}
+              <li>
+                <p>{{ block.settings.block_title }} - {{ block.settings.grams }}g</p>
+                <div style="background-color:{{ block.settings.nutrition_color }};width:{{ block.settings.grams | plus: 20 }}%"class="nutrition_line"></div>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Fitness Nutrition",
+    "settings": [
+	  {
+        "type": "color",
+        "id": "section_bg",
+        "label": "Section Background color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#000000"
+      },
+	  {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+		"default": "Fast Food. Not Junk Food"
+      },
+	  {
+        "type": "textarea",
+        "id": "paragraph",
+        "label": "Paragraph",
+		"default": "A 400kcal meal of Huel Powder contains a balanced macro split of 37:30:30:3 (carbohydrates, protein, fat, fiber) plus all the 27 essential vitamins and minerals your body needs to thrive. Our new Huel Powder v3.0 includes more vitamins and minerals from natural sources like kombucha (B vitamins), and acerola cherry (vitamin C)."
+      },
+	  {
+        "type": "text",
+        "id": "button_title",
+        "label": "Button Title",
+		"default": "View Full Nutritional Information"
+      },
+	  {
+        "type": "url",
+        "id": "button_url",
+        "label": "Button Title"
+      },
+	  {
+        "type": "text",
+        "id": "chart_text",
+        "label": "Chart Text",
+		"default": "100% <br> Nutrition"
+      }
+
+    ],
+	"blocks": [
+	  {
+		"type": "text",
+        "name": "Nutrition Chart",
+        "settings": [
+		  {
+            "type": "text",
+            "id": "block_title",
+            "label": "Nutrients Title",
+            "default": "Carbohydrate"
+          },
+		  {
+            "type":"range",
+            "id":"grams",
+            "min":0,
+            "max":50,
+            "step":1,
+            "unit":"g",
+            "label":"Grams",
+            "default":25
+          },
+		  {
+            "type": "color",
+            "id": "nutrition_color",
+            "label": "Nutrition Color",
+            "default": "#000000"
+          }
+		] 
+      }
+	]
+  }
+{% endschema %}

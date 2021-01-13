@@ -1,0 +1,27 @@
+{% comment %}ECPWS{% endcomment %}{% capture ec-pw-ify %}{% include 'elspw_product' %}
+{% section 'salted_brownie_product_template' %}
+{% section 'salted_brownie_ingredients' %}
+{% section 'product-recommendations' %}
+{% section 'recently-viewed' %}
+
+
+<div class="text-center page-content page-content--bottom">
+    <a href="https://level-foods.myshopify.com/collections/private" class="btn btn--small return-link">
+      <p>
+      {% include 'icon-arrow-left' %} Back to Our Products
+      </p>
+    </a>
+  </div>
+
+<script>
+  // Override default values of shop.strings for each template.
+  // Alternate product templates can change values of
+  // add to cart button, sold out, and unavailable states here.
+  theme.productStrings = {
+    addToCart: {{ 'products.product.add_to_cart' | t | json }},
+    soldOut: {{ 'products.product.sold_out' | t | json }},
+    unavailable: {{ 'products.product.unavailable' | t | json }}
+  };
+</script>
+
+{% comment %}ECPWS{% endcomment %}{% endcapture %}{% include 'ec-passwordify' %}

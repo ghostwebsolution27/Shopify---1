@@ -1,0 +1,159 @@
+{%- assign count = section.settings.count | times: 6 -%}
+{%- assign grid_item_width = 'small--one-half medium-up--one-sixth' -%}
+
+{% if section.settings.divider %}<div class="section--divider">{% endif %}
+
+<div data-section-id="{{ section.id }}" data-section-type="instagram" class="instagram-section new-home-instafeed">
+  {% unless section.settings.full_width %}
+    <div class="page-width">
+  {% endunless %}
+
+    {% if section.settings.title != blank %}
+      <header class="section-header instagram">
+        {% if section.settings.subtitle != blank %}
+        <h4>{{ section.settings.subtitle }}</h4>
+        {% endif %}
+        <a href="{{ section.settings.button_link }}">
+        <h3 class="section-header__title" style="{% if section.settings.title != blank %} color: {{ section.settings.title_fill_color }};{% endif %} {% if section.settings.outline_text %}-o-text-stroke: 2px black; -moz-text-stroke: 2px black; -webkit-text-stroke: 2px black; text-stroke: 2px black;{% endif %}">{{ section.settings.title }}</h3>
+        </a>
+      </header>
+    {% endif %}
+<div id="insta-feed"></div>
+  {% unless section.settings.full_width %}
+    </div>
+  {% endunless %}
+</div>
+
+{% if section.settings.divider %}</div>{% endif %}
+
+{% schema %}
+  {
+    "name": "New Home - Instafeed",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "subtitle",
+        "label": "Subtitle"
+      },
+      {
+        "type": "checkbox",
+        "id": "outline_text",
+        "label": "Heading Outline"
+      },
+      {
+        "type": "color",
+        "id": "title_fill_color",
+        "label": "Heading fill color"
+      },
+      {
+        "type": "text",
+        "id": "username",
+        "label": "Username",
+        "default": "@username"
+      },
+      {
+        "type": "text",
+        "id": "client_id",
+        "label": "Instagram Access Token",
+        "info": "No token? [Create one here](https://archetypethemes.co/instagram). If no images show up after inserting your access token, it's likely invalid. No error will display on the page."
+      },
+      {
+        "type": "select",
+        "id": "count",
+        "label": "Number of rows",
+        "options": [
+          {
+            "value": "1",
+            "label": "1"
+          },
+          {
+            "value": "2",
+            "label": "2"
+          }
+        ],
+        "default": "1"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label",
+        "default": "Optional button"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Link"
+      },
+      {
+        "type": "checkbox",
+        "id": "full_width",
+        "label": "Full page width",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "divider",
+        "label": "Show section divider",
+        "default": false
+      }
+    ]
+  }
+{% endschema %}
+
+<style type="text/css">
+.instagram-feed-wrap__reflow-fix {
+  
+    display: none;
+}  
+/** ================ 
+NEW HOME INSTAFEED
+================ **/
+
+@media only screen and (max-width: 768px) {
+  
+  .instagram-section h4 {
+      font-family: "proxima-nova", sans-serif ;
+      font-weight: 500;
+  }
+  
+  .instagram-section {
+      padding-top: 40px;
+  }
+  
+  .instagram-section h3 {
+      font-family: proxima-nova-condensed, sans-serif ;
+      font-size: 30px ;
+      line-height: 27.5px ;
+      font-weight: 900;
+      max-width: 250px;
+      margin: auto;
+  }
+
+  .instafeed-container {
+      width: 50% ;
+      padding-top: 50% ;
+  }
+  
+}
+
+@media only screen and (min-width: 769px) {
+ 	
+  .instagram-section h3.section-header__title, .instagram-section .section-header__title.h3 {
+    font-family: proxima-nova-condensed, sans-serif ;
+    font-size: 60px ;
+    line-height: 60px ;
+    font-weight: 900;
+  }
+  
+  .instagram-section {
+      padding-top: 40px;
+  }
+  
+}
+
+</style>

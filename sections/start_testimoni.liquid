@@ -1,0 +1,164 @@
+
+
+{%- if section.blocks.size > 0 -%}
+  <div class="page-width page-content try_testis">
+    <div class="try_landing_sec">
+      
+    
+      
+       
+   
+          {%- for block in section.blocks -%}
+             <div class="try_three_box">
+              {% case block.type %}
+                {% when 'image'%}
+      <div class="testi_image_sect">{% if block.settings.image != blank %}
+     <img class="image-try-testmoni  try--testi{{ block.id }}"
+                        src="{{ block.settings.image | img_url: '450x' }}"
+                        alt="{{ block.settings.image.alt | escape }}">
+      {% else %}
+                    <svg class="placeholder-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1052 400" style="background-color: #000;"></svg>
+       {% endif %}
+
+               </div>   
+      <div class="testi_subtext"><p class="testi_rich_text" style="{% if block.settings.title_color != blank %}
+        color:{{ block.settings.title_color }}; text-align:{{ block.settings.align_text }};{% endif %}">{{ block.settings.text }} </p></div>
+     
+               <div class="try-testi_author"> <h4 class="testi_authoer_ti">{{ block.settings.title }} <span>{{ block.settings.author_text }}</span></h4></div>
+
+              {% endcase %}
+            </div>
+          {%- endfor -%}
+      
+
+     
+  
+   
+</div>
+    
+   
+   
+  </div>
+{%- endif -%}
+
+{% schema %}
+ {
+    "name": "Testimonials",
+    "class": "try-testi",
+    "max_blocks": 3,
+    "settings": [
+      
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+"default": "Testimonials"
+
+        
+      },
+{
+            "type": "color",
+            "id": "section_background",
+            "label": "Section Background",
+             "default": "#fff"
+          }
+      
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Testimonialimage",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Testimonial Image"
+          },{
+            "type": "textarea",
+            "id": "text",
+            "label": "Text",
+            "default": "Rich text"
+          },
+        
+{
+            "type": "color",
+            "id": "title_color",
+            "label": "Text Color",
+"default": "#000"
+          },
+          {
+            "type": "select",
+            "id": "align_text",
+            "label": "Text alignment",
+            "default": "left",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "center",
+                "label": "Centered"
+              }
+            ]
+          },{
+            "type": "text",
+            "id": "title",
+            "label": "Author",
+            "default": "Malesuada fames"
+          },
+          {
+            "type": "text",
+            "id": "author_text",
+            "label": "Text",
+            "default": "llamcorper sit amet risus nullam eget felis eget nunc"
+          }
+          
+         
+        ]
+      }
+    ]
+   
+  }
+
+
+
+
+
+{% endschema %}
+
+<style type="text/css">
+  .try_three_box {
+  width:33.3%;
+  padding:10px 1%;
+  margin:15px 0px;
+  
+  }
+  .testi_image_sect{
+  height:auto;
+    text-align:center;
+  }
+  .testi_subtext{padding-top:15px;}
+  .testi_authoer_ti{
+  text-align: right;
+padding: 0px 10px;
+    text-transform:capitalize;
+  }
+  .testi_authoer_ti span {
+  display:block;
+    font-weight: 300;
+    font-size: 15px;
+  }
+  .page-width.page-content.try_testis{padding-top:75px;}
+   @media only screen and (max-width:880px){
+    .try_three_box {
+  width:100%;
+  padding:10px 1%;
+  margin:15px 0px;
+  
+  }
+  .page-width.page-content.try_testis{padding-top:35px;}
+    
+  }
+  #shopify-section-try_testimoni{background:{{ section.settings.section_background }};}
+</style>

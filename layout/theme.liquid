@@ -1,0 +1,760 @@
+<!doctype html>
+<html class="no-js" lang="{{ shop.locale }}">
+  <head>
+    <meta name="p:domain_verify" content="80ee976f024f5e0f470ab19151ffe8f9"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_button }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <meta name="format-detection" content="telephone=no">
+    
+    <!-- Google Tag Manager -->
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-NT39CJL');</script>
+	<!-- End Google Tag Manager -->
+
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="https://cdn.lineicons.com/1.0.1/LineIcons.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900&display=swap" rel="stylesheet">
+
+    {%- if settings.favicon -%}
+    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png" />
+    {%- endif -%}
+
+    {% include 'seo-title' %}
+    <title>{{ seo_title }}</title>
+
+    {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    {% include 'social-meta-tags' %}
+
+    {% include 'font-face' %}
+    {{ 'theme.scss.ccs' | asset_url | stylesheet_tag }}
+    {{ 'new-home.ccs' | asset_url | stylesheet_tag }}
+
+    {% style %}
+    .collection-item__title {
+    font-size: {{ settings.type_collection_size | times: 0.8 }}px;
+    }
+
+    @media screen and (min-width: 769px) {
+    .collection-item__title {
+    font-size: {{ settings.type_collection_size }}px;
+    }
+    }
+    {% endstyle %}
+
+    <script>
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+
+      window.theme = window.theme || {};
+      theme.strings = {
+        addToCart: {{ 'products.product.add_to_cart' | t | json }},
+        soldOut: {{ 'products.product.sold_out' | t | json }},
+        unavailable: {{ 'products.product.unavailable' | t | json }},
+        stockLabel: {{ 'products.product.stock_label' | t: count: '[count]' | json }},
+        savePrice: {{ 'products.general.save_html' | t: saved_amount: '[saved_amount]' | json }},
+        cartEmpty: {{ 'cart.general.empty' | t | json }},
+        cartTermsConfirmation: {{ 'cart.general.terms_confirm' | t | json }}
+      };
+      theme.settings = {
+        dynamicVariantsEnable: true,
+        dynamicVariantType: {{ settings.variant_type | json }},
+        cartType: {{ settings.cart_type | json }},
+        currenciesEnabled: {{ settings.enable_currencies | json }},
+        moneyFormat: {{ shop.money_format | json }},
+        saveType: {{ settings.product_save_type | json }},
+        recentlyViewedEnabled: false,
+        quickView: {{ settings.quick_shop_enable }},
+        themeVersion: "2.1.0"
+      };
+    </script>
+
+    {% include 'wlm-head' %}
+    {{ content_for_header }}
+    {%- include 'bold-common' -%}
+    {%- include 'bold-product' with product, hide_action: 'header' -%}
+    {%- include 'bold-ro-init' -%}
+    {{ 'bold-ro.css' | asset_url | stylesheet_tag }}
+
+    <script src="{{ 'vendor-scripts-v2.js' | asset_url | split: '?' | first }}" defer="defer"></script>
+
+    {% if settings.enable_currencies %}
+    <script src="/services/javascripts/currencies.js" defer="defer"></script>
+    <script src="{{ 'currencies.jquery.min.js' | asset_url | split: '?' | first }}" defer="defer"></script>
+    {% endif %}
+
+    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+
+    {%- if template contains 'customers' -%}
+    <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
+    {%- endif -%}
+    <script src="https://shinedezign.tk/preorder/js/preorder.js"></script>
+    <script>
+      
+      $(document).ready(function() {
+        
+        // Hide Header on on scroll down
+        var didScroll;
+        var lastScrollTop = 0;
+        var delta = 5;
+        var navbarHeight = $('.header-mobile').outerHeight();
+        
+
+        $(window).scroll(function(event){
+            didScroll = true;
+        });
+
+        setInterval(function() {
+            if (didScroll) {
+                hasScrolled();
+                didScroll = false;
+            }
+        }, 250);
+
+        function hasScrolled() {
+            var st = $(this).scrollTop();
+          	var windowheight = $(window).height();
+          	var currentscroll = $(window).scrollTop();
+          	var siteheight = $(document).height();
+          	var currentscrollbot = siteheight - currentscroll;
+
+            // Make sure they scroll more than delta
+            if(Math.abs(lastScrollTop - st) <= delta)
+                return;
+
+            // If they scrolled down and are past the navbar, add class .nav-up.
+            // This is necessary so you never see what is "behind" the navbar.
+            if (st > lastScrollTop && st > navbarHeight){
+                // Scroll Down
+                $('.header-mobile .submenu').slideUp();
+            } else {
+                // Scroll Up
+                if(st + $(window).height() < $(document).height()) {
+                    $('.header-mobile .submenu').slideDown();
+                }
+            }
+
+            lastScrollTop = st;
+        }
+
+        $(".banner-link").click(function(e) {
+            e.preventDefault();
+            var learnmore = $(this).attr("href");
+            $('html,body').animate({scrollTop: $(learnmore).offset().top},'slow');
+        });
+        
+        $( "#rc_container" ).insertAfter( ".product__quantity" );
+
+
+        $('input.rc_radio').click(function(){
+
+          if ($('input.rc_radio__autodeliver').is(':checked')) {
+            $('.shopify-payment-button').hide();
+            $('button.add-to-cart').addClass('subsc_n');  
+            $('button.add-to-cart span').text('SUBSCRIBE NOW');
+            if (window.location.href.indexOf("mix-bars") > -1){
+              var larnewprice = $('.rc_price__autodeliver').text().replace("$", "");
+
+              var larperB =  larnewprice / 18 ;
+            }
+            else if(window.location.href.indexOf("mini") > -1 ){
+             var divexist = $('.variant-input-wrap');
+              var checkVarity = window.location.href.indexOf("variety-pack-mini") > -1;
+if (divexist.length && !checkVarity){
+ 
+   var larnewprice = $(this).parents('#rc_radio_options').find('.rc_price__autodeliver').text().replace("$", "");
+  var higherprice = $(this).parents('#rc_radio_options').find('.rc_price__autodeliver').text().replace("$", "");
+   var larperl =  larnewprice / 10 ;
+   var larperB =  larnewprice / 20 ;
+  
+   $('.variant-input:first .small').html('$'+larnewprice + '<ins>($'+larperl.toFixed(2)+'/bar)</ins>'); 
+   $('.variant-input:first .larg').html('$'+larnewprice + '<ins>($'+larperB.toFixed(2)+'/bar)</ins>'); 
+ 
+
+}else{
+    var larnewprice = $(this).parents('#rc_radio_options').find('.rc_price__autodeliver').text().replace("$", "");
+  var higherprice = $(this).parents('#rc_radio_options').find('.rc_price__autodeliver').text().replace("$", "");
+   var larperl =  larnewprice / 12 ;
+   var larperB =  larnewprice / 30 ;
+  
+   $('.variant-input:first .small').html('$'+larnewprice + '<ins>($'+larperl.toFixed(2)+'/bar)</ins>'); 
+   $('.variant-input:first .larg').html('$'+larnewprice + '<ins>($'+larperB.toFixed(2)+'/bar)</ins>'); 
+
+}
+            
+            } else{
+           
+             
+              var larnewprice = $('.rc_price__autodeliver').text().replace("$", "");
+              var larperB =  larnewprice / 12 ;
+                
+            }
+            
+               var divexist = $('.variant-input-wrap');
+           if (divexist.length){
+            $('.variant-input:first .larg').html('$'+larnewprice + '<ins>($'+larperB.toFixed(2)+'/bar)</ins>'); 
+              }
+            
+             if (window.location.href.indexOf("minis") > -1) {
+               
+                
+               
+               var getoptiontext =  $(this).parents('.col_pro_action').find('.data_col_pro option:first-child');
+               var getopval =   $(this).parents('.col_pro_action').find('.data_col_pro option:first-child').attr('data-value');
+               var optionsecond =  $(this).parents('.col_pro_action').find('.data_col_pro option:nth-child(2)');
+               if(optionsecond.length ){
+               $(optionsecond).text('20 PACK - ($1.37/bar)');
+               }
+               if (getopval == 'BOX OF 20'){
+                $(getoptiontext).text('20 PACK - ($1.37/bar)');
+               }else{
+               $(getoptiontext).text('10 PACK - ($1.55/bar)');
+               }
+             }else{
+              $(this).parents('.col_pro_action').find('.data_col_pro option:first-child').text('12 PACK - ($2.66/bar)');
+             }
+           
+          }else{
+            $('.shopify-payment-button').show();
+            $('button.add-to-cart span').text('Add to cart'); 
+            $('button.add-to-cart').removeClass('subsc_n');
+            if (window.location.href.indexOf("mix-bars") > -1){
+              var larnewprice = $('.rc_price__onetime').text().replace("$", "");
+              var larperB =  larnewprice / 18 ;
+            }else if(window.location.href.indexOf("mini") > -1){
+             var divexist = $('.variant-input-wrap');
+                var checkVarity = window.location.href.indexOf("variety-pack-mini") > -1;
+if (divexist.length && !checkVarity){
+  
+ 
+   var larnewprice = $('.variant-input:nth-child(2) .small').text().replace("$", "");
+ 
+  var hiGherprice = $('.variant-input:nth-child(2) .larg').text().replace("$", "");
+   var larperl =  larnewprice / 10 ;
+   var larperB =  hiGherprice / 20 ;
+  
+ $('.variant-input:first .small').html('$'+larnewprice + '<ins>($'+larperl.toFixed(2)+'/bar)</ins>'); 
+   $('.variant-input:first .larg').html('$'+hiGherprice + '<ins>($'+larperB.toFixed(2)+'/bar)</ins>'); 
+  
+}else{
+  var larnewprice = $(this).parents('#rc_radio_options').find('.rc_price__onetime').text().replace("$", "");
+  var hiGherprice = $(this).parents('#rc_radio_options').find('.rc_price__onetime').text().replace("$", "");
+
+   var larperl =  larnewprice / 12 ;
+   var larperB =  hiGherprice / 30 ;
+  
+ $('.variant-input:first .small').html('$'+larnewprice + '<ins>($'+larperl.toFixed(2)+'/bar)</ins>'); 
+   $('.variant-input:first .larg').html('$'+hiGherprice + '<ins>($'+larperB.toFixed(2)+'/bar)</ins>'); 
+  
+}
+            
+            }else{
+              var larnewprice = $('.rc_price__onetime').text().replace("$", "");
+              var larperB =  larnewprice / 12 ;
+            }
+              var divexist = $('.variant-input-wrap');
+           if (divexist.length){
+            $('.variant-input:first .larg').html('$'+larnewprice + '<ins>($'+larperB.toFixed(2)+'/bar)</ins>'); 
+           }
+             if (window.location.href.indexOf("minis") > -1) {
+               var getoptiontext =  $(this).parents('.col_pro_action').find('.data_col_pro option:first-child');
+               var getopval =   $(this).parents('.col_pro_action').find('.data_col_pro option:first-child').attr('data-value');
+               var optionsecond =  $(this).parents('.col_pro_action').find('.data_col_pro option:nth-child(2)');
+               
+                if(optionsecond.length ){
+               $(optionsecond).text('20 PACK - ($1.49/bar)');
+               }
+               
+               if (getopval == 'BOX OF 20'){
+                $(getoptiontext).text('20 PACK - ($1.49/bar)');
+               }else{
+               $(getoptiontext).text('10 PACK - ($1.69/bar)');
+               }
+               
+               
+             }else{
+              $(this).parents('.col_pro_action').find('.data_col_pro option:first-child').text('12 PACK - ($2.92/bar)');
+             }
+            
+          }
+        })
+
+        if ( window.location.pathname == '/' ){
+          $(".grid-product__title--heading:contains('Oat Cookie & Salted Brownie Combo Pack')").text("Oat Cookie & Salted Brownie Combo");
+
+        }
+        if($('.variant-input-wrap input[type="radio"]:checked').length){
+          var box_size = $('.variant-input-wrap input[type="radio"]:checked').val().replace(/[^0-9.]/g, "");
+
+          if (box_size == 6){
+            var l_price = $('.variant-input:first .small').text().replace("$", ""); 
+            var each_bar_l = l_price / box_size ;
+            $('.variant-input:first .small').append('<ins>($'+each_bar_l.toFixed(2)+'/bar)</ins>');
+            var h_price = $('.variant-input:first .larg').text().replace("$", ""); 
+            var each_bar_h = h_price / 12 ;
+            $('.variant-input:first .larg').append('<ins>($'+each_bar_h.toFixed(2)+'/bar)</ins>');
+            $('.variant-input:first .small').css('display', 'block');
+            $('.variant-input:first .larg').css('display', 'none');
+
+          }else if(box_size == 12 ){
+            var h_price = $('.variant-input:first .larg').text().replace("$", ""); 
+            var each_bar_h = h_price / box_size ;
+            $('.variant-input:first .larg').append('<ins>($'+each_bar_h.toFixed(2)+'/bar)</ins>');
+            var l_price = $('.variant-input:first .small').text().replace("$", ""); 
+            if ($('.variant-input:eq( 1 )').length){
+            var getseconts =  $('.variant-input:eq( 1 )').data('value').replace("BOX OF", ""); 
+            var each_bar_l = l_price / getseconts ;
+            $('.variant-input:first .small').append('<ins>($'+each_bar_l.toFixed(2)+'/bar)</ins>');
+            $('.variant-input:first .larg').css('display', 'block');
+            $('.variant-input:first .small').css('display', 'none');
+            }
+          }
+          else if(box_size == 3 && window.location.href.indexOf("mix-bars") > -1){
+            var l_price = $('.variant-input:first .small').text().replace("$", ""); 
+            var each_bar_l = 10 / 3 ;
+            $('.variant-input:first .small').append('<ins>($'+each_bar_l.toFixed(2)+'/bar)</ins>');
+            var h_price = $('.variant-input:first .larg').text().replace("$", ""); 
+            var each_bar_h = 52.50 / 18 ;
+            $('.variant-input:first .larg').append('<ins>($'+each_bar_h.toFixed(2)+'/bar)</ins>');
+            $('.variant-input:first .small').css('display', 'block');
+            $('.variant-input:first .larg').css('display', 'none');
+          }
+          else if(box_size == 18 && window.location.href.indexOf("mix-bars") > -1){
+          
+            var h_price = $('.variant-input:first .larg').text().replace("$", ""); 
+            var each_bar_h = 52.50 / 18 ;
+            $('.variant-input:first .larg').append('<ins>($'+each_bar_h.toFixed(2)+'/bar)</ins>');
+            var l_price = $('.variant-input:first .small').text().replace("$", ""); 
+             if ($('.variant-input:eq( 1 )').length){
+            var getseconts =  $('.variant-input:eq( 1 )').data('value').replace("BOX OF", ""); 
+            var each_bar_l = 10 / 3 ;
+            $('.variant-input:first .small').append('<ins>($'+each_bar_l.toFixed(2)+'/bar)</ins>');
+            $('.variant-input:first .larg').css('display', 'block');
+            $('.variant-input:first .small').css('display', 'none');
+               }
+          }
+          else if(box_size == 12 && window.location.href.indexOf("mix-bars") > -1){
+            var h_price = $('.variant-input:first .larg').text().replace("$", ""); 
+            var each_bar_h = 52.50 / 18 ;
+            $('.variant-input:first .larg').append('<ins>($'+each_bar_h.toFixed(2)+'/bar)</ins>');
+            var l_price = $('.variant-input:first .small').text().replace("$", ""); 
+            var getseconts =  $('.variant-input:eq( 2 )').data('value').replace("BOX OF", ""); 
+            var each_bar_l = 10 / 3 ;
+            $('.variant-input:first .small').append('<ins>($'+each_bar_l.toFixed(2)+'/bar)</ins>');
+            $('.variant-input:first .larg').css('display', 'none');
+            $('.variant-input:first .small').css('display', 'none');
+            $('.variant-input:first .vsmall').css('display', 'block');
+          }
+          
+
+        }
+
+
+        if (window.location.href.indexOf("mix-bars") > -1){
+
+          $('.variant-input:eq( 0 )').append('<span class="vsmall">$35.00<ins>($2.92/bar)</ins></span>')
+          $('.variant-input').click(function(){
+            var varient_selected = $(this).data('value');
+            if (varient_selected == 'BOX OF 12'){
+
+              $('.variant-input:first .larg').css('display', 'none');
+              $('.variant-input:first .small').css('display', 'none');
+              $('.variant-input:first .vsmall').css('display', 'block');
+
+
+            }
+            if (varient_selected == 'BOX OF 3'){
+              $('.variant-input:first').find('.small').html('$10.00<ins>($3.33/bar)</ins>');
+              $('.variant-input:first').find('.small').css('display', 'block')
+              $('.variant-input:first').find('.larg').css('display', 'none')
+              $('#rc_container').hide();
+              $('#rc_radio_options').css('display', 'none')
+              $('.rc_popup').css('display', 'none')
+            }
+            if (varient_selected == 'BOX OF 18'){
+              $('.variant-input:first').find('.larg').html('$52.50<ins>($2.92/bar)</ins>');
+
+              $('.variant-input:first').find('.small').css('display', 'none')
+              $('.variant-input:first').find('.larg').css('display', 'block')
+            }
+          });
+
+        }
+        
+       /* if (window.location.href.indexOf("variety-pack-mini") > -1){
+
+     
+          $('.variant-input').click(function(){
+            var varient_selected = $(this).data('value');
+            if (varient_selected == 'BOX OF 12'){
+
+              $('.variant-input:first .larg').css('display', 'none');
+              $('.variant-input:first .small').css('display', 'none');
+              $('.variant-input:first .vsmall').css('display', 'block');
+
+
+            }
+            
+            if (varient_selected == 'BOX OF 30'){
+              $('.variant-input:first').find('.larg').html('$52.50<ins>($2.92/bar)</ins>');
+
+              $('.variant-input:first').find('.small').css('display', 'none')
+              $('.variant-input:first').find('.larg').css('display', 'block')
+            }
+          });
+
+        }*/
+
+        if (window.location.href.indexOf("mini") > -1){
+          
+          var socialshare = $('.social-sharing');
+          $('.social-sharing').css('display','none');
+          
+          var divexist = $('.variant-input-wrap');
+if (divexist.length){
+          var box_size = $('.variant-input-wrap input[type="radio"]:checked').val().replace(/[^0-9.]/g, "");
+          
+          
+          
+          if (box_size == 10){
+            var l_price = $('.variant-input:first .small').text().replace("$", ""); 
+            var each_bar_l = l_price / box_size ;
+            $('.variant-input:first .small').append('<ins>($'+each_bar_l.toFixed(2)+'/bar)</ins>');
+            var h_price = $('.variant-input:first .larg').text().replace("$", ""); 
+            var each_bar_h = h_price / 20 ;
+            $('.variant-input:first .larg').append('<ins>($'+each_bar_h.toFixed(2)+'/bar)</ins>');
+            $('.variant-input:first .small').css('display', 'block');
+            $('.variant-input:first .larg').css('display', 'none');
+
+          }else if(box_size == 20){
+            var h_price = $('.variant-input:first .larg').text().replace("$", ""); 
+            var each_bar_h = h_price / box_size ;
+            $('.variant-input:first .larg').append('<ins>($'+each_bar_h.toFixed(2)+'/bar)</ins>');
+            var l_price = $('.variant-input:first .small').text().replace("$", ""); 
+            //var getseconts =  $('.variant-input:eq( 1 )').data('value').replace("BOX OF", ""); 
+            var each_bar_l = l_price / 10 ;
+            $('.variant-input:first .small').append('<ins>($'+each_bar_l.toFixed(2)+'/bar)</ins>');
+            $('.variant-input:first .larg').css('display', 'block');
+            $('.variant-input:first .small').css('display', 'none');
+          }
+   else if(box_size == 12 && window.location.href.indexOf("variety-pack-mini") > -1){
+            var l_price = $('.variant-input:first .small').text().replace("$", ""); 
+            var each_bar_l = l_price / box_size ;
+            //$('.variant-input:first .small').append('<ins>($'+each_bar_l.toFixed(2)+'/bar)</ins>');
+            var h_price = $('.variant-input:first .larg').text().replace("$", ""); 
+            var each_bar_h = h_price / 30 ;
+            $('.variant-input:first .larg').append('<ins>($'+each_bar_h.toFixed(2)+'/bar)</ins>');
+            $('.variant-input:first .small').css('display', 'block');
+            $('.variant-input:first .larg').css('display', 'none'); 
+          }
+           else if(box_size == 30 && window.location.href.indexOf("variety-pack-mini") > -1){
+           var l_price = $('.variant-input:first .small').text().replace("$", ""); 
+            var each_bar_l = l_price / box_size ;
+            //$('.variant-input:first .small').append('<ins>($'+each_bar_l.toFixed(2)+'/bar)</ins>');
+            var h_price = $('.variant-input:first .larg').text().replace("$", ""); 
+            var each_bar_h = h_price / 30 ;
+            $('.variant-input:first .larg').append('<ins>($'+each_bar_h.toFixed(2)+'/bar)</ins>');
+            $('.variant-input:first .small').css('display', 'block');
+            $('.variant-input:first .larg').css('display', 'none');
+          
+          }
+            
+            }
+          
+           $('.variant-input').click(function(){
+              $('input.rc_radio__onetime').prop('checked',true).trigger("click");
+       $('input.rc_radio__autodeliver').prop('checked',false);
+              var divexist = $('.variant-input-wrap');
+if (divexist.length){
+  
+ 
+   var larnewprice = $('.variant-input:nth-child(2) .small').text().replace("$", "");
+ 
+  var hiGherprice = $('.variant-input:nth-child(2) .larg').text().replace("$", "");
+   var larperl =  larnewprice / 10 ;
+   var larperB =  hiGherprice / 20 ;
+  var varityLow = larnewprice / 12 ;
+   var varityLar = hiGherprice / 30 ;
+  if (window.location.href.indexOf("variety-pack-mini") > -1){
+  $('.variant-input:first .small').html('$'+larnewprice + '<ins>($'+varityLow.toFixed(2)+'/bar)</ins>'); 
+   $('.variant-input:first .larg').html('$'+hiGherprice + '<ins>($'+varityLar.toFixed(2)+'/bar)</ins>'); 
+  }else{
+ $('.variant-input:first .small').html('$'+larnewprice + '<ins>($'+larperl.toFixed(2)+'/bar)</ins>'); 
+   $('.variant-input:first .larg').html('$'+hiGherprice + '<ins>($'+larperB.toFixed(2)+'/bar)</ins>'); 
+  }
+  
+}
+             
+            var varient_selected = $(this).data('value');
+            if (varient_selected == 'BOX OF 10'){
+
+              $('.variant-input:first .larg').css('display', 'none');
+              $('.variant-input:first .small').css('display', 'block'); 
+            
+
+            }
+            else if (varient_selected == 'BOX OF 20'){
+              $('.variant-input:first .larg').css('display', 'block');
+              $('.variant-input:first .small').css('display', 'none');       
+            }
+             else if (varient_selected == 'BOX OF 12'){
+              $('.variant-input:first .larg').css('display', 'block');
+              $('.variant-input:first .small').css('display', 'none');
+                 
+            }
+              else if (varient_selected == 'BOX OF 30'){
+              $('.variant-input:first .larg').css('display', 'none');
+              $('.variant-input:first .small').css('display', 'block');  
+                
+            }
+           
+            
+          });
+          
+        }
+
+         if (window.location.href.indexOf("apple-crisp-mini-silver-wrap-8ct") > -1){
+          
+          $('.page-content').remove();
+
+        }
+      });
+
+
+    </script>
+
+
+    <style type="text/css">
+      #shopify-section-1525899982112 .instagram-feed-wrap {display:none;}
+      #shopify-section-1593459721312 #insta-feed {margin-top:0px;}
+      #shopify-section-1525899982112 .section-header {
+    margin-bottom: 20px;
+}
+      .vsmall {
+        position: absolute;
+        top: -60px;
+        left: 0;
+        color:#e00708;
+        font-weight: 800;
+        font-size: 22px;
+        display:none;
+      }
+      .variant-input .vsmall ins {
+        color:#000;
+        padding-left: 8px;
+        font-weight: 400;
+        text-decoration: none;
+        font-size: 20px;
+        position: absolute;
+      }
+      fieldset.variant-input-wrap .variant-input:nth-child(3) .larg {
+        display: none;
+      }
+      .variant-input .larg ins,.variant-input .small ins{
+        color:#000;
+        padding-left: 8px;
+        font-weight: 400;
+        text-decoration: none;
+        font-size: 20px;
+        position: absolute;
+      }
+      .payment-buttons .btn--secondary.subsc_n {
+        border:none;
+        background:#e00808;
+        color:#fff;
+        transition:background 0.3s ease-in-out;
+        -webkit-transition:background 0.3s ease-in-out;
+      }
+      .payment-buttons .btn--secondary.subsc_n:hover {
+        background:#f72424;
+      }
+      div.rc_block__type--active {
+        background-color: transparent ;
+      }
+      div.rc_block__type{padding:3px 8px ;}
+      div#rc_container {margin-bottom:-2px ;}
+      @media only screen and (min-width:769px){
+        .product__quantity {
+          margin-bottom: 12px ;
+        }
+      }
+      @media only screen and (max-width:410px){
+        .payment-buttons .btn--secondary.subsc_n {
+          width:60%;
+        }
+      }
+      /*#ps__widget_container:before{
+
+      border: medium none;
+      position: fixed;
+      visibility: visible;
+      z-index: 2147483647;
+      max-height: 3vh;
+      max-width: 22vw;
+      transition: none 0s ease 0s;
+      background:#fff;
+      opacity: 1;
+      height: 80vw;
+      width: 94vw;
+
+      display: block;
+      content:'';
+      right:20px;
+      bottom:75vw;
+
+
+
+      }
+      #ps__widget_container iframe{
+      z-index:1 ;
+      }
+      */
+    </style>
+
+
+    <!-- Start of Littledata - Fix Google Analytics Script-->
+    {% include 'LittledataLayer' %}
+    <!-- End of Littledata - Fix Google Analytics Script -->
+
+    
+    
+
+<!-- For Custom Landing Page . level-landing.liquid. -->
+{% if page.url == '/pages/taster' or page.url == '/pages/mini' or page.url == '/pages/apple-crisp'%}
+	{{ 'custom.scss.css' | asset_url | stylesheet_tag }} 
+    <link rel="stylesheet" href="https://use.typekit.net/ohd6blq.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+{% endif %} 
+    
+
+  {% include 'hulkcode_common' %}{% if template contains 'product' or template contains 'cart' %}<script src='https://volumediscount.hulkapps.com/hulkcode.js' defer='defer'></script>{% endif %}
+  
+    <script>
+    window['friendbuy'] = window['friendbuy'] || [];
+    window['friendbuy'].push(['site', 'site-d9f09f0e-level-foods.myshopify.com']);
+    window['friendbuy'].push(['track', 'customer',
+        {
+            id: '{{ customer.id }}', //INSERT CUSTOMER ID PARAMETER
+            email: '{{ customer.email }}', //INSERT CUSTOMER EMAIL PARAMETER
+            first_name: '{{ customer.first_name }}', //INSERT CUSTOMER FIRST NAME PARAMETER
+            last_name: '{{ customer.last_name }}' //INSERT CUSTOMER LAST NAME PARAMETER
+        }
+    ]);
+    (function (f, r, n, d, b, y) {
+        b = f.createElement(r), y = f.getElementsByTagName(r)[0];b.async = 1;b.src = n;y.parentNode.insertBefore(b, y);
+    })(document, 'script', '//djnf6e5yyirys.cloudfront.net/js/friendbuy.min.js');
+  </script>
+    
+  
+    <link rel="stylesheet" href="https://use.typekit.net/ohd6blq.css">
+  </head>
+
+  <body class="template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% if settings.enable_currencies %} currencies-enabled{% endif %}" data-transitions="false">
+	<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NT39CJL"
+		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<!-- End Google Tag Manager (noscript) -->
+    {% comment %}
+    Enable below script if page transitions enabled
+    {% endcomment %}
+    {% comment %}
+    <script type="text/javascript">window.setTimeout(function() { document.body.className += " loaded"; }, 25);</script>
+    {% endcomment %}
+
+    <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+
+    <div id="PageContainer" class="page-container">
+      <div class="transition-body">
+
+        {% section 'header' %}
+        
+		{% comment %} 
+          {% section 'timer' %}
+        {% endcomment %}
+
+        <main class="main-content" id="MainContent">
+          {% comment %}{{ content_for_layout }}{% endcomment %}{% include 'wlm-body' %}
+        </main>
+
+        {% section 'footer-promotions' %}
+        {% section 'footer' %}
+
+      </div>
+    </div>
+
+    {% section 'newsletter-popup' %}
+
+    {% if settings.cart_type == 'drawer' %}
+    {% include 'ajax-cart-template' %}
+    {% endif %}
+
+    {% if settings.enable_currencies %}
+    <span
+          id="CurrencyData"
+          class="hide"
+          data-shop-currency="{{ shop.currency }}"
+          data-default-currency="{{ settings.default_currency | default: shop.currency }}"
+          data-format="{{ settings.currency_format | default: 'money_with_currency_format' }}"
+          data-money-format="{{ shop.money_format | strip_html }}"
+          data-money-currency-format="{{ shop.money_with_currency_format | strip_html }}">
+    </span>
+    {% endif %}
+
+    {% include 'video-modal' %}
+    {% include 'photoswipe-template' %}
+    {% if template contains 'product' %}
+    {% include 'recently-viewed-product-template' %}
+    {% endif %}
+    <!-- Begin ReCharge code -->
+    {% include 'subscription-theme-footer' %}
+    <!-- End ReCharge code -->
+
+    <script async type="text/javascript" data-api-key="" id="stamped-script-widget" src="https://cdn-stamped-io.azureedge.net/files/widget.min.js"></script>
+    <script type="text/javascript" async src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=HC6gD3"></script>
+    <!-- WPD Start -->
+    {% if customer.tags.size > 0 and template != 'cart' %}
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        let checkoutbtninterval = setInterval(function(){
+          var x=document.querySelectorAll("input[name='checkout'], button[name='checkout'], input[name='goto_pp'], button[name='goto_pp'], input[name='goto_gc'], button[name='goto_gc'], [href$='checkout']");
+          var WPD_RedirectToCart = function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            window.location = '/cart';
+          };
+          for (var i = 0; i < x.length; i++) {
+            x[i].addEventListener('click', WPD_RedirectToCart, false);
+          }
+
+        },500)
+        });
+    </script>
+    {% endif %}
+
+
+    {% if customer.tags.size > 0 and template == 'cart' %}
+    {% include 'wcp_cart' %}
+    {% endif %}
+    <!-- WPD End -->
+    {% include 'instabuy' %}
+    {% include 'pop-up-form' %}
+
+
+    {% render 'upsell-now', customer: customer, product: product, template: template, cart: cart %}
+  
+  <!-- Start of levelfoods Zendesk Widget script -->
+<script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=8927a4c8-625f-412c-abcd-2a5f6aadc965"> </script>
+<!-- End of levelfoods Zendesk Widget script -->
+  
+  
+  {{ '//cdn.shopify.com/s/files/1/0194/1736/6592/t/1/assets/booster-page-speed-optimizer.js?23' | script_tag }}
+</body>
+</html>

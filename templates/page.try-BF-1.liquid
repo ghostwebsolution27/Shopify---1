@@ -1,0 +1,33 @@
+{% comment %}ECPWS{% endcomment %}{% capture ec-pw-ify %}{% section 'bf_header_note_1' %}
+<div id="try">
+{% section 'try_logo_sec' %}
+{% section 'bf_slideshow_1' %}
+{% section 'bf_no_section_1' %}
+{% section 'bf_steps_1' %}
+{% section 'bf_section_2_1' %}
+{% section 'bf_tabs_2' %}
+
+{% section 'bf_section_four_2' %}
+{% section 'bf_testimoni_1' %}
+{% section 'bf_reviews_1' %}
+
+<div class="grid">
+  <div class="grid__item medium-up--three-quarters medium-up--push-one-eighth">
+    {% comment %}
+    <header class="section-header">
+      <h1 class="section-header__title">{{ page.title }}</h1>
+    </header>
+    {% endcomment %}
+    <div class="rte rte--nomargin">
+      {{ page.content }}
+    </div>
+
+  </div>
+</div>
+</div>
+{% section 'bf_call_action_1' %}
+{% comment %}ECPWS{% endcomment %}{% endcapture %}{% include 'ec-passwordify' %}
+
+<style type="text/css">
+  .textannounce {font-size:13px;}
+</style>

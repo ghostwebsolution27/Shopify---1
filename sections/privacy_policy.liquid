@@ -1,0 +1,462 @@
+{% if section.settings.divider %}<div class="section--divider">{% endif %}
+
+<div
+  data-section-id="{{ section.id }}"
+  data-section-type="featured-content-section"
+  class="text-{{ section.settings.align_text }}">
+
+  <div class="page-width">
+    <div class="grid">
+      <div class="grid__item{% if section.settings.narrow_column %} medium-up--three-quarters medium-up--push-one-eighth{% endif %}">
+        {% if section.settings.title != blank %}
+          <h2 style="{% if section.settings.center_header %}text-align: center;{% endif %}">{{ section.settings.title }}</h2>
+        {% endif %}
+        {% if section.settings.title != blank %}
+          <h5 style="{% if section.settings.center_header %}text-align: center;{% endif %} margin-bottom: 40px;">{{ section.settings.sub_title }}</h5>
+        {% endif %}
+
+        {% if section.settings.text != blank %}
+          <div class="rte">
+            <div {% if section.settings.enlarge_text %}class="enlarge-text" {% endif %} style="{% if section.settings.center_text %}text-align: center;{% endif %}">
+            {{ section.settings.text }}
+            {% if section.settings.enlarge_text %}</div>{% endif %}
+            {% if section.settings.enlarge_text_two %}<div class="enlarge-text">{% endif %}
+            {{ section.settings.text_two }}
+            {% if section.settings.enlarge_text_two %}</div>{% endif %}
+            {% if section.settings.button_label != blank %}
+            <a href="{{ section.settings.button_link }}" class="btn btn_margin_top">
+            {{ section.settings.button_label }}
+            </a>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% for block in section.blocks %}
+          <div class="rte narrow_ricktext" {{ block.shopify_attributes }}>
+            {% case block.type %}
+              {% when 'text_one' %}
+                <div id="{% if block.settings.text_block_id != blank %}{{ block.settings.text_block_id }}{% endif %}" class="">
+                {% if block.settings.text_title_block != blank %}
+                  <h4>{{ block.settings.text_title_block }}</h4>
+                {% endif %}
+              </div>
+              <div class="flex_box_wrapper">
+                {% if block.settings.home_page_richtext_block != blank %}
+                  {% if block.settings.block_enlarge_text %}<div class="enlarge-text">{% endif %}
+                <div >
+                  {{ block.settings.home_page_richtext_block }}
+                </div>
+                  {% if block.settings.block_enlarge_text %}</div>{% endif %}
+                {% else %}
+                  {{ 'home_page.onboarding.no_content' | t }}
+                {% endif %}
+            </div>
+              {% when 'text' %}
+              <div class="">
+                {% if block.settings.title_block != blank %}
+                  <h4>{{ block.settings.title_block }}</h4>
+                {% endif %}
+              </div>
+              <div class="flex_box_wrapper">
+                {% if block.settings.home_page_richtext != blank %}
+                  {% if block.settings.enlarge_text %}<div class="enlarge-text">{% endif %}
+                <div class="{% if block.settings.drop_shadow %}drop_shadow{% endif %} {% if block.settings.half_page %}half_page{% endif %}">
+                  {{ block.settings.home_page_richtext }}
+                </div>
+                  {% if block.settings.enlarge_text %}</div>{% endif %}
+                {% else %}
+                  {{ 'home_page.onboarding.no_content' | t }}
+                {% endif %}
+                {% if block.settings.add_more_block_one != blank %}
+                <div class="{% if block.settings.drop_shadow_one %}drop_shadow{% endif %} {% if block.settings.half_page_one %}half_page{% endif %}">
+                  {{ block.settings.home_page_richtext_one }}
+                </div>
+                {% endif %}
+                {% if block.settings.add_more_block_two != blank %}
+                <div class="{% if block.settings.drop_shadow_two %}drop_shadow{% endif %} {% if block.settings.half_page_two %}half_page{% endif %}">
+                  {{ block.settings.home_page_richtext_two }}
+                </div>
+                {% endif %}
+                {% if block.settings.add_more_block_three != blank %}
+                <div class="{% if block.settings.drop_shadow_three %}drop_shadow{% endif %} {% if block.settings.half_page_three %}half_page{% endif %}">
+                  {{ block.settings.home_page_richtext_three }}
+                </div>
+                {% endif %}
+                {% if block.settings.add_more_block_four != blank %}
+                <div class="{% if block.settings.drop_shadow_four %}drop_shadow{% endif %} {% if block.settings.half_page_four %}half_page{% endif %}">
+                  {{ block.settings.home_page_richtext_four }}
+                </div>
+                {% endif %}
+                {% if block.settings.add_more_block_five != blank %}
+                <div class="{% if block.settings.drop_shadow_five %}drop_shadow{% endif %} {% if block.settings.half_page_five %}half_page{% endif %}">
+                  {{ block.settings.home_page_richtext_five }}
+                </div>
+                {% endif %}
+                {% if block.settings.add_more_block_six != blank %}
+                <div class="{% if block.settings.drop_shadow_six %}drop_shadow{% endif %} {% if block.settings.half_page_six %}half_page{% endif %}">
+                  {{ block.settings.home_page_richtext_six }}
+                </div>
+                {% endif %}
+                {% if block.settings.add_more_block_seven != blank %}
+                <div class="{% if block.settings.drop_shadow_seven %}drop_shadow{% endif %} {% if block.settings.half_page_seven %}half_page{% endif %}">
+                  {{ block.settings.home_page_richtext_seven }}
+                </div>
+                {% endif %}
+                {% if block.settings.add_more_block_eight != blank %}
+                <div class="{% if block.settings.drop_shadow_eight %}drop_shadow{% endif %} {% if block.settings.half_page_eight %}half_page{% endif %}">
+                  {{ block.settings.home_page_richtext_eight }}
+                </div>
+                {% endif %}
+                {% if block.settings.add_more_block_nine != blank %}
+                <div class="{% if block.settings.drop_shadow_nine %}drop_shadow{% endif %} {% if block.settings.half_page_nine %}half_page{% endif %}">
+                  {{ block.settings.home_page_richtext_nine }}
+                </div>
+                {% endif %}
+              </div>
+            
+            {% endcase %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if section.settings.divider %}</div>{% endif %}
+
+{% schema %}
+  {
+    "name": "Rich text",
+    "class": "index-section",
+    "max_blocks": 30,
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "sub_title",
+        "label": "Subheader"
+      },
+      {
+        "type": "checkbox",
+        "id": "center_header",
+        "label": "Header + Subheader align center"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>A sentence or two introducing your brand, what you sell, and what makes your brand compelling to customers.</p>"
+      },
+      {
+        "type": "checkbox",
+        "id": "center_text",
+        "label": "Text align center"
+      },
+      {
+        "type": "checkbox",
+        "id": "enlarge_text",
+        "label": "Enlarge text",
+        "default": true
+      },
+      {
+        "type": "richtext",
+        "id": "text_two",
+        "label": "Text"
+      },
+      {
+        "type": "checkbox",
+        "id": "enlarge_text_two",
+        "label": "Enlarge text"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label",
+        "default": "Optional button"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Link"
+      },
+      {
+        "type": "select",
+        "id": "align_text",
+        "label": "Text alignment",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Centered"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "narrow_column",
+        "label": "Narrow column"
+      },
+      {
+        "type": "checkbox",
+        "id": "divider",
+        "label": "Show section divider",
+        "default": false
+      }
+    ],
+    "presets": [{
+      "name": "Rich text",
+      "category": "Text"
+    }],
+    "blocks" : [
+      {
+        "type": "text",
+        "name": "Drop Shadow Section",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "enlarge_text",
+            "label": "Enlarge text",
+            "default": false
+          },
+          {
+            "type": "text",
+            "id": "title_block",
+            "label": "Heading"
+          },
+          {
+            "id": "home_page_richtext",
+            "type": "richtext",
+            "label": "Text",
+            "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+          },
+          {
+            "type": "checkbox",
+            "id": "half_page",
+            "label": "Half Page width"
+          },
+          {
+            "type": "checkbox",
+            "id": "drop_shadow",
+            "label": "Drop Shadow"
+          },
+          {
+            "type": "checkbox",
+            "id": "add_more_block_one",
+            "label": "Add more blocks"
+          },
+          {
+            "type": "richtext",
+            "id": "home_page_richtext_one",
+            "label": "Text"
+          },
+          {
+            "type": "checkbox",
+            "id": "half_page_one",
+            "label": "Half Page width"
+          },
+          {
+            "type": "checkbox",
+            "id": "drop_shadow_one",
+            "label": "Drop Shadow"
+          },
+          {
+            "type": "checkbox",
+            "id": "add_more_block_two",
+            "label": "Add more blocks"
+          },
+          {
+            "type": "richtext",
+            "id": "home_page_richtext_two",
+            "label": "Text"
+          },
+          {
+            "type": "checkbox",
+            "id": "half_page_two",
+            "label": "Half Page width"
+          },
+          {
+            "type": "checkbox",
+            "id": "drop_shadow_two",
+            "label": "Drop Shadow"
+          },
+          {
+            "type": "checkbox",
+            "id": "add_more_block_three",
+            "label": "Add more blocks"
+          },
+          {
+            "type": "richtext",
+            "id": "home_page_richtext_three",
+            "label": "Text"
+          },
+          {
+            "type": "checkbox",
+            "id": "half_page_three",
+            "label": "Half Page width"
+          },
+          {
+            "type": "checkbox",
+            "id": "drop_shadow_three",
+            "label": "Drop Shadow"
+          },
+          {
+            "type": "checkbox",
+            "id": "add_more_block_four",
+            "label": "Add more blocks"
+          },
+          {
+            "type": "richtext",
+            "id": "home_page_richtext_four",
+            "label": "Text"
+          },
+          {
+            "type": "checkbox",
+            "id": "half_page_four",
+            "label": "Half Page width"
+          },
+          {
+            "type": "checkbox",
+            "id": "drop_shadow_four",
+            "label": "Drop Shadow"
+          },
+          {
+            "type": "checkbox",
+            "id": "add_more_block_five",
+            "label": "Add more blocks"
+          },
+          {
+            "type": "richtext",
+            "id": "home_page_richtext_five",
+            "label": "Text"
+          },
+          {
+            "type": "checkbox",
+            "id": "half_page_five",
+            "label": "Half Page width"
+          },
+          {
+            "type": "checkbox",
+            "id": "drop_shadow_five",
+            "label": "Drop Shadow"
+          },
+          {
+            "type": "checkbox",
+            "id": "add_more_block_six",
+            "label": "Add more blocks"
+          },
+          {
+            "type": "richtext",
+            "id": "home_page_richtext_six",
+            "label": "Text"
+          },
+          {
+            "type": "checkbox",
+            "id": "half_page_six",
+            "label": "Half Page width"
+          },
+          {
+            "type": "checkbox",
+            "id": "drop_shadow_six",
+            "label": "Drop Shadow"
+          },
+          {
+            "type": "checkbox",
+            "id": "add_more_block_seven",
+            "label": "Add more blocks"
+          },
+          {
+            "type": "richtext",
+            "id": "home_page_richtext_seven",
+            "label": "Text"
+          },
+          {
+            "type": "checkbox",
+            "id": "half_page_seven",
+            "label": "Half Page width"
+          },
+          {
+            "type": "checkbox",
+            "id": "drop_shadow_seven",
+            "label": "Drop Shadow"
+          },
+          {
+            "type": "checkbox",
+            "id": "add_more_block_eight",
+            "label": "Add more blocks"
+          },
+          {
+            "type": "richtext",
+            "id": "home_page_richtext_eight",
+            "label": "Text"
+          },
+          {
+            "type": "checkbox",
+            "id": "half_page_eight",
+            "label": "Half Page width"
+          },
+          {
+            "type": "checkbox",
+            "id": "drop_shadow_eight",
+            "label": "Drop Shadow"
+          },
+          {
+            "type": "checkbox",
+            "id": "add_more_block_nine",
+            "label": "Add more blocks"
+          },
+          {
+            "type": "richtext",
+            "id": "home_page_richtext_nine",
+            "label": "Text"
+          },
+          {
+            "type": "checkbox",
+            "id": "half_page_nine",
+            "label": "Half Page width"
+          },
+          {
+            "type": "checkbox",
+            "id": "drop_shadow_nine",
+            "label": "Drop Shadow"
+          }
+        ]
+      },
+      {
+        "type": "text_one",
+        "name": "Text Block",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "block_enlarge_text",
+            "label": "Enlarge text",
+            "default": false
+          },
+          {
+            "type": "text",
+            "id": "text_title_block",
+            "label": "Heading"
+          },
+{
+            "type": "text",
+            "id": "text_block_id",
+            "label": "block ID"
+          },
+          {
+            "id": "home_page_richtext_block",
+            "type": "richtext",
+            "label": "Text",
+            "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

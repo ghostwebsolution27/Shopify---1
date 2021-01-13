@@ -1,0 +1,84 @@
+<div class="subscription-rewards" style="background-color: {{ section.settings.section_bg }} ">
+  <div class="page-width">
+    <div class="grid">
+      <div class="grid__item small--one-whole medium-up--one-whole">
+          <h3 style="color: {{ section.settings.text_color }}">{{ section.settings.title_top }}</h3>
+          <h2 style="color: {{ section.settings.text_color }}">{{ section.settings.title }}</h2>
+      </div>
+    </div>
+    {% for block in section.blocks %}
+      <div class="grid reward-content">
+        <div class="grid__item small--one-third medium-up--one-third">
+          <img src="{{ block.settings.icon_reward | img_url: 'master' }}">
+        </div>
+        <div class="grid__item small--two-thirds medium-up--two-thirds">
+          <p>{{ block.settings.reward_text }}</p>
+        </div>
+      </div>
+    {% endfor %}
+    <div class="grid">
+       <a class="subscription-button btn" href="{{section.settings.button_link}}">{{ section.settings.button_title }}</a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Subscription Rewards",
+    "settings": [
+	  {
+        "type": "color",
+        "id": "section_bg",
+        "label": "Section Background color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#FFFFFF"
+      },
+	  {
+        "type": "text",
+        "id": "title_top",
+        "label": "Heading",
+		"default": "Snacking gets"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+		"default": "Rewarded"
+      },
+	  {
+        "type": "text",
+        "id": "button_title",
+        "label": "Button Title",
+		"default": "Get Started"
+      },
+	  {
+        "id": "button_link",
+        "type": "url",
+        "label": "Button Link"
+      }
+    ],
+	"blocks": [
+	  {
+		"type": "text",
+        "name": "Rewards",
+        "settings": [
+		  {
+            "type": "image_picker",
+            "id": "icon_reward",
+            "label": "Reward Block Icon"
+          },
+		  {
+            "type": "text",
+            "id": "reward_text",
+            "label": "Reward Text"
+          }
+		] 
+      }
+	]
+  }
+{% endschema %}

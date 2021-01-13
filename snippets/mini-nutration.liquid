@@ -1,0 +1,104 @@
+<div id="bf1" style="text-align: center;">
+  <div class="mini-switch tabs-outer">
+    <ul class="mini-switch tabs" style="margin-top:20;">
+      <li>
+        <img class="mini-switch tab_product_image bannanbar ot1" style=" " src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/oat_mini_1.jpg?v=1595083351" alt="">
+        <img class="mini-switch  bannanbar ot4" style= " display:none;    " src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/Oat-Cookie-Mini---Wrapper-OFF.jpg?v=1591029189" alt="">
+        <p class="mini-switch btn1 tab12">NUTRITION FACTS</p>
+      </li>
+      <li>
+        <img class="mini-switch tab_product_image chocolatebar ot2" style=" "  src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/brownie_mini_1.jpg?v=1595083204" alt="">
+        <img class="mini-switch  chocolatebar ot8" style="display:none;;  "  src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/Salted-Brownie-Mini---Wrapper-OFF.jpg?v=1591029189" alt="">
+        <p class="mini-switch btn1 tab13">NUTRITION FACTS</p></li>
+      <li>
+        <img class="mini-switch tab_product_image oatsbar ot3" style=" "  src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/banana_mini_1.jpg?v=1595083306" alt="">
+        <img class="mini-switch  oatsbar ot6" style="display:none;    "  src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/banana-bread-mini---wrapper-off.jpg?v=1591029365" alt="">
+        <p class="mini-switch btn1 tab14" style="background-color:red">NUTRITION FACTS</p>
+      </li>
+    </ul>
+
+    <div id="tab3" class="mini-switch tab_contentBox">
+      <div class="mini-switch tab_product_textbox">                                     
+        <p>Decadence in disguise, our Banana Bread flavor unites soft cinnamon oats and a subtle sweet banana.</p>                 
+      </div>
+      <div class="mini-switch tabproductBox_">
+        <div class="mini-switch tab_nutri_textbox">                                     
+          <h4 style="color:#fff; background:#ecd113; "> banana bread  </h4>               
+        </div>
+        <img class="mini-switch tab_nutri_image" src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/oat-nfp.jpg?v=1591029445" alt="">                                    
+      </div>
+    </div>
+    
+    <div id="tab2" class="mini-switch tab_contentBox">
+      <div class="mini-switch tab_product_textbox">                                     
+      <p>The perfect balance of milk and dark chocolate, our Salted Brownie flavor brings you the decadence of almond-sprinkled brownie batter.</p>
+      </div>
+      <div class="mini-switch tabproductBox_">
+        <div class="mini-switch tab_nutri_textbox">                                     
+          <h4 style="color:#fff; background:#47413c; "> salted brownie  </h4>               
+        </div>
+        <img class="mini-switch tab_nutri_image" src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/brownie-nfp.jpg?v=1591029445" alt="">
+      </div>
+    </div>
+    
+    <div id="tab1" class="mini-switch tab_contentBox">
+      <div class="mini-switch tab_product_textbox">                                     
+        <p>Like the first step into your hometown bakery, our Oat Cookie bar melds deep notes of buttered brown sugar and warm maple syrup.</p>               
+      </div>
+      <div class="mini-switch tabproductBox_">
+        <div class="mini-switch tab_nutri_textbox">                                     
+          <h4 style="color:#fff; background:#e2c687; "> oat cookie  </h4>               
+        </div>
+        <img class="mini-switch tab_nutri_image" src="https://cdn.shopify.com/s/files/1/0248/8084/0813/files/oat-nfp.jpg?v=1591029445" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  jQuery(document).ready(function(){
+    jQuery('a[href="#tab-1"]').removeClass("active");
+    jQuery(".tab12.mini-switch").click(function(e){
+      e.preventDefault()
+      jQuery(".bannanbar.mini-switch").toggle();
+      jQuery(".ot2.mini-switch").show();
+      jQuery(".ot8.mini-switch").hide();
+      jQuery(".ot3.mini-switch").show();
+      jQuery(".ot6.mini-switch").hide();
+      jQuery("#tab3.mini-switch").hide();
+      jQuery(".tab14.mini-switch").removeClass("active");
+      jQuery("#tab2.mini-switch").hide();
+      jQuery(".tab13.mini-switch").removeClass("active");
+      jQuery("#tab1.mini-switch").slideToggle();
+      jQuery(".tab12.mini-switch").toggleClass("active");
+    });
+
+    jQuery(".tab13.mini-switch").click(function(){
+      jQuery(".chocolatebar.mini-switch").toggle();
+      jQuery(".ot1.mini-switch").show();
+      jQuery(".ot4.mini-switch").hide();
+      jQuery(".ot3.mini-switch").show();
+      jQuery(".ot6.mini-switch").hide();
+      jQuery("#tab1.mini-switch").hide();
+      jQuery(".tab12.mini-switch").removeClass("active");
+      jQuery("#tab3.mini-switch").hide();
+      jQuery(".tab14.mini-switch").removeClass("active");
+      jQuery("#tab2.mini-switch").slideToggle();
+      jQuery(".tab13.mini-switch").toggleClass("active");
+    });
+    
+    jQuery(".tab14.mini-switch").click(function(){
+      jQuery(".oatsbar.mini-switch").toggle();
+      jQuery(".ot1.mini-switch").show();
+      jQuery(".ot4.mini-switch").hide();
+      jQuery(".ot2.mini-switch").show();
+      jQuery(".ot8.mini-switch").hide(); 
+      jQuery("#tab2.mini-switch").hide();
+      jQuery(".tab13.mini-switch").removeClass("active");
+      jQuery("#tab1.mini-switch").hide();
+      jQuery(".tab12.mini-switch").removeClass("active");
+      jQuery("#tab3.mini-switch").slideToggle();
+      jQuery(".tab14.mini-switch").toggleClass("active");
+    });
+  });
+</script>

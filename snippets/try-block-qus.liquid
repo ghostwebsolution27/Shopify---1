@@ -1,0 +1,11 @@
+<div class="try-block-full">
+  <button type="button" class="collapsible-trigger collapsible-trigger--inline collapsible--auto-height" aria-controls="FAQ-content-{{ block.id }}">
+    {{ block.settings.title }}
+    {% include 'collapsible-icons-alt', no_circle: true %}
+  </button>
+  <div id="FAQ-content-{{ block.id }}" class="collapsible-content collapsible-content--all">
+    <div class="collapsible-content__inner collapsible-content__inner--faq rte">
+      {{ block.settings.text }}
+    </div>
+  </div>
+</div>

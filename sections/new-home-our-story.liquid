@@ -1,0 +1,60 @@
+<div class="new-home-story" style="background-color: {{ section.settings.section_bg }} ">
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+    	<h2 style="color: {{ section.settings.text_color }}">{{ section.settings.title }}</h2>
+    {% endif %}    
+    <div class="grid">
+      <div class="grid__item small--one-whole medium-up--one-half">
+        {% if section.settings.image != blank %}
+          <img class="lazyloaded" src="{{ section.settings.image | img_url: 'master' }}">
+        {% endif %}
+      </div>
+      <div class="grid__item small--one-whole medium-up--one-half">
+        {% if section.settings.text != blank %}
+          {{ section.settings.text }}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "New Home - Our Story",
+    "settings": [
+	  {
+        "type": "color",
+        "id": "section_bg",
+        "label": "Section Background color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+		"default": "Because healthy shouldn't be hard, dang it!"
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Text Content",
+		"default": "<p>We learned how difficult it is to be healthy the hard way. There are too many frauds, gimmicks, and fads out there</p> <p>That's why we developed a protein bar based on real, life changing results</p> <p>NBA player, Meyers Leonard, and his wife Ellie Leonard, now share Level with you.</p>"
+      },
+	  {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#000000"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      }
+    ],
+    "presets": [{
+      "name": "New Home - Our Story",
+      "category": "New Homepage Sections"
+    }]
+  }
+{% endschema %}

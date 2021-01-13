@@ -1,0 +1,86 @@
+<div class="new-home-subscription" style="background-color: {{ section.settings.section_bg }} ">
+  <div class="page-width">
+    <div class="grid">
+      <div class="grid__item grid-product small--one-whole medium-up--one-half">
+        {% if section.settings.image != blank %}
+          <img class="lazyloaded" src="{{ section.settings.image | img_url: 'master' }}">
+        {% endif %}
+      </div>
+      <div class="grid__item grid-product small--one-whole medium-up--one-half">
+        {% if section.settings.title != blank %}
+          <h2 style="color: {{ section.settings.text_color }}">{{ section.settings.title }}</h2>
+        {% endif %}
+        {% if section.settings.text != blank %}
+          <p style="color: {{ section.settings.text_color }}">{{ section.settings.text }}</p>
+        {% endif %}
+        {% if section.settings.button_title != blank %}
+          <a  style="color: {{ section.settings.button_color }}; border: 1px solid {{ section.settings.button_bg }};" href="{{section.settings.button_link}}">{{ section.settings.button_title }}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "New Home - Subscription",
+    "settings": [
+	  {
+        "type": "color",
+        "id": "section_bg",
+        "label": "Section Background color",
+        "default": "#000000"
+      },
+	  {
+		"type": "image_picker",
+      	"id": "image",
+      	"label": "Section Image"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+		"default": "In the zone. Every day."
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Description",
+        "default": "Never run out of Level with a monthly subscription. Members get 10% off and free shipping straight to your door."
+      },
+	  {
+        "type": "text",
+        "id": "button_title",
+        "label": "Button Title",
+		"default": "Subscribe"
+      },
+	  {
+        "id": "button_link",
+        "type": "url",
+        "label": "Button Link"
+      },
+	  {
+        "type": "color",
+        "id": "button_bg",
+        "label": "Button Border color",
+        "default": "#000"
+      },
+	  {
+        "type": "color",
+        "id": "button_color",
+        "label": "Button Text color",
+        "default": "#000"
+      }
+    ],
+    "presets": [{
+      "name": "New Home - Subscription",
+      "category": "New Homepage Sections"
+    }]
+  }
+{% endschema %}
